@@ -165,7 +165,7 @@ texinfo_documents = [
      'Miscellaneous'),
 ]
 
-html_logo = '_static/images/logo.png'
+#html_logo = '_static/images/logo.png'
 
 # -- Options for Epub output -------------------------------------------------
 
