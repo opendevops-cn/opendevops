@@ -9,3 +9,5 @@
 OpenDevOps平台可以帮助你解决平时运维的痛点.
 
 ----
+## 产品设计图
+![project](docs/source/_static/images/arch.jpg)
