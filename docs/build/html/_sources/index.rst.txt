@@ -3,12 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to OpenDevOps's documentation!
+OpenDevOps 文档
 ==========================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: 目录:
    
    user_guide
 
