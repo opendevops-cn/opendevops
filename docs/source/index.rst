@@ -11,6 +11,7 @@ OpenDevOps 文档
    :caption: 目录:
    
    user_guide
+   change_log
 
 Indices and tables
 ==================
