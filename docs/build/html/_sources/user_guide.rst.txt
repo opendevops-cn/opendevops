@@ -8,3 +8,5 @@
       :maxdepth: 1
 
    timed_task
+   event_reminder
+   system_config
