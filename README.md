@@ -5,7 +5,7 @@
 [![Vue.js](https://img.shields.io/badge/Vuejs-2.5-brightgreen.svg?style=plastic)](https://cn.vuejs.org)
 
 ----
-上海浦东世博园区第一家开源OpenDevOps平台.
+CoDo(ColoudOpenDevOps)第一家不止是面向运维的开源自动化,开源云管理平台.
 OpenDevOps平台可以帮助你解决平时运维的痛点.
 
 ----
