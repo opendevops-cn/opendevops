@@ -7,7 +7,8 @@
 .. toctree::
       :maxdepth: 1
 
-   user_manager
+   task_tmplate
    timed_task
    event_reminder
+   user_manager
    system_config
