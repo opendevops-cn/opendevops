@@ -25,8 +25,8 @@ from recommonmark.parser import CommonMarkParser
 html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-project = 'docs'
-copyright = '2018, yanghongfei'
+project = 'opendevops'
+copyright = '2019, yanghongfei'
 author = 'yanghongfei'
 
 # The short X.Y version
