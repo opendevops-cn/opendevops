@@ -9,3 +9,8 @@ CoDo(ColoudOpenDevOps)第一家不止是面向运维的开源自动化,开源云
 OpenDevOps平台可以帮助你解决平时运维的痛点.
 
 ----
+
+
+## License
+
+Everything is [GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
