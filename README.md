@@ -4,10 +4,6 @@
     </a>
 </p>
 
-<h1>
-CoDo
-    <h3>CoDo is a cloud management platform that provides users with multi-hybrid cloud, automated operation and maintenance, and complete open source.</h3>
-</h1>
 
 [![Python3](https://img.shields.io/badge/Python-3.6-green.svg?style=plastic)](https://www.python.org/)
 [![Tornado](https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic)](https://www.tornadoweb.org)
@@ -16,11 +12,10 @@ CoDo
 
 
 ----
-CoDo(ColoudOpenDevOps)第一家不止是面向运维的开源自动化,开源云管理平台.  
-
-OpenDevOps平台可以帮助你解决平时运维的痛点.
-
+CoDo是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台，可以帮助你解决平时运维的痛点。
 ----
+
+
 
 ## License
 
