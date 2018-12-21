@@ -48,7 +48,7 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 我们提供多种部署文档，支持Docker和一步步安装，你也可以查阅我们完整的官方文档：http://docs.opendevops.cn/zh/latest/
 - 一步步安装文档：[部署参考](http://docs.opendevops.cn/zh/latest/step_by_step_install.html)
-- Docker快速安装：[部署参考](http://docs.opendevops.cn/zh/latest/docker_install.html)
+- 快速安装文档：[部署参考](http://docs.opendevops.cn/zh/latest/docker_install.html)
 
 ### 模块链接
 - 前端：[codo](https://github.com/opendevops-cn/codo)
