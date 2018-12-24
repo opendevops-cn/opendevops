@@ -62,7 +62,8 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 - 定时任务：[codo-cron](https://github.com/opendevops-cn/codo-cron)
 - 任务调度：[codo-task](https://github.com/opendevops-cn/codo-task)
 - 资产管理: [codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
-- K8S发 布：[codo-k8s](https://github.com/opendevops-cn/codo-k8s)
+- K8S发布：[codo-k8s](https://github.com/opendevops-cn/codo-k8s)
+- 基础发布：[codo-publish](https://github.com/opendevops-cn/codo-publish.git)
 
 
 ### 感谢贡献者
