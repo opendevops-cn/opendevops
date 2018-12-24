@@ -37,6 +37,7 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 ### Demo
 我们提供了Demo供使用者体验，帮助你快速熟悉CoDo功能
 
+`PS: 暂时还在调试权限中，不可登陆`
 - 地址：http://demo.opendevops.cn/login
 - 用户：codo
 - 密码：codo
@@ -46,17 +47,22 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 ### 开始使用
 
-我们提供多种部署文档，支持Docker和一步步安装，你也可以查阅我们完整的官方文档：http://docs.opendevops.cn/zh/latest/
+我们提供多种部署文档，支持快速部署文档和一步步安装。
+
+你也可以查阅我们完整的官方文档：http://docs.opendevops.cn/zh/latest/
+
 - 一步步安装文档：[部署参考](http://docs.opendevops.cn/zh/latest/step_by_step_install.html)
-- 快速安装文档：[部署参考](http://docs.opendevops.cn/zh/latest/docker_install.html)
+- 快速安装部署文档：[部署参考](http://docs.opendevops.cn/zh/latest/docker_install.html) `暂未完成`
 
 ### 模块链接
-- 前端：[codo](https://github.com/opendevops-cn/codo)
+> CodDo 项目我们是使用模块化、微服务化，以下为各个模块地址，同时也欢迎业界感兴趣各位大佬前来贡献
+
+- 前端代码：[codo](https://github.com/opendevops-cn/codo)
 - 管理后端：[codo-admin](https://github.com/opendevops-cn/codo-admin)
 - 定时任务：[codo-cron](https://github.com/opendevops-cn/codo-cron)
 - 任务调度：[codo-task](https://github.com/opendevops-cn/codo-task)
-- CMDB: [codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
-- K8s发布：[codo-k8s](https://github.com/opendevops-cn/codo-k8s)
+- 资产管理: [codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
+- K8S发 布：[codo-k8s](https://github.com/opendevops-cn/codo-k8s)
 
 
 ### 感谢贡献者
@@ -65,11 +71,11 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 感谢各位的付出，让维护因你们变的不再枯燥、世界因你们而美丽，此排名不分前后，谢谢大家!
   
 
-|Name|Avatar|Name| Avatar                                                       | Name                                              | Avatar                                                       |
+|Name|Github Avatar|Name| GitHub Avatar                                                       | Name                                              | Avatar                                                       |
 |---|---|---|---|---|---|
 |[laoxu](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)          |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
 |[yanghongfei](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[shengyingzhi](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [biantingting](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
-|[zhirenyongnan](https://github.com/Aaronzryn) | https://avatars3.githubusercontent.com/u/35439838?s=70&v=4 | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) |  |  |
+|[zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) |  |  |
 
 
 
