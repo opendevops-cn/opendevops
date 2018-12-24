@@ -67,9 +67,9 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 |Name|Avatar|Name| Avatar                                                       | Name                                              | Avatar                                                       |
 |---|---|---|---|---|---|
-|laoxu |  N/A  | [shenshuo](https://github.com/ss1917)          |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
+|[laoxu](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)          |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
 |[yanghongfei](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[shengyingzhi](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [biantingting](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
-|[zhirenyongnan](https://github.com/Aaronzryn) | N/A | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) |  |  |
+|[zhirenyongnan](https://github.com/Aaronzryn) | https://avatars3.githubusercontent.com/u/35439838?s=70&v=4 | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) |  |  |
 
 
 

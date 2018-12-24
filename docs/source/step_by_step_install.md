@@ -1,14 +1,17 @@
 ### 一步步安装方式
 
-> 这部分文档可以帮助你一步步安装部署CoDo(CloudOpenDevOps)云管理平台
+> 这部分文档可以帮助你一步步安装部署[CoDo(CloudOpenDevOps)](http://www.opendevops.cn/)云管理平台
+由于项目是模块化的，如果你不想使用某个模块可以选择不用安装（但是必须项是一定要安装的哦！）
 
-`提示：此文档里面直接用到shell和docker方便大家安装，因此需要有一定的运维基础，否则理解起来会稍有吃力。`
+`提示：此文档里面直接用到shell和docker方便大家安装，因此需要有一定的运维基础，否则理解起来会稍有吃力，但是也没问题，你可以加入我们的CoDo社区交流群呀，大家一起进步呀～～！`
 
-#### 初始化环境变量
-> 请根据自己环境修改以下变量地址，后续平台里面调用需要使用到。
+#### 初始化环境变量(必须)
+> 请根据自己环境修改以下变量地址，后续平台里面调用需要使用到, 你可以在/opt下创建一个codo目录，后续操作都在此执行
+
+`mkdir -p /opt/codo/ && cd /opt/codo/`
 
 ```shell
-### 请自行修改相关配置
+### 请自行修改相关配置,然后直接贴到终端上即可，注意：此环境变量是临时生效，关闭终端就没了。
 export mysql_database="shenshuo"
 export MYSQL_PASSWORD="m9uSFL7duAVXfeAwGUSG"
 export REDIS_PASSWORD="cWCVKJ7ZHUK12mVbivUf"
@@ -26,7 +29,8 @@ export front_domain="demo.opendevops.cn"
 export api_gw_url="http://gw.opendevops.cn/"
 ```
 
-#### 安装Python3
+#### 安装Python3(必须)
+> 建议使用Python36,若你的系统里面已经存在Python36可以跳过此步骤。
 
 ```shell
 [ -f /usr/local/bin/python3 ] && echo "Python3 already exists" && exit -1
@@ -46,7 +50,8 @@ else
 fi
 ```
 
-#### 安装Docker-compose
+#### 安装Docker-compose(必须)
+> 若已安装docker-compose可跳过
 ```shell
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
@@ -62,7 +67,7 @@ python3 get-pip.py
 pip3 install docker-compose
 ```
 
-#### 安装MySQL
+#### 安装MySQL(必须)
 > 一般来说 一个MySQL实例即可，如果有需求可以自行搭建主从，每个服务都可以有自己的数据库
 
 ```shell
@@ -84,31 +89,111 @@ docker-compose up -d
 ### 安装MySQL客户端测试一下
 yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm
 yum -y install Percona-Server-client-56
-echo  "mysql -h 127.0.0.1 -u root -p ${MYSQL_PASSWORD}"
+echo  "mysql -h 127.0.0.1 -uroot -p${MYSQL_PASSWORD}"
+### 确认可以正常链接mysql
 ```
 
-#### 安装 RabbitMQ
+#### 安装Redis(必须)
+```shell
+#将以下shell脚本复制粘贴到一个文件，执行即可
+
+function init_redis()
+{
+    echo "Start init redis"
+    ### 开启AOF
+    sed -i 's#appendonly no$#appendonly yes#g' /etc/redis.conf
+    ### 操作系统决定
+    sed -i 's#appendfsync .*$$#appendfsync everysec$#g' /etc/redis.conf
+    ### 修改绑定IP
+    sed -i 's/^bind 127.0.0.1$/#bind 127.0.0.1/g' /etc/redis.conf
+    ### 是否以守护进程方式启动
+    sed -i 's#daemonize no$#daemonize yes#g' /etc/redis.conf
+    ### 当时间间隔超过60秒，或存储超过1000条记录时，进行持久化
+    sed -i 's#^save 60 .*$#save 60 1000#g' /etc/redis.conf
+    ### 快照压缩
+    sed -i 's#rdbcompression no$#rdbcompression yes#g' /etc/redis.conf
+    ### 添加密码
+    sed -i "s#.*requirepass .*#requirepass ${REDIS_PASSWORD}#g" /etc/redis.conf
+    echo "Start init redis end, must restart redis !!!"
+}
+
+[ -f /usr/bin/redis-server ] && echo "redis already exists" && init_redis && exit 0
+echo "Start install redis server "
+yum -y install redis-3.2.*
+
+init_redis
+systemctl restart redis
+systemctl status redis
+
+if [ $? == 0 ]; then
+        echo "install successful"
+else
+        echo "install error" && exit -2
+fi
+```
+
+
+#### 安装RabbitMQ(必须)
 ```shell
 yum install  -y rabbitmq-server
 rabbitmq-plugins enable rabbitmq_management
+rabbitmq-server -detached
 rabbitmqctl add_user ${MQ_USER} ${MQ_PASSWORD}
 rabbitmqctl set_user_tags ${MQ_USER} administrator
 rabbitmqctl  set_permissions  -p  '/'  ${MQ_USER} '.' '.' '.'
 systemctl restart rabbitmq-server
+systemctl status rabbitmq-server
 systemctl enable rabbitmq-server
 ```
 
-#### 安装部署do_mg
->`do_mg`是基于tornado框架 restful风格的API 实现后台管理,[do_mg详细参考](https://github.com/ss1917/do_mg),搭配使用admin-front前端(iView+ vue)组成的一套后台用户 权限以及系统管理的解决方案（提供登录，注册 密码修改 鉴权 用户管理 角色管理 权限管理 前端组件管理 前端路由管理 通知服务API 系统基础信息接口）
+#### 安装DNS（必须）
+> 部署内部DNS dnsmasq 主要用于内部通信。
+```shell
+yum install dnsmasq -y
 
+cat > /etc/resolv.conf  <<EOF
+listen-address=127.0.0.1,172.16.0.20   #本机地址、DNS地址
+strict-order
+bind-interfaces
+clear-on-reload
+no-hosts
+addn-hosts=/etc/dnsmasqhosts           #本地解析规则文件路径
+all-servers
+server=119.29.29.29                    #配置上行的真正的dns服务器地址，毕竟你只是个本地代理
+EOF
+
+## 配置本地解析规则，这才是我们的真实目的。新建配置文件 例如当前项目的解析 echo  "127.0.0.1 mg.opendevops.cn" >> /etc/dnsmasqhosts
+vi /etc/dnsmasqhosts
+10.2.2.236 demo.opendevops.cn   //示例
+10.2.2.236 gw.opendevops.cn     //示例
+
+## 重启
+/bin/systemctl restart dnsmasq.service
+## 加入开机自启
+/bin/systemctl enable dnsmasq.service
+
+##测试
+可以找一台机器，DNS改成你这台机器的DNS地址，然后解析你的`/etc/dnsmasqhosts`域名看是否可以内部解析
+
+```
+
+
+#### 安装codo-admin(必须)
+>`codo-admin`是基于tornado框架 restful风格的API 实现后台管理,[codo详细参考](https://github.com/ss1917/do_mg),搭配使用admin-front前端(iView+ vue)组成的一套后台用户 权限以及系统管理的解决方案（提供登录，注册 密码修改 鉴权 用户管理 角色管理 权限管理 前端组件管理 前端路由管理 通知服务API 系统基础信息接口）
+
+**获取代码**
+```shell
+git clone https://github.com/opendevops-cn/codo-admin.git
+cd codo-admim
+```
 **mysql数据初始化**
 ```shell
-mysql -h 127.0.0.1 -u root -p ${MYSQL_PASSWORD} -e "create database ${mysql_database} default character set utf8mb4 collate utf8mb4_unicode_ci;"
-mysql -h 127.0.0.1 -u root -p ${MYSQL_PASSWORD} < doc/data.sql
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database ${mysql_database} default character set utf8mb4 collate utf8mb4_unicode_ci;"
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} < doc/data.sql
 ```
 **修改相关配置**
 ```shell
-### 进程数量
+### 进程数量,配置文件自行修改
 vi doc/supervisor_ops.conf
 ### nginx域名配置 doc/nginx_ops.conf
 sed -i "s#\tserver_name .*#\tserver_name ${mg_domain};#g" doc/nginx_ops.conf
@@ -153,18 +238,15 @@ docker build . -t do_mg_image
 `此处要保证 变量正确`
 ```shell
 cat >docker-compose.yml <<EOF
-do_mg:
+codoadmin:
   restart: unless-stopped
   image: do_mg_image
   volumes:
     - /var/log/supervisor/:/var/log/supervisor/
-    - /var/www/do_mg/:/var/www/do_mg/
     - /sys/fs/cgroup:/sys/fs/cgroup
   ports:
     - "8010:80"
   environment:
-    - DOMAIN_NAME=${DOMAIN_NAME}
-    - PROJECT_PORT=${PROJECT_PORT}
     - DEFAULT_DB_DBHOST=${DEFAULT_DB_DBHOST}
     - DEFAULT_DB_DBPORT=${DEFAULT_DB_DBPORT}
     - DEFAULT_DB_DBUSER=${DEFAULT_DB_DBUSER}
@@ -186,16 +268,18 @@ EOF
 docker-compose up -d
 ```
 
-**测试mg**
+**测试codo-admin**
 ```shell
 ### 日志
 tailf  /var/log/supervisor/mg.log
 ### are you ok
 ```
 
-#### 前端部署
+#### 安装codo(必须)
+> 项目前端代码
 
-**Node安装**
+**安装Node**
+> shell脚本内容，复制内容到.sh文件执行即可
 
 ```shell
 [ -f /usr/local/bin/node ] && echo "Node already exists" && exit -1
@@ -215,134 +299,55 @@ sudo npm i -g pm2 >/dev/null 2>&1
 ln -s /usr/local/node-v10.14.2-linux-x64/bin/pm2 /usr/bin/
 ```
 
-**安装编译**
+**获取代码，修改配置**
 ```shell
-git clone https://github.com/ss1917/admin-front.git
-cd admin-front
-### 修改配置 baseUrl pro 为你的后端地址 例如
+cd /opt/codo/ && git clone https://github.com/opendevops-cn/codo.git && cd codo
+
+
+vim src/config/index.js
+### 修改配置 baseUrl pro 为你的后端地址, 默认已修改好，例如
 baseUrl: {
     dev: '',
     pro: '/api/'
   },
-vim src/config/index.js
 npm install --ignore-script
 npm run build
-mkdir -p /var/www/admin-front && rm -rf /var/www/admin-front/*
-\cp -arp dist/* /var/www/admin-front
+mkdir -p /var/www/codo && rm -rf /var/www/codo/*
+\cp -arp dist/* /var/www/codo/
+
+### 后续访问使用API网关中的vhosts，节省资源，这里不单独安装配置nginx
 ```
 
-**安装nginx**
-`使用nginx代理，或者使用网关, 推荐使用网关代理节约资源`
 
-```shell
-[ -f /etc/nginx/nginx.conf ] && echo "nginx already exists" && exit -1
-cd /usr/local/src
-wget -q -c http://nginx.org/packages/centos/7/x86_64/RPMS/nginx-1.14.2-1.el7_4.ngx.x86_64.rpm
-yum install -y nginx-1.14.2-1.el7_4.ngx.x86_64.rpm >/dev/null 2>&1
-cat >/etc/nginx/nginx.conf<<EOF
-user  nginx;
-worker_processes auto;
-worker_rlimit_nofile 51200;
-pid        /var/run/nginx.pid;
-error_log  /var/log/nginx/error.log  warn;
-events {
-    use epoll;
-    worker_connections 51200;
-}
-stream{
-    include  /etc/nginx/sshconf/*.conf ;
-}
-http {
-    include       mime.types;
-    default_type  text/html;
-    log_format main  '$host | $server_addr | $http_x_forwarded_for | $remote_addr | $remote_user | $time_local | $request | $status | $body_bytes_sent '
-                        '| $http_referer | $http_user_agent | $upstream_addr | $upstream_status | $upstream_response_time | $request_time';
 
-    client_max_body_size            64m;
-    client_header_buffer_size       32k;
-    #client_body_buffer_size         64m;
-    map_hash_bucket_size            64;
-    types_hash_bucket_size          64;
-    variables_hash_bucket_size      128;
-    server_names_hash_bucket_size   128;
-    server_name_in_redirect         off;
-    sendfile    on;
-    tcp_nopush  on;
-    tcp_nodelay on;
-    server_tokens       off;
-    keepalive_timeout   15;
-    client_body_timeout 3600;
-    client_header_timeout 3600;
-
-    gzip on;
-    gzip_min_length     1k;
-    gzip_buffers        4 16k;
-    gzip_http_version   1.0;
-    gzip_comp_level     2;
-    gzip_types      text/plain application/x-javascript text/css application/xml;
-    gzip_vary           on;
-    ssi on;
-    ssi_silent_errors on;
-    ssi_types text/shtml;
-    charset  utf-8;
-
-    include /etc/nginx/conf.d/*.conf;
-}
-EOF
-[ -f /etc/nginx/conf.d/default.conf ] && mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default-`date +%F`
-
-cat >/etc/nginx/conf.d/demo.conf<<\EOF
-server {
-        listen      80;
-        server_name demo.opendevops.cn;
-        access_log /var/log/nginx/ops-demo_access.log;
-        error_log  /var/log/nginx/ops-demo_error.log;
-
-        location / {
-                    root /var/www/admin-front;
-                    index index.html index.htm;
-                    try_files $uri $uri/ /index.html;
-                    }
-
-        location /api {
-                add_header 'Access-Control-Allow-Origin' '*';
-                proxy_pass http://gw.shinezone.net.cn;
-        }
-        location ~ /(.svn|.git|admin|manage|.sh|.bash)$ {
-            return 403;
-        }
-    }
-EOF
-mkdir /var/www/admin-front/ -p
-systemctl enable nginx >/dev/null 2>&1
-systemctl start nginx
-```
-
-#### API网关部署
+#### API网关部署(必须)
+> 由于此项目是模块化、微服务化，因此需要在借助API网关，需要在API网关注册，此步骤是必须的。
 
 **安装openresty**
 
 ```shell
 yum update
-yum install yum-utils
+yum install yum-utils -y
 yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
-yum install openresty
-yum install openresty-resty
+yum install openresty -y
+yum install openresty-resty -y
 ```
 
 **部署网关**
 ```shell
-
-git clone https://github.com/ss1917/api-gateway.git
+cd /opt/codo/ && git clone https://github.com/ss1917/api-gateway.git
 \cp -arp api-gateway/* /usr/local/openresty/nginx/
 ```
 
 **修改配置**
-参考[API网关](https://github.com/ss1917/api-gateway/blob/master/README.md)
+> 主要修改`nginx.conf`配置信息和`config.lua`配置，具体参考API网关块：[API网关修改配置](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%BA%8C-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE)
 
-因为 我把前端静态文件也使用 网关进行代理 所以配置文件如下
+接下来配置：
+
+    因为我把前端静态文件也使用 网关进行代理 所以配置文件如下
 
 ```nginx
+# 全局nginx配置
 #  /usr/local/openresty/nginx/conf/nginx.conf
 user root;
 worker_processes auto;
@@ -371,23 +376,24 @@ http {
     init_by_lua_file lua/init_by_lua.lua;       #nginx启动时就会执行
     #include /etc/nginx/conf.d/*.conf;
     include ./conf.d/*.conf;                    #lua生成upstream
-    resolver 10.2.2.236;                        # 内部DNS
+    resolver 10.2.2.236;                        # 内部DNS地址，上面dnsmasq地址
 
 }
 ```
 
 ```shell
-
+#前端vhosts
+mkdir -p /usr/local/openresty/nginx/conf/conf.d/
 # /usr/local/openresty/nginx/conf/conf.d/demo.conf
 server {
         listen       80;
         server_name demo.opendevops.cn;
         access_log /var/log/nginx/f_access.log;
         error_log  /var/log/nginx/f_error.log;
-        root /var/www/admin-front;
+        root /var/www/codo;
 
         location / {
-                    root /var/www/admin-front;
+                    root /var/www/codo;
                     index index.html index.htm;
                     try_files $uri $uri/ /index.html;
                     }
@@ -405,6 +411,7 @@ server {
 ```
 
 ```shell
+#网关vhosts
 # /usr/local/openresty/nginx/conf/conf.d/gw.conf
     server {
         listen 80;
@@ -428,50 +435,78 @@ server {
     }
 ```
 
-#### 任务系统
-
-**[获取代码](hhttps://github.com/opendevops-cn/codo-task)**
-
+**API网关启动**
 ```shell
-git clone https://github.com/opendevops-cn/codo-task
+#OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，使用的也是80端口，若不能启动请检查你的80端口是否被占用了
+systemctl start openresty
+systemctl enable openresty
+
 ```
 
-**修改配置**
-对settings 里面的配置文件进行修改
 
-编译镜像
-```shell
+#### 安装模块：任务系统(必须)
+> CoDo系统中核心模块，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-task)
+- 默认端口：8020
+- 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
-docker build . -t task_scheduler_image
+
+
+
+#### 安装模块：定时任务(可选)
+> CoDo系统中定时任务模块，需要用到此功能请安装，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-cron)
+- 默认端口：9900
+- 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
+
+
+
+#### 安装模块：CMDB(可选)
+> CoDo系统中CMDB资产管理模块，需要用到此功能请安装，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-cmdb)
+- 默认端口：8002
+- 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
+
+
+#### 安装模块：K8S(可选)
+> CoDo系统中K8S发布管理系统，需要用到此功能请安装，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-k8s)
+- 默认端口：8002
+- 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
+
+
+
+#### API网关注册示例
+
 ```
-**docker启动**
-> 保证变量正确
-
-```s
-cat >docker-compose.yml <<EOF
-task_scheduler:
-  restart: unless-stopped
-  image: task_scheduler_image
-  volumes:
-    - /var/log/supervisor/:/var/log/supervisor/
-    - /var/www/task_scheduler:/var/www/task_scheduler/
-    - /root/ops_scripts:/root/ops_scripts
-    - /sys/fs/cgroup:/sys/fs/cgroup
-  ports:
-    - "8020:80"
-  environment:
-EOF
-docker-compose up -d
+rewrite_conf = {
+    [gw_domain_name] = {
+        rewrite_urls = {
+            {
+                uri = "/cmdb",
+                rewrite_upstream = "cmdb.opendevops.cn:8002"
+            },
+            {
+                uri = "/k8s",
+                rewrite_upstream = "k8s.opendevops.cn:8001"
+            },
+            {
+                uri = "/task",
+                rewrite_upstream = "task.opendevops.cn:8020"
+            },
+            {
+                uri = "/cron",
+                rewrite_upstream = "10.2.2.236:9900"
+            },
+            {
+                uri = "/mg",
+                rewrite_upstream = "mg.opendevops.cn:8010"
+            },
+            {
+                uri = "/accounts",
+                rewrite_upstream = "mg.opendevops.cn:8010"
+            },
+        }
+    }
+}
 ```
 
-#### 定时任务
 
-**获取代码**
-```
-git clone https://github.com/opendevops-cn/codo-cron
-初始化数据库 doc/data.sql
-修改settings 配置 主要是MySQL数据库和redis 配置
-执行 docker build . -t do_cron_image
-docker-compose up -d
-注意，此任务只能开一个进程，多个会导致重复执行
-```
+
+> PS: 此文档我们正在努力更新中，若有疑问你也可以加入我们的社区谈论群，欢迎加入讨论，让我们共同进步！

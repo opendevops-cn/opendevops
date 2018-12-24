@@ -8,7 +8,7 @@
 **系统配置**
 > 这块需要配置你的API地址，部署时你API网关服务所部署的服务器地址，只有确认了API网关，各个功能模块才可以正常通信。
 
-- API地址: 你的API网关地址，可以是IP/域名，必填项。 [API网关部署](http://docs.opendevops.cn/zh/latest/)
+- API地址: 你的API网关地址，可以是IP/域名，必填项。 [API网关部署](http://docs.opendevops.cn/zh/latest/step_by_step_install.html#api)
 
 ![](./_static/images/api_address.png)
 
@@ -57,7 +57,8 @@
 
 
 **存储配置**
--> 这块主要是配置Bucket信息，目前只支持阿里云的OSS，这里目前主要用于将跳板日志审计的内容存放到OSS目录里面，若不配置此项则存本地（可能会很大)
+
+> 这块主要是配置Bucket信息，目前只支持阿里云的OSS，这里目前主要用于将跳板日志审计的内容存放到OSS目录里面，若不配置此项则存本地数据库（可能会很大，建议配置OSS)
 - 区域Region：阿里云的可用区域，如：`cn-hangzhou`
 - 存储桶名称: Bucket名称
 - SecretID: 密钥ID，需要有OSS权限
