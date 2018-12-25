@@ -50,8 +50,9 @@ CMDB主要功能：`主机/主机组/标签管理`、`Web Terminal登陆`、`日
 
 ![](./_static/images/cmdb_host_info.png)
 
-#### Web Terminal
-- 点击主机后面`ssh`登陆
+#### 网页登陆
+
+- 点击主机后面`ssh` Web Terminal 登陆
 
 ![](./_static/images/web_ssh.png)
 
