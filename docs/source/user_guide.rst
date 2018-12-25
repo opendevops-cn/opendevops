@@ -8,8 +8,7 @@
       :maxdepth: 1
 
    task_template
-   cmdb_manager
+   cmdb_docs
    timed_task
-   event_reminder
    user_manager
    system_config
