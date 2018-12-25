@@ -42,7 +42,7 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 - 用户：codo
 - 密码：codo
 
-![](docs/source/_static/images/demo_list.png)
+![](docs/source/_static/images/codo_index.png)
 
 
 ### 开始使用
