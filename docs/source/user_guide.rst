@@ -10,6 +10,5 @@
    task_template
    timed_task
    event_reminder
-   cmdb_manager
    user_manager
    system_config
