@@ -14,10 +14,9 @@
 - 支持管理用户、多管理用户选择可以解决你多云、多服务器、不同密钥主机连接问题
 
 
-CMDB主要功能：`主机/主机组/标签管理`、`Web Terminal登陆`、`日志审计录像回放`等功能
-
 
 #### 主机管理
+
 > 主机管理就是你的资产列表，这里你可以对你的资产进行操作，如：编辑信息、SSH登陆等
 
 **添加主机**
@@ -56,43 +55,3 @@ CMDB主要功能：`主机/主机组/标签管理`、`Web Terminal登陆`、`日
 
 ![](./_static/images/web_ssh.png)
 
-#### 日志审计
-- 命令统计
-- 录像回放
-- 登陆日志
-
-**登陆日志**
-
-![](./_static/images/cmdb_log_list.png)
-
-**命令统计**
-
-![](./_static/images/cmdb_cmd_count.png)
-
-**录像回放**
-
-![](./_static/images/cmdb_video.png)
-
-
-#### 授权规则
-
-- 根据授权规则可以对CoDo平台用户授权主机/主机组
-
-![](./_static/images/cmdb_role.png)
-
-**用户授权**
-
-![](./_static/images/cmdb_user_role.png)
-
-
-#### 管理用户
-> 管理用户是用来登陆资产主机的用户，一般主机用户是root，添加资产的时候选择此用户用来登陆你的主机，自动更新资产等
-
-**添加用户**
-- 名称: 建议有意义的名称
-- 用户名：Linux系统用户
-- 密码： Linux系统用户密码（如果是密钥可不填）
-- 私钥：Linux系统用户的Key（和密码二选一）
-- 描述：备注信息
-
-![](./_static/images/cmdb_mguser_add.png)
