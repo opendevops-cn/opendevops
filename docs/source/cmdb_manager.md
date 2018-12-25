@@ -28,6 +28,6 @@
 - Other: 其余的可以选择不填，自动获取
 
 
-<!--![](./_static/images/cmdb_add_host.png)-->
+![](./_static/images/cmdb_add_host.png)
 
 
