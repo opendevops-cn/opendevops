@@ -390,15 +390,20 @@ server {
         server_name demo.opendevops.cn;
         access_log /var/log/nginx/f_access.log;
         error_log  /var/log/nginx/f_error.log;
-        root /var/www/codo;
+        root /var/www/admin-front;
 
         location / {
-                    root /var/www/codo;
+                    root /var/www/admin-front;
                     index index.html index.htm;
                     try_files $uri $uri/ /index.html;
                     }
 
         location /api {
+                ### ws 支持
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+
                 add_header 'Access-Control-Allow-Origin' '*';
                 proxy_pass http://gw.opendevops.cn;
         }
@@ -419,6 +424,10 @@ server {
         lua_need_request_body on;           # 开启获取body数据记录日志
 
         location / {
+            ### ws 支持
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
             access_by_lua_file lua/access_check.lua;
             set $my_upstream $my_upstream;
             proxy_pass http://$my_upstream;
