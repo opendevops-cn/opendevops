@@ -46,7 +46,8 @@
 
 ### Docker Bulid 报错问题
 
-- 安装依赖报错：`Could not install packages due to an EnvironmentError: [Errno 2] No such file or directory: '/tmp/pip-uninstall-y8n2hlf9/usr/local/bin/pip3'`
+- 安装依赖报错：`Could not install packages due to an EnvironmentError'`
+
 ```
 错误信息：
 Step 10/16 : RUN pip3 install --upgrade pip
