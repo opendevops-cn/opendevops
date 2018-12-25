@@ -44,3 +44,26 @@
   - 用   户: <your_name>@gmail.com
   - 密   码： 授权码（一般为16位）
 
+### Docker Bulid 报错问题
+
+- 安装依赖报错：`Could not install packages due to an EnvironmentError: [Errno 2] No such file or directory: '/tmp/pip-uninstall-y8n2hlf9/usr/local/bin/pip3'`
+```
+错误信息：
+Step 10/16 : RUN pip3 install --upgrade pip
+---> Running in 83716c526776
+
+Collecting pip
+Downloading https://files.pythonhosted.org/packages/c2/d7/90f34cb0d83a6c5631cf71dfe64cc1054598c843a92b400e55675cc2ac37/pip-18.1-py2.py3-none-any.whl (1.3MB)
+Installing collected packages: pip
+Found existing installation: pip 10.0.1
+Uninstalling pip-10.0.1:
+Successfully uninstalled pip-10.0.1
+Could not install packages due to an EnvironmentError: [Errno 2] No such file or directory: '/tmp/pip-uninstall-y8n2hlf9/usr/local/bin/pip3'
+
+The command '/bin/sh -c pip3 install --upgrade pip' returned a non-zero code: 1
+```
+- 解决办法：
+```shell
+
+Python3x版本后Docker里面需要加入--user的参数，修改Dockerfile, 加上--user参数， 如：pip3 install --user --upgrade pip
+```

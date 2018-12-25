@@ -71,7 +71,7 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 感谢各位的付出，让维护因你们变的不再枯燥、世界因你们而美丽，此排名不分前后，谢谢大家!
   
 
-|Name|Github Avatar|Name| GitHub Avatar                                                       | Name                                              | Avatar                                                       |
+|Name|Github Avatar|Name| GitHub Avatar                                                       | Name                                              | Github Avatar                                                       |
 |---|---|---|---|---|---|
 |[laoxu](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)          |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
 |[yanghongfei](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[shengyingzhi](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [biantingting](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
