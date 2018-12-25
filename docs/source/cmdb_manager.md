@@ -34,9 +34,8 @@
 
 选择主机，点击->公钥推送， 先推送公钥，后续用来获取资产信息使用
 
-```
 - 推送成功后连通性显示：true
 - 推送失败后连通性显示：false
-```
 
-![](./_static/images/cmdb_add_key.png)
+
+<!--![](./_static/images/cmdb_add_key.png)-->
