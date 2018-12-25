@@ -3,8 +3,7 @@
 > 这部分文档可以帮助你一步步安装部署[CoDo(CloudOpenDevOps)](http://www.opendevops.cn/)云管理平台
 由于项目是模块化的，如果你不想使用某个模块可以选择不用安装（但是必须项是一定要安装的哦！）
 
-`提示：此文档里面直接用到shell和docker方便大家安装，因此需要有一定的运维基础，否则理解起来会稍有吃力，
-But, 也没问题，你可以加入我们的CoDo社区交流群呀，大家一起进步呀～～！`
+`提示：此文档里面直接用到shell和docker方便大家安装，因此需要有一定的运维基础，否则理解起来会稍有吃力`
 
 #### 初始化环境变量(必须)
 > 请根据自己环境修改以下变量地址，后续平台里面调用需要使用到, 你可以在/opt下创建一个codo目录，后续操作都在此执行
@@ -232,7 +231,7 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 
 **编译镜像**
 ```shell
-docker build . -t do_mg_image
+docker build . -t codo-admin
 ```
 **Docker启动**
 
@@ -241,7 +240,7 @@ docker build . -t do_mg_image
 cat >docker-compose.yml <<EOF
 codoadmin:
   restart: unless-stopped
-  image: do_mg_image
+  image: codo-admin
   volumes:
     - /var/log/supervisor/:/var/log/supervisor/
     - /sys/fs/cgroup:/sys/fs/cgroup
@@ -446,34 +445,39 @@ systemctl enable openresty
 
 
 #### 安装任务系统(必须)
-> CoDo系统中核心模块，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-task)
+
+> CoDo系统中核心模块，任务调度系统
+- 部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-task)
 - 默认端口：8020
 - 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
 
 
-
 #### 安装定时任务(可选)
-> CoDo系统中定时任务模块，需要用到此功能请安装，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-cron)
+
+> CoDo系统中定时任务模块，需要用到此功能请安装
+- 部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-cron)
 - 默认端口：9900
 - 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
 
 
 #### 安装CMDB(可选)
-> CoDo系统中CMDB资产管理模块，需要用到此功能请安装，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-cmdb)
+> CoDo系统中CMDB资产管理模块，需要用到此功能请安装
+- 部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-cmdb)
 - 默认端口：8002
 - 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
 
 #### 安装K8S(可选)
-> CoDo系统中K8S发布管理系统，需要用到此功能请安装，部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-k8s)
+> CoDo系统中K8S发布管理系统，需要用到此功能请安装
+- 部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-k8s)
 - 默认端口：8002
 - 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
 
 
-#### 示例：API网关注册
+**示例：API网关注册**
 
 ```
 rewrite_conf = {

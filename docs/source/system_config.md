@@ -40,7 +40,7 @@
 - API域名：`dysmsapi.aliyuncs.com` 目前官方给出必须是这个地址
 - KEY_ID： 你的IAM访问控制密钥ID
 - KEY_SECRET： 你的access_secret密钥，备注：`这里需要必须有SMS的权限`
-- 点击测试端口会给当前用户发送一条短信用于测试
+- 点击测试端口系统会向阿里大鱼进行发送查询接口，如果配置验证不通过则提示报错信息
 
 ![](./_static/images/system_sms.png)
 
