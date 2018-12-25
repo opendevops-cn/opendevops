@@ -28,12 +28,69 @@
 - Other: 其余的可以选择不填，自动获取
 
 
-<!--![](./_static/images/cmdb_add_host.png)-->
+![](./_static/images/cmdb_add_host.png)
 
-<!--**推送**-->
+
+**推送公钥**
 
 选择主机，点击->公钥推送， 先推送公钥，后续用来获取资产信息使用,
 - 成功后连通性显示`true`
 - 失败后连通性显示`false`
 
-<!--![](./_static/images/cmdb_add_key.png)-->
+![](./_static/images/cmdb_add_key.png)
+
+**资产更新**
+
+> 选择已经推送过公钥的主机，资产更新会自动抓取服务器资产信息
+
+![](./_static/images/cmdb_list.png)
+
+![](./_static/images/cmdb_host_info.png)
+
+#### 网页登陆
+
+- 点击主机后面`ssh` Web Terminal 登陆
+
+![](./_static/images/web_ssh.png)
+
+
+#### 日志审计
+- 命令统计
+- 录像回放
+- 登陆日志
+
+**登陆日志**
+
+![](./_static/images/cmdb_log_list.png)
+
+**命令统计**
+
+![](./_static/images/cmdb_cmd_count.png)
+
+**录像回放**
+
+![](./_static/images/cmdb_video.png)
+
+
+#### 授权规则
+
+- 根据授权规则可以对CoDo平台用户授权主机/主机组
+
+![](./_static/images/cmdb_role.png)
+
+**用户授权**
+
+![](./_static/images/cmdb_user_role.png)
+
+
+#### 管理用户
+> 管理用户是用来登陆资产主机的用户，一般主机用户是root，添加资产的时候选择此用户用来登陆你的主机，自动更新资产等
+
+**添加用户**
+- 名称: 建议有意义的名称
+- 用户名：Linux系统用户
+- 密码： Linux系统用户密码（如果是密钥可不填）
+- 私钥：Linux系统用户的Key（和密码二选一）
+- 描述：备注信息
+
+![](./_static/images/cmdb_mguser_add.png)
