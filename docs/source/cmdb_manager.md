@@ -30,10 +30,11 @@
 
 ![](./_static/images/cmdb_add_host.png)
 
+
 **公钥推送**
 
 ```
 选择主机，点击->公钥推送， 先推送公钥，后续用来获取资产信息使用, 成功后连通性显示`true`,失败后连通性显示`false`
 ```
 
-![](./_static/images/cmdb_add_key.png)
+<!--![](./_static/images/cmdb_add_key.png)-->
