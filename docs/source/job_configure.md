@@ -44,6 +44,12 @@ api_gw = 'gw.opendevops.cn'
 
 > 这里需要你创建一个模板，如：Server发布示例，添加你的命令，自由排版，模板管理文档参考：[任务模板](http://docs.opendevops.cn/zh/latest/task_template.html#)
 
+- 组：1的为第一组
+- 优先级： 按数字顺序执行
+- 参数：PUBLISH_NAME和FLOW_ID都是系统变量，不要修改
+- 执行用户： 默认127.0.0.1可不选，保持默认即可
+- 触发器：这里支持定时支持、人工干预、直接执行，默认是直接执行
+
 ![bash_list](./_static/images/publish_server_temp.png)
 
 
@@ -82,6 +88,11 @@ api_gw = 'gw.opendevops.cn'
 当你点击到这个任务的时候，我们会把任务信息给展示出来方便你来确认，最后需要你进行审批，可选择时间执行。
 
 ![](./_static/images/publish_audit.png)
+
+如下图示例有一个手工干预的，需要你点击终止全部旁边的干预名称进行执行。
+
+![](./_static/images/publish_commit.png)
+
 点击完审批后会进入等待执行，随后会按照你模板里面的顺序进行执行
 
 ![](./_static/images/publish_wait.png)
