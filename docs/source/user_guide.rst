@@ -10,7 +10,7 @@
    task_template
    timed_task
    event_reminder
-   cmdb_manager
+   job_configure
    app_publish
    user_manager
    system_config
