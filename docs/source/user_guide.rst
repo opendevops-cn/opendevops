@@ -11,6 +11,7 @@
    timed_task
    event_reminder
    job_configure
+   cmdb_manager
    app_publish
    user_manager
    system_config
