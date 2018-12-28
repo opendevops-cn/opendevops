@@ -37,11 +37,12 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 ### Demo
 我们提供了Demo供使用者体验，帮助你快速熟悉CoDo功能
 
-`PS: 暂时还在调试权限中，不可登陆`
+`PS: 权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表`
 - 地址：http://demo.opendevops.cn/login
 - 用户：demo
 - 密码：2ZbFYNv9WibWcR7GB6kcEY
 - MFA: 123456 (还在调，可随意输入)
+
 
 
 ![](docs/source/_static/images/codo_index.png)
