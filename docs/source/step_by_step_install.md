@@ -456,7 +456,7 @@ systemctl enable openresty
 #### 安装任务系统(必须)
 
 > CoDo系统中核心模块，任务调度系统
-- 部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-task)
+- 部署参考文档：[codo-task](https://github.com/opendevops-cn/codo-task)
 - 默认端口：8020
 - 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
@@ -473,14 +473,14 @@ systemctl enable openresty
 
 #### 安装CMDB(可选)
 > CoDo系统中CMDB资产管理模块，需要用到此功能请安装
-- 部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-cmdb)
+- 部署参考文档：[codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
 - 默认端口：8002
 - 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
 
 #### 安装K8S(可选)
 > CoDo系统中K8S发布管理系统，需要用到此功能请安装
-- 部署参考文档：[codo-cron](https://github.com/opendevops-cn/codo-k8s)
+- 部署参考文档：[codo-k8s](https://github.com/opendevops-cn/codo-k8s)
 - 默认端口：8002
 - 启动成功后请在API网关进注册，注册后才可以使用此服务，[参考API网关注册](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%B8%89%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE%E6%B3%A8%E5%86%8Capi)
 
