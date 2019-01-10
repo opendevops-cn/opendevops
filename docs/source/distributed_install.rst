@@ -1,5 +1,5 @@
 
-分布式安装文档
+分布式安装
 =============
 
 .. toctree::
@@ -8,6 +8,7 @@
     env_ready
     codo
     codo-admin
+    codo-gw
     codo-task
     codo-cmdb
     codo-cron
