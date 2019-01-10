@@ -35,11 +35,6 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 ![](docs/source/_static/images/pro_fun.png)
 
 ### Demo
-
-<a href="https://demo.opendevops.cn/login" target="api_explorer">
-  <img src="https://img.alicdn.com/tfs/TB12GX6zW6qK1RjSZFmXXX0PFXa-744-122.png" width="180" />
-</a>
-
 我们提供了Demo供使用者体验，帮助你快速熟悉CoDo功能
 
 `PS: 权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表`
@@ -59,8 +54,8 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 你也可以查阅我们完整的官方文档：http://docs.opendevops.cn/zh/latest/
 
-- 一步步安装文档：[部署参考](http://docs.opendevops.cn/zh/latest/step_by_step_install.html)
-- 快速安装部署文档：[部署参考](http://docs.opendevops.cn/zh/latest/docker_install.html) `暂未完成`
+- 快速安装：[部署参考](http://docs.opendevops.cn/zh/latest/stand_alone_install.html)`暂未完成`
+- 分布式安装：[部署参考](http://docs.opendevops.cn/zh/latest/distributed_install.html)
 
 ### 模块链接
 > CodDo 项目我们是使用模块化、微服务化，以下为各个模块地址，同时也欢迎业界感兴趣各位大佬前来贡献
