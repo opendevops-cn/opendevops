@@ -5,5 +5,5 @@
 .. toctree::
       :maxdepth: 1
 
-    step_by_step_install
-    docker_install
+    stand_alone_install
+    distributed_install
