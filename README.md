@@ -12,13 +12,13 @@
 
 
 ----
-CoDo是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台。
+CODO是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台。
 
-CoDo前端基于Vue iview开发、为用户提供友好的操作界面，增强用户体验。
+CODO前端基于Vue iview开发、为用户提供友好的操作界面，增强用户体验。
 
-CoDo后端基于Python Tornado开发，其优势为轻量、简洁清晰、异步非阻塞。
+CODO后端基于Python Tornado开发，其优势为轻量、简洁清晰、异步非阻塞。
 
-CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限系统、Web Terminnal登陆日志审计、录像回放、强大的作业调度系统、CMDB、监控报警系统等
+CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限系统、Web Terminnal登陆日志审计、录像回放、强大的作业调度系统、CMDB、监控报警系统等
 
 众多功能模块我们一直在不停的调研和开发，如果你对此项目感兴趣可以加入我们的社区交流群，
 
@@ -35,7 +35,11 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 ![](docs/source/_static/images/pro_fun.png)
 
 ### Demo
-我们提供了Demo供使用者体验，帮助你快速熟悉CoDo功能
+我们提供了Demo供使用者体验,可点击Try Online Demo快速进行体验。
+
+<a href="https://demo.opendevops.cn/login" target="api_explorer">
+  <img src="https://img.alicdn.com/tfs/TB12GX6zW6qK1RjSZFmXXX0PFXa-744-122.png" width="180" />
+</a>
 
 `PS: 权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表`
 - 地址：http://demo.opendevops.cn/login
@@ -58,7 +62,7 @@ CoDo开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 - 分布式安装：[部署参考](http://docs.opendevops.cn/zh/latest/distributed_install.html)
 
 ### 模块链接
-> CodDo 项目我们是使用模块化、微服务化，以下为各个模块地址，同时也欢迎业界感兴趣各位大佬前来贡献
+> CODO 项目我们是使用模块化、微服务化，以下为各个模块地址，同时也欢迎业界感兴趣各位大佬前来贡献
 
 `PS: 项目模板化代码我们正在频繁调试，很快我们就会进行更新代码，请谅解！`
 - 前端代码：[codo](https://github.com/opendevops-cn/codo)
