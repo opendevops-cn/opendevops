@@ -67,7 +67,7 @@ $ mkdir -p /opt/codo/ && cd /opt/codo/
 $ git clone https://github.com/opendevops-cn/opendevops.git
 ###修改环境变量文件env.sh,主要修改IP地址和域名信息，Token,Key可默认
 ###一键部署脚本，网络问题/其余问题可重试安装
-$ sh deploy.sh
+$ cd opendevops && sh deploy.sh
 ```
 - 分布式安装：[部署参考](http://docs.opendevops.cn/zh/latest/distributed_install.html)
 
