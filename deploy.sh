@@ -42,6 +42,9 @@ env_file='env.sh'
 [ ! -f $env_file ] && echo -e "\033[31m [ERROR]: $env_file Not Found! \033[0m"  && exit -404
 source ./$env_file
 
+if [ ! -f 'data.sql' ];then
+    echo -e "\033[31m [ERROR]: data.sql Not Found, Unable to initialize data! \033[0m"  && exit -404
+fi
 # 安装基础依赖
 echo -e "\033[32m [INFO]: Install the base dependencies, here yum update will be time consuming \033[0m"
 yum install epel-release -y >/dev/null 2>&1 && yum install wget unzip epel-release  xz gcc automake zlib-devel openssl-devel supervisor mysql net-tools  groupinstall development  libxslt-devel libxml2-devel libcurl-devel git -y >/dev/null 2>&1
@@ -115,11 +118,7 @@ else
 fi
 
 #初始化数据库
-if [ ! -f 'data.sql' ];then
-    echo -e "\033[31m [ERROR]: data.sql Not Found, Unable to initialize data! \033[0m"  && exit -404
-else:
-    mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
-fi
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
 
 
 #客户端测试一下子
