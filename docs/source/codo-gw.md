@@ -25,8 +25,9 @@ cd /opt/codo/ && git clone https://github.com/ss1917/api-gateway.git
 
     因为我把前端静态文件也使用 网关进行代理 所以配置文件如下
 
+**全局nginx配置**
+
 ```nginx
-# 全局nginx配置
 #  /usr/local/openresty/nginx/conf/nginx.conf
 user root;
 worker_processes auto;
@@ -42,16 +43,9 @@ http {
     lua_code_cache off;         #线上环境设置为on, off时可以热加载lua文件
     lua_shared_dict user_info 1m;
     lua_shared_dict my_limit_conn_store 100m;   #100M可以放1.6M个键值对
-    include             mime.types;
-
+    include             mime.types;   #如果需要代理前端（静态资源）需要加这一行
     client_header_buffer_size 64k;
     large_client_header_buffers 4 64k;
-    proxy_redirect off;
-    proxy_buffering off;
-    proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header X-Forwarded-Scheme $scheme;
-
     init_by_lua_file lua/init_by_lua.lua;       #nginx启动时就会执行
     #include /etc/nginx/conf.d/*.conf;
     include ./conf.d/*.conf;                    #lua生成upstream
@@ -60,21 +54,59 @@ http {
 }
 ```
 
+
+**网关配置**
+```shell
+
+# /usr/local/openresty/nginx/conf/conf.d/gw.conf
+    server {
+        listen 80;
+        server_name  gw.shinezone.net.cn;
+        lua_need_request_body on;           # 开启获取body数据记录日志
+
+        location / {
+            ### ws 支持
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+
+            ### 获取真实IP
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+            access_by_lua_file lua/access_check.lua;
+            set $my_upstream $my_upstream;
+            proxy_pass http://$my_upstream;
+
+            ### 跨域
+            add_header Access-Control-Allow-Methods *;
+            add_header Access-Control-Max-Age 3600;
+            add_header Access-Control-Allow-Credentials true;
+            add_header Access-Control-Allow-Origin $http_origin;
+            add_header Access-Control-Allow-Headers $http_access_control_request_headers;
+            if ($request_method = OPTIONS){
+                return 204;}
+        }
+    }
+```
+
+**前端资源配置**
+
 ```shell
 #前端vhosts
 mkdir -p /usr/local/openresty/nginx/conf/conf.d/
 # /usr/local/openresty/nginx/conf/conf.d/demo.conf
+# 这里是前端的访问入口，如果不使用网关代理静态的话，可以使用nginx代理，请根据自身情况修改配置。
 server {
         listen       80;
-        server_name demo.opendevops.cn;
-        access_log /var/log/nginx/f_access.log;
-        error_log  /var/log/nginx/f_error.log;
-        root /var/www/admin-front;
+        server_name demo.opendevops.cn;              #访问入口的域名
+        #access_log /var/log/nginx/f_access.log;
+        #error_log  /var/log/nginx/f_error.log;
+        root /var/www/codo;
 
         location / {
-                    root /var/www/admin-front;
+                    root /var/www/codo;               #前端资源路径
                     index index.html index.htm;
-                    try_files $uri $uri/ /index.html;
+                    try_files $uri $uri/ /index.html;   #前端history支持
                     }
 
         location /api {
@@ -82,9 +114,11 @@ server {
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
                 proxy_set_header Connection "upgrade";
+                ### 获取真实IP
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-                add_header 'Access-Control-Allow-Origin' '*';
-                proxy_pass http://gw.opendevops.cn;
+                add_header 'Access-Control-Allow-Origin' '*';   #跨域支持
+                proxy_pass http://gw.opendevops.cn;      #你的网关地址
         }
 
         location ~ /(.svn|.git|admin|manage|.sh|.bash)$ {
@@ -94,38 +128,12 @@ server {
 
 ```
 
-```shell
-#网关vhosts
-# /usr/local/openresty/nginx/conf/conf.d/gw.conf
-    server {
-        listen 80;
-        server_name  gw.opendevops.cn;
-        lua_need_request_body on;           # 开启获取body数据记录日志
-
-        location / {
-            ### ws 支持
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "upgrade";
-            access_by_lua_file lua/access_check.lua;
-            set $my_upstream $my_upstream;
-            proxy_pass http://$my_upstream;
-
-            add_header Access-Control-Allow-Methods *;
-            add_header Access-Control-Max-Age 3600;
-            add_header Access-Control-Allow-Credentials true;
-            add_header Access-Control-Allow-Origin $http_origin;
-            add_header Access-Control-Allow-Headers $http_access_control_request_headers;
-            if ($request_method = OPTIONS){
-                return 204;}
-
-        }
-    }
-```
 
 **API网关启动**
 ```shell
 #OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，使用的也是80端口，若不能启动请检查你的80端口是否被占用了
+
+openresty -t   #测试
 systemctl start openresty
 systemctl enable openresty
 
