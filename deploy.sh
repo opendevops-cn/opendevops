@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # @Time    : 01/14/2019 4:00 PM
 # @Author  : Fred Yang
-# @File    : depoly.py
+# @File    : deploy.py
 # @Role    : 脚本安装CODO
 
 echo -ne "\\033[0;33m"
