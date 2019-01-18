@@ -735,7 +735,7 @@ check_mysql_active=`netstat -ntlp | grep "3306" | wc -l`
 [ -f /usr/bin/redis-server ] && echo -e "\033[33m [Warning]: Redis already exists,Skip installation \033[0m"  || redis3
 [ -f /usr/sbin/rabbitmq-server ] && echo -e "\033[33m [Warning]: Rabbitmq already exists,Skip installation \033[0m"  || rabbitmq
 [ -f /etc/dnsmasqhosts ] && echo -e "\033[33m [Warning]: Dnsmasq already exists,Skip installation \033[0m"  || dnsmasq
-[ -f /usr/local/bin/node ] && echo -e "\033[33m [Warning]: None already exists,Skip installation \033[0m"  || node_install
+#[ -f /usr/local/bin/node ] && echo -e "\033[33m [Warning]: None already exists,Skip installation \033[0m"  || node_install
 [ -d /var/www/codo/ ] && echo -e "\033[33m [Warning]: 项目前端:/var/www/codo/ already exists,Skip installation \033[0m"  || codo
 mg_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://$mg_domain:8010/are_you_ok/`
 [ $mg_status = 200 ] && echo -e "\033[33m [Warning]: 项目后端 already exists,Skip installation \033[0m" || codo_admin
