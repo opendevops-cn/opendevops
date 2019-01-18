@@ -118,6 +118,7 @@ else
 fi
 
 #初始化数据库
+source $env_file
 mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
 
 
@@ -408,8 +409,6 @@ CRON_DB_DBNAME='codo_cron'
  #后端数据库名称
 mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database ${CRON_DB_DBNAME} default character set utf8mb4 collate utf8mb4_unicode_ci;"
 
-
-
 sed -i  "s#server_name .*#server_name ${task_domain};#g" doc/nginx_ops.conf
 sed -i "s#cookie_secret = .*#cookie_secret = '${cookie_secret}'#g" settings.py
 sed -i "s#token_secret = .*#token_secret = '${token_secret}'#g" settings.py
@@ -518,7 +517,7 @@ fi
 
 #API网关
 function api_gateway(){
-echo -e "\033[32m [INFO]: api_gateway(API网关) Start install. \033[0m"
+echo -e "\033[32m [INFO]: api_gateway(API网关) Start install. 使用端口：80， 请确保端口没被使用。\033[0m"
 yum install yum-utils -y
 yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
 yum install openresty -y
@@ -746,8 +745,10 @@ cron_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${cro
 cmdb_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${cmdb_domain}:8002/v1/cmdb/`
 [ $cmdb_status = 200 ] && echo -e "\033[33m [Warning]: CMDB already exists,Skip installation \033[0m" || codo_cmdb
 #openresty也是使用的80端口
-check_port=`netstat -tlpn | grep "\b80\b"`
-[ $check_port ==0 ] &&  echo -e "\033[33m [Warning]:  Server port:80 is already occupied,Skip installation \033[0m"  || api_gateway
+#check_port=`netstat -tlpn | grep "\b80\b"`
+#[ $check_port ==0 ] &&  echo -e "\033[33m [Warning]:  API网关Server port:80 is already occupied,Skip installation，请确认再次安装 \033[0m"  ||
+#安装API网关
+api_gateway
 
-
+echo -e "\033[32m [INFO]: 初始用户：admin  初始密码：admin@opendevops\033[0m"
 echo -e "\033[32m [INFO]: 日志目录：/var/log/supervisor/, 详细可查看日志log是否有报错。 \033[0m"

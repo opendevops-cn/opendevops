@@ -1,8 +1,27 @@
 ### 项目前端
 
-> 项目前端代码
+> 项目前端代码，提供两种方式，可自行编译，也可在下载release资源包，二选一
 
-**安装Node**
+**01. 直接下载资源包**
+
+```
+echo -e "\033[32m [INFO]: codo(项目前端) Start install. \033[0m"
+codo_version='https://github.com/opendevops-cn/codo/releases/download/codo-beta-0.1.0/codo-beta-0.1.0.tar.gz'
+if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
+[ ! -d /var/www ] && mkdir -p /var/www
+cd /var/www && wget $codo_version
+tar zxf codo-beta-0.1.0.tar.gz
+if [ $? == 0 ];then
+    echo -e "\033[32m [INFO]: codo(项目前端) install success. \033[0m"
+else
+    echo -e "\033[31m [ERROR]: codo(项目前端) install faild \033[0m"
+    exit -8
+fi
+```
+
+
+**02. 手动编译方式**
+
 > shell脚本内容，复制内容到.sh文件执行即可
 
 ```shell

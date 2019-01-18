@@ -40,17 +40,17 @@ events {
 http {
     #设置默认lua搜索路径
     lua_package_path '$prefix/lua/?.lua;/blah/?.lua;;';
-    lua_code_cache off;         #线上环境设置为on, off时可以热加载lua文件
+    lua_code_cache on;      #线上环境设置为on, off时可以热加载lua文件
     lua_shared_dict user_info 1m;
     lua_shared_dict my_limit_conn_store 100m;   #100M可以放1.6M个键值对
-    include             mime.types;   #如果需要代理前端（静态资源）需要加这一行
+    include             mime.types;    #代理静态文件
+
     client_header_buffer_size 64k;
     large_client_header_buffers 4 64k;
-    init_by_lua_file lua/init_by_lua.lua;       #nginx启动时就会执行
-    #include /etc/nginx/conf.d/*.conf;
-    include ./conf.d/*.conf;                    #lua生成upstream
-    resolver 10.2.2.236;                        # 内部DNS地址，上面dnsmasq地址
 
+    init_by_lua_file lua/init_by_lua.lua;       # nginx启动时就会执行
+    include ./conf.d/*.conf;                    # lua生成upstream
+    resolver 10.10.10.12;                       # 内部DNS服务器地址
 }
 ```
 
@@ -61,7 +61,7 @@ http {
 # /usr/local/openresty/nginx/conf/conf.d/gw.conf
     server {
         listen 80;
-        server_name  gw.shinezone.net.cn;
+        server_name gw.yanghongfei.me;
         lua_need_request_body on;           # 开启获取body数据记录日志
 
         location / {
@@ -87,6 +87,7 @@ http {
                 return 204;}
         }
     }
+
 ```
 
 **前端资源配置**
@@ -98,15 +99,15 @@ mkdir -p /usr/local/openresty/nginx/conf/conf.d/
 # 这里是前端的访问入口，如果不使用网关代理静态的话，可以使用nginx代理，请根据自身情况修改配置。
 server {
         listen       80;
-        server_name demo.opendevops.cn;              #访问入口的域名
-        #access_log /var/log/nginx/f_access.log;
-        #error_log  /var/log/nginx/f_error.log;
+        server_name demo.opendevops.cn;
+        access_log /var/log/nginx/f_access.log;
+        error_log  /var/log/nginx/f_error.log;
         root /var/www/codo;
 
         location / {
-                    root /var/www/codo;               #前端资源路径
+                    root /var/www/codo;
                     index index.html index.htm;
-                    try_files $uri $uri/ /index.html;   #前端history支持
+                    try_files $uri $uri/ /index.html;
                     }
 
         location /api {
@@ -114,11 +115,10 @@ server {
                 proxy_http_version 1.1;
                 proxy_set_header Upgrade $http_upgrade;
                 proxy_set_header Connection "upgrade";
-                ### 获取真实IP
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-                add_header 'Access-Control-Allow-Origin' '*';   #跨域支持
-                proxy_pass http://gw.opendevops.cn;      #你的网关地址
+                add_header 'Access-Control-Allow-Origin' '*';
+                proxy_pass http://gw.opendevops.cn;
         }
 
         location ~ /(.svn|.git|admin|manage|.sh|.bash)$ {
@@ -128,6 +128,83 @@ server {
 
 ```
 
+**注册API网关**
+```
+vim /usr/local/openresty/nginx/lua/configs.lua
+#修改lua配置文件里面数据库连接信息，和域名信息
+
+json = require("cjson")
+
+--mysql_config = {
+--    host = "127.0.0.1",
+--    port = 3306,
+--    database = "lua",
+--    user = "root",
+--    password = "",
+--    max_packet_size = 1024 * 1024
+--}
+
+redis_config = {
+    host = '${DEFAULT_REDIS_HOST}',
+    --host = '172.16.0.121',
+    port = ${DEFAULT_REDIS_PORT},
+    auth_pwd = '${DEFAULT_REDIS_PASSWORD}',
+    db = 8,
+    alive_time = 3600 * 24 * 7,
+    channel = 'gw'
+}
+
+--mq_conf = {
+--  host = '172.16.0.121',
+--  port = 5672,
+--  username = 'sz',
+--  password = '123456',
+--  vhost = '/'
+--}
+
+token_secret = "${token_secret}"
+logs_file = '/var/log/gw.log'
+
+--刷新权限到redis接口
+rewrite_cache_url = 'http://${mg_domain}:8010/v2/accounts/verify/'
+rewrite_cache_token = '8b888a62-3edb-4920-b446-697a472b4001'  #这里需要和codo_admin settings里面token一致
+
+--并发限流配置
+limit_conf = {
+    rate = 10, --限制ip每分钟只能调用n*60次接口
+    burst = 10, --桶容量,用于平滑处理,最大接收请求次数
+}
+
+--upstream匹配规则
+gw_domain_name = '${api_gw_url}'
+
+rewrite_conf = {
+    [gw_domain_name] = {
+        rewrite_urls = {
+            {
+                uri = "/cmdb",
+                rewrite_upstream = "${cmdb_domain}:8002"
+            },
+            {
+                uri = "/task",
+                rewrite_upstream = "${task_domain}:8020"
+            },
+            {
+                uri = "/cron",
+                rewrite_upstream = "${LOCALHOST_IP}:9900"
+            },
+            {
+                uri = "/mg",
+                rewrite_upstream = "${mg_domain}:8010"
+            },
+            {
+                uri = "/accounts",
+                rewrite_upstream = "${mg_domain}:8010"
+            },
+        }
+    }
+}
+```
 
 **API网关启动**
 ```shell
