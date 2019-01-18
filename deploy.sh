@@ -179,7 +179,7 @@ systemctl status rabbitmq-server
 
 # rabbitmq-server -detached
 status=`systemctl status rabbitmq-server | grep "running" | wc -l`
-if [ $? == 1 ];then
+if [ $status == 1 ];then
     echo -e "\033[32m [INFO]: rabbitmq install success. \033[0m"
 else
     echo -e "\033[31m [ERROR]: rabbitmq install faild \033[0m"
