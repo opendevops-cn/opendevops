@@ -118,7 +118,8 @@ else
 fi
 
 #初始化数据库
-source $env_file
+cd /opt/codo/opendevops/
+source ./env.sh
 mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
 
 
