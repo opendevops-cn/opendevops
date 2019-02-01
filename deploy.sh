@@ -116,16 +116,25 @@ else
     echo -e "\033[31m [ERROR]: mysql57 install faild \033[0m"
     exit -3
 fi
-
-#初始化数据库
-cd /opt/codo/opendevops/
-source ./env.sh
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
-
-
 #客户端测试一下子
 # yum install -y http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm
 # yum -y install Percona-Server-client-56
+}
+
+function init_mysql(){
+#初始化数据库
+cd /opt/codo/opendevops/
+source ./env.sh
+sleep 3s
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
+if [ $? == 0 ];then
+    echo -e "\033[32m [INFO]: init_mysql success. \033[0m"
+else
+    echo -e "\033[31m [ERROR]: init_mysql faild \033[0m"
+    echo "mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql"
+    exit -500
+fi
+
 }
 
 
@@ -732,6 +741,7 @@ export -f api_gateway
 [ -f /usr/local/bin/docker-compose ] && echo -e "\033[33m [Warning]: Docker-compose already exists,Skip installation \033[0m"  || docker_compose
 check_mysql_active=`netstat -ntlp | grep "3306" | wc -l`
 [[ $check_mysql_active != 0 ]] && echo -e "\033[33m [Warning]: MySQL already exists,Skip installation \033[0m" || mysql57
+init_mysql
 [ -f /usr/bin/redis-server ] && echo -e "\033[33m [Warning]: Redis already exists,Skip installation \033[0m"  || redis3
 [ -f /usr/sbin/rabbitmq-server ] && echo -e "\033[33m [Warning]: Rabbitmq already exists,Skip installation \033[0m"  || rabbitmq
 [ -f /etc/dnsmasqhosts ] && echo -e "\033[33m [Warning]: Dnsmasq already exists,Skip installation \033[0m"  || dnsmasq
