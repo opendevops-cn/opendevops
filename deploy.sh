@@ -111,7 +111,7 @@ EOF
 docker-compose up -d   #启动
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: mysql install success. \033[0m"
-    echo -e "\033[32m [INFO]: mysql -h 127.0.0.1 -uroot -p${MYSQL_PASSWORD}. \033[0m"
+    echo -e "\033[32m [INFO]: mysql -h 127.0.0.1 -uroot -p${MYSQL_PASSWORD} \033[0m"
 else
     echo -e "\033[31m [ERROR]: mysql57 install faild \033[0m"
     exit -3
@@ -125,7 +125,7 @@ function init_mysql(){
 #初始化数据库
 cd /opt/codo/opendevops/
 source ./env.sh
-sleep 3s
+sleep 10s
 mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: init_mysql success. \033[0m"
@@ -391,7 +391,7 @@ docker build . -t task_scheduler_image
 #启动
 docker-compose up -d
 #检查状态
-sleep 3s
+sleep 10s
 task_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://$task_domain:8020/are_you_ok/`
 
 if [ $task_status == 200 ];then
@@ -452,7 +452,7 @@ docker build . -t do_cron_image
 
 #启动
 docker-compose up -d
-sleep 3s
+sleep 10s
 cron_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://$LOCALHOST_IP:9900/are_you_ok/`
 
 if [ $task_status == 200 ];then
@@ -756,7 +756,7 @@ cron_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${cro
 cmdb_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${cmdb_domain}:8002/v1/cmdb/`
 [ $cmdb_status = 200 ] && echo -e "\033[33m [Warning]: CMDB already exists,Skip installation \033[0m" || codo_cmdb
 #openresty也是使用的80端口
-#check_port=`netstat -tlpn | grep "\b80\b"`
+#check_port=`netstat -tlpn | greip "\b80\b"`
 #[ $check_port ==0 ] &&  echo -e "\033[33m [Warning]:  API网关Server port:80 is already occupied,Skip installation，请确认再次安装 \033[0m"  ||
 #安装API网关
 api_gateway
