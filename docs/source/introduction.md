@@ -1,23 +1,28 @@
-### 快速安装
+## 介绍
 
-> 快速部署文档使用Shell脚本部署安装，此部署安装仅供参考，供用户快速体验使用
+### OpenDevOps
+[![Python3](https://img.shields.io/badge/Python-3.6-green.svg?style=plastic)](https://www.python.org/)
+[![Tornado](https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic)](https://www.tornadoweb.org)
+[![Vue.js](https://img.shields.io/badge/Vuejs-2.5-brightgreen.svg?style=plastic)](https://cn.vuejs.org)
+[![iview](https://img.shields.io/badge/iview-3.2.0-blue.svg?style=plastic)](https://www.iviewui.com/)
 
-> 若线上使用我们建议用户一步步安装，并熟悉每个组件的用途，请参考： [分布式安装](http://docs.opendevops.cn/zh/latest/distributed_install.html)
 
+----
+CODO是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台。
 
-**注意**
+CODO前端基于Vue iview开发、为用户提供友好的操作界面，增强用户体验。
 
-- 国内Github速度慢问题
-- Docker默认镜像源下载慢问题
+CODO后端基于Python Tornado开发，其优势为轻量、简洁清晰、异步非阻塞。
 
-**建议配置**
+CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限系统、Web Terminnal登陆日志审计、录像回放、强大的作业调度系统、CMDB、监控报警系统等
 
-- 系统： CentOS7+
-- CPU：  2Core+
-- 内存：  4G+
-- 磁盘：  >=50+
+众多功能模块我们一直在不停的调研和开发，如果你对此项目感兴趣可以加入我们的社区QQ交流群：18252156
 
-**环境说明**
+同时也希望你能给我们项目一个star，为贡献者加油⛽️！为运维干杯🍻！
+
+----
+
+### Microservice
 
 |     服务     |       描述        | 默认端口 | 健康检查                                                     | 安装 |
 | :----------: | :---------------: | :------: | ------------------------------------------------------------ | ---- |
@@ -34,16 +39,13 @@
 
 
 
-**开始使用**
 
-- 所有项目都放到/opt/codo/
-- 修改环境变量文件env.sh,主要修改IP地址和域名信息，Token,Key可默认
-- Other,由于没法完全适配环境，网络问题/其余常见报错问题请自行处理重试安装。
+### Architecture
+
+- Apigateway代理前端文件
+- ApigateWay依赖DNS服务，需要安装Dnsmasq
+- 微服务部署完成后，需在Apigateway进行注册
+- 一台MySQL Master示例，不同的微服务使用单独的库
 
 
-```
-$ mkdir -p /opt/codo/
-$ cd /opt/codo/ && git clone https://github.com/opendevops-cn/opendevops.git
-$ cd opendevops && sh deploy.sh
-```
-
+![](./_static/images/architecture.png)
