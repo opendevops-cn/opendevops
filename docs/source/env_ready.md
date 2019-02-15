@@ -1,54 +1,88 @@
 ### 环境准备
 
+> 服务介绍请参考：http://docs.opendevops.cn/zh/latest/introduction.html
+
+
+**注意**
+
+- 国内Github速度慢问题
+- Docker默认镜像源下载慢问题
+
+**建议配置**
+
+- 系统： CentOS7+
+- CPU：  2Core+
+- 内存：  4G+
+- 磁盘：  >=50+
+
+
 **初始化环境变量**
 
-> 请根据自己环境修改以下变量地址，后续平台里面调用需要使用到。
+- 请根据自己环境修改以下变量地址，后续平台里面调用需要使用到。
 
-`mkdir -p /opt/codo/ && cd /opt/codo/`
+创建项目目录
+```
+$ mkdir -p /opt/codo/ && cd /opt/codo/
+```
+
 
 以下贴入到env.sh文件，请修改以下环境变量信息, `source env.sh`
 
 ```shell
-# 本机的IP地址
+#本机的IP地址
 export LOCALHOST_IP="10.10.10.12"
-### 设置你的MYSQL密码
+
+#设置你的MYSQL密码
 export MYSQL_PASSWORD="m9uSFL7duAVXfeAwGUSG"
+
 ### 设置你的redis密码
 export REDIS_PASSWORD="cWCVKJ7ZHUK12mVbivUf"
+
 ### RabbitMQ用户密码信息
 export MQ_USER="ss"
 export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
+
 ### 管理后端地址
 export mg_domain="mg.opendevops.cn"
+
 ### 定时任务地址
 export cron_domain="cron.opendevops.cn"
+
 ### 任务系统地址
 export task_domain="task.opendevops.cn"
+
 ### CMDB系统地址
 export cmdb_domain="cmdb.opendevops.cn"
+
 ### 前端地址
 export front_domain="demo.opendevops.cn"
+
 ### api网关地址
 export api_gw_url="gw.opendevops.cn"
+
 #codo-admin
 export cookie_secret="nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB"
 export token_secret="1txIq2QUkeFsZizt3vEpVzUQNFS2@DpEQwbbw8k0YJt0biFScH"
+
 # 写数据库
 export DEFAULT_DB_DBHOST="10.10.10.12"
 export DEFAULT_DB_DBPORT='3306'
 export DEFAULT_DB_DBUSER='root'
 export DEFAULT_DB_DBPWD=${MYSQL_PASSWORD}
 #export DEFAULT_DB_DBNAME=${mysql_database}
+
 # 读数据库
 export READONLY_DB_DBHOST='10.10.10.12'
 export READONLY_DB_DBPORT='3306'
 export READONLY_DB_DBUSER='root'
 export READONLY_DB_DBPWD=${MYSQL_PASSWORD}
 #export READONLY_DB_DBNAME=${mysql_database}
+
 # 消息队列
 export DEFAULT_MQ_ADDR='10.10.10.12'
 export DEFAULT_MQ_USER=${MQ_USER}
 export DEFAULT_MQ_PWD=${MQ_PASSWORD}
+
 # 缓存
 export DEFAULT_REDIS_HOST='10.10.10.12'
 export DEFAULT_REDIS_PORT=6379

@@ -24,19 +24,57 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 ### Microservice
 
-|     服务     |       描述        | 默认端口 | 健康检查                                                     | 安装 |
-| :----------: | :---------------: | :------: | ------------------------------------------------------------ | ---- |
-|     codo     |     项目前端      |  80/443  | openresty -t                                                 | 必须 |
-|  codo-admin  |     项目后端      |   8001   | curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://$mg_domain:8010/are_you_ok/ | 必须 |
-|  codo-cmdb   | 资产管理/跳板审计 |   8002   | curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${cmdb_domain}:8002/v1/cmdb/ | 必须 |
-|  codo-task   |     任务系统      |   8020   | curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://$task_domain:8020/are_you_ok/ | 必须 |
-|  codo-cron   |     定时任务      |   9900   | curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${cron_domain}:9900/are_you_ok/ | 必须 |
-|   kerrigan   |     配置中心      |   8030   | curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${kerrigan_domain}:8030/are_you_ok/ | 必须 |
-|  codo-check  |     代码检查      |   N/A    | 提供脚本示例                                                 | 可选 |
-| codo-publish |     发布脚本      |   N/A    | 提供脚本示例                                                 | 可选 |
-| codo-res_app |     资源申请      |   N/A    | 提供脚本示例                                                 | 可选 |
+- codo
+  - 功能：项目前端
+  - 端口：80/443
+  - 安装：必须
+  - 检测：openresty -t
+
+- codo-admin
+  - 功能：管理后端
+  - 端口：8001
+  - 安装：必须
+  - 检测：`curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://$mg_domain:8010/are_you_ok/`
+
+- codo-cmdb
+  - 功能：资产管理/跳板审计
+  - 端口：8002
+  - 安装：必须
+  - 检测：`	curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cmdb_domain}:8002/v1/cmdb/`
+
+- codo-task
+  - 功能：任务系统
+  - 端口：8020
+  - 安装：必须
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cron_domain}:9900/are_you_ok/`
 
 
+- codo-cron
+  - 功能：定时任务
+  - 端口：9900
+  - 安装：必须
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cron_domain}:9900/are_you_ok/`
+
+- kerrigan
+  - 功能：配置中心
+  - 端口：8030
+  - 安装：必须
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${kerrigan_domain}:8030/are_you_ok/`
+
+- codo-check
+  - 功能：代码检查
+  - 端口：N/A，示例脚本没有端口
+  - 安装：可选
+
+- codo-publish
+  - 功能：发布脚本
+  - 端口：N/A，示例脚本没有端口
+  - 安装：可选
+
+- codo-res_app
+  - 功能：资源申请
+  - 端口：N/A，示例脚本没有端口
+  - 安装：可选
 
 
 
