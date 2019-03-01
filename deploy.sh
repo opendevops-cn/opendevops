@@ -126,7 +126,11 @@ function init_mysql(){
 cd /opt/codo/opendevops/
 source ./env.sh
 sleep 10s
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
+#mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_admin < sql/codo_admin.sql #后端
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cron < sql/codo_cron.sql   #定时任务
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cmdb < sql/codo_cmdb.sql   #cmdb
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_task < sql/codo_task.sql   #任务系统
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: init_mysql success. \033[0m"
 else
@@ -478,7 +482,7 @@ cd codo-cmdb
 CMDB_DB_DBNAME='codo_cmdb'
  #后端数据库名称
 mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database ${CMDB_DB_DBNAME} default character set utf8mb4 collate utf8mb4_unicode_ci;"
-mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD}  $CMDB_DB_DBNAME < docs/cmdb.sql
+
 
 
 #修改配置

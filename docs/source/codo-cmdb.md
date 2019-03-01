@@ -59,7 +59,7 @@ docker-compose up -d
 
 ```
 01. 查看日志
-tailf /var/log/supervisor/crmdb.log   #确认没报错
+tailf /var/log/supervisor/cmdb.log   #确认没报错
 
 
 02. 接口状态
