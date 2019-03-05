@@ -20,6 +20,7 @@ mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD}  #登陆确认
 
 **修改配置**
 ```
+CMDB_DB_DBNAME='codo_cmdb'  #后端数据库名称,建议不要修改，初始化data.sql已经指定了数据库名字，若需改请一块修改
 sed -i  "s#server_name .*#server_name ${cmdb_domain};#g" docs/nginx_cmdb.conf  #CMDB域名
 cat > cmdb-example.conf <<EOF
 [base]
