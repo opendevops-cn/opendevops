@@ -126,6 +126,12 @@ function init_mysql(){
 cd /opt/codo/opendevops/
 source ./env.sh
 sleep 10s
+
+ #后端数据库名称
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_admin default character set utf8mb4 collate utf8mb4_unicode_ci;"
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_cron default character set utf8mb4 collate utf8mb4_unicode_ci;"
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_cmdb default character set utf8mb4 collate utf8mb4_unicode_ci;"
+mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_task default character set utf8mb4 collate utf8mb4_unicode_ci;"
 #mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
 mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_admin < sql/codo_admin.sql #后端
 mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cron < sql/codo_cron.sql   #定时任务
@@ -274,7 +280,7 @@ fi
 #项目前端
 function codo(){
 echo -e "\033[32m [INFO]: codo(项目前端) Start install. \033[0m"
-codo_version='https://github.com/opendevops-cn/codo/releases/download/codo-beta-0.1.0/codo-beta-0.1.0.tar.gz'
+codo_version='https://github.com/opendevops-cn/codo/releases/download/codo-beta-0.2.0/codo-beta-0.2.0.tar.gz'
 if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
 [ ! -d /var/www ] && mkdir -p /var/www
 cd /var/www && wget $codo_version
