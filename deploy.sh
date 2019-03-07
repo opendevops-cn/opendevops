@@ -125,7 +125,7 @@ function init_mysql(){
 #初始化数据库
 cd /opt/codo/opendevops/
 source ./env.sh
-sleep 10s
+sleep 20s
 
  #后端数据库名称
 mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_admin default character set utf8mb4 collate utf8mb4_unicode_ci;"
@@ -141,7 +141,6 @@ if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: init_mysql success. \033[0m"
 else
     echo -e "\033[31m [ERROR]: init_mysql faild \033[0m"
-    echo "mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql"
     exit -500
 fi
 
@@ -284,7 +283,7 @@ codo_version='https://github.com/opendevops-cn/codo/releases/download/codo-beta-
 if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
 [ ! -d /var/www ] && mkdir -p /var/www
 cd /var/www && wget $codo_version
-tar zxf codo-beta-0.1.0.tar.gz
+tar zxf codo-beta-0.2.0.tar.gz
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: codo(项目前端) install success. \033[0m"
 else
