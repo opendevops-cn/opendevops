@@ -77,11 +77,14 @@
 - 所有项目都放到/opt/codo/
 - 修改环境变量文件env.sh,主要修改IP地址和域名信息，Token,Key可默认
 - Other,由于没法完全适配环境，网络问题/其余常见报错问题请自行处理重试安装。
+- 若部署项目报错退出，如：codo-cmdb等，请删除项目路径重新执行脚本。`rm -rf /opt/codo/codo-cmdb`
 
 
+```shell
+$ mkdir -p /opt/codo/ && cd /opt/codo/   #创建代码目录
+$ git clone https://github.com/opendevops-cn/opendevops.git  #克隆代码
+$ cd opendevops && source env.sh #修改环境变量文件env.sh,主要修改IP地址和域名信息，Token,Key可默认
+$ sh -x deploy.sh  #一键部署脚本，网络问题/其余问题可重试安装
 ```
-$ mkdir -p /opt/codo/
-$ cd /opt/codo/ && git clone https://github.com/opendevops-cn/opendevops.git
-$ cd opendevops && sh deploy.sh
-```
+
 
