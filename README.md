@@ -59,15 +59,14 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 你也可以查阅我们完整的官方文档：http://docs.opendevops.cn/zh/latest/
 
-- 快速安装：[部署参考](http://docs.opendevops.cn/zh/latest/stand_alone_install.html)`暂未完成`
+- 快速安装：[部署参考](http://docs.opendevops.cn/zh/latest/stand_alone_install.html)
 ```shell
 注： 线上环境我们建议一步步安装方式，这样您能够快速理解每个模块的含义。
 
-$ mkdir -p /opt/codo/ && cd /opt/codo/
-$ git clone https://github.com/opendevops-cn/opendevops.git
-###修改环境变量文件env.sh,主要修改IP地址和域名信息，Token,Key可默认
-###一键部署脚本，网络问题/其余问题可重试安装
-$ cd opendevops && sh deploy.sh
+$ mkdir -p /opt/codo/ && cd /opt/codo/   #创建代码目录
+$ git clone https://github.com/opendevops-cn/opendevops.git  #克隆代码
+$ cd opendevops && source env.sh #修改环境变量文件env.sh,主要修改IP地址和域名信息，Token,Key可默认
+$ sh -x deploy.sh #一键部署脚本，网络问题/其余问题可重试安装
 ```
 - 分布式安装：[部署参考](http://docs.opendevops.cn/zh/latest/distributed_install.html)
 
