@@ -22,11 +22,7 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 众多功能模块我们一直在不停的调研和开发，如果你对此项目感兴趣可以加入我们的社区交流群，
 
-同时也希望你能给我们项目一个star，                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=opendevops-cn&repo=opendevops&type=star&count=true" >
-                    </iframe>为贡献者加油⛽️！为运维干杯🍻！
+同时也希望你能给我们项目一个star，为贡献者加油⛽️！为运维干杯🍻！
 
 ----
 
