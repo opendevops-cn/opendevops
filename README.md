@@ -45,7 +45,6 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 - 地址：http://demo.opendevops.cn/login
 - 用户：demo
 - 密码：2ZbFYNv9WibWcR7GB6kcEY
-- MFA: 123456 (还在调，可随意输入)
 
 
 

@@ -14,3 +14,4 @@
    cmdb_manager
    user_manager
    system_config
+   custom_task

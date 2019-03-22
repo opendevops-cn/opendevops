@@ -53,44 +53,44 @@ yum install epel-release -y >/dev/null 2>&1 && yum install wget unzip epel-relea
 
 # 安装Python3
 function python3(){
-echo -e "\033[32m [INFO]: Start install python3 \033[0m"
-yum groupinstall Development tools -y
-yum -y install zlib-devel
-yum install -y python36-devel-3.6.3-7.el7.x86_64 openssl-devel libxslt-devel libxml2-devel libcurl-devel
-cd /usr/local/src/
-wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
-tar xf  Python-3.6.4.tar.xz >/dev/null 2>&1 && cd Python-3.6.4
-./configure >/dev/null 2>&1
-make >/dev/null 2>&1 && make install >/dev/null 2>&1
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: python3 install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: python3 install faild \033[0m"
-    exit -1
-fi
+    echo -e "\033[32m [INFO]: Start install python3 \033[0m"
+    yum groupinstall Development tools -y
+    yum -y install zlib-devel
+    yum install -y python36-devel-3.6.3-7.el7.x86_64 openssl-devel libxslt-devel libxml2-devel libcurl-devel
+    cd /usr/local/src/
+    wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
+    tar xf  Python-3.6.4.tar.xz >/dev/null 2>&1 && cd Python-3.6.4
+    ./configure >/dev/null 2>&1
+    make >/dev/null 2>&1 && make install >/dev/null 2>&1
+    if [ $? == 0 ];then
+        echo -e "\033[32m [INFO]: python3 install success. \033[0m"
+    else
+        echo -e "\033[31m [ERROR]: python3 install faild \033[0m"
+        exit -1
+    fi
 }
 
 # 安装Docker-compose
 function docker_compose(){
-echo -e "\033[32m [INFO]: Start install docker,docker-compose \033[0m"
-yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum-config-manager --enable docker-ce-edge
-yum install -y docker-ce
-###启动
-/bin/systemctl start docker.service
-### 开机自启
-/bin/systemctl enable docker.service
-#安装docker-compose编排工具
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 get-pip.py
-pip3 install docker-compose
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: docker-compose install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: docker-compose install faild \033[0m"
-    exit -2
-fi
+    echo -e "\033[32m [INFO]: Start install docker,docker-compose \033[0m"
+    yum install -y yum-utils device-mapper-persistent-data lvm2
+    yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    yum-config-manager --enable docker-ce-edge
+    yum install -y docker-ce
+    ###启动
+    /bin/systemctl start docker.service
+    ### 开机自启
+    /bin/systemctl enable docker.service
+    #安装docker-compose编排工具
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python3 get-pip.py
+    pip3 install docker-compose
+    if [ $? == 0 ];then
+        echo -e "\033[32m [INFO]: docker-compose install success. \033[0m"
+    else
+        echo -e "\033[31m [ERROR]: docker-compose install faild \033[0m"
+        exit -2
+    fi
 }
 
 
@@ -123,89 +123,89 @@ fi
 }
 
 function init_mysql(){
-#初始化数据库
-cd /opt/codo/opendevops/
-source ./env.sh
-sleep 20s
+    #初始化数据库
+    cd /opt/codo/opendevops/
+    source ./env.sh
+    sleep 20s
 
- #后端数据库名称
-mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_admin default character set utf8mb4 collate utf8mb4_unicode_ci;"
-mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_cron default character set utf8mb4 collate utf8mb4_unicode_ci;"
-mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_cmdb default character set utf8mb4 collate utf8mb4_unicode_ci;"
-mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_task default character set utf8mb4 collate utf8mb4_unicode_ci;"
-#mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_admin < sql/codo_admin.sql #后端
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cron < sql/codo_cron.sql   #定时任务
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cmdb < sql/codo_cmdb.sql   #cmdb
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_task < sql/codo_task.sql   #任务系统
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: init_mysql success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: init_mysql faild \033[0m"
-    exit -500
-fi
+     #后端数据库名称
+    mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_admin default character set utf8mb4 collate utf8mb4_unicode_ci;"
+    mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_cron default character set utf8mb4 collate utf8mb4_unicode_ci;"
+    mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_cmdb default character set utf8mb4 collate utf8mb4_unicode_ci;"
+    mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database codo_task default character set utf8mb4 collate utf8mb4_unicode_ci;"
+    #mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
+    mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_admin < sql/codo_admin.sql #后端
+    mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cron < sql/codo_cron.sql   #定时任务
+    mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cmdb < sql/codo_cmdb.sql   #cmdb
+    mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_task < sql/codo_task.sql   #任务系统
+    if [ $? == 0 ];then
+        echo -e "\033[32m [INFO]: init_mysql success. \033[0m"
+    else
+        echo -e "\033[31m [ERROR]: init_mysql faild \033[0m"
+        exit -500
+    fi
 
 }
 
 
 # 安装redis
 function redis3(){
-echo -e "\033[32m [INFO]: Start install redis3.2 \033[0m"
-yum -y install redis-3.2.*
+    echo -e "\033[32m [INFO]: Start install redis3.2 \033[0m"
+    yum -y install redis-3.2.*
 
-echo "[INFO]: start init redis"
-### 开启AOF
-sed -i 's#appendonly no$#appendonly yes#g' /etc/redis.conf
-### 操作系统决定
-sed -i 's#appendfsync .*$$#appendfsync everysec$#g' /etc/redis.conf
-### 修改绑定IP
-sed -i 's/^bind 127.0.0.1$/#bind 127.0.0.1/g' /etc/redis.conf
-### 是否以守护进程方式启动
-sed -i 's#daemonize no$#daemonize yes#g' /etc/redis.conf
-### 当时间间隔超过60秒，或存储超过1000条记录时，进行持久化
-sed -i 's#^save 60 .*$#save 60 1000#g' /etc/redis.conf
-### 快照压缩
-sed -i 's#rdbcompression no$#rdbcompression yes#g' /etc/redis.conf
-### 添加密码
-sed -i "s#.*requirepass .*#requirepass ${REDIS_PASSWORD}#g" /etc/redis.conf
-systemctl start redis
-systemctl status redis
-systemctl enable redis
+    echo "[INFO]: start init redis"
+    ### 开启AOF
+    sed -i 's#appendonly no$#appendonly yes#g' /etc/redis.conf
+    ### 操作系统决定
+    sed -i 's#appendfsync .*$$#appendfsync everysec$#g' /etc/redis.conf
+    ### 修改绑定IP
+    sed -i 's/^bind 127.0.0.1$/#bind 127.0.0.1/g' /etc/redis.conf
+    ### 是否以守护进程方式启动
+    sed -i 's#daemonize no$#daemonize yes#g' /etc/redis.conf
+    ### 当时间间隔超过60秒，或存储超过1000条记录时，进行持久化
+    sed -i 's#^save 60 .*$#save 60 1000#g' /etc/redis.conf
+    ### 快照压缩
+    sed -i 's#rdbcompression no$#rdbcompression yes#g' /etc/redis.conf
+    ### 添加密码
+    sed -i "s#.*requirepass .*#requirepass ${REDIS_PASSWORD}#g" /etc/redis.conf
+    systemctl start redis
+    systemctl status redis
+    systemctl enable redis
 
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: redis install success. \033[0m"
-    echo -e "\033[32m [INFO]: redis-cli -h 127.0.0.1 -p 6379 -a ${REDIS_PASSWORD}"
-else
-    echo -e "\033[31m [ERROR]: redis install faild \033[0m"
-    exit -4
-fi
+    if [ $? == 0 ];then
+        echo -e "\033[32m [INFO]: redis install success. \033[0m"
+        echo -e "\033[32m [INFO]: redis-cli -h 127.0.0.1 -p 6379 -a ${REDIS_PASSWORD}"
+    else
+        echo -e "\033[31m [ERROR]: redis install faild \033[0m"
+        exit -4
+    fi
 }
 
 
 # 安装RabbitMQ
 function rabbitmq(){
-echo -e "\033[32m [INFO]: Start install rabbitmq \033[0m"
-# echo $LOCALHOST_IP opendevops >> /etc/hosts
-# echo opendevops > /etc/hostname
-# export HOSTNAME=opendevops
-yum install  -y rabbitmq-server
-rabbitmq-plugins enable rabbitmq_management
-systemctl start rabbitmq-server
-rabbitmqctl add_user ${MQ_USER} ${MQ_PASSWORD}
-rabbitmqctl set_user_tags ${MQ_USER} administrator
-rabbitmqctl  set_permissions  -p  '/'  ${MQ_USER} '.' '.' '.'
-systemctl restart rabbitmq-server
-systemctl enable rabbitmq-server
-systemctl status rabbitmq-server
+    echo -e "\033[32m [INFO]: Start install rabbitmq \033[0m"
+    # echo $LOCALHOST_IP opendevops >> /etc/hosts
+    # echo opendevops > /etc/hostname
+    # export HOSTNAME=opendevops
+    yum install  -y rabbitmq-server
+    rabbitmq-plugins enable rabbitmq_management
+    systemctl start rabbitmq-server
+    rabbitmqctl add_user ${MQ_USER} ${MQ_PASSWORD}
+    rabbitmqctl set_user_tags ${MQ_USER} administrator
+    rabbitmqctl  set_permissions  -p  '/'  ${MQ_USER} '.' '.' '.'
+    systemctl restart rabbitmq-server
+    systemctl enable rabbitmq-server
+    systemctl status rabbitmq-server
 
-# rabbitmq-server -detached
-status=`systemctl status rabbitmq-server | grep "running" | wc -l`
-if [ $status == 1 ];then
-    echo -e "\033[32m [INFO]: rabbitmq install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: rabbitmq install faild \033[0m"
-    exit -5
-fi
+    # rabbitmq-server -detached
+    status=`systemctl status rabbitmq-server | grep "running" | wc -l`
+    if [ $status == 1 ];then
+        echo -e "\033[32m [INFO]: rabbitmq install success. \033[0m"
+    else
+        echo -e "\033[31m [ERROR]: rabbitmq install faild \033[0m"
+        exit -5
+    fi
 }
 
 # 安装DNS
@@ -253,28 +253,28 @@ fi
 
 #安装Node
 function node_install(){
-echo -e "\033[32m [INFO]: Start install Node \033[0m"
-# [ -f /usr/local/bin/node ] && echo "Node already exists" && exit -1
-cd /usr/local/src && rm -rf node-v10.14.2-linux-x64.tar.xz
-wget https://nodejs.org/dist/v10.14.2/node-v10.14.2-linux-x64.tar.xz
-tar xf node-v10.14.2-linux-x64.tar.xz -C  /usr/local/ >/dev/null 2>&1
-rm -rf /usr/local/bin/node
-rm -rf /usr/local/bin/npm
-rm -rf /usr/bin/pm2
-ln -s /usr/local/node-v10.14.2-linux-x64/bin/node /usr/local/bin/node
-ln -s /usr/local/node-v10.14.2-linux-x64/bin/node /usr/bin/node
-ln -s /usr/local/node-v10.14.2-linux-x64/bin/npm  /usr/local/bin/npm
-ln -s /usr/local/node-v10.14.2-linux-x64/bin/npm  /usr/bin/npm
-/usr/local/bin/node -v
-/usr/local/bin/npm -v
-sudo npm i -g pm2 >/dev/null 2>&1
-ln -s /usr/local/node-v10.14.2-linux-x64/bin/pm2 /usr/bin/
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: Node install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: Node install faild \033[0m"
-    exit -7
-fi
+    echo -e "\033[32m [INFO]: Start install Node \033[0m"
+    # [ -f /usr/local/bin/node ] && echo "Node already exists" && exit -1
+    cd /usr/local/src && rm -rf node-v10.14.2-linux-x64.tar.xz
+    wget https://nodejs.org/dist/v10.14.2/node-v10.14.2-linux-x64.tar.xz
+    tar xf node-v10.14.2-linux-x64.tar.xz -C  /usr/local/ >/dev/null 2>&1
+    rm -rf /usr/local/bin/node
+    rm -rf /usr/local/bin/npm
+    rm -rf /usr/bin/pm2
+    ln -s /usr/local/node-v10.14.2-linux-x64/bin/node /usr/local/bin/node
+    ln -s /usr/local/node-v10.14.2-linux-x64/bin/node /usr/bin/node
+    ln -s /usr/local/node-v10.14.2-linux-x64/bin/npm  /usr/local/bin/npm
+    ln -s /usr/local/node-v10.14.2-linux-x64/bin/npm  /usr/bin/npm
+    /usr/local/bin/node -v
+    /usr/local/bin/npm -v
+    sudo npm i -g pm2 >/dev/null 2>&1
+    ln -s /usr/local/node-v10.14.2-linux-x64/bin/pm2 /usr/bin/
+    if [ $? == 0 ];then
+        echo -e "\033[32m [INFO]: Node install success. \033[0m"
+    else
+        echo -e "\033[31m [ERROR]: Node install faild \033[0m"
+        exit -7
+    fi
 }
 
 #项目前端
@@ -429,7 +429,7 @@ CRON_DB_DBNAME='codo_cron'
  #后端数据库名称
 mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD} -e "create database ${CRON_DB_DBNAME} default character set utf8mb4 collate utf8mb4_unicode_ci;"
 
-sed -i  "s#server_name .*#server_name ${task_domain};#g" doc/nginx_ops.conf
+#sed -i  "s#server_name .*#server_name ${task_domain};#g" doc/nginx_ops.conf
 sed -i "s#cookie_secret = .*#cookie_secret = '${cookie_secret}'#g" settings.py
 sed -i "s#token_secret = .*#token_secret = '${token_secret}'#g" settings.py
 #mysql配置
