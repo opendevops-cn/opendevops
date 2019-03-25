@@ -15,3 +15,5 @@
    user_manager
    system_config
    custom_task
+   gitlab_publish
+
