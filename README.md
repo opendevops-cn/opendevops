@@ -9,7 +9,8 @@
 [![Tornado](https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic)](https://www.tornadoweb.org)
 [![Vue.js](https://img.shields.io/badge/Vuejs-2.5-brightgreen.svg?style=plastic)](https://cn.vuejs.org)
 [![iview](https://img.shields.io/badge/iview-3.2.0-blue.svg?style=plastic)](https://www.iviewui.com/)
-
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 ----
 CODO是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台。
