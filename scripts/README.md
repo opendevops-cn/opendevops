@@ -3,7 +3,6 @@
 
 - Ops Scripts
     - [system_init_v1.sh](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
-    - [system_init_nginx.sh](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_nginx.sh)
     - [system_init_node.sh](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_node.sh)
     - [system_init_redis.sh](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_redis.sh)
     - [system_init_mysql57.sh](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_mysql57.sh)
