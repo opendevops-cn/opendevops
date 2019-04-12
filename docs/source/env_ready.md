@@ -1,6 +1,7 @@
 ### 环境准备
 
-> 服务介绍请参考：http://docs.opendevops.cn/zh/latest/introduction.html
+> 部署安装之前，你应该了解下每个模块的用途，[传送门](http://docs.opendevops.cn/zh/latest/introduction.html)
+
 
 
 **注意**
@@ -16,17 +17,43 @@
 - 磁盘：  >=50+
 
 
-**初始化环境变量**
 
-- 请根据自己环境修改以下变量地址，后续平台里面调用需要使用到。
+
+
+**准备基础环境**
+
+> 基础环境需要用到以下服务，我们也提供了简单的[初始化脚本](<https://github.com/opendevops-cn/opendevops/scripts>)
+
+- 建议版本
+  - Python3.6
+  - Redis3.2
+  - MySQl5.7
+  - RabbitMQ
+  - Docker
+  - Docker-compose
+
+
+
+**优化系统**
+
+注意：
+
+- 如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了[优化系统脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
+- 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
+
+
 
 创建项目目录
+
 ```
 $ mkdir -p /opt/codo/ && cd /opt/codo/
 ```
 
+**环境变量**
 
-以下贴入到env.sh文件，请修改以下环境变量信息, `source env.sh`
+> 以下内容贴入到env.sh文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息 `source env.sh`
+
+
 
 ```shell
 #本机的IP地址
@@ -42,11 +69,12 @@ export REDIS_PASSWORD="cWCVKJ7ZHUK12mVbivUf"
 export MQ_USER="ss"
 export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
 
+##这部分是模块化部署，微服务，每个服务都有一个单独的域名
 ### 管理后端地址
 export mg_domain="mg.opendevops.cn"
 
-### 定时任务地址
-export cron_domain="cron.opendevops.cn"
+### 定时任务地址，这里目前是单进程，使用本地IP即可
+export cron_domain=${LOCALHOST_IP}
 
 ### 任务系统地址
 export task_domain="task.opendevops.cn"
@@ -54,16 +82,24 @@ export task_domain="task.opendevops.cn"
 ### CMDB系统地址
 export cmdb_domain="cmdb.opendevops.cn"
 
-### 前端地址
+### 运维工具地址
+export tools_domain="tools.opendevops.cn"
+
+### 配置中心域名
+export kerrigan_domain="kerrigan.opendevops.cn"
+
+### 前端地址,也就是你的访问地址
 export front_domain="demo.opendevops.cn"
 
 ### api网关地址
 export api_gw_url="gw.opendevops.cn"
 
-#codo-admin
+
+#codo-admin用到的cookie和token，可留默认
 export cookie_secret="nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB"
 export token_secret="1txIq2QUkeFsZizt3vEpVzUQNFS2@DpEQwbbw8k0YJt0biFScH"
 
+##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了
 # 写数据库
 export DEFAULT_DB_DBHOST="10.10.10.12"
 export DEFAULT_DB_DBPORT='3306'
@@ -89,7 +125,16 @@ export DEFAULT_REDIS_PORT=6379
 export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 ```
 
+```shell
+$ source env.sh  #最后一定不要忘记source
+```
+
+
+
+
+
 **安装Python3**
+
 > 建议使用Python36,若你的系统里面已经存在Python36可以跳过此步骤。
 
 ```shell
@@ -135,7 +180,10 @@ fi
 ```
 
 **安装MySQL**
+
 > 一般来说 一个MySQL实例即可，如果有需求可以自行搭建主从，每个服务都可以有自己的数据库
+>
+> 我们这里示例是用Docker部署的MySQL，你也可以使用你自己的MySQL
 
 ```shell
 echo -e "\033[32m [INFO]: Start install mysql5.7 \033[0m"
@@ -154,13 +202,14 @@ EOF
 docker-compose up -d   #启动
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: mysql install success. \033[0m"
-    echo -e "\033[32m [INFO]: mysql -h 127.0.0.1 -uroot -p${MYSQL_PASSWORD}. \033[0m"
+    echo -e "\033[32m [INFO]: mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} \033[0m"
 else
     echo -e "\033[31m [ERROR]: mysql57 install faild \033[0m"
     exit -3
 fi
 ```
 **导入数据**
+
 ```
 #安装MySQL客户端测试一下
 yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm
@@ -256,10 +305,15 @@ $LOCALHOST_IP $cron_domain
 $LOCALHOST_IP $task_domain
 $LOCALHOST_IP $api_gw_url
 $LOCALHOST_IP $cmdb_domain
+$LOCALHOST_IP $kerrigan_domain
+$LOCALHOST_IP $tools_domain
 EOF
 
 #添加配置
-echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf   #注意：需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名
+#注意：
+   # 刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。
+   # 部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名
+#echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf   
 echo "resolv-file=/etc/resolv.dnsmasq" >> /etc/dnsmasq.conf
 echo "addn-hosts=/etc/dnsmasqhosts" >> /etc/dnsmasq.conf
 
@@ -277,3 +331,37 @@ fi
 ```
 
 
+
+**CODO BASE镜像**
+
+> 我们模块都是个人独立开发的，当时代码编写的时候是直接基于CentOS7来进行编写的Dockerfile，便于测试，需要的同学切记手动去修改下FROM就可以了。
+
+- 为什么加上这一步?
+  - 有部分用户反应说我们微服务里面每个Dockerfile都去重复安装了Python3
+  - 这里我准备了Python3的 Base Dockerfile文件，使用人员可先制作一个codo_base的docker images
+  - 如需部署模块慢的同学可以修改每个模块下的Dockerfile文件，`FROM codo_base`, 将Python之前的RUN去掉就可以了
+
+BASE Dockerfile文件
+
+```dockerfile
+FROM centos:7
+# 设置编码
+ENV LANG en_US.UTF-8
+# 同步时间
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN echo "216.176.179.218  mirrorlist.centos.org" >> /etc/hosts
+# 1. 安装基本依赖
+RUN yum update -y && yum install epel-release -y && yum update -y && yum install wget unzip epel-release nginx  xz gcc automake zlib-devel openssl-devel supervisor  groupinstall development  libxslt-devel libxml2-devel libcurl-devel git -y
+#WORKDIR /var/www/
+
+# 2. 准备python
+RUN wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
+RUN xz -d Python-3.6.6.tar.xz && tar xvf Python-3.6.6.tar && cd Python-3.6.6 && ./configure && make && make install
+
+# 3. 安装yum依赖
+#pass
+```
+
+贴入Dockerfile文件，执行`docker build . -t codo_base`，需要的同学`注意：手动去修改下各模块下Dockerfile`即可
