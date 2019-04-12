@@ -33,7 +33,7 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 ### 产品功能
 
-![](docs/source/_static/images/pro_fun.png)
+![](docs/source/_static/images/pro_fun_2.png)
 
 ### Demo
 我们提供了Demo供使用者体验,可点击Try Online Demo快速进行体验。
