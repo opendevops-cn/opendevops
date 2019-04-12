@@ -1,3 +1,5 @@
+##h环境变量文件
+
 #本机的IP地址
 export LOCALHOST_IP="172.16.1.201"
 

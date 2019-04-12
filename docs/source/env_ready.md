@@ -22,7 +22,7 @@
 
 **准备基础环境**
 
-> 基础环境需要用到以下服务，我们也提供了简单的[初始化脚本](<https://github.com/opendevops-cn/opendevops/scripts>)
+> 基础环境需要用到以下服务，我们也提供了简单的[初始化脚本](https://raw.githubusercontent.com/opendevops-cn/opendevops/master/scripts/system_init_v1.sh)
 
 - 建议版本
   - Python3.6
