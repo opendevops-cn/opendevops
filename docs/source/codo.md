@@ -1,16 +1,20 @@
 ### 项目前端
 
 > 项目前端代码，提供两种方式，可自行编译，也可在下载release资源包，二选一
+>
+> 我们提供的有release包，建议直接下载release包更为方便！
 
-**01. 直接下载资源包**
+**一、 直接下载资源包(建议)**
+
+- 建议使用最新版本[Release](<https://github.com/opendevops-cn/codo/releases/>)
 
 ```
 echo -e "\033[32m [INFO]: codo(项目前端) Start install. \033[0m"
-codo_version='https://github.com/opendevops-cn/codo/releases/download/codo-beta-0.1.0/codo-beta-0.1.0.tar.gz'
+CODO_VER="codo-beta-0.2.1"
 if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
 [ ! -d /var/www ] && mkdir -p /var/www
-cd /var/www && wget $codo_version
-tar zxf codo-beta-0.1.0.tar.gz
+cd /var/www && wget https://github.com/opendevops-cn/codo/releases/download/${CODO_VER}/${CODO_VER}.tar.gz
+tar zxf ${CODO_VER}.tar.gz
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: codo(项目前端) install success. \033[0m"
 else
@@ -19,10 +23,9 @@ else
 fi
 ```
 
+**二、手动编译方式**
 
-**02. 手动编译方式**
-
-> shell脚本内容，复制内容到.sh文件执行即可
+> 编译需要Node，不建议使用此方式。shell脚本内容，复制内容到.sh文件执行即可
 
 ```shell
 [ -f /usr/local/bin/node ] && echo "Node already exists" && exit -1
@@ -40,9 +43,11 @@ ln -s /usr/local/node-v10.14.2-linux-x64/bin/npm  /usr/bin/npm
 /usr/local/bin/npm -v
 sudo npm i -g pm2 >/dev/null 2>&1
 ln -s /usr/local/node-v10.14.2-linux-x64/bin/pm2 /usr/bin/
+
 ```
 
 **获取代码，修改配置**
+
 ```shell
 cd /opt/codo/ && git clone https://github.com/opendevops-cn/codo.git && cd codo
 

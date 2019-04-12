@@ -12,16 +12,20 @@ cd /opt/codo && git clone https://github.com/opendevops-cn/codo-cmdb.git
 cd codo-cmdb
 ```
 
-**确认数据库信息**
-初始化数据库：codo_cmdb, 请登陆确认是否有初始化数据，没有请手动导入data.sql数据
-```
-mysql -h 127.0.0.1 -u root -p${MYSQL_PASSWORD}  #登陆确认
-```
+
 
 **修改配置**
-```
-CMDB_DB_DBNAME='codo_cmdb'  #后端数据库名称,建议不要修改，初始化data.sql已经指定了数据库名字，若需改请一块修改
-sed -i  "s#server_name .*#server_name ${cmdb_domain};#g" docs/nginx_cmdb.conf  #CMDB域名
+
+```shell
+#导入环境变量文件，最开始准备的环境变量文件
+source env.sh
+
+#后端数据库名称,建议不要修改，初始化data.sql已经指定了数据库名字，若需改请一块修改
+CMDB_DB_DBNAME='codo_cmdb'  
+
+#CMDB域名
+sed -i  "s#server_name .*#server_name ${cmdb_domain};#g" docs/nginx_cmdb.conf 
+
 cat > cmdb-example.conf <<EOF
 [base]
 ip = 0.0.0.0
@@ -45,32 +49,47 @@ EOF
 #这是测试用到的，先删除掉
 name=/var/www
 sed -i 's#'$name'#EXCLUSIVE#;/EXCLUSIVE/d' docker-compose.yml
+
+#建议: 操作完确认下这几个文件，看配置是否修改了，别因为环境变量没获取到配置没更改成功。
 ```
 
-**编译，启动**
+
+
+**导入数据**
+
+```shell
+#初始化SQL
+wget https://raw.githubusercontent.com/opendevops-cn/opendevops/master/sql/codo_cmdb-beta0.2.sql
+#创建数据库
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}
+create database `codo_cmdb` default character set utf8mb4 collate utf8mb4_unicode_ci;
+#导入数据
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cmdb < codo_cmdb-beta0.2.sql
+#确认
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_cmdb -e  "show tables;"
 ```
+
+
+
+**编译，启动**
+
+```shell
 #编译镜像
 docker build . -t cmdb
 
 #启动
 docker-compose up -d
 ```
+
+
+
 **测试**
+
 > 日志文件位置统一：/var/log/supervisor/
 
 ```
 01. 查看日志
 tailf /var/log/supervisor/cmdb.log   #确认没报错
-
-
-02. 接口状态
-cmdb_status=`curl -I -X GET -m  10 -o /dev/null -s -w %{http_code}  http://${cmdb_domain}:8002/v1/cmdb/`
-if [ $cmdb_status == 200 ];then
-    echo -e "\033[32m [INFO]: codo(CMDB) install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: codo(CMDB) install faild \033[0m"
-    exit -10
-fi
 ```
 
 

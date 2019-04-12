@@ -35,6 +35,9 @@ cat<<EOT
     [python3.6、Node、Openresty、MySQL57、Redis3、Dnsmasq、Docker、RabbitMQ]
 注意：一键部署不包含K8S/配置中心组件模块，前端访问k8s相关会出现404错误，请无视，线上环境建议一步步分布式安装。
 
+
+#2019-04 更新：不建议使用一键部署，此脚本beta0.2不更新
+
 EOT
 echo -ne "\\033[m"
 

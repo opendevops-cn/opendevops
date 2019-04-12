@@ -1,8 +1,3 @@
-#! /bin/bash
-# init linux system
-# By OpenDevOps  
-
-
 
 #usage() {
 #    echo "请按如下格式执行"

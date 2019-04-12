@@ -129,6 +129,94 @@ server {
 ```
 
 **注册API网关**
+
+```shell
+cat >/usr/local/openresty/nginx/lua/configs.lua<<EOF
+json = require("cjson")
+
+--mysql_config = {
+--    host = "127.0.0.1",
+--    port = 3306,
+--    database = "lua",
+--    user = "root",
+--    password = "",
+--    max_packet_size = 1024 * 1024
+--}
+
+redis_config = {
+    host = '${DEFAULT_REDIS_HOST}',
+    --host = '172.16.0.121',
+    port = ${DEFAULT_REDIS_PORT},
+    auth_pwd = '${DEFAULT_REDIS_PASSWORD}',
+    db = 8,
+    alive_time = 3600 * 24 * 7,
+    channel = 'gw'
+}
+
+--mq_conf = {
+--  host = '172.16.0.121',
+--  port = 5672,
+--  username = 'sz',
+--  password = '123456',
+--  vhost = '/'
+--}
+
+token_secret = "${token_secret}"
+logs_file = '/var/log/gw.log'
+
+--刷新权限到redis接口
+rewrite_cache_url = 'http://${mg_domain}:8010/v2/accounts/verify/'
+rewrite_cache_token = '8b888a62-3edb-4920-b446-697a472b4001'
+
+--并发限流配置
+limit_conf = {
+    rate = 10, --限制ip每分钟只能调用n*60次接口
+    burst = 10, --桶容量,用于平滑处理,最大接收请求次数
+}
+
+--upstream匹配规则
+gw_domain_name = '${api_gw_url}'
+
+rewrite_conf = {
+    [gw_domain_name] = {
+        rewrite_urls = {
+            {
+                uri = "/cmdb",
+                rewrite_upstream = "${cmdb_domain}:8002"
+            },
+            {
+                uri = "/kerrigan",
+                rewrite_upstream = "${kerrigan_domain}:8030"
+            },
+            {
+                uri = "/tools",
+                rewrite_upstream = "${tools_domain}:8030"
+            },
+            {
+                uri = "/task",
+                rewrite_upstream = "${task_domain}:8020"
+            },
+            {
+                uri = "/cron",
+                rewrite_upstream = "${cron_domain}:9900"
+            },
+            {
+                uri = "/mg",
+                rewrite_upstream = "${mg_domain}:8010"
+            },
+            {
+                uri = "/accounts",
+                rewrite_upstream = "${mg_domain}:8010"
+            },
+        }
+    }
+}
+
+EOF
+```
+
+
+
 ```
 vim /usr/local/openresty/nginx/lua/configs.lua
 #修改lua配置文件里面数据库连接信息，和域名信息
@@ -183,23 +271,31 @@ rewrite_conf = {
         rewrite_urls = {
             {
                 uri = "/cmdb",
-                rewrite_upstream = "${cmdb_domain}:8002"
+                rewrite_upstream = "cmdb.opendevops.cn:8002"
+            },
+            {
+                uri = "/kerrigan",
+                rewrite_upstream = "kerrigan.opendevops.cn:8030"
+            },
+            {
+                uri = "/tools",
+                rewrite_upstream = "tools.opendevops.cn:8040"
             },
             {
                 uri = "/task",
-                rewrite_upstream = "${task_domain}:8020"
+                rewrite_upstream = "task.opendevops.cn:8020"
             },
             {
                 uri = "/cron",
-                rewrite_upstream = "${LOCALHOST_IP}:9900"
+                rewrite_upstream = "10.2.2.236:9900"
             },
             {
                 uri = "/mg",
-                rewrite_upstream = "${mg_domain}:8010"
+                rewrite_upstream = "mg.opendevops.cn:8010"
             },
             {
                 uri = "/accounts",
-                rewrite_upstream = "${mg_domain}:8010"
+                rewrite_upstream = "mg.opendevops.cn:8010"
             },
         }
     }
@@ -207,9 +303,12 @@ rewrite_conf = {
 ```
 
 **API网关启动**
+
 ```shell
 #OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，使用的也是80端口，若不能启动请检查你的80端口是否被占用了
-
+#日志：
+mkdir -p /var/log/nginx/ && touch /var/log/nginx/f_access.log
+#提醒:openresty服务器DNS必须指向--->最起初部署的DNS服务器地址
 openresty -t   #测试
 systemctl start openresty
 systemctl enable openresty

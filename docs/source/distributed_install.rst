@@ -8,11 +8,11 @@
     env_ready
     codo
     codo-admin
-    codo-gw
     codo-task
     codo-cmdb
     codo-cron
-    codo-publish
-    codo-res_app
-    codo-check
+    codo-kerrigan
+    codo-tools
+    codo-gw
+
 

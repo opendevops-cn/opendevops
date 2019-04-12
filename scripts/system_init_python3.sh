@@ -17,3 +17,4 @@ else
     echo -e "\033[31m [ERROR]: python3 install faild \033[0m"
     exit -1
 fi
+

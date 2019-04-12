@@ -54,22 +54,12 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 ### 开始使用
 
-我们提供多种部署文档，支持快速部署文档和一步步安装。
+> 注意：由于是微服务部署比较复杂，我们目前只支持分布式一步步部署，depoly.sh暂不更新，后续会提供其余快速部署方式，请知悉。
 
-
-你也可以查阅我们完整的官方文档：http://docs.opendevops.cn/zh/latest/
-
-- 快速安装：[部署参考](http://docs.opendevops.cn/zh/latest/stand_alone_install.html)
-```shell
-注： 线上环境我们建议一步步安装方式，这样您能够快速理解每个模块的含义。
-
-$ mkdir -p /opt/codo/ && cd /opt/codo/   #创建代码目录
-$ git clone https://github.com/opendevops-cn/opendevops.git  #克隆代码
-$ cd opendevops && source env.sh #修改环境变量文件env.sh,主要修改IP地址和域名信息，Token,Key可默认
-$ sh -x deploy.sh #一键部署脚本，网络问题/其余问题可重试安装
-```
-- 分布式安装：[部署参考](http://docs.opendevops.cn/zh/latest/distributed_install.html)
-
+- [官方文档](http://docs.opendevops.cn/zh/latest/)
+- [更新日志](http://docs.opendevops.cn/zh/latest/change_log.html)
+- [快速体验](https://demo.opendevops.cn/login)
+- [分布式部署文档](http://docs.opendevops.cn/zh/latest/distributed_install.html)
 
 
 ### 模块链接
@@ -80,11 +70,11 @@ $ sh -x deploy.sh #一键部署脚本，网络问题/其余问题可重试安装
 - 管理后端：[codo-admin](https://github.com/opendevops-cn/codo-admin)
 - 定时任务：[codo-cron](https://github.com/opendevops-cn/codo-cron)
 - 任务调度：[codo-task](https://github.com/opendevops-cn/codo-task)
-- 资产管理: [codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
-- K8S发布：[codo-k8s](https://github.com/opendevops-cn/codo-k8s)
+- 资产管理：[codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
+- 配置中心：[codo-kerrigan](https://github.com/opendevops-cn/kerrigan)
+- 运维工具：[codo-tools](https://github.com/opendevops-cn/codo-tools)
 - 基础发布：[codo-publish](https://github.com/opendevops-cn/codo-publish.git)
 - 资源申请：[codo-res_app](https://github.com/opendevops-cn/codo-res_app)
-
 
 
 

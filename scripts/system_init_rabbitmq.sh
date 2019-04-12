@@ -24,3 +24,4 @@ else
     echo -e "\033[31m [ERROR]: rabbitmq install faild \033[0m"
     exit -5
 fi
+
