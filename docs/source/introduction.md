@@ -66,7 +66,7 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
   - 功能：运维工具
   - 端口：8040
   - 安装：必须
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${}:8030/are_you_ok/`
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${tools_domain}:8040/are_you_ok/`
 
 - codo-check
   - 功能：代码检查
