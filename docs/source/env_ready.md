@@ -56,6 +56,10 @@ $ mkdir -p /opt/codo/ && cd /opt/codo/
 
 
 ```shell
+
+
+echo -e "\033[31m token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
+
 #本机的IP地址
 export LOCALHOST_IP="10.10.10.12"
 
@@ -73,8 +77,8 @@ export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
 ### 管理后端地址
 export mg_domain="mg.opendevops.cn"
 
-### 定时任务地址，这里目前是单进程，使用本地IP即可
-export cron_domain=${LOCALHOST_IP}
+### 定时任务地址,目前只启动一个进程，ip 
+export cron_domain="10.10.10.12"
 
 ### 任务系统地址
 export task_domain="task.opendevops.cn"
@@ -84,6 +88,7 @@ export cmdb_domain="cmdb.opendevops.cn"
 
 ### 运维工具地址
 export tools_domain="tools.opendevops.cn"
+
 
 ### 配置中心域名
 export kerrigan_domain="kerrigan.opendevops.cn"
@@ -97,7 +102,8 @@ export api_gw_url="gw.opendevops.cn"
 
 #codo-admin用到的cookie和token，可留默认
 export cookie_secret="nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB"
-export token_secret="1txIq2QUkeFsZizt3vEpVzUQNFS2@DpEQwbbw8k0YJt0biFScH"
+# 这里codo-admin和gw网关都会用到，一定要修改。可生成随意字符
+export token_secret="pXFb4i%*834gfdh96(3df&%18iodGq4ODQyMzc4lz7yI6ImF1dG"
 
 ##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了
 # 写数据库
@@ -123,6 +129,8 @@ export DEFAULT_MQ_PWD=${MQ_PASSWORD}
 export DEFAULT_REDIS_HOST='10.10.10.12'
 export DEFAULT_REDIS_PORT=6379
 export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
+
+
 ```
 
 ```shell

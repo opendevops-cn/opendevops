@@ -130,11 +130,11 @@ server {
 
 **注册API网关**
 
-```shell
+`vim /usr/local/openresty/nginx/lua/configs.lua`
+请仔细阅读下面需要修改配置的地方
 
-vim /usr/local/openresty/nginx/lua/configs.lua
-#修改lua配置文件里面数据库连接信息，和域名信息
 
+```lua
 json = require("cjson")
 
 --mysql_config = {
@@ -146,11 +146,11 @@ json = require("cjson")
 --    max_packet_size = 1024 * 1024
 --}
 
+-- redis配置，一定要修改,并且和codo-admin保持一致
 redis_config = {
-    host = '${DEFAULT_REDIS_HOST}',
-    --host = '172.16.0.121',
-    port = ${DEFAULT_REDIS_PORT},
-    auth_pwd = '${DEFAULT_REDIS_PASSWORD}',
+    host = '10.10.10.12',
+    port = 6379,
+    auth_pwd = 'cWCVKJ7ZHUK12mVbivUf',
     db = 8,
     alive_time = 3600 * 24 * 7,
     channel = 'gw'
@@ -164,12 +164,15 @@ redis_config = {
 --  vhost = '/'
 --}
 
-token_secret = "${token_secret}"
+-- 注意：这里的token_secret必须要和codo-admin里面的token_secret保持一致
+token_secret = "pXFb4i%*834gfdh96(3df&%18iodGq4ODQyMzc4lz7yI6ImF1dG"
 logs_file = '/var/log/gw.log'
 
 --刷新权限到redis接口
-rewrite_cache_url = 'http://${mg_domain}:8010/v2/accounts/verify/'
-rewrite_cache_token = '8b888a62-3edb-4920-b446-697a472b4001'  #这里需要和codo_admin settings里面token一致
+rewrite_cache_url = 'http://mg.opendevops.cn:8010/v2/accounts/verify/'
+-- 注意：rewrite_cache_token要和codo-admin里面的secret_key = '8b888a62-3edb-4920-b446-697a472b4001'保持一致
+rewrite_cache_token = '8b888a62-3edb-4920-b446-697a472b4001'  
+
 
 --并发限流配置
 limit_conf = {
@@ -177,9 +180,10 @@ limit_conf = {
     burst = 10, --桶容量,用于平滑处理,最大接收请求次数
 }
 
---upstream匹配规则
-gw_domain_name = '${api_gw_url}'
+--upstream匹配规则,API网关域名
+gw_domain_name = 'gw.opendevops.cn' 
 
+--下面的转发一定要修改，根据自己实际数据修改
 rewrite_conf = {
     [gw_domain_name] = {
         rewrite_urls = {
@@ -201,7 +205,7 @@ rewrite_conf = {
             },
             {
                 uri = "/cron",
-                rewrite_upstream = "10.2.2.236:9900"
+                rewrite_upstream = "10.10.10.12:9900"
             },
             {
                 uri = "/mg",
@@ -214,6 +218,7 @@ rewrite_conf = {
         }
     }
 }
+
 ```
 
 **API网关启动**
@@ -229,3 +234,13 @@ systemctl enable openresty
 
 ```
 
+**访问**
+
+- 地址：demo.opendevops.cn
+- 用户：admin
+- 密码：admin@opendevops
+
+**日志路径**
+
+> 若这里访问有报错，请看下日志，一般都是配置错误。
+- 日志路径：所有模块日志统一`/var/log/supervisor/`

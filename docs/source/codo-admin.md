@@ -14,7 +14,8 @@ cd /opt/codo && git clone https://github.com/opendevops-cn/codo-admin.git && cd 
 
 修改`settings.py` 和`doc/nginx_ops.conf`配置
 
-> 注意：cookie_secret和token_secret，这里默认是已经生成好的，可不用修改，若自行生成复杂token,key 也请更改env.sh文件
+> 注意：这里的`cookie_secret`和`token_secret`必须和你的env.sh里面的保持一致，后续网关也要用到这个。若不保持一直登陆后校验不通过回被自动踢回
+
 
 ```shell
 
@@ -22,8 +23,9 @@ cd /opt/codo && git clone https://github.com/opendevops-cn/codo-admin.git && cd 
 source env.sh
 #修改管理后端域名
 sed -i  "s#server_name .*#server_name ${mg_domain};#g" doc/nginx_ops.conf   
-sed -i "s#cookie_secret = .*#cookie_secret = '${cookie_secret}'#g" settings.py  #Tornado使用cookie_secret
-sed -i "s#token_secret = .*#token_secret = '${token_secret}'#g" settings.py     #Token
+sed -i "s#cookie_secret = .*#cookie_secret = '${cookie_secret}'#g" settings.py  
+##注意：这里的token_secret必须要和你的网关保持一致，这个值是从env.sh拿来的，一定要做修改，防止网站被攻击
+sed -i "s#token_secret = .*#token_secret = '${token_secret}'#g" settings.py    
 
 
 #mysql配置信息

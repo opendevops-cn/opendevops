@@ -10,7 +10,7 @@
 
 ```
 echo -e "\033[32m [INFO]: codo(项目前端) Start install. \033[0m"
-CODO_VER="codo-beta-0.2.1"
+CODO_VER="codo-beta-0.2.2"
 if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
 [ ! -d /var/www ] && mkdir -p /var/www
 cd /var/www && wget https://github.com/opendevops-cn/codo/releases/download/${CODO_VER}/${CODO_VER}.tar.gz
