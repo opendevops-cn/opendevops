@@ -208,19 +208,6 @@ else
     exit -3
 fi
 ```
-**导入数据**
-
-```
-#安装MySQL客户端测试一下
-yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm
-yum -y install Percona-Server-client-56
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}  #确认可以正常链接mysql
-
-#初始化SQL文件
-wget https://raw.githubusercontent.com/opendevops-cn/opendevops/master/data.sql
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} < data.sql
-```
-
 
 **安装Redis**
 ```shell
