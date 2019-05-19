@@ -14,6 +14,7 @@ OpenDevOps 文档
    install
    user_guide
    change_log
+   example_docs
    faq
 
 Indices and tables

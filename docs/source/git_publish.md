@@ -1,7 +1,7 @@
-### GitLab钩子自动化发布示例
+### 基于任务平台实现Git发布示例
 
 
-#### 环境
+**环境**
 
 > 本章节实验环境主要基于`GitLab Custom Hooks`和`GitLab Tag`借助opendevops平台实现自动化发布，以下为所用到的功能简单介绍。
   
@@ -25,7 +25,7 @@
 
 
 
-#### 快速使用
+**快速使用**
 
 > 这里废话不多说，直接上实践，至于Tag、Hooks、Depoly Keys不熟悉的请参考以上链接，也可自行百度。
 发布流程：`enable depoly keys`->`git clone`–>`git pull`—>`git checkout <tag>`—>`rsync_code`—>`code_backup`—>`publish code`->`publish OK~`，平台历史记录可查看发布信息
@@ -165,4 +165,4 @@ git push -u origin release-dbtt-server-20190320-02  #把tag推送上去
 
 最终的结果
 
-![](https://ws1.sinaimg.cn/large/005X1wn0gy1g1exnc0cv9j30uc0iw75r.jpg)
+![](./_static/images/005X1wn0gy1g1exnc0cv9j30uc0iw75r.jpg)
