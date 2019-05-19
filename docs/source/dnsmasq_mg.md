@@ -184,11 +184,11 @@ python3 /data1/shell/dns_publish.py
 
 ![](./_static/images/add_dns_bash.png)
 
-![](./_static/images/add_dns_tmep.png)
+![](./_static/images/add_dns_temp.png)
 
 **提交一个自定义任务**
 
-![](./_static/images/add_dns_tmep.png)
+![](./_static/images/commit_dns_task.png)
 
 
 
