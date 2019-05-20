@@ -73,6 +73,7 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 - 资产管理：[codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
 - 配置中心：[codo-kerrigan](https://github.com/opendevops-cn/kerrigan)
 - 运维工具：[codo-tools](https://github.com/opendevops-cn/codo-tools)
+- 域名管理: [codo_dns](https://github.com/opendevops-cn/codo-dns)
 - 基础发布：[codo-publish](https://github.com/opendevops-cn/codo-publish.git)
 - 资源申请：[codo-res_app](https://github.com/opendevops-cn/codo-res_app)
 
