@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 #
 # Configuration file for the Sphinx documentation builder.
@@ -18,7 +19,6 @@
 
 
 # -- Project information -----------------------------------------------------
-import os
 import sphinx_rtd_theme
 from recommonmark.parser import CommonMarkParser
 
@@ -26,14 +26,14 @@ from recommonmark.parser import CommonMarkParser
 html_theme = "sphinx_rtd_theme"
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
-project = 'OpenDevOps'
-copyright = u'opendevops © 2019'
+project = 'opendevops'
+copyright = '2019, yanghongfei'
 author = 'yanghongfei'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = 'latest'
+release = 'v0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -46,8 +46,6 @@ release = 'latest'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.viewcode',
-    'sphinx.ext.githubpages',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -77,12 +75,11 @@ language = 'zh_CN'
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-#exclude_patterns = []
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+exclude_patterns = []
 
-html_show_sourcelink = False
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = None
+
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -96,10 +93,7 @@ html_show_sourcelink = False
 # documentation.
 #
 # html_theme_options = {}
-html_theme_options = {
-    'logo_only': True,
-    'display_version': True
-}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -119,7 +113,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = u'OpenDevOps 文档'
+htmlhelp_basename = 'docsdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -142,55 +136,13 @@ latex_elements = {
     # 'figure_align': 'htbp',
 }
 
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
-
-if on_rtd:
-    latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #'papersize': 'letterpaper',
-    # The font size ('10pt', '11pt' or '12pt').
-    #'pointsize': '10pt',
-    # Additional stuff for the LaTeX preamble.
-        'preamble': r'''
-        \hypersetup{unicode=true}
-        \usepackage{CJKutf8}
-        \DeclareUnicodeCharacter{00A0}{\nobreakspace}
-        \DeclareUnicodeCharacter{2203}{\ensuremath{\exists}}
-        \DeclareUnicodeCharacter{2200}{\ensuremath{\forall}}
-        \DeclareUnicodeCharacter{2286}{\ensuremath{\subseteq}}
-        \DeclareUnicodeCharacter{2713}{x}
-        \DeclareUnicodeCharacter{27FA}{\ensuremath{\Longleftrightarrow}}
-        \DeclareUnicodeCharacter{221A}{\ensuremath{\sqrt{}}}
-        \DeclareUnicodeCharacter{221B}{\ensuremath{\sqrt[3]{}}}
-        \DeclareUnicodeCharacter{2295}{\ensuremath{\oplus}}
-        \DeclareUnicodeCharacter{2297}{\ensuremath{\otimes}}
-        \begin{CJK}{UTF8}{gbsn}
-        \AtEndDocument{\end{CJK}}
-        ''',
-    }
-else:
-    latex_elements = {
-        'papersize': 'a4paper',
-        'utf8extra': '',
-        'inputenc': '',
-        'babel': r'''\usepackage[english]{babel}''',
-        'preamble': r'''
-        \usepackage{ctex}
-        ''',
-    }
-
-
-
-
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'opendevops.tex', 'OpenDevOps Documentation',
+    (master_doc, 'docs.tex', 'docs Documentation',
      'yanghongfei', 'manual'),
 ]
-
-
 
 
 # -- Options for manual page output ------------------------------------------
@@ -198,7 +150,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'OpenDevOps', 'OpenDevOps Documentation',
+    (master_doc, 'docs', 'docs Documentation',
      [author], 1)
 ]
 
@@ -209,8 +161,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'OpenDevOps', 'OpenDevOps Documentation',
-     author, 'OpenDevOps', 'CloudOpenDevOps是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台',
+    (master_doc, 'docs', 'docs Documentation',
+     author, 'docs', 'One line description of project.',
      'Miscellaneous'),
 ]
 
@@ -232,5 +184,3 @@ epub_title = project
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
-#html_logo = '_static/images/logo_codo.png'
-
