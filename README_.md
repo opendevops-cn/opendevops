@@ -88,9 +88,9 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 
 |Name|Github Avatar|Name| GitHub Avatar                                                       | Name                                              | Github Avatar                                                       |
 |---|---|---|---|---|---|
-|[老徐](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [沈硕](https://github.com/ss1917)          |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [杨铭威](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
-|[杨红飞](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[沈英智](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [卞婷婷](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
-|[智仁勇男](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [李博](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [刘春雨](https://github.com/liuchunyu007)         | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
+|[laoxu](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)  |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
+|[yanghongfei](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[shenyingzhi](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [biantingting](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
+|[zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [liuchunyu](https://github.com/liuchunyu007) | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
 
 
 ## License
