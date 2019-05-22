@@ -12,6 +12,8 @@
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
+
+
 ----
 CODO是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台。
 
@@ -19,11 +21,11 @@ CODO前端基于Vue iview开发、为用户提供友好的操作界面，增强�
 
 CODO后端基于Python Tornado开发，其优势为轻量、简洁清晰、异步非阻塞。
 
-CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限系统、Web Terminnal登陆日志审计、录像回放、强大的作业调度系统、CMDB、监控报警系统等
+CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权限系统、Web Terminnal登陆日志审计、录像回放、强大的作业调度系统、CMDB、监控报警系统、DNS管理、配置中心等
 
 众多功能模块我们一直在不停的调研和开发，如果你对此项目感兴趣可以加入我们的社区交流群，
 
-同时也希望你能给我们项目一个star，为贡献者加油⛽️！为运维干杯🍻！
+同时也希望你能给我们项目一个![](https://img.shields.io/github/stars/opendevops-cn/opendevops.svg)，为贡献者加油⛽️！为运维干杯🍻！
 
 ----
 
@@ -43,6 +45,7 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 </a>
 
 `PS: 权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表`
+
 - 地址：http://demo.opendevops.cn/login
 - 用户：demo
 - 密码：2ZbFYNv9WibWcR7GB6kcEY
@@ -74,8 +77,6 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 - 配置中心：[codo-kerrigan](https://github.com/opendevops-cn/kerrigan)
 - 运维工具：[codo-tools](https://github.com/opendevops-cn/codo-tools)
 - 域名管理: [codo_dns](https://github.com/opendevops-cn/codo-dns)
-- 基础发布：[codo-publish](https://github.com/opendevops-cn/codo-publish.git)
-- 资源申请：[codo-res_app](https://github.com/opendevops-cn/codo-res_app)
 
 
 
@@ -83,13 +84,13 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 感谢以下贡献着为CODO(CloudOpenDevOps)的贡献;  
 感谢各位的付出，让维护因你们变的不再枯燥、世界因你们而美丽，此排名不分前后，谢谢大家!
-  
+
 
 |Name|Github Avatar|Name| GitHub Avatar                                                       | Name                                              | Github Avatar                                                       |
 |---|---|---|---|---|---|
 |[laoxu](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)          |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
 |[yanghongfei](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[shenyingzhi](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [biantingting](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
-|[zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) |  |  |
+|[zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [刘春雨](https://github.com/liuchunyu007)         | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
 
 
 ## License

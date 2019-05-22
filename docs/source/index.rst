@@ -13,8 +13,9 @@ OpenDevOps 文档
    introduction
    install
    user_guide
-   change_log
    example_docs
+   plugin_docs
+   change_log
    faq
 
 Indices and tables
