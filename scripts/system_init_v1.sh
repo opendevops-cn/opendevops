@@ -95,7 +95,6 @@ function other(){
 	source /etc/profile
 	useradd -M -s /sbin/nologin nginx >/dev/null 2>&1
 	mkdir -p /root/ops_scripts /data1/www
-	mkdir /data1
 	mkdir -p /opt/codo/
 }
 

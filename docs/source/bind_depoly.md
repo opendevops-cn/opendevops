@@ -1,6 +1,6 @@
 ### DNS Bind部署文档
 
-> 基于CentOS7 部署Bind服务
+>opendevops平台所用组件[域名管理](https://github.com/opendevops-cn/codo-dns)Bind部署文档， 部分文档会因为版本迭代不可用，此文档只作为参考文档，谢谢。
 
 **安装配置**
 ```

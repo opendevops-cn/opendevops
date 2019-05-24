@@ -84,10 +84,14 @@ export cron_domain="10.10.10.12"
 export task_domain="task.opendevops.cn"
 
 ### CMDB系统地址
-export cmdb_domain="cmdb.opendevops.cn"
+export cmdb_domain="cmdb2.opendevops.cn"
 
 ### 运维工具地址
 export tools_domain="tools.opendevops.cn"
+
+
+### 域名管理地址
+export dns_domain="dns.opendevops.cn"
 
 
 ### 配置中心域名
@@ -302,6 +306,7 @@ $LOCALHOST_IP $api_gw_url
 $LOCALHOST_IP $cmdb_domain
 $LOCALHOST_IP $kerrigan_domain
 $LOCALHOST_IP $tools_domain
+$LOCALHOST_IP $dns_domain
 EOF
 
 #添加配置

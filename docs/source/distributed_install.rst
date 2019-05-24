@@ -13,6 +13,7 @@
     codo-cron
     codo-kerrigan
     codo-tools
+    codo-dns
     codo-gw
 
 

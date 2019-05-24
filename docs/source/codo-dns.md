@@ -1,31 +1,27 @@
-### 任务系统
+### 域名管理
 
-> CODO任务系统，负责整个系统中任务调度，此功能是必须要安装的
+> CODO域名管理模块，管理BIND 支持智能解析，多域名多主。
 
 **下载代码**
 ```shell
-echo -e "\033[32m [INFO]: codo-task(任务系统) Start install. \033[0m"
+echo -e "\033[32m [INFO]: codo_dns(域名管理) Start install. \033[0m"
 if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
 if ! which git &>/dev/null; then yum install -y git >/dev/null 2>&1;fi
 [ ! -d /opt/codo/ ] && mkdir -p /opt/codo
-cd /opt/codo && git clone https://github.com/opendevops-cn/codo-task.git
-cd codo-task
+cd /opt/codo && git clone https://github.com/opendevops-cn/codo-dns.git
+cd codo-dns
 ```
 
 
 
 **修改配置**
-> 同样，这里codo-task也支持取env环境变量，建议还是修改下默认配置
-
-
+> 同样，这里codo-dns也支持取env环境变量，建议还是修改下默认配置
 ```shell
 #导入环境变量文件，最开始准备的环境变量文件
 source /opt/codo/env.sh
+#后端数据库名称
+CRON_DB_DBNAME='codo_dns' 
 
-#修改配置
-TASK_DB_DBNAME='codo_task' 
-
-#任务系统的域名
 sed -i "s#cookie_secret = .*#cookie_secret = '${cookie_secret}'#g" settings.py
 
 #mysql配置
@@ -33,27 +29,16 @@ sed -i "s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOS
 sed -i "s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '${DEFAULT_DB_DBPORT}')#g" settings.py
 sed -i "s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '${DEFAULT_DB_DBUSER}')#g" settings.py
 sed -i "s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '${DEFAULT_DB_DBPWD}')#g" settings.py
-sed -i "s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '${TASK_DB_DBNAME}')#g" settings.py
+sed -i "s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '${CRON_DB_DBNAME}')#g" settings.py
 
 #只读MySQL配置
 sed -i "s#READONLY_DB_DBHOST = .*#READONLY_DB_DBHOST = os.getenv('READONLY_DB_DBHOST', '${READONLY_DB_DBHOST}')#g" settings.py
 sed -i "s#READONLY_DB_DBPORT = .*#READONLY_DB_DBPORT = os.getenv('READONLY_DB_DBPORT', '${READONLY_DB_DBPORT}')#g" settings.py
 sed -i "s#READONLY_DB_DBUSER = .*#READONLY_DB_DBUSER = os.getenv('READONLY_DB_DBUSER', '${READONLY_DB_DBUSER}')#g" settings.py
 sed -i "s#READONLY_DB_DBPWD = .*#READONLY_DB_DBPWD = os.getenv('READONLY_DB_DBPWD', '${READONLY_DB_DBPWD}')#g" settings.py
-sed -i "s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '${TASK_DB_DBNAME}')#g" settings.py
+sed -i "s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '${CRON_DB_DBNAME}')#g" settings.py
 
-#redis配置
-sed -i "s#DEFAULT_REDIS_HOST = .*#DEFAULT_REDIS_HOST = os.getenv('DEFAULT_REDIS_HOST', '${DEFAULT_REDIS_HOST}')#g" settings.py
-sed -i "s#DEFAULT_REDIS_PORT = .*#DEFAULT_REDIS_PORT = os.getenv('DEFAULT_REDIS_PORT', '${DEFAULT_REDIS_PORT}')#g" settings.py
-sed -i "s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAULT_REDIS_PASSWORD', '${DEFAULT_REDIS_PASSWORD}')#g" settings.py
-
-#MQ配置
-sed -i "s#DEFAULT_MQ_ADDR = .*#DEFAULT_MQ_ADDR = os.getenv('DEFAULT_MQ_ADDR', '${DEFAULT_MQ_ADDR}')#g" settings.py
-sed -i "s#DEFAULT_MQ_USER = .*#DEFAULT_MQ_USER = os.getenv('DEFAULT_MQ_USER', '${DEFAULT_MQ_USER}')#g" settings.py
-sed -i "s#DEFAULT_MQ_PWD = .*#DEFAULT_MQ_PWD = os.getenv('DEFAULT_MQ_PWD', '${DEFAULT_MQ_PWD}')#g" settings.py
 ```
-
-
 
 **修改Dockerfile （可选）**
 
@@ -68,10 +53,10 @@ RUN pip3 install -U git+https://github.com/ss1917/ops_sdk.git
 
 # 复制代码
 RUN mkdir -p /var/www/
-ADD . /var/www/codo-task/
+ADD . /var/www/codo-dns/
 
 # 安装pip依赖
-RUN pip3 install -r /var/www/codo-task/doc/requirements.txt
+RUN pip3 install -r /var/www/codo-dns/doc/requirements.txt
 
 # 日志
 VOLUME /var/log/
@@ -85,22 +70,22 @@ CMD ["/usr/bin/supervisord"]
 ```
 
 
-
 **编译，启动**
 
-```shell
+```
 #编译镜像
-docker build . -t codo_task_image
+docker build . -t codo_dns_image
 #启动
 docker-compose up -d
 ```
+
 
 
 **创建数据库**
 
 ```
 mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}
-create database `codo_task` default character set utf8mb4 collate utf8mb4_unicode_ci;
+create database `codo_dns` default character set utf8mb4 collate utf8mb4_unicode_ci;
 ```
 
 
@@ -108,14 +93,8 @@ create database `codo_task` default character set utf8mb4 collate utf8mb4_unicod
 **初始化表结构**
 
 ```
-docker exec -ti codo-task_codo_task_1  /usr/local/bin/python3 /var/www/codo-task/db_sync.py
+docker exec -ti codo-dns_codo-dns_1  /usr/local/bin/python3 /var/www/codo-dns/db_sync.py
 ```
-
-
-
-**导入数据**
-
-暂无
 
 
 
@@ -133,7 +112,7 @@ docker-compose  restart
 
 ```
 01. 查看日志
-tailf /var/log/supervisor/task_scheduler.log  #确认没报错
-tailf /var/log/supervisor/exec_task.log   #执行任务的日志
+tailf /var/log/supervisor/codo_dns.log   #确认没报错
 ```
+
 

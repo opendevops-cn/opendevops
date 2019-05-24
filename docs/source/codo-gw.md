@@ -25,7 +25,9 @@ cd /opt/codo/ && git clone https://github.com/ss1917/api-gateway.git
 
     因为我把前端静态文件也使用 网关进行代理 所以配置文件如下
 
-**全局nginx配置**
+**全局nginx配置**   
+
+这里主要修改resolver 内部DNS服务器地址
 
 ```nginx
 #  /usr/local/openresty/nginx/conf/nginx.conf
@@ -61,7 +63,7 @@ http {
 # /usr/local/openresty/nginx/conf/conf.d/gw.conf
     server {
         listen 80;
-        server_name gw.yanghongfei.me;
+        server_name gw.opendevops.cn;
         lua_need_request_body on;           # 开启获取body数据记录日志
 
         location / {
@@ -91,6 +93,8 @@ http {
 ```
 
 **前端资源配置**
+
+ 这里要修改server_name 为你的真实访问域名
 
 ```shell
 #前端vhosts
@@ -156,13 +160,6 @@ redis_config = {
     channel = 'gw'
 }
 
---mq_conf = {
---  host = '172.16.0.121',
---  port = 5672,
---  username = 'sz',
---  password = '123456',
---  vhost = '/'
---}
 
 -- 注意：这里的token_secret必须要和codo-admin里面的token_secret保持一致
 token_secret = "pXFb4i%*834gfdh96(3df&%18iodGq4ODQyMzc4lz7yI6ImF1dG"
@@ -188,16 +185,28 @@ rewrite_conf = {
     [gw_domain_name] = {
         rewrite_urls = {
             {
-                uri = "/cmdb",
-                rewrite_upstream = "cmdb.opendevops.cn:8002"
+                uri = "/dns",
+                rewrite_upstream = "dns.opendevops.cn:8060"
+            },
+            {
+                uri = "/cmdb2",
+                rewrite_upstream = "cmdb2.opendevops.cn:8050"
+            },
+            {
+                uri = "/tools",
+                rewrite_upstream = "tools.opendevops.cn:8040"
             },
             {
                 uri = "/kerrigan",
                 rewrite_upstream = "kerrigan.opendevops.cn:8030"
             },
             {
-                uri = "/tools",
-                rewrite_upstream = "tools.opendevops.cn:8040"
+                uri = "/cmdb",
+                rewrite_upstream = "cmdb.opendevops.cn:8002"
+            },
+            {
+                uri = "/k8s",
+                rewrite_upstream = "k8s.opendevops.cn:8001"
             },
             {
                 uri = "/task",
@@ -205,7 +214,7 @@ rewrite_conf = {
             },
             {
                 uri = "/cron",
-                rewrite_upstream = "10.10.10.12:9900"
+                rewrite_upstream = "10.2.2.236:9900"
             },
             {
                 uri = "/mg",

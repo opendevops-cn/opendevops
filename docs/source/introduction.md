@@ -32,15 +32,15 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
 
 - codo-admin
   - 功能：管理后端
-  - 端口：8001
+  - 端口：8010
   - 安装：必须
   - 检测：`curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://$mg_domain:8010/are_you_ok/`
 
 - codo-cmdb
-  - 功能：资产管理/跳板审计
-  - 端口：8002
+  - 功能：资产管理
+  - 端口：8050
   - 安装：必须
-  - 检测：`	curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cmdb_domain}:8002/v1/cmdb/`
+  - 检测：`curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://{cmdb_domain}:8050/are_you_ok/`
 
 - codo-task
   - 功能：任务系统
@@ -67,6 +67,13 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
   - 端口：8040
   - 安装：必须
   - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${tools_domain}:8040/are_you_ok/`
+  
+- codo-dns
+  - 功能：域名管理
+  - 端口：8060
+  - 安装：必须
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${dns_domain}:8060/are_you_ok/`
+
 
 - codo-check
   - 功能：代码检查
