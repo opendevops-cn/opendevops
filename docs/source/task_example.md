@@ -1,6 +1,6 @@
 ### 关于任务系统的一些视频示例
 
-[戳这里是OpenDevOps任务平台示例视频](https://www.bilibili.com/video/av53424572/)
+[戳这里观看OpenDevOps任务平台示例视频](https://www.bilibili.com/video/av53424572/)
 
 视频里简单介绍了以下几种示例，至于模板里面的最终逻辑需要使用人根据自己的需求进行排版，编写等，不限制语言。
 
@@ -26,7 +26,7 @@
 视频中涉及到的相关文档
 
 - [Git钩子](http://yanghongfei.me/2019/03/25/git-hooks/)
-- [任务模板](http://docs.opendevops.cn/zh/latest/task_template.html)
+- [任务模板](http://docs.opendevops.cn/zh/latest/task_template.html
 
 
 
@@ -262,8 +262,8 @@ echo "README" > README.md
 git add --all
 git commit -m "[Add] README,测试发布"
 git push -u origin origin
-git tag release-dbtt-server-20190320-02  #这里只要能让钩子里面正则匹配到dbtt-release都会被触发
-git push -u origin release-dbtt-server-20190320-02  #把tag推送上去
+git tag release-yanghongfei-v1  
+git push -u origin release-yanghongfei-v1  #把tag推送上去
 
 ```
 

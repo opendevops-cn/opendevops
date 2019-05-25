@@ -214,6 +214,7 @@ EOF
 docker-compose up -d   #启动
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: mysql install success. \033[0m"
+    echo -e "\033[32m [INFO]: 没有mysql客户端的同学自己安装一下子哈, yum install mysql -y. \033[0m"
     echo -e "\033[32m [INFO]: mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} \033[0m"
 else
     echo -e "\033[31m [ERROR]: mysql57 install faild \033[0m"

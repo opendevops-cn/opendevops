@@ -7,7 +7,7 @@
 
 - 新增了一些示例文档,[传送门](http://docs.opendevops.cn/zh/latest/example_docs.html)
 - 新增了一些系统所用插件部署文档，[传送门](http://docs.opendevops.cn/zh/latest/plugin_docs.html)
-- 新增了分布式部署文档的视频，[传送门](#)
+- 新增了分布式部署文档的视频，[传送门](https://www.bilibili.com/video/av53446517?from=search&seid=9723107510306377510)
 - 新增了任务系统的一些示例视频，[传送门](https://www.bilibili.com/video/av53424572/)
 - 新增了系统配置里面LDAP的支持
 - 新增了API网关支持URL传参，Token支持

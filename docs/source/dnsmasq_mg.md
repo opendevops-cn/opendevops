@@ -19,9 +19,9 @@
 
 **如何使用**
 
-**开始之前你可以点击以下链接看下最终效果，看此操作是否可以满足你的需求**
+**开始之前你可以点击以下视频链接，看下最终效果，看此操作是否可以满足你的需求**
 
-[Youtube](https://www.youtube.com/watch?v=jM8DSbUh0Rs&t=47s) | [Youku](https://v.youku.com/v_show/id_XNDE4Nzg4NDUyNA==.html?spm=a2h3j.8428770.3416059.1)
+[Youtube](https://www.youtube.com/watch?v=jM8DSbUh0Rs&t=47s) | [BiliBili](https://www.bilibili.com/video/av53460519/)
 
 
 
