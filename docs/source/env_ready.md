@@ -2,6 +2,8 @@
 
 > 部署安装之前，你应该了解下每个模块的用途，[传送门](http://docs.opendevops.cn/zh/latest/introduction.html)
 
+**部署视频**
+> 近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们准备了部署视频，[视频入口](https://www.bilibili.com/video/av53446517?from=search&seid=16003251072301252333)
 
 
 **注意**

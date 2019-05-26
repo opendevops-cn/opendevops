@@ -68,7 +68,6 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 ### 模块链接
 > CODO 项目我们是使用模块化、微服务化，以下为各个模块地址，同时也欢迎业界感兴趣各位大佬前来贡献
 
-`PS: 项目模板化代码我们正在频繁调试，很快我们就会进行更新代码，请谅解！`
 - 前端代码：[codo](https://github.com/opendevops-cn/codo)
 - 管理后端：[codo-admin](https://github.com/opendevops-cn/codo-admin)
 - 定时任务：[codo-cron](https://github.com/opendevops-cn/codo-cron)
@@ -76,7 +75,7 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 - 资产管理：[codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
 - 配置中心：[codo-kerrigan](https://github.com/opendevops-cn/kerrigan)
 - 运维工具：[codo-tools](https://github.com/opendevops-cn/codo-tools)
-- 域名管理：[codo_dns](https://github.com/opendevops-cn/codo-dns)
+- 域名管理：[codo-dns](https://github.com/opendevops-cn/codo-dns)
 
 
 
