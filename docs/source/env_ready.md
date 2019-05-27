@@ -109,7 +109,8 @@ export api_gw_url="gw.opendevops.cn"
 #codo-admin用到的cookie和token，可留默认
 export cookie_secret="nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB"
 # 这里codo-admin和gw网关都会用到，一定要修改。可生成随意字符
-export token_secret="pXFb4i%*834gfdh96(3df&%18iodGq4ODQyMzc4lz7yI6ImF1dG"
+export token_secret="pXFb4i%*834gfdh963df718iodGq4dsafsdadg7yI6ImF1999aaG7"
+
 
 ##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了
 # 写数据库
