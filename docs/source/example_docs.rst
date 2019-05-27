@@ -7,6 +7,7 @@
 
     task_example
     git_publish
+    sql_opt
     sql_audit
     dnsmasq_mg
     

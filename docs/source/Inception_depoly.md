@@ -1,55 +1,6 @@
 ### Inception部署文档
 > opendevops平台所用插件Inception部署文档， 部分文档会因为版本迭代不可用，此文档只作为参考文档，谢谢。
 
-
-
-**守护进程文件**
-
-```
-cat >supervisord.conf <<EOF
-[supervisord]
-nodaemon=true
-
-[program:inception]
-command=sh /etc/start_inception.sh
-autostart=true
-autorestart=true
-EOF
-```
-
-**创建启动脚本**
-
-
-```
-cat >start_inception.sh<<EOF
-#!/bin/bash
-nohup /usr/local/inception-master/builddir/mysql/bin/Inception --defaults-file=/etc/inc.cnf & 
-EOF
-```
-
-**Dockerfile文件**
-
-
-```
-cat >Dockerfile <<EOF
-FROM centos
-MAINTAINER shenyingzhi@shinezone.com
-ENV  LANG  en_US.UTF-8
-RUN echo 123456 |passwd --stdin root
-RUN cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-RUN yum -y install make wget cmake python-devel python-pip ncurses-devel gcc gcc-c++ openssl-devel libaio-devel libffi-devel glib2 glib2-devel m4 MySQL-python supervisor unzip
-RUN wget -c http://ftp.gnu.org/gnu/bison/bison-2.5.1.tar.gz
-RUN tar zxvf bison-2.5.1.tar.gz && cd bison-2.5.1 && ./configure && make && make install
-RUN cd /usr/local && wget -c https://github.com/mysql-inception/inception/archive/master.zip && unzip master.zip
-RUN cd /usr/local/inception-master/ && sh inception_build.sh builddir linux
-COPY supervisord.conf /etc/supervisord.conf
-COPY start_inception.sh /etc/start_inception.sh
-RUN rm -rf bison-2.5.1.tar.gz && rm -rf /usr/local/master.zip
-EXPOSE 6669
-CMD ["/usr/bin/supervisord"]
-EOF
-```
 **1.在任何一台安装docker的主机上拉取镜像**
 
 > docker pull ss1917/inception:latest

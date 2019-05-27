@@ -12,9 +12,9 @@
 - 新增了系统配置里面LDAP的支持
 - 新增了API网关支持URL传参，Token支持
 - 新增了DNS域名管理模块，[传送门](https://github.com/opendevops-cn/codo-dns)
-- 新增了发短信、发邮件的接口文档[传送门](#)
+- 新增了发短信、发邮件的接口文档[传送门](https://github.com/opendevops-cn/codo-admin#%E5%8F%91%E9%80%81%E7%9F%AD%E4%BF%A1api)
 - 新增了CMDB和作业配置中的标签树进行数据打通
-- 优化了SQL审核的一些使用问题,[使用文档参考](#)
+- 优化了SQL审核的一些使用问题
 - 优化了运维工具提醒管理内容
 - 更新了前端Home首页展示
 - 更新了一些用户使用文档

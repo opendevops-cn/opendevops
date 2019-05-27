@@ -10,7 +10,7 @@
 
 - API地址: 你的API网关地址，可以是IP/域名，必填项。 [API网关部署](http://docs.opendevops.cn/zh/latest/step_by_step_install.html#api)
 
-![](./_static/images/api_address.png)
+![](./_static/images/api_addressv2.png)
 
 **邮件设置**
 
@@ -42,7 +42,15 @@
 - KEY_SECRET： 你的access_secret密钥，备注：`这里需要必须有SMS的权限`
 - 点击测试端口系统会向阿里大鱼进行发送查询接口，如果配置验证不通过则提示报错信息
 
-![](./_static/images/system_sms.png)
+![](./_static/images/system_smsv2.png)
+
+**LDAP设置**
+
+>这块主要用于配置LDAP认证
+
+实例图如下：
+
+​    ![](./_static/images/ldap.png)
 
 **邮箱登陆**
 > 这块主要是支持第三方邮箱登陆，当你想要使用邮箱登陆此平台时，你可以在此进行配置
@@ -52,7 +60,7 @@
 - 邮箱SMTP： 这里输入你邮箱服务商的SMTP地址
 - 邮箱域名：这里是你的邮箱后缀名字
 
-![](./_static/images/system_email_login.png)
+![](./_static/images/system_email_loginv2.png)
 
 
 
@@ -64,7 +72,7 @@
 - SecretID: 密钥ID，需要有OSS权限
 - Secret Key： 密钥Key，需要有OSS权限
 
-![](./_static/images/system_bucket.png)
+![](./_static/images/system_bucketv2.png)
 
 
 #### 系统日志
