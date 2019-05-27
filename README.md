@@ -93,14 +93,11 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 
 
 ### 交流群
-> 感兴趣的同学可以<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=69f5e118727c7ea925cc8d2f0eef0d729898cb8a24eae47e2b3ca3dd048de9d9"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="CoDo  CloudOpenDevOps" title="OpenDevOps用户交流群"></a>,代码我们会不断更新，感谢大家的支持。
+> 感兴趣的同学可以<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=69f5e118727c7ea925cc8d2f0eef0d729898cb8a24eae47e2b3ca3dd048de9d9"><img border="0" src="images/join_qq_group.png" alt="CoDo  CloudOpenDevOps" title="OpenDevOps用户交流群"></a>,代码我们会不断更新，感谢大家的支持。
 
 - 使用交流群
-![](images/qq_01.png)
 
-
-- 开发交流群
-![](images/qq_02.jpg)
+![](images/1558948707580.png)
 
 ## License
 
