@@ -53,7 +53,8 @@ $ mkdir -p /opt/codo/ && cd /opt/codo/
 
 **环境变量**
 
-> 以下内容贴入到env.sh文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息 `source env.sh`
+> 以下内容贴入到`vim /opt/codo/env.sh`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息, `source /opt/codo/env.sh`
+
 
 
 
@@ -140,9 +141,7 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 
 ```
 
-```shell
-$ source env.sh  #最后一定不要忘记source
-```
+`source /opt/codo/env.sh, 最后一定不要忘记source` 
 
 
 
