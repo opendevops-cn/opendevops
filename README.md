@@ -100,7 +100,6 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 
 
 - 开发交流群
-
 ![](images/qq_02.jpg)
 
 ## License
