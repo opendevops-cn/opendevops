@@ -232,11 +232,13 @@ rewrite_conf = {
 
 **API网关启动**
 
+`提醒:openresty服务器DNS必须指向--->最起初部署的DNS服务器地址,另外若你本机ping 以上随便一个域名都不通的话，那你要确认下你本机DNS指向你最初部署了DNS服务器了？ 修改vim /etc/resolv.conf
+`
+
 ```shell
 #OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，使用的也是80端口，若不能启动请检查你的80端口是否被占用了
 #日志：
 mkdir -p /var/log/nginx/ && touch /var/log/nginx/f_access.log
-#提醒:openresty服务器DNS必须指向--->最起初部署的DNS服务器地址, 另外若你本机ping 以上随便一个域名都不通的话，那你要确认下你本机DNS执行你最初部署了DNS服务器了？ 修改vim /etc/resolv.conf
 openresty -t   #测试
 systemctl start openresty
 systemctl enable openresty

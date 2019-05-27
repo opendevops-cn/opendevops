@@ -16,14 +16,15 @@ cd /opt/codo && git clone https://github.com/opendevops-cn/codo-admin.git && cd 
 
 > 注意：这里的`cookie_secret`和`token_secret`必须和你的env.sh里面的保持一致，后续网关也要用到这个。若不保持一直登陆后校验不通过回被自动踢回
 
+`注意：这里的token_secret必须要和你的网关保持一致，这个值是从env.sh拿来的，一定要做修改，防止网站被攻击，如果secret包含正则符号会导致sed失败，请仔细检查
+`
 
 ```shell
 
 #导入环境变量文件，最开始准备的环境变量文件
-source env.sh
+source /opt/codo/env.sh
 
 sed -i "s#cookie_secret = .*#cookie_secret = '${cookie_secret}'#g" settings.py  
-##注意：这里的token_secret必须要和你的网关保持一致，这个值是从env.sh拿来的，一定要做修改，防止网站被攻击，如果secret包含正则符号会导致sed失败，请仔细检查
 sed -i "s#token_secret = .*#token_secret = '${token_secret}'#g" settings.py     
 
 

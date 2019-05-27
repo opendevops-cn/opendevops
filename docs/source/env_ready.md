@@ -288,6 +288,11 @@ fi
 
 **安装DNS**
 > 部署内部DNS dnsmasq 主要用于内部通信，API网关要用到。
+`注意：
+   刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。
+   部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名
+echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf `
+
 ```shell
 echo -e "\033[32m [INFO]: Start install dnsmasq \033[0m"
 #install dnsmasq
