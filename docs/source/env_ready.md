@@ -80,7 +80,7 @@ export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
 ### 管理后端地址
 export mg_domain="mg.opendevops.cn"
 
-### 定时任务地址,目前只启动一个进程，ip 
+### 定时任务地址,目前只启动一个进程，ip  
 export cron_domain="10.10.10.12"
 
 ### 任务系统地址
@@ -308,7 +308,6 @@ EOF
 cat >/etc/dnsmasqhosts <<EOF
 $LOCALHOST_IP $front_domain
 $LOCALHOST_IP $mg_domain
-$LOCALHOST_IP $cron_domain
 $LOCALHOST_IP $task_domain
 $LOCALHOST_IP $api_gw_url
 $LOCALHOST_IP $cmdb_domain
