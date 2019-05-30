@@ -44,7 +44,7 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
   <img src="https://img.alicdn.com/tfs/TB12GX6zW6qK1RjSZFmXXX0PFXa-744-122.png" width="180" />
 </a>
 
-`PS: 权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表`
+`PS: 权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表,Demo订单日志我们暂时清空了`
 
 - 地址：http://demo.opendevops.cn/login
 - 用户：demo
@@ -90,6 +90,7 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 |[laoxu](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)  |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
 |[yanghongfei](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[shenyingzhi](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [biantingting](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
 |[zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [liuchunyu](https://github.com/liuchunyu007) | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
+|[ops-coffee](https://github.com/ops-coffee) | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) |  |  |  |  |
 
 
 ### QQ交流群  
