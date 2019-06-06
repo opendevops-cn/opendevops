@@ -4,7 +4,7 @@
 
 
 
-#### 用户列表
+**用户列表**
 
 用户列表：顾名思义，用来管理和展示用户的列表，记录用户的详细信息
 
@@ -27,7 +27,7 @@
 
 
 
-#### 权限列表
+**权限列表**
 
 用来详细配置管理每个接口的权限，默认不需修改。
 
@@ -54,7 +54,7 @@
 
 
 
-#### 菜单组件
+**菜单组件**
 
 菜单组件：顾名思义，也就是导航栏所看到的功能模块（如：用户管理、系统管理）和一些功能按钮（如：编辑、删除按钮），默认无需修改
 
@@ -81,7 +81,7 @@
 
 
 
-#### 角色管理
+**角色管理**
 
 基于[RBAC](https://baike.baidu.com/item/RBAC/1328788?fr=aladdin)角色管理访问控制权限，可以很精细/方便的管理你的用户权限
 
@@ -102,7 +102,7 @@
 
 **示例介绍分为两部分，创建管理员用户赋权和创建普通用户赋权**
 
-#### 创建普通用户示例
+**创建普通用户示例**
 
 **新建用户**  
 
@@ -117,7 +117,7 @@
 ![general_user_epm](./_static/images/general_user_epmv2.png)
 
 
-#### 创建管理员用户示例
+**创建管理员用户示例**
 
 **新增用户**
 
@@ -144,11 +144,11 @@
 - 从用户管理 > 菜单组件里面找到 get_token_btn 这个代表获取token的按钮 要存在并且启用 
 - 从用户管理 >角色管理里面找到你要赋值的角色，点击组件把get_token_btn 添加进去 
 
-![](https://github.com/opendevops-cn/codo-admin/blob/master/doc/images/tianjiazujian.png)
+![](https://raw.githubusercontent.com/opendevops-cn/codo-admin/master/doc/images/tianjiazujian.png)
 
 - 从用户管理 > 用户列表 会看到这个长期token的按钮，如果你是超级管理员 你就可以选中用户点击，然后系统会通过邮件把这个用户的token 发送至当前用户以及被选中用户的邮箱，token 有效期为三年。强烈建议如果使用token进行操作的时候 使用单独用户，防止人员变动造成token不可用，要进行精确权限控制，做好备注，且不要给此用户菜单以及组件权限。
 
-![](https://github.com/opendevops-cn/codo-admin/blob/master/doc/images/get_token.png)
+![](https://raw.githubusercontent.com/opendevops-cn/codo-admin/master/doc/images/get_token.png)
 
 - 使用token 向 CODO 服务 API 提交安全的 REST 或 HTTP 查询协议请求。为了您的安全，请不要与任何人分享您的密钥。作为最佳做法，我们建议经常更换密钥 
 - 简单python示例，当然你之前一定会检查这个token是否对这个接口有权限，对吧！ 

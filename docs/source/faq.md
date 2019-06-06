@@ -68,3 +68,28 @@ The command '/bin/sh -c pip3 install --upgrade pip' returned a non-zero code: 1
 
 Python3x版本后Docker里面需要加入--user的参数，修改Dockerfile, 加上--user参数， 如：pip3 install --user --upgrade pip
 ```
+
+
+
+### Google Authenticator怎么使用?
+> 安全一定是最重要的，相信很多人都知道谷歌身份验证器，这里简单说下Google身份验证器怎么使用, 本平台Google验证码密钥是发送到用户邮箱的。
+
+**下载谷歌验证器**
+- iOS用户登录AppStore搜索"Authenticator"
+- 安卓用户登录应用商店或利用手机浏览器搜索“谷歌验证器”下载,也可[点击下载](https://www.wandoujia.com/apps/com.google.android.apps.authenticator2)
+
+**添加所需网站验证码**
+
+`PS 由于国内Android多数都被阉割了Google框架，不能扫码的输入手动贴入密钥`
+
+- 扫描条形码
+![](./_static/images/google_auth01.jpg)
+
+- 手动输入密钥
+![](./_static/images/google_auth02.jpg)
+
+
+**手机丢失怎么办**
+
+1. 你可以搜索你之前的邮件记录，或者自行记录保存下来
+2. 对于CODO超级管理员可以登陆数据库自行查看，SQL语法：`select google_key from codo_admin.mg_users where username='codo_test';`

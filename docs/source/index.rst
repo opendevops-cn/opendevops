@@ -13,10 +13,13 @@ OpenDevOps 文档
    introduction
    install
    user_guide
+   permission_docs
    example_docs
    plugin_docs
    change_log
+   contributor
    faq
+
 
 Indices and tables
 ==================

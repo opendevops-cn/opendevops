@@ -4,7 +4,7 @@
 
 **操作教学视频**：[https://www.bilibili.com/video/av53424572/](https://www.bilibili.com/video/av53424572/ ) 
 
-#### 应用发布
+**应用发布**
 
 >该模块是任务发布主要功能，预先配置你代码发布的相关信息，设定时间自动执行。
 
@@ -22,9 +22,9 @@
 - 开始时间：选择一个执行时间，来触发模板中的定时触发器
 - 备注详情：填写你发布应用的标识
 
-![bash_list](./_static/images/app_publish_1.png)
+![](./_static/images/app_publish_1.png)
 
-#### SQL审核
+**SQL审核**
 
 >该模块用来将要执行的SQl语句的提交给审批人进行审批，审批通过后才会在指定时间执行该SQL语句
 
@@ -40,9 +40,9 @@
 - SQL语句：填写要执行的SQL语句
 - 审批人员：下拉选择你要提交审核的用户
 
-![bash_list](./_static/images/sql_auth.png)
+![](./_static/images/sql_auth.png)
 
-#### SQL优化
+**SQL优化**
 
 >该模块用于优化SQL语句，输入要执行的SQL语句然后进行平分和优化等操作
 
@@ -59,17 +59,17 @@
 - SQL语句：填写要优化的SQL语句
 - 操作： 选择你要操作的选项`SQL评分`,`SQL指纹`,`SQL美化`,`语法检查`
 
-![bash_list](./_static/images/sql_opti.png)
+![](./_static/images/sql_opti.png)
 
-#### 资源申购
+**资源申购**
 
 >该模块用于申购服务器，数据库，Redis，负载均衡等资源使用(更新中)
 
-#### 节点添加
+**节点添加**
 
 >用于横向扩展Kubernetes(K8S)节点(更新中)
 
-#### 自定义任务
+**自定义任务**
 
 >该模块可以更灵活的添加自己要对服务器操作的任务模板
 
@@ -83,9 +83,9 @@
 - 参数1：填写上传的参数和对应参数值(可增加和删除参数选项)
 - 执行时间：选择一个执行时间，用来触发模板中的定时触发器
 
-![bash_list](./_static/images/custom_task.png)
+![](./_static/images/custom_task.png)
 
-#### 自定义任务-代理
+**自定义任务-代理**
 
 >该模块用于处理无法直连服务器需要通过代理连接来执行一些任务
 
@@ -99,9 +99,9 @@
 - 参数：填写上传的参数和对应参数值(可增加和删除参数选项)
 - 执行时间：选择一个执行时间，用来触发模板中的定时触发
 
-![bash_list](./_static/images/custom_task_proxy.png)
+![](./_static/images/custom_task_proxy.png)
 
-#### 自定义任务-JSON
+**自定义任务-JSON**
 
 >该模块提供了自定义JSON的方式更方便灵活的来进行自定义任务
 
@@ -138,7 +138,7 @@
 - POST JSON：输入你的数据，参考上面的示例，你也可以二次开发对接自己的CMDB获取主机，时间字段从下面获取，方便处理(注意：提交的数据必须以JSON格式，请严格按照说明提交)
 - 执行时间：选择一个执行时间，用来触发模板中的定时触发
 
-![bash_list](./_static/images/custom_task_json.png)
+![](./_static/images/custom_task_json.png)
 
 
 PS：已经文档会在后续过程中不断更新完善，感谢大家支持。

@@ -73,23 +73,14 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
   - 端口：8060
   - 安装：必须
   - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${dns_domain}:8060/are_you_ok/`
+  
 
-
-- codo-check
-  - 功能：代码检查
+  
+- codo-scripts
+  - 功能：一些示例脚本库，将提供提供示例脚本
   - 端口：N/A，示例脚本没有端口
-  - 安装：可选
+  - 安装：N/A
 
-- codo-publish
-  - 功能：发布脚本
-  - 端口：N/A，示例脚本没有端口
-  - 安装：可选
-
-- codo-res_app
-  - 功能：资源申请
-  - 端口：N/A，示例脚本没有端口
-  - 安装：可选
-tools_doma4n
 
 
 ### Architecture

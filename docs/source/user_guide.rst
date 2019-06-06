@@ -12,6 +12,9 @@
    timed_task
    job_configure
    cmdb_manager
+   confd_project
    user_manager
    system_config
+   
+
 

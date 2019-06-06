@@ -5,7 +5,7 @@
 
 
 
-#### 命令管理
+**命令管理**
 > 主要用于创建你的自定义命令，后续供平台执行使用
 
 **功能特点**
@@ -24,14 +24,14 @@
   - 强制主机：默认可为空，用于你所填写的命令强制指定哪个主机上进行执行（注意：你所指定的这台机器IP，此平台必须可以登陆过去，否则无法执行，CODO平台如何登陆所指定的主机IP请参考`执行用户`文档）
 
 
-![create_bash](./_static/images/create_bash.png)
+![](./_static/images/create_bash.png)
 
 示例图：
 
-![bash_list](./_static/images/bash_list.png)
+![](./_static/images/bash_list.png)
 
 
-#### 模板管理
+**模板管理**
 > 模板管理是一个核心功能，这里逻辑稍有复杂、但功能极为强大，这里主要用于自定义你的任务流程。
 
 **功能特点**
@@ -47,7 +47,7 @@
 - 创建模板
   - 模板名称： 建议输入一个有意义的名称，注意：`此名称不可更改`
 
-![template_create](./_static/images/template_create.png)
+![](./_static/images/template_create.png)
 
 **如何对模板赋权**
 > 模板赋权是☞哪些用户可以对此模板有权限（编辑、删除、修改等），管理员默认拥有所有权限。
@@ -65,7 +65,7 @@
 
 示例：
 
-![select_bash](./_static/images/select_bash.png)
+![](./_static/images/select_bash.png)
 
 下图字段说明：
 - 组：默认为：88， 请修改为：1， 默认从第一组开始执行（多组配置示例见下图）
@@ -81,21 +81,21 @@
 
 单组配置示例：
 
-![template_edit](./_static/images/template_edit.png)
+![](./_static/images/template_edit.png)
 
 多组配置示例：
 
-![s_group_template](./_static/images/s_group_template.png)
+![](./_static/images/s_group_template.png)
 
 
-#### 参数管理
+**参数管理**
 > 参数名称类似于别名的概念，订单显示时参数值会被参数名称替代
 
 多组配置示例：
 
-​                        ![s_group_template](./_static/images/parameter.png)
+​                        ![](./_static/images/parameter.png)
 
-#### 执行用户
+**执行用户**
 
 > 执行用户：主要用于登陆命令管理/模板管理里面指定的主机的验证，任务一般都是通过SSH进行远程执行、编排模板的时候需要选择一个用户进行登陆主机
 
@@ -118,9 +118,9 @@ $ [ ! -d /root/.ssh ] && mkdir /root/.ssh ; [ ! -f /root/.ssh/authorized_keys ] 
 
 新建执行用户示例：
 
-![create_exec_user](./_static/images/create_exec_user.png)
+![](./_static/images/create_exec_user.png)
 
-![exec_user_list](./_static/images/exec_user_list.png)
+![](./_static/images/exec_user_list.png)
 
 
 
