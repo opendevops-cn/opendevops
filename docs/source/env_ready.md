@@ -60,9 +60,17 @@ $ mkdir -p /opt/codo/ && cd /opt/codo/
 
 ```shell
 
+echo -e "\033[31m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
+echo -e "\033[32m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
+echo -e "\033[33m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
 
-echo -e "\033[31m token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
+echo -e "\033[31m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
 
+echo -e "\033[32m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
+
+echo -e "\033[33m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
+
+#重要的事情说三遍，如果你修改了以上涉及到的，请务必一定要对应起来！！！！
 #本机的IP地址
 export LOCALHOST_IP="10.10.10.12"
 
@@ -76,11 +84,11 @@ export REDIS_PASSWORD="cWCVKJ7ZHUK12mVbivUf"
 export MQ_USER="ss"
 export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
 
-##这部分是模块化部署，微服务，每个服务都有一个单独的域名
+##这部分是模块化部署，微服务，每个服务都有一个单独的域名，默认都内部通信，可不用修改域名，如果你修改成了自己的域名，后续部署的时候每个项目下docs/nginx_ops.conf对应的servername和网关转发的时候域名一定要对应起来。
 ### 管理后端地址
 export mg_domain="mg.opendevops.cn"
 
-### 定时任务地址,目前只启动一个进程，ip  
+### 定时任务地址,目前只启动一个进程，不用域名，直接IP即可
 export cron_domain="10.10.10.12"
 
 ### 任务系统地址
@@ -304,7 +312,7 @@ nameserver 114.114.114.114
 nameserver 8.8.8.8
 EOF
 
-#设置host解析
+#设置host解析，这里同学注意一下子，如果你是单机部署，那么你就将你的本机IP+模块域名解析即可，如果你是分布式部署的，那么每个模块对应的机器IP一定不要搞错，这个很重要，后面网关也要依赖此DNS去解析你的域名，帮你做服务转发的，切记！！！！
 cat >/etc/dnsmasqhosts <<EOF
 $LOCALHOST_IP $front_domain
 $LOCALHOST_IP $mg_domain

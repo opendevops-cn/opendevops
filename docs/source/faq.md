@@ -44,6 +44,9 @@
   - 用   户: <your_name>@gmail.com
   - 密   码： 授权码（一般为16位）
 
+
+
+
 ### Docker Bulid 报错问题
 
 - 安装依赖报错：`Could not install packages due to an EnvironmentError'`
@@ -69,6 +72,11 @@ The command '/bin/sh -c pip3 install --upgrade pip' returned a non-zero code: 1
 Python3x版本后Docker里面需要加入--user的参数，修改Dockerfile, 加上--user参数， 如：pip3 install --user --upgrade pip
 ```
 
+### 常见的错误码error code排错思路
+
+- 404：  一般都是自己修改了域名或者配置错误，导致网关转发的时候没办法找到
+- 500：  每个模块服务的后端报错，具体可参看报错模块日志： /var/log/supervisor/
+- 502：  502错误是网关配置错误，请仔细检查网关配置和DNS配置，确保域名正常解析，且能访问。
 
 
 ### Google Authenticator怎么使用?
@@ -82,10 +90,12 @@ Python3x版本后Docker里面需要加入--user的参数，修改Dockerfile, 加
 
 `PS 由于国内Android多数都被阉割了Google框架，不能扫码的输入手动贴入密钥`
 
-- 扫描条形码
+- 扫描条形码  
+
 ![](./_static/images/google_auth01.jpg)
 
-- 手动输入密钥
+- 手动输入密钥  
+
 ![](./_static/images/google_auth02.jpg)
 
 
@@ -93,3 +103,27 @@ Python3x版本后Docker里面需要加入--user的参数，修改Dockerfile, 加
 
 1. 你可以搜索你之前的邮件记录，或者自行记录保存下来
 2. 对于CODO超级管理员可以登陆数据库自行查看，SQL语法：`select google_key from codo_admin.mg_users where username='codo_test';`
+
+### Login界面/登陆后一直自动刷新/闪屏/退出？
+
+Q：可以登陆进去，但是一直闪屏刷新/退出？
+  
+A：出现这个问题是因为网关`token_secret`和`codo-admin`里面`token_secret`配置不一样，改成一样即可。
+请仔细阅读网关配置中的[注册API网关文件](http://docs.opendevops.cn/zh/latest/codo-gw.html ) `configs.lua`这块
+
+  
+### Docker内部的MySQL、Redis无法连接问题  
+
+> 有些同学发现在Docker内部无法连接到外面的MySQL，如下报错，一般都是防火墙引起的   
+
+
+![](./_static/images/243fb74c5a73af046696423d6ce7b92.png)
+
+### 新部署的系统无法创建User？没办法看到创建/重置/获取Token？  
+
+Q：新部署的时候登陆进去，点击用户列表没办法创建/看不到重置密码/重置MFA按钮等问题？ 
+
+A：这个问题是因为没有创建角色，默认部署的时候权限/组件数据都是初始化进去的，但是角色需要用户自己创建，用户可以点击**用户管理**-->**角色管理**  新建一个角色，给所有组件/菜单/权限  然后退出，强刷下浏览器就可以了  
+
+操作步骤可参考：http://docs.opendevops.cn/zh/latest/permission_docs.html#role
+  
