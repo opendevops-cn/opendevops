@@ -114,7 +114,7 @@ A：出现这个问题是因为网关`token_secret`和`codo-admin`里面`token_s
   
 ### Docker内部的MySQL、Redis无法连接问题  
 
-> 有些同学发现在Docker内部无法连接到外面的MySQL，如下报错，一般都是防火墙引起的   
+> 有些同学发现在Docker内部无法连接到外面的MySQL，如下报错，一般都是防火墙引起的，防火墙不能关闭，因为NAT在用，清空掉Filter链 `iptables -F`或者添加上3306端口尝试下。  
 
 
 ![](./_static/images/243fb74c5a73af046696423d6ce7b92.png)

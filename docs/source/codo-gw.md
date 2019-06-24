@@ -247,6 +247,8 @@ systemctl enable openresty
 
 **访问**
 
+`注意： 这里如果没修改默认域名、且没有域名解析的同学，请访问的时候绑定下本地Hosts，防止访问到我们默认的Demo机器上。`
+
 - 地址：demo.opendevops.cn
 - 用户：admin
 - 密码：admin@opendevops

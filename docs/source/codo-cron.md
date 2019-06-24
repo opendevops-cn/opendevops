@@ -64,7 +64,7 @@ VOLUME /var/log/
 # 准备文件
 COPY doc/supervisor_ops.conf  /etc/supervisord.conf
 
-EXPOSE 80
+EXPOSE 9900
 CMD ["/usr/bin/supervisord"]
 ```
 
