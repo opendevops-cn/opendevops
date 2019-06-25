@@ -16,9 +16,11 @@ OpenDevOps 文档
    permission_docs
    example_docs
    plugin_docs
+   update_version
    change_log
    contributor
    faq
+   
 
 
 Indices and tables
