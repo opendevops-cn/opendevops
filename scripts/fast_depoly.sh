@@ -866,3 +866,4 @@ echo -e "\033[32m [INFO]: 你的访问密码：admin@opendevops  \033[0m"
 echo -e "\033[32m [INFO]: 请在你的PC机器上绑定本地Host进行登陆测试  \033[0m"
 echo -e "\033[32m [INFO]: 你的MySQL/Redis/MQ等密码请在/opt/codo/env.sh找到  \033[0m"
 echo -e "\033[32m [INFO]: 日志目录：/var/log/supervisor/, 详细可查看日志log是否有报错。 \033[0m"
+
