@@ -163,7 +163,7 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 echo -e "\033[32m [INFO]: Start install python3 \033[0m"
 yum groupinstall Development tools -y
 yum -y install zlib-devel
-yum install -y python36-devel-3.6.3-7.el7.x86_64 openssl-devel libxslt-devel libxml2-devel libcurl-devel
+yum install -y openssl-devel libxslt-devel libxml2-devel libcurl-devel
 cd /usr/local/src/
 wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
 tar xf  Python-3.6.4.tar.xz >/dev/null 2>&1 && cd Python-3.6.4
