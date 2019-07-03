@@ -37,7 +37,7 @@
 注意：
 
 - 如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了[优化系统脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
-- 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
+
 
 **快速开始**
 

@@ -33,7 +33,7 @@ author = 'yanghongfei'
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = 'v0.1'
+release = 'Beta0.3'
 
 
 # -- General configuration ---------------------------------------------------

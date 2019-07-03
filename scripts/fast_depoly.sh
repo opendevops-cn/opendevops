@@ -377,6 +377,7 @@ function docker_compose_file(){
 #docker-compose
 echo -e "\033[32m [INFO]: 准备多项目docker-compose文件 \033[0m"
 source /opt/codo/env.sh
+cd /opt/codo/
 sudo tee docker-compose.yml <<-'EOF'
 version: '3'
 services:
@@ -534,6 +535,7 @@ function init_mysql(){
   #初始化数据库（注：由于上一步操作同一时间启动复数容器，在执行以下命令时可能会提示无法连接mysql，可稍等片刻再尝试）
   echo -e "\033[32m [INFO]: 这里请耐心等待30s，等待MySQL启动成功，不然会导致连不上数据库 \033[0m"
   sleep 30s
+  iptables -F
   exist_codo_docker_num=`docker ps -a |grep -E "codo-admin|codo-tools|codo-cmdb|codo-dns|codo-task|kerrigan" | wc -l`
   if [[ ${exist_codo_docker_num} -ne 6 ]]; then
     echo -e "\033[31m [ERROR]: 没有发现COOD项目Docker服务是启动的，请检查是否启动成功了 \033[0m"
