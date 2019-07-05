@@ -11,6 +11,7 @@
    task_publish
    timed_task
    job_configure
+   code_repository
    cmdb_manager
    confd_project
    user_manager
