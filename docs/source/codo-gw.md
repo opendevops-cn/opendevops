@@ -2,6 +2,41 @@
 
 > 由于此项目是模块化、微服务化，因此需要在借助API网关，需要在API网关注册，此步骤是必须的。
 
+
+**注意事项**
+
+开始之前，你需要确认以下2个事情
+
+- DNS服务是否正常，域名能否正常解析
+- 微服务的模块部署是否正常，进行检测
+
+**检查DNS思路**
+
+```shell
+1. 确保你的dnsmasql服务是启动的，服务没有报错
+2. 确保/etc/dnsmasqhosts文件有解析的IP
+3. 确保你网关的这台机器/etc/resolv.conf DNS执行你刚部署的dnsmasq服务IP
+4. 确保你网关所在的机器都能正常ping通所有的服务，比如：ping cmdb2.opendevops.cn
+
+```
+
+**服务健康检测**
+
+请参考[服务健康检测](http://docs.opendevops.cn/zh/latest/introduction.html#microservice) 进行所有服务进行检测，返回200则正常
+
+
+
+操作示例：
+
+```shell  
+
+$ source /opt/codo/env.sh
+$ curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cmdb2.opendevops.cn:8050/are_you_ok/ 
+
+```
+
+
+
 **安装openresty**
 
 ```shell
