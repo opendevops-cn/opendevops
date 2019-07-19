@@ -12,6 +12,7 @@
    timed_task
    job_configure
    code_repository
+   zabbix_manager
    cmdb_manager
    confd_project
    user_manager
