@@ -46,14 +46,15 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
   - 功能：任务系统
   - 端口：8020
   - 安装：必须
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cron_domain}:9900/are_you_ok/`
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cron_task}:8020/are_you_ok/`
 
 
 - codo-cron
   - 功能：定时任务
   - 端口：9900
   - 安装：必须
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cron_domain}:9900/are_you_ok/`
+  - 备注: 单进程，默认无域名，使用本机IP
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://10.2.2.236:9900/are_you_ok/`
 
 - kerrigan
   - 功能：配置中心

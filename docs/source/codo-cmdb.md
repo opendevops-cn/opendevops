@@ -130,13 +130,4 @@ docker exec -ti codo-cmdb_codo_cmdb_1 /usr/local/bin/python3 /var/www/codo-cmdb/
 - 服务日志：`/var/log/supervisor/cmdb.log`  #主程序日志
 - 定时日志：`/var/log/supervisor/cmdb_cron.log` #一些后端守护自动运行的日志
 
-**接口测试**
 
-- 可查看日志看是否有报错
-
-- 默认端口：8050，可直接测试Are you ok?
-
-```
-#返回200
- curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cmdb2.opendevops.cn:8050/are_you_ok/
-```
