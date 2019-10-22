@@ -1,3 +1,4 @@
+
 ### 任务系统
 
 > CODO任务系统，负责整个系统中任务调度，此功能是必须要安装的
@@ -10,6 +11,7 @@ if ! which git &>/dev/null; then yum install -y git >/dev/null 2>&1;fi
 [ ! -d /opt/codo/ ] && mkdir -p /opt/codo
 cd /opt/codo && git clone https://github.com/opendevops-cn/codo-task.git
 cd codo-task
+
 ```
 
 
@@ -51,39 +53,29 @@ sed -i "s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAUL
 sed -i "s#DEFAULT_MQ_ADDR = .*#DEFAULT_MQ_ADDR = os.getenv('DEFAULT_MQ_ADDR', '${DEFAULT_MQ_ADDR}')#g" settings.py
 sed -i "s#DEFAULT_MQ_USER = .*#DEFAULT_MQ_USER = os.getenv('DEFAULT_MQ_USER', '${DEFAULT_MQ_USER}')#g" settings.py
 sed -i "s#DEFAULT_MQ_PWD = .*#DEFAULT_MQ_PWD = os.getenv('DEFAULT_MQ_PWD', '${DEFAULT_MQ_PWD}')#g" settings.py
-```
-
-
-
-**修改Dockerfile （可选）**
-
-可以修改Dockerfile  为下列内容 跳过安装公共依赖
 
 ```
-FROM ss1917/codo_base:beta0.3
 
-#
-RUN pip3 install --upgrade pip
-RUN pip3 install -U git+https://github.com/ss1917/ops_sdk.git
+**修改Dockerfile**
 
-# 复制代码
-RUN mkdir -p /var/www/
-ADD . /var/www/codo-task/
+使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去
 
-# 安装pip依赖
-RUN pip3 install -r /var/www/codo-task/doc/requirements.txt
+```shell
+cat >Dockerfile <<EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-task
 
-# 日志
-VOLUME /var/log/
+#修改应用配置
+ADD settings.py /var/www/codo-task/
 
-# 准备文件
-COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
-COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
 
 EXPOSE 80
 CMD ["/usr/bin/supervisord"]
-```
+EOF
 
+```
 
 
 **编译，启动**
@@ -99,8 +91,7 @@ docker-compose up -d
 **创建数据库**
 
 ```
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}
-create database `codo_task` default character set utf8mb4 collate utf8mb4_unicode_ci;
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_task` default character set utf8mb4 collate utf8mb4_unicode_ci;'
 ```
 
 
@@ -125,8 +116,6 @@ docker exec -ti codo-task_codo_task_1  /usr/local/bin/python3 /var/www/codo-task
 docker-compose  restart 
 ```
 
-
-
 **测试**
 
 > 日志文件位置统一：/var/log/supervisor/
@@ -137,3 +126,4 @@ tailf /var/log/supervisor/task_scheduler.log  #确认没报错
 tailf /var/log/supervisor/exec_task.log   #执行任务的日志
 ```
 
+**任务系统部署完成**
