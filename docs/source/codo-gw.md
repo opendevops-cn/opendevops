@@ -1,4 +1,6 @@
-### API网关
+### API网关（部署容易出问题的地方）
+
+==重点仔细看==
 
 > 由于此项目是模块化、微服务化，因此需要在借助API网关，需要在API网关注册，此步骤是必须的。
 
@@ -22,50 +24,33 @@
 
 **服务健康检测**
 
-请参考[服务健康检测](http://docs.opendevops.cn/zh/latest/introduction.html#microservice) 进行所有服务进行检测，返回200则正常
-
-
-
-操作示例：
-
-```shell  
-
-$ source /opt/codo/env.sh
-$ curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cmdb2.opendevops.cn:8050/are_you_ok/ 
-
+```
+# 进行所有服务进行检测，返回200则正常
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://mg.opendevops.cn:8010/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://task.opendevops.cn:8020/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cmdb2.opendevops.cn:8050/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://kerrigan.opendevops.cn:8030/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cron.opendevops.cn:9900/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://tools.opendevops.cn:8040/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://dns.opendevops.cn:8060/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://0.0.0.0:80
 ```
 
 
-
-**安装openresty**
-
+**下载网关**
 ```shell
-yum update
-yum install yum-utils -y
-yum-config-manager --add-repo https://openresty.org/package/centos/openresty.repo
-yum install openresty -y
-yum install openresty-resty -y
-```
-
-**部署网关**
-```shell
-cd /opt/codo/ && git clone https://github.com/ss1917/api-gateway.git
-\cp -arp api-gateway/* /usr/local/openresty/nginx/
+cd /opt/codo/ && git clone https://github.com/ss1917/api-gateway.git && cd /opt/codo/api-gateway
 ```
 
 **修改配置**
 > 主要修改`nginx.conf`配置信息和`config.lua`配置，具体参考API网关块：[API网关修改配置](https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%BA%8C-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE)
 
-接下来配置：
-
-    因为我把前端静态文件也使用 网关进行代理 所以配置文件如下
 
 **全局nginx配置**   
 
-这里主要修改resolver 内部DNS服务器地址
+这里主要修改resolver 内部DNS服务器地址`conf/nginx.conf` ==一定要修改==
 
 ```nginx
-#  /usr/local/openresty/nginx/conf/nginx.conf
 user root;
 worker_processes auto;
 worker_rlimit_nofile 51200;
@@ -87,105 +72,55 @@ http {
 
     init_by_lua_file lua/init_by_lua.lua;       # nginx启动时就会执行
     include ./conf.d/*.conf;                    # lua生成upstream
-    resolver 10.10.10.12;                       # 内部DNS服务器地址
+    resolver 10.10.10.12;                       # 内部DNS服务器地址 一定要修改 对应起来
 }
 ```
 
 
-**网关配置**
-```shell
-
-# /usr/local/openresty/nginx/conf/conf.d/gw.conf
-    server {
-        listen 80;
-        server_name gw.opendevops.cn;
-        lua_need_request_body on;           # 开启获取body数据记录日志
-
-        location / {
-            ### ws 支持
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "upgrade";
-
-            ### 获取真实IP
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-            access_by_lua_file lua/access_check.lua;
-            set $my_upstream $my_upstream;
-            proxy_pass http://$my_upstream;
-
-            ### 跨域
-            add_header Access-Control-Allow-Methods *;
-            add_header Access-Control-Max-Age 3600;
-            add_header Access-Control-Allow-Credentials true;
-            add_header Access-Control-Allow-Origin $http_origin;
-            add_header Access-Control-Allow-Headers $http_access_control_request_headers;
-            if ($request_method = OPTIONS){
-                return 204;}
-        }
-    }
-
-```
-
-**前端资源配置**
-
- 这里要修改server_name 为你的真实访问域名
-
-```shell
-#前端vhosts
-mkdir -p /usr/local/openresty/nginx/conf/conf.d/
-# /usr/local/openresty/nginx/conf/conf.d/demo.conf
-# 这里是前端的访问入口，如果不使用网关代理静态的话，可以使用nginx代理，请根据自身情况修改配置。
+**网关配置** `conf/conf.d/gw.conf`
+```nginx
 server {
-        listen       80;
-        server_name demo.opendevops.cn;
-        access_log /var/log/nginx/f_access.log;
-        error_log  /var/log/nginx/f_error.log;
-        root /var/www/codo;
+    listen 80;
+    server_name gw.opendevops.cn;
+    lua_need_request_body on;           # 开启获取body数据记录日志
 
-        location / {
-                    root /var/www/codo;
-                    index index.html index.htm;
-                    try_files $uri $uri/ /index.html;
-                    }
+    location / {
+        ### ws 支持
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
 
-        location /api {
-                ### ws 支持
-                proxy_http_version 1.1;
-                proxy_set_header Upgrade $http_upgrade;
-                proxy_set_header Connection "upgrade";
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        ### 获取真实IP
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
-                add_header 'Access-Control-Allow-Origin' '*';
-                proxy_pass http://gw.opendevops.cn;
-        }
+        access_by_lua_file lua/access_check.lua;
+        set $my_upstream $my_upstream;
+        proxy_pass http://$my_upstream;
 
-        location ~ /(.svn|.git|admin|manage|.sh|.bash)$ {
-            return 403;
-        }
+        ### 跨域
+        add_header Access-Control-Allow-Methods *;
+        add_header Access-Control-Max-Age 3600;
+        add_header Access-Control-Allow-Credentials true;
+        add_header Access-Control-Allow-Origin $http_origin;
+        add_header Access-Control-Allow-Headers $http_access_control_request_headers;
+        if ($request_method = OPTIONS){
+            return 204;}
+    }
 }
 
 ```
+
 
 **注册API网关**
 
-`vim /usr/local/openresty/nginx/lua/configs.lua`
-请仔细阅读下面需要修改配置的地方
+请仔细阅读下面需要修改配置的地方`vim lua/configs.lua` ==这个配置基本上都要修改，请务必仔细==
 
 
 ```lua
 json = require("cjson")
 
---mysql_config = {
---    host = "127.0.0.1",
---    port = 3306,
---    database = "lua",
---    user = "root",
---    password = "",
---    max_packet_size = 1024 * 1024
---}
 
--- redis配置，一定要修改,并且和codo-admin保持一致
+-- redis配置，一定要修改，并且和codo-admin保持一致，admin会把权限写进去提供网关使用
 redis_config = {
     host = '10.10.10.12',
     port = 6379,
@@ -202,6 +137,7 @@ logs_file = '/var/log/gw.log'
 
 --刷新权限到redis接口
 rewrite_cache_url = 'http://mg.opendevops.cn:8010/v2/accounts/verify/'
+
 -- 注意：rewrite_cache_token要和codo-admin里面的secret_key = '8b888a62-3edb-4920-b446-697a472b4001'保持一致
 rewrite_cache_token = '8b888a62-3edb-4920-b446-697a472b4001'  
 
@@ -249,7 +185,7 @@ rewrite_conf = {
             },
             {
                 uri = "/cron",
-                rewrite_upstream = "10.2.2.236:9900"
+                rewrite_upstream = "cron.opendevops.cn:9900"
             },
             {
                 uri = "/mg",
@@ -265,26 +201,48 @@ rewrite_conf = {
 
 ```
 
-**API网关启动**
+**修改Dockerfile**
 
-`提醒:openresty服务器DNS必须指向--->最起初部署的DNS服务器地址,另外若你本机ping 以上随便一个域名都不通的话，那你要确认下你本机DNS指向你最初部署了DNS服务器了？ 修改vim /etc/resolv.conf
-`
+使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去
 
-```shell
-#OpenResty 是一个基于 Nginx 与 Lua 的高性能 Web 平台，使用的也是80端口，若不能启动请检查你的80端口是否被占用了
-#日志：
-mkdir -p /var/log/nginx/ && touch /var/log/nginx/f_access.log
-openresty -t   #测试
-systemctl start openresty
-systemctl enable openresty
+```
+cat >Dockerfile <<EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/api-gateway
+
+#修改配置
+ADD . /usr/local/openresty/nginx/
+
+EXPOSE 80
+CMD ["/usr/bin/openresty", "-g", "daemon off;"]
+EOF
 
 ```
 
+**编译，启动**
+
+```
+#编译镜像
+docker build . -t gateway_image
+#启动
+docker-compose up -d
+```
+
+启动后地址为`http://gw.opendevops.cn:8888`，这里是和前端的地址有对应，请勿修改
+
+```
+#测试一下
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://gw.opendevops.cn:8888/api/accounts/are_you_ok/
+```
+
+> 提醒:openresty服务器DNS必须指向--->最起初部署的DNS服务器地址,另外若你本机ping以上随便一个域名都不通的话，那你要确认下你本机DNS指向你最初部署了DNS服务器了？ 修改vim /etc/resolv.conf
+
+
+
 **访问**
 
-`注意： 这里如果没修改默认域名、且没有域名解析的同学，请访问的时候绑定下本地Hosts，防止访问到我们默认的Demo机器上。`
+`注意： demo-init.opendevops.cn 建议修改成自己的域名，也可以绑定hosts来测试一下`  可以再部署前端的时候修改
 
-- 地址：demo.opendevops.cn
+- 地址：demo-init.opendevops.cn
 - 用户：admin
 - 密码：admin@opendevops
 
@@ -292,3 +250,8 @@ systemctl enable openresty
 
 > 若这里访问有报错，请看下日志，一般都是配置错误。
 - 日志路径：所有模块日志统一`/var/log/supervisor/`
+
+
+**特别感谢**  
+
+感谢大佬 `shenyingzhi` 提供测试环境，特此致谢

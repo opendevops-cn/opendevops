@@ -1,27 +1,93 @@
 ### 项目前端
 
-> 我们提供的有release包，建议直接下载release包更为方便！
-
-**一、 直接下载资源包**
-
-- 建议使用最新版本[Release](<https://github.com/opendevops-cn/codo/releases/>)
+> 更新后的项目前端将不再让用户下载静态资源包，使用自动构建的方式，默认保持最新前端
 
 ```
-echo -e "\033[32m [INFO]: codo(项目前端) Start install. \033[0m"
-CODO_VER="codo-beta-0.3.4"
-if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
-[ ! -d /var/www ] && mkdir -p /var/www
-cd /var/www && wget https://github.com/opendevops-cn/codo/releases/download/${CODO_VER}/${CODO_VER}.tar.gz
-tar zxf ${CODO_VER}.tar.gz
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: codo(项目前端) install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: codo(项目前端) install faild \033[0m"
-    exit -8
-fi
+[ ! -d /opt/codo/codo/ ] && mkdir -p /opt/codo/codo/ && cd /opt/codo/codo/
 ```
 
-- 前端的静态文件会存放在`/var/www/codo/`目录内
-- 测试一下 `ll /var/www/codo/index.html` 看下文件是不是存在
+**一、修改域名**
 
-**后续访问使用API网关中的vhosts，节省资源，这里不单独安装配置nginx**
+下列为默认域名，如果要修改访问入口地址请修改`server_name`对应的`demo-init.opendevops.cn`，确保能DNS解析到此域名，或者自己绑定hosts来测试一下
+
+```
+cat >codo_frontend.conf <<\EOF
+server {
+        listen       80;
+        server_name demo-init.opendevops.cn;
+        access_log /var/log/nginx/codo-access.log;
+        error_log  /var/log/nginx/codo-error.log;
+
+        location / {
+                    root /var/www/codo;
+                    index index.html index.htm;
+                    try_files $uri $uri/ /index.html;
+        }
+        location /api {
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                add_header 'Access-Control-Allow-Origin' '*';
+                proxy_pass http://gw.opendevops.cn:8888;
+        }
+
+        location ~ /(.svn|.git|admin|manage|.sh|.bash)$ {
+            return 403;
+        }
+}
+EOF
+
+```
+
+**创建Dockerfile**
+
+```shell
+cat >Dockerfile <<EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo
+
+#修改nginx配置
+#ADD nginx.conf /etc/nginx/nginx.conf
+ADD codo_frontend.conf /etc/nginx/conf.d/codo_frontend.conf
+
+EXPOSE 80
+EXPOSE 443
+
+STOPSIGNAL SIGTERM
+CMD ["nginx", "-g", "daemon off;"]
+EOF
+
+```
+
+**创建 docker-compose.yml**
+
+```shell
+cat >docker-compose.yml <<EOF
+codo:
+  restart: unless-stopped
+  image: codo_image
+  volumes:
+    - /var/log/nginx/:/var/log/nginx/
+    - /sys/fs/cgroup:/sys/fs/cgroup
+  ports:
+    - "80:80"
+    - "443:443"
+EOF
+
+```
+
+**三、编译，启动**
+
+```shell
+docker build . -t codo_image
+docker-compose up -d
+```
+
+
+**四、测试**
+
+```
+curl  0.0.0.0:80
+tailf  /var/log/nginx/codo-access.log
+```

@@ -1,32 +1,22 @@
 ### 环境准备
 
-> 部署安装之前，你应该了解下每个模块的用途，[传送门](http://docs.opendevops.cn/zh/latest/introduction.html)
+> 部署安装之前，你应该了解下每个模块的用途 > [传送门](http://docs.opendevops.cn/zh/latest/introduction.html)
 
 **部署视频**
 > 近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们准备了部署视频，[视频入口](https://www.bilibili.com/video/av53446517?from=search&seid=16003251072301252333)
 
 
-**注意**
-
-- 国内Github速度慢问题
-- Docker默认镜像源下载慢问题
-
 **建议配置**
 
-- 系统： CentOS7+
-- CPU：  2Core+
-- 内存：  4G+
-- 磁盘：  >=50+
+- 系统：  CentOS7+
+- CPU：   4Core+
+- 内存：  8G+
+- 磁盘：  50G+
 
 
 
-
-
-**准备基础环境**
-
-> 基础环境需要用到以下服务，我们也提供了简单的[初始化脚本](https://raw.githubusercontent.com/opendevops-cn/opendevops/master/scripts/system_init_v1.sh)
-
-- 建议版本
+**基础环境**
+- 版本约束
   - Python3.6
   - Redis3.2
   - MySQl5.7
@@ -44,19 +34,14 @@
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
 
-
-创建项目目录
+**环境变量**
+>创建项目目录
 
 ```
 $ mkdir -p /opt/codo/ && cd /opt/codo/
 ```
 
-**环境变量**
-
-> 以下内容贴入到`vim /opt/codo/env.sh`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息, `source /opt/codo/env.sh`
-
-
-
+> 以下内容贴入到`vim /opt/codo/env.sh`文件，主要修改配置地址和密码信息
 
 ```shell
 
@@ -64,14 +49,7 @@ echo -e "\033[31m 注意：token_secret一定要做修改，防止网站被攻�
 echo -e "\033[32m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
 echo -e "\033[33m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
 
-echo -e "\033[31m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
-
-echo -e "\033[32m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
-
-echo -e "\033[33m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
-
-#重要的事情说三遍，如果你修改了以上涉及到的，请务必一定要对应起来！！！！
-#本机的IP地址
+#部署的IP地址
 export LOCALHOST_IP="10.10.10.12"
 
 #设置你的MYSQL密码
@@ -84,38 +62,8 @@ export REDIS_PASSWORD="cWCVKJ7ZHUK12mVbivUf"
 export MQ_USER="ss"
 export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
 
-##这部分是模块化部署，微服务，每个服务都有一个单独的域名，默认都内部通信，可不用修改域名，如果你修改成了自己的域名，后续部署的时候每个项目下docs/nginx_ops.conf对应的servername和网关转发的时候域名一定要对应起来。
-### 管理后端地址
-export mg_domain="mg.opendevops.cn"
 
-### 定时任务地址,目前只启动一个进程，不用域名，直接IP即可
-export cron_domain="10.10.10.12"
-
-### 任务系统地址
-export task_domain="task.opendevops.cn"
-
-### CMDB系统地址
-export cmdb_domain="cmdb2.opendevops.cn"
-
-### 运维工具地址
-export tools_domain="tools.opendevops.cn"
-
-
-### 域名管理地址
-export dns_domain="dns.opendevops.cn"
-
-
-### 配置中心域名
-export kerrigan_domain="kerrigan.opendevops.cn"
-
-### 前端地址,也就是你的访问地址
-export front_domain="demo.opendevops.cn"
-
-### api网关地址
-export api_gw_url="gw.opendevops.cn"
-
-
-#codo-admin用到的cookie和token，可留默认
+#codo-admin用到的cookie和token
 export cookie_secret="nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB"
 # 这里codo-admin和gw网关都会用到，一定要修改。可生成随意字符
 export token_secret="pXFb4i%*834gfdh963df718iodGq4dsafsdadg7yI6ImF1999aaG7"
@@ -146,10 +94,9 @@ export DEFAULT_REDIS_HOST='10.10.10.12'
 export DEFAULT_REDIS_PORT=6379
 export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 
-
 ```
 
-`source /opt/codo/env.sh, 最后一定不要忘记source` 
+==**最后一定不要忘记source**：==  `source /opt/codo/env.sh` 
 
 
 
@@ -161,58 +108,49 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 
 ```shell
 echo -e "\033[32m [INFO]: Start install python3 \033[0m"
+yum update -y
 yum groupinstall Development tools -y
 yum -y install zlib-devel
-yum install -y python36-devel-3.6.3-7.el7.x86_64 openssl-devel libxslt-devel libxml2-devel libcurl-devel
-cd /usr/local/src/
-wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
-tar xf  Python-3.6.4.tar.xz >/dev/null 2>&1 && cd Python-3.6.4
-./configure >/dev/null 2>&1
-make >/dev/null 2>&1 && make install >/dev/null 2>&1
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: python3 install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: python3 install faild \033[0m"
-    exit -1
-fi
+yum install -y openssl-devel libxslt-devel libxml2-devel libcurl-devel
+yum install python3 -y 
 ```
 
-**安装Docker-compose**
-> 若已安装docker-compose可跳过
+
+**安装docker**  
+
+> 若已安装可跳过
+
 ```shell
 echo -e "\033[32m [INFO]: Start install docker,docker-compose \033[0m"
 yum install -y yum-utils device-mapper-persistent-data lvm2
 yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 yum-config-manager --enable docker-ce-edge
 yum install -y docker-ce
-###启动
+#启动和开机自启
 /bin/systemctl start docker.service
-### 开机自启
+
 /bin/systemctl enable docker.service
-#安装docker-compose编排工具
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 get-pip.py
+```
+
+**安装docker-compose编排工具**
+```
+#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && python3 get-pip.py 如果没有pip3 请安装
 pip3 install docker-compose
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: docker-compose install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: docker-compose install faild \033[0m"
-    exit -2
-fi
 ```
 
 **安装MySQL**
 
-> 一般来说 一个MySQL实例即可，如果有需求可以自行搭建主从，每个服务都可以有自己的数据库
+> 一般来说一个MySQL实例即可，如果有需求可以自行搭建主从，微服务每个服务都可以有自己的数据库
 >
-> 我们这里示例是用Docker部署的MySQL，你也可以使用你自己的MySQL
+> 我们这里示例是用Docker部署的MySQL，如果你要用已有的数据库请修改`/opt/codo/env.sh`
 
 ```shell
-echo -e "\033[32m [INFO]: Start install mysql5.7 \033[0m"
+source /opt/codo/env.sh
+mkdir -p /opt/codo/codo-mysql&& cd /opt/codo/codo-mysql
 cat >docker-compose.yml <<EOF
 mysql:
   restart: unless-stopped
-  image: mysql:5.7
+  image: registry.cn-shanghai.aliyuncs.com/ss1917/mysql:5.7
   volumes:
     - /data/mysql:/var/lib/mysql
     - /data/mysql_conf:/etc/mysql/conf.d
@@ -221,10 +159,15 @@ mysql:
   environment:
     - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
 EOF
-docker-compose up -d   #启动
+
+#启动 
+docker-compose up -d
+# 安装MySQL客户端
+yum install mysql -y  
+
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: mysql install success. \033[0m"
-    echo -e "\033[32m [INFO]: 没有mysql客户端的同学自己安装一下子哈, yum install mysql -y. \033[0m"
+    echo -e "\033[32m [INFO]: 最好提高下MySQL的最大链接数. \033[0m"
     echo -e "\033[32m [INFO]: mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} \033[0m"
 else
     echo -e "\033[31m [ERROR]: mysql57 install faild \033[0m"
@@ -232,78 +175,62 @@ else
 fi
 ```
 
+- 测试 `mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}`
+
 **安装Redis**
-```shell
-echo -e "\033[32m [INFO]: Start install redis3.2 \033[0m"
-yum -y install redis-3.2.*
 
-echo "[INFO]: start init redis"
-### 开启AOF
-sed -i 's#appendonly no$#appendonly yes#g' /etc/redis.conf
-### 操作系统决定
-sed -i 's#appendfsync .*$$#appendfsync everysec$#g' /etc/redis.conf
-### 修改绑定IP
-sed -i 's/^bind 127.0.0.1$/#bind 127.0.0.1/g' /etc/redis.conf
-### 是否以守护进程方式启动
-sed -i 's#daemonize no$#daemonize yes#g' /etc/redis.conf
-### 当时间间隔超过60秒，或存储超过1000条记录时，进行持久化
-sed -i 's#^save 60 .*$#save 60 1000#g' /etc/redis.conf
-### 快照压缩
-sed -i 's#rdbcompression no$#rdbcompression yes#g' /etc/redis.conf
-### 添加密码
-sed -i "s#.*requirepass .*#requirepass ${REDIS_PASSWORD}#g" /etc/redis.conf
-systemctl start redis
-systemctl status redis
-systemctl enable redis
+- 创建 docker-compose.yml
 
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: redis install success. \033[0m"
-    echo -e "\033[32m [INFO]: redis-cli -h 127.0.0.1 -p 6379 -a ${REDIS_PASSWORD}"
-else
-    echo -e "\033[31m [ERROR]: redis install faild \033[0m"
-    exit -4
-fi
 ```
+source /opt/codo/env.sh
+mkdir -p /opt/codo/codo-redis && cd /opt/codo/codo-redis
+cat >docker-compose.yml <<EOF
+redis:
+    image: registry.cn-shanghai.aliyuncs.com/ss1917/redis:4
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+EOF
+
+#启动
+docker-compose up -d
+```
+- 测试 `redis-cli -h 127.0.0.1 -p 6379 -a ${REDIS_PASSWORD}`
 
 
 **安装RabbitMQ**
 
-`注意安装完MQ后不要修改主机名，否则MQ可能会崩掉`
-```shell
-echo -e "\033[32m [INFO]: Start install rabbitmq \033[0m"
-# echo $LOCALHOST_IP opendevops >> /etc/hosts
-# echo opendevops > /etc/hostname
-# export HOSTNAME=opendevops
-yum install  -y rabbitmq-server
-rabbitmq-plugins enable rabbitmq_management
-systemctl start rabbitmq-server
-rabbitmqctl add_user ${MQ_USER} ${MQ_PASSWORD}
-rabbitmqctl set_user_tags ${MQ_USER} administrator
-rabbitmqctl  set_permissions  -p  '/'  ${MQ_USER} '.' '.' '.'
-systemctl restart rabbitmq-server
-systemctl enable rabbitmq-server
-systemctl status rabbitmq-server
+- 创建 docker-compose.yml
 
-# rabbitmq-server -detached
-status=`systemctl status rabbitmq-server | grep "running" | wc -l`
-if [ $status == 1 ];then
-    echo -e "\033[32m [INFO]: rabbitmq install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: rabbitmq install faild \033[0m"
-    exit -5
-fi
+```shell
+source /opt/codo/env.sh
+mkdir -p /opt/codo/codo-mq && cd /opt/codo/codo-mq 
+cat >docker-compose.yml <<EOF
+rabbitmq:
+    restart: unless-stopped
+    image: registry.cn-shanghai.aliyuncs.com/ss1917/rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=${MQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${MQ_PASSWORD}
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+EOF
+
+#启动
+docker-compose up -d
 ```
 
+
 **安装DNS**
-> 部署内部DNS dnsmasq 主要用于内部通信，API网关要用到。
-`注意：
-   刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。
-   部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名
-echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf `
+
+- 注意，这里如果你内部有自己DNS，你也可以选择使用你自己的
+
+> 部署内部DNS dnsmasq 用于服务间内部通信，API网关需要配置，切记
 
 ```shell
 echo -e "\033[32m [INFO]: Start install dnsmasq \033[0m"
-#install dnsmasq
 yum install dnsmasq -y
 
 # 设置上游DNS，毕竟你的Dns只是个代理
@@ -312,31 +239,34 @@ nameserver 114.114.114.114
 nameserver 8.8.8.8
 EOF
 
-#设置host解析，这里同学注意一下子，如果你是单机部署，那么你就将你的本机IP+模块域名解析即可，如果你是分布式部署的，那么每个模块对应的机器IP一定不要搞错，这个很重要，后面网关也要依赖此DNS去解析你的域名，帮你做服务转发的，切记！！！！
+# 设置host解析
+echo -e "\033[32m [INFO]: 如果你是单机部署，那么你就将你的本机IP+模块域名解析即可，如果你是分布式部署的，那么每个模块对应的机器IP一定不要搞错，这个很重要，后面网关也要依赖此DNS去解析你的域名，帮你做服务转发的，切记！！！！
+ \033[0m"
 cat >/etc/dnsmasqhosts <<EOF
-$LOCALHOST_IP $front_domain
-$LOCALHOST_IP $mg_domain
-$LOCALHOST_IP $task_domain
-$LOCALHOST_IP $api_gw_url
-$LOCALHOST_IP $cmdb_domain
-$LOCALHOST_IP $kerrigan_domain
-$LOCALHOST_IP $tools_domain
-$LOCALHOST_IP $dns_domain
+$LOCALHOST_IP demo-init.opendevops.cn
+$LOCALHOST_IP mg.opendevops.cn
+$LOCALHOST_IP task.opendevops.cn
+$LOCALHOST_IP gw.opendevops.cn
+$LOCALHOST_IP cmdb2.opendevops.cn
+$LOCALHOST_IP kerrigan.opendevops.cn
+$LOCALHOST_IP tools.opendevops.cn
+$LOCALHOST_IP cron.opendevops.cn
+$LOCALHOST_IP dns.opendevops.cn
 EOF
 
-#添加配置
-#注意：
-   # 刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。
-   # 部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名
-#echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf   
+# 添加配置
+echo -e "\033[32m [INFO]: 刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg，cron，cmdb等内网域名
+\033[0m"
+
+# 注意下一步是覆盖你本机的DNS，建议把你的DNS地址加在/etc/resolv.dnsmasq 里面 
+echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf   
 echo "resolv-file=/etc/resolv.dnsmasq" >> /etc/dnsmasq.conf
 echo "addn-hosts=/etc/dnsmasqhosts" >> /etc/dnsmasq.conf
 
 ## 启动
+/bin/systemctl enable dnsmasq.service
 /bin/systemctl start dnsmasq.service
 systemctl status dnsmasq
-/bin/systemctl enable dnsmasq.service
-
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: dnsmasq install success. \033[0m"
 else
@@ -345,40 +275,4 @@ else
 fi
 ```
 
-
-
-**CODO BASE镜像(可选)**
-
-`此步骤不理解的同学可直接跳过，无需操作，继续下一步即可`
-
-> 我们模块都是个人独立开发的，当时代码编写的时候是直接基于CentOS7来进行编写的Dockerfile，便于测试，需要的同学切记手动去修改下FROM就可以了。
-
-- 为什么加上这一步?
-  - 有部分用户反应说我们微服务里面每个Dockerfile都去重复安装了Python3
-  - 这里我准备了Python3的 Base Dockerfile文件，使用人员可先制作一个codo_base的docker images
-  - 如需部署模块慢的同学可以修改每个模块下的Dockerfile文件，`FROM codo_base`, 将Python之前的RUN去掉就可以了
-
-BASE Dockerfile文件
-
-```dockerfile
-FROM centos:7
-# 设置编码
-ENV LANG en_US.UTF-8
-# 同步时间
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-RUN echo "216.176.179.218  mirrorlist.centos.org" >> /etc/hosts
-# 1. 安装基本依赖
-RUN yum update -y && yum install epel-release -y && yum update -y && yum install wget unzip epel-release nginx  xz gcc automake zlib-devel openssl-devel supervisor  groupinstall development  libxslt-devel libxml2-devel libcurl-devel git -y
-#WORKDIR /var/www/
-
-# 2. 准备python
-RUN wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
-RUN xz -d Python-3.6.6.tar.xz && tar xvf Python-3.6.6.tar && cd Python-3.6.6 && ./configure && make && make install
-
-# 3. 安装yum依赖
-#pass
-```
-
-贴入Dockerfile文件，执行`docker build . -t codo_base`，需要的同学`注意：手动去修改下各模块下Dockerfile`即可
+**基础依赖部署完毕**

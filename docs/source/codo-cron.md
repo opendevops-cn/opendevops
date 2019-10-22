@@ -2,6 +2,12 @@
 
 > CODO项目定时任务模块，定时任务完全兼容crontab，支持到秒级
 
+备注：
+  
+  Docker部署需要将你的脚本目录单独挂载出来，若不理解的同学参考：[codo-cron本地部署方式](https://bbs.opendevops.cn/topic/65/codo-cron-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F)
+
+
+
 **下载代码**
 ```shell
 echo -e "\033[32m [INFO]: codo_cron(定时任务) Start install. \033[0m"
@@ -16,6 +22,7 @@ cd codo-cron
 
 **修改配置**
 > 同样，这里codo-cron也支持取env环境变量，建议还是修改下默认配置
+
 ```shell
 #导入环境变量文件，最开始准备的环境变量文件
 source /opt/codo/env.sh
@@ -40,32 +47,22 @@ sed -i "s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DB
 
 ```
 
-**修改Dockerfile （可选）**
 
-可以修改Dockerfile  为下列内容 跳过安装公共依赖
+**修改Dockerfile**
 
-```
-FROM ss1917/codo_base:beta0.3
+使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去
 
-#
-RUN pip3 install --upgrade pip
-RUN pip3 install -U git+https://github.com/ss1917/ops_sdk.git
+```shell
+cat >Dockerfile <<EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-cron
 
-# 复制代码
-RUN mkdir -p /var/www/
-ADD . /var/www/codo-cron/
+#修改应用配置
+ADD settings.py /var/www/codo-cron/
 
-# 安装pip依赖
-RUN pip3 install -r /var/www/codo-cron/doc/requirements.txt
-
-# 日志
-VOLUME /var/log/
-
-# 准备文件
-COPY doc/supervisor_ops.conf  /etc/supervisord.conf
-
-EXPOSE 9900
+EXPOSE 80
 CMD ["/usr/bin/supervisord"]
+EOF
+
 ```
 
 
@@ -83,8 +80,7 @@ docker-compose up -d
 **创建数据库**
 
 ```
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}
-create database `codo_cron` default character set utf8mb4 collate utf8mb4_unicode_ci;
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_cron` default character set utf8mb4 collate utf8mb4_unicode_ci;'
 ```
 
 
@@ -95,7 +91,11 @@ create database `codo_cron` default character set utf8mb4 collate utf8mb4_unicod
 docker exec -ti codo-cron_codo_cron_1  /usr/local/bin/python3 /var/www/codo-cron/db_sync.py
 ```
 
+**重启**
 
+```
+docker-compose  restart 
+```
 
 **测试**
 
@@ -106,4 +106,4 @@ docker exec -ti codo-cron_codo_cron_1  /usr/local/bin/python3 /var/www/codo-cron
 tailf /var/log/supervisor/cron.log   #确认没报错
 ```
 
-
+**定时任务系统部署完成**

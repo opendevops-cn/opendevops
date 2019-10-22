@@ -34,46 +34,46 @@ CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限�
   - 功能：管理后端
   - 端口：8010
   - 安装：必须
-  - 检测：`curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://$mg_domain:8010/are_you_ok/`
+  - 检测：`curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://mg.opendevops.cn:8010/are_you_ok/`
 
 - codo-cmdb
   - 功能：资产管理
   - 端口：8050
   - 安装：必须
-  - 检测：`curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cmdb_domain}:8050/are_you_ok/`
+  - 检测：`curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cmdb2.opendevops.cn:8050/are_you_ok/`
 
 - codo-task
   - 功能：任务系统
   - 端口：8020
   - 安装：必须
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${cron_task}:8020/are_you_ok/`
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://task.opendevops.cn:8020/are_you_ok/`
 
 
 - codo-cron
   - 功能：定时任务
   - 端口：9900
   - 安装：必须
-  - 备注: 单进程，默认无域名，使用本机IP
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://10.2.2.236:9900/are_you_ok/`
+  - 备注: 单进程，可使用本机IP
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cron.opendevops.cn:9900/are_you_ok/`
 
 - kerrigan
   - 功能：配置中心
   - 端口：8030
   - 安装：必须
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${kerrigan_domain}:8030/are_you_ok/`
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://kerrigan.opendevops.cn:8030/are_you_ok/`
   
 
 - codo-tools
   - 功能：运维工具
   - 端口：8040
   - 安装：必须
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${tools_domain}:8040/are_you_ok/`
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://tools.opendevops.cn:8040/are_you_ok/`
   
 - codo-dns
   - 功能：域名管理
   - 端口：8060
   - 安装：必须
-  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://${dns_domain}:8060/are_you_ok/`
+  - 检测: `curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://dns.opendevops.cn:8060/are_you_ok/`
   
 
   

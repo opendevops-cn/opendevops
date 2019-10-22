@@ -18,7 +18,7 @@ cd codo-cmdb
 **修改配置**
 
 - 修改`settings.py`配置信息
-```
+```bash
 #导入环境变量文件，最开始准备的环境变量文件
 source /opt/codo/env.sh
 
@@ -48,11 +48,8 @@ sed -i "s#DEFAULT_REDIS_HOST = .*#DEFAULT_REDIS_HOST = os.getenv('DEFAULT_REDIS_
 sed -i "s#DEFAULT_REDIS_PORT = .*#DEFAULT_REDIS_PORT = os.getenv('DEFAULT_REDIS_PORT', '${DEFAULT_REDIS_PORT}')#g" settings.py
 sed -i "s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAULT_REDIS_PASSWORD', '${DEFAULT_REDIS_PASSWORD}')#g" settings.py
 
-```
+#这里如果配置codo-task的数据库地址，则将数据同步到作业配置
 
-**另外，同步标签树配置**
-- 这里如果配置codo-task的数据库地址，则将数据同步到作业配置--TagTree下面(非必填项)，但是建议配置
-```
 TASK_DB_DBNAME='codo_task' 
 sed -i "s#CODO_TASK_DB_HOST = .*#CODO_TASK_DB_HOST = os.getenv('CODO_TASK_DB_HOST', '${DEFAULT_DB_DBHOST}')#g" settings.py
 sed -i "s#CODO_TASK_DB_PORT = .*#CODO_TASK_DB_PORT = os.getenv('CODO_TASK_DB_PORT', '${DEFAULT_DB_DBPORT}')#g" settings.py
@@ -62,43 +59,47 @@ sed -i "s#CODO_TASK_DB_DBNAME = .*#CODO_TASK_DB_DBNAME = os.getenv('CODO_TASK_DB
 
 ```
 
+- AWS事件和WebTerminnal配置
+  
 
+`修改settings.py文件`
 
-**修改Dockerfile （可选）**
+```shell
 
-可以修改Dockerfile  为下列内容 跳过安装公共依赖
+# Aws Events 事件邮件通知人
+AWS_EVENT_TO_EMAIL = '1111@qq.com,2222@gmail.com'
+
+#Web Terminal 地址，请填写你部署的webterminal地址，若无可暂不填写。
+WEB_TERMINAL = 'http://1.1.1.1:8080'
 
 ```
-FROM ss1917/codo_base:beta0.3
 
-#
-RUN pip3 install --upgrade pip
-RUN pip3 install -U git+https://github.com/ss1917/ops_sdk.git
 
-# 复制代码
-RUN mkdir -p /var/www/
-ADD . /var/www/codo-cmdb/
+**修改Dockerfile**
 
-# 安装pip依赖
-RUN pip3 install -r /var/www/codo-cmdb/doc/requirements.txt
+使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去
 
-# 日志
-VOLUME /var/log/
+```shell
+cat >Dockerfile <<EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-cmdb
 
-# 准备文件
-COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
-COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+#修改应用配置
+ADD settings.py /var/www/codo-cmdb/
+
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
 
 EXPOSE 80
 CMD ["/usr/bin/supervisord"]
-```
+EOF
 
+```
 
 
 **打包镜像**
 
 ```
-#安装依赖的时候根据网络因素定，如果很慢建议更改pip源站为阿里的
 docker build . -t codo_cmdb  
 ```
 
@@ -113,21 +114,28 @@ docker-compose up -d
 **创建数据库**
 
 ```
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}
-create database `codo_cmdb` default character set utf8mb4 collate utf8mb4_unicode_ci;
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_cmdb` default character set utf8mb4 collate utf8mb4_unicode_ci;'
 ```
 
 **初始化表结构**
 
 ```
-#若是在本地执行需要安装很多SDK包的依赖，建议进入容器执行
-#cmdb_codo_cmdb_1:是你的容器名称
 docker exec -ti codo-cmdb_codo_cmdb_1 /usr/local/bin/python3 /var/www/codo-cmdb/db_sync.py
+```
+
+**重启**
+
+```
+docker-compose  restart 
 ```
 
 **日志文件**
 
 - 服务日志：`/var/log/supervisor/cmdb.log`  #主程序日志
 - 定时日志：`/var/log/supervisor/cmdb_cron.log` #一些后端守护自动运行的日志
+```
+tailf /var/log/supervisor/cmdb.log
+tailf /var/log/supervisor/cmdb_cron.log 
+```
 
-
+**资产管理系统部署完成**

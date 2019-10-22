@@ -14,7 +14,7 @@ cd /opt/codo && git clone https://github.com/opendevops-cn/codo-admin.git && cd 
 
 修改`settings.py`配置
 
-> 注意：这里的`cookie_secret`和`token_secret`必须和你的env.sh里面的保持一致，后续网关也要用到这个。若不保持一直登陆后校验不通过回被自动踢回
+> 注意：这里的`cookie_secret`和`token_secret`必须和你的env.sh里面的保持一致，后续网关也要用到这个。若不保持一直登陆后校验不通过回被自动踢回，会导致页面一直不停的刷新
 
 `注意：这里的token_secret必须要和你的网关保持一致，这个值是从env.sh拿来的，一定要做修改，防止网站被攻击，如果secret包含正则符号会导致sed失败，请仔细检查
 `
@@ -49,37 +49,27 @@ sed -i "s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DB
 sed -i "s#DEFAULT_REDIS_HOST = .*#DEFAULT_REDIS_HOST = os.getenv('DEFAULT_REDIS_HOST', '${DEFAULT_REDIS_HOST}')#g" settings.py
 sed -i "s#DEFAULT_REDIS_PORT = .*#DEFAULT_REDIS_PORT = os.getenv('DEFAULT_REDIS_PORT', '${DEFAULT_REDIS_PORT}')#g" settings.py
 sed -i "s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAULT_REDIS_PASSWORD', '${DEFAULT_REDIS_PASSWORD}')#g" settings.py
-```
-
-**修改Dockerfile （可选）**
-
-可以修改Dockerfile  为下列内容 跳过安装公共依赖
 
 ```
-FROM ss1917/codo_base:beta0.3
 
-#
-RUN pip3 install --upgrade pip
-RUN pip3 install -U git+https://github.com/ss1917/ops_sdk.git
+**修改Dockerfile**
 
-# 复制代码
-RUN mkdir -p /var/www/
-ADD . /var/www/codo-admin/
+使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去
 
-# 安装pip依赖
-RUN pip3 install -r /var/www/codo-admin/doc/requirements.txt
+```shell
+cat >Dockerfile <<EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-admin
 
-# 日志
-VOLUME /var/log/
+ADD settings.py /var/www/codo-admin/
 
-#准备文件
-COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
-COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+# COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+# COPY doc/supervisor_ops.conf  /etc/supervisord.conf
 
 EXPOSE 80
 CMD ["/usr/bin/supervisord"]
-```
+EOF
 
+```
 
 
 **编译，启动**
@@ -96,8 +86,7 @@ docker-compose up -d
 **创建数据库**
 
 ```shell
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}
-create database codo_admin default character set utf8mb4 collate utf8mb4_unicode_ci;
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database codo_admin default character set utf8mb4 collate utf8mb4_unicode_ci;'
 ```
 
 
@@ -119,6 +108,11 @@ create database codo_admin default character set utf8mb4 collate utf8mb4_unicode
 mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_admin < ./doc/codo_admin_beta0.3.sql
 ```
 
+**重启**
+
+```
+docker-compose  restart 
+```
 
 
 **测试codo-admin**

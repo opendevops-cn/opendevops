@@ -38,42 +38,36 @@ sed -i "s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAUL
 ```
 
 
-**修改Dockerfile （可选）**
+**修改Dockerfile**
 
-可以修改Dockerfile  为下列内容 跳过安装公共依赖
+使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去
 
-```
-FROM ss1917/codo_base:beta0.3
+```shell
+cat >Dockerfile <<EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-tools
 
-#
-RUN pip3 install --upgrade pip
-RUN pip3 install -U git+https://github.com/ss1917/ops_sdk.git
+#修改应用配置
+ADD settings.py /var/www/codo-tools/
 
-# 复制代码
-RUN mkdir -p /var/www/
-ADD . /var/www/codo-tools/
-
-# 安装pip依赖
-RUN pip3 install -r /var/www/codo-tools/doc/requirements.txt
-
-# 日志
-VOLUME /var/log/
-
-# 准备文件
-COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
-COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
 
 EXPOSE 80
 CMD ["/usr/bin/supervisord"]
+EOF
+
 ```
 
 
-**编译，启动**
+**编译镜像**
 
 ```shell
-#编译镜像
 docker build . -t codo_tools
-#启动
+```
+
+**启动**
+```
 docker-compose up -d
 ```
 
@@ -81,8 +75,7 @@ docker-compose up -d
 **创建数据库**
 
 ```
-mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}
-create database `codo_tools` default character set utf8mb4 collate utf8mb4_unicode_ci;
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_tools` default character set utf8mb4 collate utf8mb4_unicode_ci;'
 ```
 
 
@@ -92,6 +85,13 @@ create database `codo_tools` default character set utf8mb4 collate utf8mb4_unico
 docker exec -ti  codo-tools_codo_tools_1  /usr/local/bin/python3 /var/www/codo-tools/db_sync.py 
 ```
 
+**重启**
+
+```
+docker-compose  restart 
+```
+
+
 **测试codo-tools**
 
 ```shell
@@ -100,3 +100,4 @@ tailf /var/log/supervisor/tools.log  #服务日志，确认没有报错
 tailf /var/log/supervisor/cron_jobs.log  #定时提醒日志
 ```
 
+**运维工具系统部署完成**
