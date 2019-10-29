@@ -6,7 +6,6 @@
       :maxdepth: 1
 
     env_ready
-    codo
     codo-admin
     codo-task
     codo-cmdb
@@ -14,6 +13,7 @@
     codo-kerrigan
     codo-tools
     codo-dns
+    codo
     codo-gw
 
 

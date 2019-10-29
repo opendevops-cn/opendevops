@@ -100,6 +100,29 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 
 
 
+**关闭SELINUX**
+
+- 若已关闭请跳过
+```shell
+
+#临时关闭
+$ setenforce 0
+
+#或修改配置文件关闭,需要重启
+$ sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/
+$ reboot  
+```
+
+**清空防火墙规则**
+
+`注意，不要关闭防火墙，Docker需要用到NAT`
+
+```shell
+#只清空filter链即可
+$ iptables -F
+
+```
+
 
 
 **安装Python3**
@@ -196,6 +219,7 @@ EOF
 #启动
 docker-compose up -d
 ```
+- 没有cli的同学，请`yum install redis -y` 
 - 测试 `redis-cli -h 127.0.0.1 -p 6379 -a ${REDIS_PASSWORD}`
 
 
