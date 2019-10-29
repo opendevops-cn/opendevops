@@ -19,7 +19,8 @@
 2. 确保/etc/dnsmasqhosts文件有解析的IP
 3. 确保你网关的这台机器/etc/resolv.conf DNS执行你刚部署的dnsmasq服务IP
 4. 确保你网关所在的机器都能正常ping通所有的服务，比如：ping cmdb2.opendevops.cn
-
+5. 确保你的防火墙规则是清空的`iptables -F`
+6. 确保你的SELINUX是关闭的`setenforce 0`
 ```
 
 **服务健康检测**
