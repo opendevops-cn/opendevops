@@ -109,7 +109,7 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 $ setenforce 0
 
 #或修改配置文件关闭,需要重启
-$ sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/
+$ sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
 $ reboot  
 ```
 
@@ -283,7 +283,11 @@ echo -e "\033[32m [INFO]: 刚装完DNS可以先不用改本机的DNS，有一部
 \033[0m"
 
 # 注意下一步是覆盖你本机的DNS，建议把你的DNS地址加在/etc/resolv.dnsmasq 里面 
-echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf   
+cp -rp /etc/resolv.conf /etc/resolv.conf-`date +%F`
+# echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf  
+sed "1i\nameserver ${LOCALHOST_IP}" /etc/resolv.conf -i 
+###注意注意， 这里修改完后，请你一定要确定你nameserver ${LOCALHOST_IP} 内部DNS在第一条、第一条、第一条，放在下面是不能正常解析的.
+
 echo "resolv-file=/etc/resolv.dnsmasq" >> /etc/dnsmasq.conf
 echo "addn-hosts=/etc/dnsmasqhosts" >> /etc/dnsmasq.conf
 
