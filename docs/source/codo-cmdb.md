@@ -59,8 +59,16 @@ sed -i "s#CODO_TASK_DB_DBNAME = .*#CODO_TASK_DB_DBNAME = os.getenv('CODO_TASK_DB
 
 ```
 
+
+
 - AWS事件和WebTerminnal配置
-  
+
+> 首先将webterminal部署上去
+
+```shell
+docker pull webterminal/webterminallte
+docker run -itd -p 8080:80 webterminal/webterminallte
+```  
 
 `修改settings.py文件`
 
@@ -69,7 +77,8 @@ sed -i "s#CODO_TASK_DB_DBNAME = .*#CODO_TASK_DB_DBNAME = os.getenv('CODO_TASK_DB
 # Aws Events 事件邮件通知人
 AWS_EVENT_TO_EMAIL = '1111@qq.com,2222@gmail.com'
 
-#Web Terminal 地址，请填写你部署的webterminal地址，若无可暂不填写。
+#Web Terminal 地址，请填写你部署的webterminal地址
+#注意这里是填写你上面docker run的机器外网IP
 WEB_TERMINAL = 'http://1.1.1.1:8080'
 
 ```
