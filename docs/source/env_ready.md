@@ -109,8 +109,12 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 $ setenforce 0
 
 #或修改配置文件关闭,需要重启
-$ sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
-$ reboot  
+
+$ vi /etc/selinux/config  
+
+将SELINUX=enforcing改为SELINUX=disabled 
+设置后需要重启才能生效  
+
 ```
 
 **清空防火墙规则**
