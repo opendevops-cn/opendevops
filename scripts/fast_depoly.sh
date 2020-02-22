@@ -536,6 +536,9 @@ function init_mysql(){
   echo -e "\033[32m [INFO]: 这里请耐心等待30s，等待MySQL启动成功，不然会导致连不上数据库 \033[0m"
   sleep 30s
   iptables -F
+  # 创建数据库
+  docker exec -it codo_mysql_1 bash -c "mysql -uroot -p${MYSQL_PASSWORD} < /docker-entrypoint-initdb.d/data.sql"
+  # 创建表
   exist_codo_docker_num=`docker ps -a |grep -E "codo-admin|codo-tools|codo-cmdb|codo-dns|codo-task|kerrigan" | wc -l`
   if [[ ${exist_codo_docker_num} -ne 6 ]]; then
     echo -e "\033[31m [ERROR]: 没有发现COOD项目Docker服务是启动的，请检查是否启动成功了 \033[0m"
