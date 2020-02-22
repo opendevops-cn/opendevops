@@ -532,7 +532,7 @@ function docker_compose_up(){
 function init_mysql(){
   echo -e "\033[32m [INFO]: 开始初始化各项目的数据之前需要清理目录数据 \033[0m"
   rm -rf /data/mysql /data/mysql_conf
-
+  
   echo -e "\033[32m [INFO]: 开始初始化各项目的数据 \033[0m"
 
   #初始化数据库（注：由于上一步操作同一时间启动复数容器，在执行以下命令时可能会提示无法连接mysql，可稍等片刻再尝试）
