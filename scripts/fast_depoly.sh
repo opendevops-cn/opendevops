@@ -86,6 +86,7 @@ function install_python3(){
   echo -e "\033[32m [INFO]: Start install python3 \033[0m"
   echo -e "\033[32m [INFO]: python3下载时间根据实际网络为准,请耐心等待。\033[0m"
   echo -e "\033[32m [INFO]: 这里并没有卡死，下载进度大小查看du -sh /usr/local/src/* \033[0m"
+  yum install -y wget
   wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
   tar xf  Python-3.6.4.tar.xz >/dev/null 2>&1 && cd Python-3.6.4
   ./configure >/dev/null 2>&1
