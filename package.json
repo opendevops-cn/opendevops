@@ -1,0 +1,14 @@
+{
+  "name": "vuepress-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "depoly": "bash depoly.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
