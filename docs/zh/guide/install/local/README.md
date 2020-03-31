@@ -147,13 +147,63 @@ yum install python3 -y
 
 > 一般来说一个MySQL实例即可，如果有需求可以自行搭建主从，微服务每个服务都可以有自己的数据库
 
-- 建议MySQL 5.7,我这个安装下来应该是mysql5.6
+- 必须使用MySQL 5.7,我这个安装下来应该是mysql5.6
+所以需要你改一下安装好的mysql配置文件
+
 
 ```shell
 source /opt/codo/env.sh  #变量文件
 yum install -y wget
 wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm
 rpm -ivh mysql-community-release-el6-5.noarch.rpm
+```
+
+
+```shell
+cat >/etc/yum.repos.d/mysql-community.repo <<EOF
+[mysql-connectors-community]
+name=MySQL Connectors Community
+baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/6/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-tools-community]
+name=MySQL Tools Community
+baseurl=http://repo.mysql.com/yum/mysql-tools-community/el/6/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Enable to use MySQL 5.5
+[mysql55-community]
+name=MySQL 5.5 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.5-community/el/6/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Enable to use MySQL 5.6
+[mysql56-community]
+name=MySQL 5.6 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Note: MySQL 5.7 is currently in development. For use at your own risk.
+# Please read with sub pages: https://dev.mysql.com/doc/relnotes/mysql/5.7/en/
+[mysql57-community-dmr]
+name=MySQL 5.7 Community Server Development Milestone Release
+baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+EOF
+
+```
+
+```shell
 yum install mysql-community-server -y
 chkconfig mysqld on
 service mysqld start
