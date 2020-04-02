@@ -29,7 +29,7 @@
 
 `注意： 平台设计的时候为了安全考虑创建/注册用户都是需要绑定MFA的，若你实在想要取消，需要自己去update数据库`
 
-- 点击菜单栏`用户管理`-`用户列表`-`新建用户`， MFA使用参考[FAQ](http://docs.opendevops.cn/zh/latest/faq.html#google-authenticator)
+- 点击菜单栏`用户管理`-`用户列表`-`新建用户`， MFA使用参考[FAQ](https://docs.opendevops.cn/zh/guide/more/faq/)
 ![](/create_user01.png)
 ![](/create_user02.png)
 ![](/create_user03.png)
@@ -46,7 +46,7 @@
 
 ![](/create_email01.png)
 
-- 然后在登陆界面直接用设置后的邮箱后缀为结尾的有效邮箱进行登陆，密码为邮箱登陆密码，确认相关信息，关于邮箱设置相关的也可参考[FAQ](http://docs.opendevops.cn/zh/latest/faq.html#id1)
+- 然后在登陆界面直接用设置后的邮箱后缀为结尾的有效邮箱进行登陆，密码为邮箱登陆密码，确认相关信息，关于邮箱设置相关的也可参考FAQ
 
 ![](/create_email02.png)
 

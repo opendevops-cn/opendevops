@@ -224,8 +224,6 @@ echo "requirepass ${REDIS_PASSWORD}" >> /etc/redis.conf
 sed -i "s/^daemonize.*$/daemonize yes/g" /etc/redis.conf
 #bind 127.0.0.1 如果是开启的请关闭掉
 systemctl start redis
-systemctl enable redis
-
 systemctl status redis
 ```
 - 测试 `redis-cli -h 127.0.0.1 -p 6379 -a ${REDIS_PASSWORD}`
@@ -302,8 +300,7 @@ cat /etc/dnsmasqhosts #检查下
 cp -rp /etc/resolv.conf /etc/resolv.conf-`date +%F`
 # echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf  
 sed "1i\nameserver ${LOCALHOST_IP}" /etc/resolv.conf -i 
-chattr +i /etc/resolv.conf
-###注意注意， 这里修改完后，请你一定要确定你nameserver ${LOCALHOST_IP} 内部DNS在第一条、第一条、第一条，放在下面是不能正常解析的.防止别的程序篡改。netmanage 会隔几分钟回复默认dns
+###注意注意， 这里修改完后，请你一定要确定你nameserver ${LOCALHOST_IP} 内部DNS在第一条、第一条、第一条，放在下面是不能正常解析的.
 
 echo "resolv-file=/etc/resolv.dnsmasq" >> /etc/dnsmasq.conf
 echo "addn-hosts=/etc/dnsmasqhosts" >> /etc/dnsmasq.conf
@@ -312,8 +309,6 @@ echo "addn-hosts=/etc/dnsmasqhosts" >> /etc/dnsmasq.conf
 /bin/systemctl enable dnsmasq.service
 /bin/systemctl start dnsmasq.service
 systemctl status dnsmasq
-
-
 if [ $? == 0 ];then
     echo -e "\033[32m [INFO]: dnsmasq install success. \033[0m"
 else

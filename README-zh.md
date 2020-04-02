@@ -64,10 +64,10 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 
 > 注意：由于是微服务部署比较复杂，我们目前只支持分布式一步步部署，depoly.sh暂不更新，后续会提供其余快速部署方式，请知悉。
 
-- [官方文档](http://docs.opendevops.cn/zh/latest/)
-- [更新日志](http://docs.opendevops.cn/zh/latest/change_log.html)
-- [快速体验](https://demo.opendevops.cn/login)
-- [分布式部署文档](http://docs.opendevops.cn/zh/latest/distributed_install.html)
+- [Document](http://docs.opendevops.cn/)
+- [Quick Experience](https://demo.opendevops.cn/login)
+- [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
+
 
 
 ### 模块链接

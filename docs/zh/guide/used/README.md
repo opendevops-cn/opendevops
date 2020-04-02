@@ -9,7 +9,7 @@
 ## 任务模版
 
 > 这部分文档主要用来介绍任务模板，任务模板：可以帮助你实现一个很强大、很复杂、可干预、自定义的任务流程模板；  
-> 任务模板功能主要分为：命令管理、模板管理、参数管理、执行用户等部分，由于这块稍微有点难理解，我们提供了[示例文档](http://docs.opendevops.cn/zh/latest/task_example.html)和[视频演示](https://www.bilibili.com/video/av53424572/)
+> 任务模板功能主要分为：命令管理、模板管理、参数管理、执行用户等部分，由于这块稍微有点难理解，我们提供了[示例文档](https://docs.opendevops.cn/zh/guide/more/example/)和[视频演示](https://www.bilibili.com/video/av53424572/)
 
 
 
@@ -949,7 +949,7 @@ CMDB中的几种状态
 
 ## 配置中心
 
-> 这部分主要介绍下配置中心使用说明， [戳我参考最佳实践示例](http://docs.opendevops.cn/zh/latest/dnsmasq_mg.html)
+> 这部分主要介绍下配置中心使用说明
 
 
 **新建项目**  
@@ -1331,7 +1331,7 @@ except Exception as e:
 **系统配置**
 > 这块需要配置你的API地址，部署时你API网关服务所部署的服务器地址，只有确认了API网关，各个功能模块才可以正常通信。
 
-- API地址: 你的API网关地址，可以是IP/域名，必填项。 [API网关部署](http://docs.opendevops.cn/zh/latest/step_by_step_install.html#api)
+- API地址: 你的API网关地址，可以是IP/域名，必填项.
 
 ![](/api_addressv2.png)
 
@@ -1339,7 +1339,7 @@ except Exception as e:
 
 > 这块主要配置邮箱，配置了此邮箱信息后，后续平台内所涉及到邮件提醒都会使用此邮箱配置。
 
-不同运营商配置可参考`FAQ`中[邮箱设置问题](http://docs.opendevops.cn/zh/latest/faq.html#)
+不同运营商配置可参考`FAQ`中[邮箱设置问题](https://docs.opendevops.cn/zh/guide/more/faq/)
 
 
 - SMTP主题： 邮件标题

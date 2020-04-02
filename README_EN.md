@@ -58,10 +58,9 @@ We provide a demo of the user experience and click on the demo to demonstrate it
 
 ### How can I use it?
 
-- [Document](http://docs.opendevops.cn/zh/latest/)
-- [Update Log](http://docs.opendevops.cn/zh/latest/change_log.html)
+- [Document](http://docs.opendevops.cn/)
 - [Quick Experience](https://demo.opendevops.cn/login)
-- [Deployment Document](http://docs.opendevops.cn/zh/latest/distributed_install.html)
+- [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
 
 
 ### Module link

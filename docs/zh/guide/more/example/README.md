@@ -282,7 +282,7 @@ git push -u origin release-yanghongfei-v1  #把tag推送上去
 
 - 记下模板ID
 - 模板执行顺序自行排版
-- [opendevops模板使用说明](http://docs.opendevops.cn/zh/latest/task_template.html)
+- [opendevops模板使用说明](https://docs.opendevops.cn/zh/guide/used/#%E4%BB%BB%E5%8A%A1%E6%A8%A1%E7%89%88)
 ![](/005X1wn0gy1g1ewg3sgrrj31gk0n7n0o.jpg)
 
 

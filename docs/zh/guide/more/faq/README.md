@@ -139,6 +139,6 @@ Q：新部署的时候登陆进去，点击用户列表没办法创建/看不到
 
 A：这个问题是因为没有创建角色，默认部署的时候权限/组件数据都是初始化进去的，但是角色需要用户自己创建，用户可以点击**用户管理**-->**角色管理**  新建一个角色，给所有组件/菜单/权限  然后退出，强刷下浏览器就可以了  
 
-操作步骤可参考：http://docs.opendevops.cn/zh/latest/permission_docs.html#role
+操作步骤可参考：https://docs.opendevops.cn/zh/guide/more/permission/
   
 ::: 
