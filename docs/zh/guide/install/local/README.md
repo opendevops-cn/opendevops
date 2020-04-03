@@ -1718,8 +1718,10 @@ systemctl status openresty
 
 **生成最新的前端**
 ```shell
-[ ! -d /opt/codo/codo/ ] && mkdir -p /opt/codo/codo/ && cd /opt/codo/codo/
-git clone https://github.com/opendevops-cn/codo.git
+if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
+if ! which git &>/dev/null; then yum install -y git >/dev/null 2>&1;fi
+[ ! -d /opt/codo/ ] && mkdir -p /opt/codo
+cd /opt/codo && git clone https://github.com/opendevops-cn/codo.git && cd codo
 
 #build 最新的前端文件
 npm config set registry https://registry.npmjs.org/ \
