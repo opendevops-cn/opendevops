@@ -132,6 +132,15 @@ A：出现这个问题是因为网关`token_secret`和`codo-admin`里面`token_s
 
 :::
 
+### 网关提示域名gw.opendevops.cn找不到，或者网络不通
+```
+iptables -F
+### 这个是环境准备时候部署的dnsmasq所在的地址，请睁大眼睛不要写错了
+echo "nameserver 127.0.0.1" > /etc/resolv.conf   
+service dnsmasq restart
+systemctl restart docker.service
+ntpdate ntp1.aliyun.com
+```
 ### 新部署的系统无法创建User？没办法看到创建/重置/获取Token？  
 
 ::: details 详细信息
