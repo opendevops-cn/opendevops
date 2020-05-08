@@ -1358,7 +1358,7 @@ http {
 
     init_by_lua_file lua/init_by_lua.lua;       # nginx启动时就会执行
     include ./conf.d/*.conf;                    # lua生成upstream
-    resolver 10.10.10.12;                      # 内部DNS
+    resolver 10.10.10.12 ipv6=off;                      # 内部DNS
 }
 
 ```
