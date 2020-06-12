@@ -1,0 +1,19 @@
+FROM centos:7
+ENV LANG en_US.UTF-8
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN yum update -y && \
+    yum install epel-release -y && \
+    yum update -y && \
+    yum install wget unzip epel-release nginx  \
+        xz gcc automake zlib-devel openssl-devel \
+        supervisor libxslt-devel libxml2-devel libcurl-devel \
+        git  python3 python3-pip -y && \
+    yum clean all && rm -rf /var/cache/yum/*
+
+RUN pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip && \
+    pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple -U git+https://github.com/ss1917/ops_sdk.git && \
+    pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple mycli
+
+CMD ["/usr/bin/supervisord"]
