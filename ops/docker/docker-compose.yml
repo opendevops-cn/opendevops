@@ -145,7 +145,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-frontend
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-frontend:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-frontend:alpine-0.3.5
     ports:
       - "80:80"
       - "443:443"
