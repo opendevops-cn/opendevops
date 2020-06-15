@@ -1,7 +1,9 @@
-# 分布式部署
+# 传统+容器部署（Draft）
 
 ::: tip
-基于全Docker的分布式部署方式，建议线上使用。[部署视频入口](https://www.bilibili.com/video/av53446517?from=search&seid=16003251072301252333)
+部分Docker的分布式（依赖此层环境）部署方式。后面此部署方式将废弃，转向全部Docker部署的方式，不过你还是可以阅读本文，学习内部相关通讯机制和关键配置项。
+
+[部署视频入口](https://www.bilibili.com/video/av53446517?from=search&seid=16003251072301252333)
 :::
 
 
@@ -603,7 +605,7 @@ sed -i "s#CODO_TASK_DB_DBNAME = .*#CODO_TASK_DB_DBNAME = os.getenv('CODO_TASK_DB
 ```shell
 docker pull webterminal/webterminallte
 docker run -itd -p 8080:80 webterminal/webterminallte
-```  
+```
 
 `修改settings.py文件`
 
@@ -690,7 +692,7 @@ tailf /var/log/supervisor/cmdb_cron.log
 > CODO项目定时任务模块，定时任务完全兼容crontab，支持到秒级
 
 备注：
-  
+
   Docker部署需要将你的脚本目录单独挂载出来，若不理解的同学参考：[codo-cron本地部署方式](https://bbs.opendevops.cn/topic/65/codo-cron-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F)
 
 
