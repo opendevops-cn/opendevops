@@ -45,13 +45,13 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 ### Demo
 我们提供了Demo供使用者体验,可点击Try Online Demo快速进行体验。
 
-<a href="https://codo.k8stech.net/login" target="api_explorer">
+<a href="https://demo.opendevops.cn/login" target="api_explorer">
   <img src="https://img.alicdn.com/tfs/TB12GX6zW6qK1RjSZFmXXX0PFXa-744-122.png" width="180" />
 </a>
 
 `PS: Demo权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表,Demo订单日志我们暂时清空了`
 
-- 地址：https://codo.k8stech.net/login
+- 地址：https://demo.opendevops.cn/login
 - 用户：demo
 - 密码：2ZbFYNv9WibWcR7GB6kcEY
 
@@ -65,7 +65,7 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 > 注意：由于是微服务部署比较复杂，我们目前只支持分布式一步步部署，depoly.sh暂不更新，后续会提供其余快速部署方式，请知悉。
 
 - [Document](http://docs.opendevops.cn/)
-- [Quick Experience](https://codo.k8stech.net/login)
+- [Quick Experience](https://demo.opendevops.cn/login)
 - [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
 
 
