@@ -56,7 +56,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-dns
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-dns:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-dns:0.3.0
     ports:
       - "8060:80"
     networks:
@@ -67,7 +67,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-cron
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-cron:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-cron:0.3.0
     ports:
       - "9900:9900"
     networks:
@@ -78,7 +78,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-task
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-task:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-task:0.3.0
     ports:
       - "8020:80"
     networks:
@@ -89,7 +89,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-tools
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-tools:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-tools:0.3.0
     ports:
       - "8040:80"
     networks:
@@ -100,7 +100,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-kerrigan
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-kerrigan:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-kerrigan:0.3.0
     ports:
       - "8030:80"
     networks:
@@ -111,7 +111,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-cmdb
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-cmdb:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-cmdb:0.3.0
     ports:
     - "8050:80"
     hostname: codo-cmdb
@@ -123,7 +123,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-admin
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-admin:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-admin:0.3.0
     ports:
       - "8010:80"
     networks:
@@ -134,7 +134,7 @@ services:
       - ./env.sh
     restart: unless-stopped
     hostname: codo-gateway
-    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-gateway:alpine-0.3.0
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-gateway:0.3.0
     ports:
       - "8888:80"
     networks:
