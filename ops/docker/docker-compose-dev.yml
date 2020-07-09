@@ -1,0 +1,153 @@
+version: "3.8"
+networks:
+    codo:
+services:
+  codo-redis:
+    image: redis:4
+    env_file:
+      - ./env.sh
+    hostname: codo-redis
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    #command: redis-server --requirepass '${REDIS_PASSWORD}'
+    command: redis-server --requirepass cWCVKJ7ZHUK12mVbivUf
+    networks:
+      - codo
+
+  codo-rabbitmq:
+    restart: unless-stopped
+    env_file:
+      - ./env.sh
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - codo
+
+  codo-mysql:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-mysql
+    image: mysql:5.7
+    volumes:
+      - ../sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+    ports:
+    - "3306:3306"
+    networks:
+      - codo
+
+#  codo-init-mysql:
+#    env_file:
+#      - doc/env.sh
+#    restart: unless-stopped
+#    image: webuni/mycli
+#    volumes:
+#      - ../data.sql:/docker-entrypoint-initdb.d/data.sql
+#    ports:
+#    - "3306:3306"
+#    networks:
+#      - codo
+
+  codo-dns:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-dns
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-dns:latest
+    ports:
+      - "8060:80"
+    networks:
+      - codo
+
+  codo-cron:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-cron
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-cron:latest
+    ports:
+      - "9900:9900"
+    networks:
+      - codo
+
+  codo-task:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-task
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-task:latest
+    ports:
+      - "8020:80"
+    networks:
+      - codo
+
+  codo-tools:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-tools
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-tools:latest
+    ports:
+      - "8040:80"
+    networks:
+      - codo
+
+  codo-kerrigan:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-kerrigan
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-kerrigan:latest
+    ports:
+      - "8030:80"
+    networks:
+      - codo
+
+  codo-cmdb:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-cmdb
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-cmdb:latest
+    ports:
+    - "8050:80"
+    hostname: codo-cmdb
+    networks:
+      - codo
+
+  codo-admin:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-admin
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-admin:latest
+    ports:
+      - "8010:80"
+    networks:
+      - codo
+
+  codo-gateway:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-gateway
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-gateway:latest
+    ports:
+      - "8888:80"
+    networks:
+      - codo
+
+  codo-frontend:
+    env_file:
+      - ./env.sh
+    restart: unless-stopped
+    hostname: codo-frontend
+    image: registry.cn-hangzhou.aliyuncs.com/sourcegarden/opendevops-frontend:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - codo
