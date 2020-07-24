@@ -1,12 +1,13 @@
 # 单机部署
 
 ::: tip
-完全抽象出来的本地部署方式，不理解Docker的同学可以使用本文的进行参考，线上建议分布式部署
+完全抽象出来的本地部署方式，不理解Docker的同学可以使用本文的进行参考，线上我建议你分布式部署，分布式部署是Docker、Docker、Docker！！！
 :::
 
 ## 环境准备
 
-> 本地部署方式,采用pm2进行守护.
+> 本地部署方式,采用pm2进行守护，这是针对一些不想玩Docker的同学准备的，如果你想容器你就分布式部署aaaaa!!!!! 
+> 另外这里没写域名管理是怎么部署的， 如果需要参考分部署部署！！！！
 
 **建议配置**
 
@@ -31,7 +32,7 @@
 - 如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了[优化系统脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
-`Tips: 内部域名不要修改，不要修改，不要修改，都是内部通信...`
+`Tips: 内部域名不要修改，不要修改，不要修改，都是内部通信！！！！！！！！！ 不会真的有人不听劝？？？？ ？？？？`
 
 **环境变量**
 >创建项目目录
@@ -1307,7 +1308,7 @@ cd /opt/codo/ && git clone https://github.com/ss1917/api-gateway.git
 ```
 
 **目录结构**
-- 以下文件都是比较重要的
+- 以下文件都是比较重要的，这个文件是手动自己创建的！
 ```
 /usr/local/openresty/nginx/
 ├── conf
@@ -1720,8 +1721,8 @@ systemctl status openresty
 ```shell
 if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
 if ! which git &>/dev/null; then yum install -y git >/dev/null 2>&1;fi
-[ ! -d /opt/codo/ ] && mkdir -p /opt/codo
-cd /opt/codo && git clone https://github.com/opendevops-cn/codo.git && cd codo
+[ ! -d /opt/codo/codo/ ] && mkdir -p /opt/codo/codo/ && cd /opt/codo/codo/
+git clone https://github.com/opendevops-cn/codo.git
 
 #build 最新的前端文件
 npm config set registry https://registry.npmjs.org/ \
@@ -1732,7 +1733,6 @@ npm config set registry https://registry.npmjs.org/ \
 #网站目录
 mkdir -p /var/www/codo
 \cp -rp dist/* /var/www/codo/
-
 ```
 
 **配置代理**

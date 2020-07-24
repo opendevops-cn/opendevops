@@ -1,25 +1,13 @@
-### 本地部署方式
+# 单机部署
 
-#### 介绍
+::: tip
+完全抽象出来的本地部署方式，不理解Docker的同学可以使用本文的进行参考，线上我建议你分布式部署，分布式部署是Docker、Docker、Docker！！！
+:::
 
-> CODO是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台。
->
-> CODO前端基于Vue iview开发、为用户提供友好的操作界面，增强用户体验。
->
-> CODO后端基于Python Tornado开发，其优势为轻量、简洁清晰、异步非阻塞。
+## 环境准备
 
-- Apigateway代理前端文件
-- ApigateWay依赖DNS服务，需要安装Dnsmasq
-- 微服务部署完成后，需在Apigateway进行注册
-- 一台MySQL Master示例，不同的微服务使用单独的库
-
-![architecture](http://docs.opendevops.cn/zh/latest/_images/architecture.png)
-
-
-
-#### 环境准备
-
-> 本地部署方式,采用pm2进行守护
+> 本地部署方式,采用pm2进行守护，这是针对一些不想玩Docker的同学准备的，如果你想容器你就分布式部署aaaaa!!!!! 
+> 另外这里没写域名管理是怎么部署的， 如果需要参考分部署部署！！！！
 
 **建议配置**
 
@@ -44,7 +32,7 @@
 - 如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了[优化系统脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
-`Tips: 内部域名不要修改，不要修改，不要修改，都是内部通信...`
+`Tips: 内部域名不要修改，不要修改，不要修改，都是内部通信！！！！！！！！！ 不会真的有人不听劝？？？？ ？？？？`
 
 **环境变量**
 >创建项目目录
@@ -160,13 +148,63 @@ yum install python3 -y
 
 > 一般来说一个MySQL实例即可，如果有需求可以自行搭建主从，微服务每个服务都可以有自己的数据库
 
-- 建议MySQL 5.7,我这个安装下来应该是mysql5.6
+- 必须使用MySQL 5.7,我这个安装下来应该是mysql5.6
+所以需要你改一下安装好的mysql配置文件
+
 
 ```shell
 source /opt/codo/env.sh  #变量文件
 yum install -y wget
 wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm
 rpm -ivh mysql-community-release-el6-5.noarch.rpm
+```
+
+
+```shell
+cat >/etc/yum.repos.d/mysql-community.repo <<EOF
+[mysql-connectors-community]
+name=MySQL Connectors Community
+baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/6/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-tools-community]
+name=MySQL Tools Community
+baseurl=http://repo.mysql.com/yum/mysql-tools-community/el/6/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Enable to use MySQL 5.5
+[mysql55-community]
+name=MySQL 5.5 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.5-community/el/6/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Enable to use MySQL 5.6
+[mysql56-community]
+name=MySQL 5.6 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+# Note: MySQL 5.7 is currently in development. For use at your own risk.
+# Please read with sub pages: https://dev.mysql.com/doc/relnotes/mysql/5.7/en/
+[mysql57-community-dmr]
+name=MySQL 5.7 Community Server Development Milestone Release
+baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+EOF
+
+```
+
+```shell
 yum install mysql-community-server -y
 chkconfig mysqld on
 service mysqld start
@@ -317,7 +355,7 @@ pip3 install -U git+https://github.com/ss1917/ops_sdk.git
 
 
 
-#### 管理后端
+## 管理后端
 
 `codo-admin`是基于tornado框架 restful风格的API 实现后台管理,[codo详细参考](https://github.com/opendevops-cn/codo-admin),搭配使用`codo`前端(iView+ vue)组成的一套后台用户 权限以及系统管理的解决方案（提供登录，注册 密码修改 鉴权 用户管理 角色管理 权限管理 前端组件管理 前端路由管理 通知服务API 系统基础信息接口）
 
@@ -487,7 +525,7 @@ pm2 list ; pm2 logs
 
 
 
-#### 资产管理
+## 资产管理
 
 **获取代码**
 
@@ -660,7 +698,7 @@ pm2 list ; pm2 logs
 
 
 
-#### 任务系统
+## 任务系统
 CODO任务系统，负责整个系统中任务调度，此功能是必须要安装的
 
 **获取代码**
@@ -905,7 +943,7 @@ pm2 list ; pm2 logs
 
 
 
-#### 定时任务
+## 定时任务
 CODO项目定时任务模块，定时任务完全兼容crontab，支持到秒级
 
 **获取代码**
@@ -1011,8 +1049,7 @@ pm2 list ; pm2 logs
 
 
 
-
-#### 配置中心
+## 配置中心
 
 
 **获取代码**
@@ -1129,7 +1166,7 @@ pm2 list ; pm2 logs
 
 
 
-#### 运维工具
+## 运维工具
 
 
 **获取代码**
@@ -1254,8 +1291,7 @@ pm2 list ; pm2 logs
 
 **codo-tools部署完成**
 
-
-#### API网关
+## API网关
 API网关系统,是基于openresty + Lua开发的一套API网关系统
 
 **安装openresty**
@@ -1272,7 +1308,7 @@ cd /opt/codo/ && git clone https://github.com/ss1917/api-gateway.git
 ```
 
 **目录结构**
-- 以下文件都是比较重要的
+- 以下文件都是比较重要的，这个文件是手动自己创建的！
 ```
 /usr/local/openresty/nginx/
 ├── conf
@@ -1323,7 +1359,7 @@ http {
 
     init_by_lua_file lua/init_by_lua.lua;       # nginx启动时就会执行
     include ./conf.d/*.conf;                    # lua生成upstream
-    resolver 10.10.10.12;                      # 内部DNS
+    resolver 10.10.10.12 ipv6=off;                      # 内部DNS
 }
 
 ```
@@ -1679,11 +1715,14 @@ systemctl status openresty
 
 ```
 
-#### 项目前端
+## 项目前端
 
 **生成最新的前端**
 ```shell
+if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
+if ! which git &>/dev/null; then yum install -y git >/dev/null 2>&1;fi
 [ ! -d /opt/codo/codo/ ] && mkdir -p /opt/codo/codo/ && cd /opt/codo/codo/
+git clone https://github.com/opendevops-cn/codo.git
 
 #build 最新的前端文件
 npm config set registry https://registry.npmjs.org/ \
@@ -1694,7 +1733,6 @@ npm config set registry https://registry.npmjs.org/ \
 #网站目录
 mkdir -p /var/www/codo
 \cp -rp dist/* /var/www/codo/
-
 ```
 
 **配置代理**
