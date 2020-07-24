@@ -1721,10 +1721,12 @@ systemctl status openresty
 ```shell
 if ! which wget &>/dev/null; then yum install -y wget >/dev/null 2>&1;fi
 if ! which git &>/dev/null; then yum install -y git >/dev/null 2>&1;fi
-[ ! -d /opt/codo/codo/ ] && mkdir -p /opt/codo/codo/ && cd /opt/codo/codo/
-git clone https://github.com/opendevops-cn/codo.git
+
+#下载前端代码、进到项目目录执行build
+[ ! -d /opt/codo/codo ] && mkdir -p /opt/codo/ &&  cd /opt/codo &&  git clone https://github.com/opendevops-cn/codo.git  &&  cd codo
 
 #build 最新的前端文件
+#这里很多人慢的话都是因为网络不好，建议换成淘宝的源试试！
 npm config set registry https://registry.npmjs.org/ \
 && npm cache clean --force \
 && npm install --ignore-script \
