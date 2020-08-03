@@ -164,39 +164,22 @@ rpm -ivh mysql-community-release-el6-5.noarch.rpm
 cat >/etc/yum.repos.d/mysql-community.repo <<EOF
 [mysql-connectors-community]
 name=MySQL Connectors Community
-baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/6/$basearch/
+baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/6/\$basearch/
 enabled=1
 gpgcheck=1
 gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 
 [mysql-tools-community]
 name=MySQL Tools Community
-baseurl=http://repo.mysql.com/yum/mysql-tools-community/el/6/$basearch/
+baseurl=http://repo.mysql.com/yum/mysql-tools-community/el/6/\$basearch/
 enabled=1
 gpgcheck=1
 gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 
-# Enable to use MySQL 5.5
-[mysql55-community]
-name=MySQL 5.5 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.5-community/el/6/$basearch/
-enabled=0
-gpgcheck=1
-gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-
-# Enable to use MySQL 5.6
-[mysql56-community]
-name=MySQL 5.6 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/$basearch/
-enabled=0
-gpgcheck=1
-gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-
-# Note: MySQL 5.7 is currently in development. For use at your own risk.
 # Please read with sub pages: https://dev.mysql.com/doc/relnotes/mysql/5.7/en/
 [mysql57-community-dmr]
 name=MySQL 5.7 Community Server Development Milestone Release
-baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
+baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/\$basearch/
 enabled=1
 gpgcheck=1
 gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
@@ -206,8 +189,12 @@ EOF
 
 ```shell
 yum install mysql-community-server -y
-chkconfig mysqld on
-service mysqld start
+systemctl enable mysqld.service    # 设置开机启动
+systemctl start mysqld.service     # 启动mysqld
+systemctl status mysqld.service    # 查看运行状态
+grep 'temporary password' /var/log/mysqld.log  # 查看mysql-server的超级用户临时密码.  5.7的mysql-server ,默认创建超级用户帐户"root"@"localhost" 并将该用户的密码存储在错误日志文件中
+mysql -uroot -p        # 使用超级用户的临时密码登陆
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';      # 修改超级用户的密码
 echo "info: start mysql grant user."
 mysql -e "CREATE USER \"codo\"@\"localhost\"  IDENTIFIED BY  \"${MYSQL_PASSWORD}\";CREATE USER \"codo\"@\"%\"  IDENTIFIED BY  \"${MYSQL_PASSWORD}\"" 
 mysql -e " GRANT ALL PRIVILEGES ON *.* TO \"codo\"@\"localhost\" IDENTIFIED BY \"${MYSQL_PASSWORD}\";GRANT ALL PRIVILEGES ON *.* TO \"codo\"@\"%\" IDENTIFIED BY \"${MYSQL_PASSWORD}\";GRANT ALL PRIVILEGES ON *.* TO \"codo\"@\"${HOSTNAME}\" IDENTIFIED BY  \"${MYSQL_PASSWORD}\"; " 2>&1
