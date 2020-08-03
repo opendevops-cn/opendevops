@@ -192,7 +192,7 @@ yum install mysql-community-server -y
 systemctl enable mysqld.service    # 设置开机启动
 systemctl start mysqld.service     # 启动mysqld
 systemctl status mysqld.service    # 查看运行状态
-grep 'temporary password' /var/log/mysqld.log  # 查看mysql-server的超级用户临时密码.  5.7的mysql-server ,默认创建超级用户帐户"root"@"localhost" 并将该用户的密码存储在错误日志文件中
+grep 'temporary password' /var/log/mysqld.log  # 查看mysql-server的超级用户临时密码.  5.7的mysql-server ,默认创建超级用户帐户"root"@"localhost" 并将该用户的密码存储在错误日志文件中. 官方参考文档：https://dev.mysql.com/doc/refman/5.7/en/linux-installation-yum-repo.html
 mysql -uroot -p        # 使用超级用户的临时密码登陆
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass4!';      # 修改超级用户的密码
 echo "info: start mysql grant user."
