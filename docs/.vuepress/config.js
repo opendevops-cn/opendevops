@@ -21,7 +21,7 @@ module.exports = {
       { text: '官网', link: 'https://www.opendevops.cn/',target:'_blank' },
       { text: 'Demo', link: 'https://demo.opendevops.cn/login', target: '_blank'},
       { text: 'Gitee', link: 'https://gitee.com/opendevops/opendevops', target: '_blank'},
-      // { text: 'Github', link: 'https://github.com/opendevops-cn',target:'_blank' },
+      { text: 'Github', link: 'https://github.com/opendevops-cn',target:'_blank' },
       {
         text: '了解更多',
         items: [

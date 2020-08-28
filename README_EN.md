@@ -61,6 +61,7 @@ We provide a demo of the user experience and click on the demo to demonstrate it
 - [Document](http://docs.opendevops.cn/)
 - [Quick Experience](https://demo.opendevops.cn/login)
 - [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
+- [Quick start tutorial](https://www.bilibili.com/video/BV1rp4y1v7fa/)
 
 
 ### Module link
