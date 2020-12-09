@@ -1,0 +1,228 @@
+swagger: "2.0"
+info:
+  description: "[CODO](https://opendevops.cn/)是一款为用户提供企业多混合云、一站式[DEVOPS](https://opendevops.cn/)、自动化运维、完全开源的云管理平台、自动化运维平台"
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "https://opendevops.cn/"
+  contact:
+    email: "admin@admin.admin"
+  license:
+    name: "GNU General Public License v3.0"
+    url: "https://github.com/opendevops-cn/opendevops/blob/master/LICENSE"
+host: "petstore.swagger.io"
+basePath: ""
+tags:
+- name: "accounts"
+  description: "用户管理"
+  externalDocs:
+    description: "查看更多"
+    url: "https://opendevops.cn/"
+schemes:
+- "https"
+- "http"
+paths:
+  /api/mg/v2/accounts/user/:
+    get:
+      tags:
+      - "accounts"
+      summary: "查询用户，不填写关键字为搜索所有"
+      description: ""
+      operationId: "getUserByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "page"
+        default: "1"
+        in: "query"
+        description: "第几页"
+        required: true
+        type: "integer"
+      - name: "limit"
+        default: "15"
+        in: "query"
+        description: "显示数量"
+        required: true
+        type: "integer"
+
+      - name: "key"
+        in: "query"
+        description: "用户名: username,昵称: nickname,部门: department,手机: tel,邮箱: email,登录IP: last_ip"
+        required: false
+        type: "string"
+      - name: "value"
+        in: "query"
+        description: "搜索关键字"
+        required: false
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+
+    post:
+      tags:
+      - "accounts"
+      summary: "添加新用户"
+      description: "添加新用户"
+      operationId: "createUser"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/Accounts-Create"
+      responses:
+        default:
+          description: "successful operation"
+
+
+    put:
+      tags:
+      - "accounts"
+      summary: "根据user_id修改用户信息"
+      description: ""
+      operationId: "updateUserByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "根据user_id修改用户信息"
+        required: true
+        schema:
+          $ref: "#/definitions/Accounts-Update"
+      responses:
+        "200":
+          description: "successful operation"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+
+
+    patch:
+      tags:
+      - "accounts"
+      summary: "启用&关闭用户"
+      description: "用&关闭用户"
+      operationId: "UserStatus"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "根据用户id修启用或禁用"
+        required: true
+        schema:
+          $ref: "#/definitions/Accounts-Status"
+        
+      responses:
+        default:
+          description: "successful operation"
+
+    delete:
+      tags:
+      - "accounts"
+      summary: "删除用户"
+      description: "删除用户"
+      operationId: "UserDelete"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "根据用户id删除用户"
+        required: true
+        schema:
+          $ref: "#/definitions/Accounts-Delete"
+
+      responses:
+        "200":
+          description: "successful operation"
+        "500":
+          description: "Error: Internal Server Error"
+
+
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+
+definitions:
+  Accounts-Create:
+    type: "object"
+    properties:
+      "username":
+        type: "string"
+      "nickname":
+        type: "string"
+      "department":
+        type: "string"
+      "wechat":
+        type: "string"
+      "tel":
+        type: "integer"
+      "no":
+        type: "integer"
+      "email":
+        type: "string"
+    xml:
+      name: "Accounts-Create"
+
+  Accounts-Update:
+    type: "object"
+    properties:
+      "user_id":
+        type: "integer"
+        default: "999"
+      "key":
+        type: "string"
+        description: "部门: department,手机: tel,邮箱: email"
+      "value":
+        type: "string"
+    xml:
+      name: "Accounts-Status"
+
+  Accounts-Status:
+    type: "object"
+    properties:
+      "user_id":
+        type: "integer"
+        default: "999"
+      "status":
+        type: "string"
+        default: "status"
+    xml:
+      name: "Accounts-Status"
+
+  Accounts-Delete:
+    type: "object"
+    properties:
+      "user_id":
+        type: "integer"
+        default: "999"
+    xml:
+      name: "Accounts-Delete"
+
+externalDocs:
+  description: "查看更多关于CODO的消息"
+  url: "https://opendevops.cn/"
