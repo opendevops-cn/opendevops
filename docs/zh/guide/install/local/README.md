@@ -232,8 +232,6 @@ systemctl status redis
 
 **安装RabbitMQ**
 
-- 创建 docker-compose.yml
-
 ```shell
 echo -e "\033[32m [INFO]: Start install rabbitmq \033[0m"
 source /opt/codo/env.sh  #变量文件
