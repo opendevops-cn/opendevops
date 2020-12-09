@@ -981,6 +981,12 @@ Python版本
 
 ```python
 
+#!/usr/bin/env python 
+ # -*-coding:utf-8-*- 
+import os 
+import requests 
+import json 
+
 class ConfApi:
     def __init__(self):
         # self.auth_key 是一个长期Token，基于用户管理里面，管理员选中用户生成长期Token，默认发送到用户邮箱
