@@ -17,6 +17,6 @@ echo "docs.opendevops.cn" > CNAME
 git add -A
 git commit -m 'deploy'
 
-git push -f "https://github.com/opendevops-cn/opendevops-cn.github.io.git" master
+git push -f "git@github.com:opendevops-cn/opendevops-cn.github.io.git" master
 
 cd -
