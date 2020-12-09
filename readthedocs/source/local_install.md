@@ -1733,6 +1733,10 @@ npm config set registry https://registry.npmjs.org/ \
 #网站目录
 mkdir -p /var/www/codo
 \cp -rp dist/* /var/www/codo/
+
+#API文档(如果你需要)
+cd /opt/codo/codo
+\cp -r swagger-ui/ /var/www/codo/
 ```
 
 **配置代理**
