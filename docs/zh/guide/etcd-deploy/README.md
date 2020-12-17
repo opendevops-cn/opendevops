@@ -445,30 +445,34 @@ https://192.168.1.222:2379 is healthy: successfully committed proposal: took = 4
 
 #### 单机部署（无证书）
 
-### 下载和分发 etcd 二进制文件
+### 下载 etcd 二进制文件
 
 [relase](https://github.com/coreos/etcd/releases) 查找自己需要的版本。
 
 ```
 # 修改你需要的版本
 VER='3.4.14'
-mkdir -p /data/etcd/{data,wal}
+mkdir -p /data/etcd/{data,wal,ca}
 cd /data/etcd/
 wget https://github.com/coreos/etcd/releases/download/v${VER}/etcd-v${VER}-linux-amd64.tar.gz
-tar -xvf etcd-${VER}-linux-amd64.tar.gz
-mv scp etcd-v3.4.14-linux-amd64/etcd* /usr/local/bin/
+tar xvf etcd-v${VER}-linux-amd64.tar.gz
+mv scp etcd-v${VER}-linux-amd64/etcd* /usr/local/bin/
 chmox +x /usr/local/bin/etcd*
 ```
 
 ### 使用systemd管理服务
 
 ```
+# 创建目录
 mkdir /data/etcd/
+
+# 设置变量
 NODE_NAME='etcd-single'
 NODE_IP='172.25.1.93'
 ETCD_DATA_DIR=’/data/etcd/data‘
 ETCD_WAL_DIR='/data/etcd/wal'
 
+# 创建systemd管理文件
 cat > etcd.service <<EOF
 [Unit]
 Description=Etcd Server
