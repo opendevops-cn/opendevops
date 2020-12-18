@@ -50,10 +50,23 @@ module.exports = {
 					children: [ '/zh/guide/used/' ]
 				},
 				{
+					title: '中间件部署',
+					collapsable: true,
+					children: [
+						{
+							title: 'ETCD',
+							collapsable: true,
+							children: [
+								'/zh/guide/plugin/middleware/etcd/simple.md',
+								'/zh/guide/plugin/middleware/etcd/cluster.md'
+							]
+						}
+					]
+				},
+				{
 					title: '插件部署',
 					collapsable: false,
 					children: [
-						'/zh/guide/plugin/etcd.md',
 						'/zh/guide/plugin/Bind.md',
 						'/zh/guide/plugin/Inception.md',
 						'/zh/guide/plugin/sonarQube.md',
