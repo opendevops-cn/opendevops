@@ -20,3 +20,6 @@ git commit -m 'deploy'
 git push -f "git@github.com:opendevops-cn/opendevops-cn.github.io.git" master
 
 cd -
+
+#本地测试
+# cd docs/.vuepress/dist && python -m http.server
