@@ -97,6 +97,7 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 |[zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [liuchunyu](https://github.com/liuchunyu007) | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
 |[ops-coffee](https://github.com/ops-coffee) | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) | [laowang](https://github.com/rzxwang) | ![](https://avatars2.githubusercontent.com/u/12858785?s=70&v=4) |  |  |
 
+---
 
 
 **[⬆ 返回顶部](#产品架构)**
@@ -115,3 +116,26 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 ## License
 
 Everything is [GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
+
+
+## 写在最后
+
+感谢以下同学为Demo环境进行赞助。
+
+
+
+|Name|Github Avatar|贡献金额|
+|---|---|---|
+|[shenshuo](https://github.com/ss1917)  |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  | ￥500 |
+|[laowang](https://github.com/rzxwang) | ![](https://avatars2.githubusercontent.com/u/12858785?s=70&v=4) | ￥300 |
+|[ops-coffee](https://github.com/ops-coffee) | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) | ￥300    |
+|[yanghongfei](https://github.com/yanghongfei) | ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4) | ￥300 |
+|[panda-yo](https://github.com/panda-yo) | ![](https://avatars3.githubusercontent.com/u/19947676?s=70&v=4) | ￥200 |
+|[yanshuanglong](https://github.com/yanshuanglong) | ![](https://avatars3.githubusercontent.com/u/53425315?s=70&v=4) | ￥200 |
+|[Victor](https://github.com/victor) | ![](https://avatars3.githubusercontent.com/u/7311?s=70&v=4) | ￥200 |
+|[DsinV](https://github.com/ywl913) | ![](https://avatars3.githubusercontent.com/u/8074956?s=70&v=4) | ￥200 |
+|[lixiaozheng](https://github.com/si7eka) | ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4) | ￥200 |
+|[pcghost](https://github.com/q48775533q/) | ![](https://avatars3.githubusercontent.com/u/17016455?s=70&v=4) | ￥100 |
+|[ca7dEm0n](https://github.com/ca7dEm0n) | ![](https://avatars3.githubusercontent.com/u/14136093?s=70&v=4) | ￥100 |
+|[jiangming](https://github.com/jiangming1) | ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4) | ￥100 |
+|[金额共计](https://github.com/opendevops-cn) | ![](https://avatars3.githubusercontent.com/u/44669566?s=70&v=4) | ￥2700 |
