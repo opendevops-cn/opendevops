@@ -3,17 +3,21 @@
         <img width="200" src="http://www.opendevops.cn/images/head_logo.png">
     </a>
 </p>
-[![opendevops/sb](https://jaywcjlove.github.io/sb/lang/chinese.svg)](README-zh.md)
-[![opendevops/opendevops](https://jaywcjlove.github.io/sb/ico/gitee.svg)](https://gitee.com/opendevops)
+
+
+
 [![Python3](https://img.shields.io/badge/Python-3.6-green.svg?style=plastic)](https://www.python.org/)
 [![Tornado](https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic)](https://www.tornadoweb.org)
 [![Vue.js](https://img.shields.io/badge/Vuejs-2.5-brightgreen.svg?style=plastic)](https://cn.vuejs.org)
 [![iview](https://img.shields.io/badge/iview-3.2.0-blue.svg?style=plastic)](https://www.iviewui.com/)
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+[![README_CN](https://img.shields.io/badge/README-Chinese.md-red.svg?style=plastic)](./README.md)
+
 
 
 ----
+
 CODO is a cloud management platform that provides users with multi-hybrid cloud, automated operation and maintenance, and complete open source.
 
 Based on Vue iview development, the CODO front-end provides users with a friendly interface and enhances the user experience.
@@ -28,10 +32,6 @@ I also hope that you can give us a project![](https://img.shields.io/github/star
 
 ----
 
-### Explanation
-
-[English](README.md) | [中文](README-zh.md)
-
 ### Product Architecture
 
 ![](docs/source/_static/images/project_arch.png)
@@ -41,6 +41,7 @@ I also hope that you can give us a project![](https://img.shields.io/github/star
 ![](docs/source/_static/images/pro_fun_3.png)
 
 ### Demo
+
 We provide a demo of the user experience and click on the demo to demonstrate it quickly.
 
 <a href="https://demo.opendevops.cn/login" target="api_explorer">
@@ -49,7 +50,7 @@ We provide a demo of the user experience and click on the demo to demonstrate it
 
 `PS: Demo users only have view rights, and the user list is not yet open. The demo order log is temporarily cleared.`
 
-- 地址：https://demo.opendevops.cn/login
+- 地址：http://demo.opendevops.cn/login
 - 用户：demo
 - 密码：2ZbFYNv9WibWcR7GB6kcEY
 
@@ -66,8 +67,8 @@ We provide a demo of the user experience and click on the demo to demonstrate it
 - [Quick start tutorial](https://www.bilibili.com/video/BV1rp4y1v7fa/)
 
 
-
 ### Module link
+
 > CODO We use modular and micro-services for the project. The following are the address of each module. We also welcome the industry's interested parties to contribute.
 
 - [codo](https://github.com/opendevops-cn/codo)
@@ -87,12 +88,12 @@ Thanks for the contributions contributed to CODO (CloudOpenDevOps);
 Thank you for your contribution, so that maintenance is no longer boring because of you, and the world is beautiful because of you. This ranking is no different. Thank you!
 
 
-|Name|Github Avatar|Name| GitHub Avatar                                                       | Name                                              | Github Avatar                                                       |
-|---|---|---|---|---|---|
-|[laoxu](https://github.com/rootman-xjj) |  ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)  |  ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4)  |  [yangmingwei](https://github.com/yangmv)  |  ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4)  |
-|[yanghongfei](https://github.com/yanghongfei)           |  ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4)  |[shenyingzhi](https://github.com/shenyingzhi) |  ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4)  |  [biantingting](https://github.com/biantingting94)  |  ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4)  |
-|[zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee) | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [liuchunyu](https://github.com/liuchunyu007) | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
-|[ops-coffee](https://github.com/ops-coffee) | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) | [laowang](https://github.com/rzxwang) | ![](https://avatars2.githubusercontent.com/u/12858785?s=70&v=4) |  |  |
+| Name                                          | Github Avatar                                                | Name                                          | GitHub Avatar                                                | Name                                              | Github Avatar                                                |
+| --------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
+| [laoxu](https://github.com/rootman-xjj)       | ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)         | ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4) | [yangmingwei](https://github.com/yangmv)          | ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4) |
+| [yanghongfei](https://github.com/yanghongfei) | ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4) | [shenyingzhi](https://github.com/shenyingzhi) | ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4) | [biantingting](https://github.com/biantingting94) | ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4) |
+| [zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee)          | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [liuchunyu](https://github.com/liuchunyu007)      | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
+| [ops-coffee](https://github.com/ops-coffee)   | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) | [laowang](https://github.com/rzxwang)         | ![](https://avatars2.githubusercontent.com/u/12858785?s=70&v=4) |                                                   |                                                              |
 
 
 
@@ -111,6 +112,7 @@ Thank you for your contribution, so that maintenance is no longer boring because
 ## License
 
 Everything is [GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
+
 
 ---
 

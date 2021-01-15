@@ -3,7 +3,6 @@
         <img width="200" src="http://www.opendevops.cn/images/head_logo.png">
     </a>
 </p>
-
 [![opendevops/sb](https://jaywcjlove.github.io/sb/lang/english.svg)](README.md)
 [![opendevops/opendevops](https://jaywcjlove.github.io/sb/ico/gitee.svg)](https://gitee.com/opendevops)
 [![Python3](https://img.shields.io/badge/Python-3.6-green.svg?style=plastic)](https://www.python.org/)
