@@ -161,7 +161,7 @@ rpm -ivh mysql80-community-release-el7-3.noarch.rpm
 
 
 ```shell
-cat >/etc/yum.repos.d/mysql-community.repo <<EOF
+cat >/etc/yum.repos.d/mysql-community.repo <<'EOF'
 # Enable to use MySQL 5.5
 [mysql55-community]
 name=MySQL 5.5 Community Server
