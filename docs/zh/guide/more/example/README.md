@@ -635,3 +635,99 @@ python3 /data1/shell/dns_publish.py
 
 
 
+### 基于私有对象存储管理示例
+::: tip
+本文档用来讲解如何使用私有读写的对象存储通过网关做鉴权（阿里云OSS示例）
+:::
+
+::: details 点我展开
+
+**设置Bucket**
+阿里云创建对象存储Bucket，权限设置为私有。
+
+![创建私有Bucket](/创建私有Bucket.jpg)
+
+**设置CDN**
+OSS私有读访问鉴权比较复杂，经过测试我们选型通过CDN做访问鉴权，
+
+这样既可以使用CDN加速访问降低选型走内网传输对网络造成的压力，并且可以不改变访问URL的情况下做鉴权。
+
+配置阿里云OSS私有Bucket回源。
+![阿里云CDN开启私有bucket回源](/阿里云CDN开启私有bucket回源.jpg)
+
+
+**配置远程鉴权**
+
+最简单的处理，只判断是否登录，没登陆的状态码是401，
+
+所以我们只用配置鉴权失败状态码为401，超时动作设置为拒绝；
+
+后续我们也可以在鉴权接口上配置是否有权限，并做日志记录。
+
+![阿里云CDN远程鉴权](/阿里云CDN远程鉴权.jpg)
+
+
+
+因为鉴权都在网关，后端接口可以不用做什么改动
+
+```python
+class  CDNAuth(BaseHandler):
+    def get(self):
+        # 记录CDN日志,暂不需要
+        pass 
+```
+
+
+**上传接口使用**
+- 请求URL：`/api/mg/v1/storage/file/private/`
+- 请求方式：`POST`
+- 表头：`Content-Type:"multipart/form-data"，file-dir=""` file-dir 代表上传的目录，需要放入header，如果没有则默认为file目录
+- 参数： 
+
+  | 参数名   | 必选 | 类型 | 说明     |
+  | -------- | ---- | ---- | -------- |
+  | filename | 是   | str  | 文件名称 |
+  | body     | 是   |      | 文件内容 |
+  
+
+- 输入示例
+
+```json
+[
+        ('field1', ('foo.png', open("/tmp/filePath1", 'rb'), 'image/png')),
+        ('field2', ('bar.png', open('/tmp/filePath1', 'rb'), 'image/png'))
+]
+  ```
+
+- `r = requests.post(url, data, files=files)` 使用requests.post的files参数
+- 返回：
+```
+  {
+      "code":0,
+      "msg":"上传成功"
+  }
+```
+
+**前端访问**
+
+上述已经讲解如何上传和CDN配置，下面我们讲怎么访问：
+
+- 鉴权交互图
+
+  ![阿里云远程鉴权交互流程](/阿里云远程鉴权交互流程.jpg)
+
+- 用户通过CDN访问OSS资源的时候会带着访问的headers（我们统一登录的时候会把JWT数据写入前端的headers），CDN会使用携带的headers数据去我们的天门网关鉴权（天门网关需开启jwt auth 或者codo rbac插件），如果headers数据正常则可以访问，否则返回401状态，CDN则返回用户403。
+
+  
+  ![远端鉴权失败数据](/远端鉴权失败数据.jpg)
+
+- 示例在我们的自定义表单的上传组件中使用
+
+  ![自定义表单使用上传接口](/自定义表单使用上传接口.jpg)
+
+- 上传成功可以直接预览  
+
+  ![自定义表单使用上传接口成功](/自定义表单使用上传接口成功.jpg)
+
+
+:::
