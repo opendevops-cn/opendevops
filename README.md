@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="http://www.opendevops.cn/">
+    <a href="https://www.opendevops.cn/">
         <img width="200" src="https://www.opendevops.cn/images/head_logo.png">
     </a>
 </p>
