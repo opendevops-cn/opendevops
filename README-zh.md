@@ -3,13 +3,21 @@
         <img width="200" src="http://www.opendevops.cn/images/head_logo.png">
     </a>
 </p>
-[![opendevops/sb](https://jaywcjlove.github.io/sb/lang/english.svg)](README.md)
+
+[![opendevops/opendevops](https://jaywcjlove.github.io/sb/lang/english.svg)](README.md)
+
 [![opendevops/opendevops](https://jaywcjlove.github.io/sb/ico/gitee.svg)](https://gitee.com/opendevops)
+
 [![Python3](https://img.shields.io/badge/Python-3.6-green.svg?style=plastic)](https://www.python.org/)
+
 [![Tornado](https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic)](https://www.tornadoweb.org)
+
 [![Vue.js](https://img.shields.io/badge/Vuejs-2.5-brightgreen.svg?style=plastic)](https://cn.vuejs.org)
+
 [![iview](https://img.shields.io/badge/iview-3.2.0-blue.svg?style=plastic)](https://www.iviewui.com/)
+
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
+
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 
@@ -67,6 +75,13 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 - [Quick Experience](https://demo.opendevops.cn/login)
 - [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
 
+### 视频文档
+
+[部署安装教程](https://www.bilibili.com/video/BV1BL4y1a7TU/)
+
+[快速了解视频](https://www.bilibili.com/video/BV1rp4y1v7fa/)
+
+[二次开发教程](https://www.bilibili.com/video/BV1Sy4y137md/)
 
 
 ### 模块链接
