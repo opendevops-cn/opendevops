@@ -81,13 +81,7 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 - 运维工具：[codo-tools](https://github.com/opendevops-cn/codo-tools)
 - 域名管理：[codo-dns](https://github.com/opendevops-cn/codo-dns)
 
-### 视频文档
 
-[部署安装教程](https://www.bilibili.com/video/BV1BL4y1a7TU/)
-
-[快速了解视频](https://www.bilibili.com/video/BV1rp4y1v7fa/)
-
-[二次开发教程](https://www.bilibili.com/video/BV1Sy4y137md/)
 
 ### 感谢贡献者
 
