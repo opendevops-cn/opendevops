@@ -18,7 +18,7 @@
 
 **安装使用**
 
-```
+```bash
 #编译依赖项sqlparser
 git clone https://github.com/Meituan-Dianping/SQLAdvisor.git
 cd SQLAdvisor

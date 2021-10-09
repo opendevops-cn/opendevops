@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>最佳实践 | OpenDevOps</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content=" Vue驱动的CoDo快速入门文档">
+    
+    <link rel="preload" href="/assets/css/0.styles.c8e23b86.css" as="style"><link rel="preload" href="/assets/js/app.e9c144ab.js" as="script"><link rel="preload" href="/assets/js/2.7c46101f.js" as="script"><link rel="preload" href="/assets/js/13.da5a85e8.js" as="script"><link rel="prefetch" href="/assets/js/10.ebbbf0a3.js"><link rel="prefetch" href="/assets/js/11.3e67cbc3.js"><link rel="prefetch" href="/assets/js/12.7ba93764.js"><link rel="prefetch" href="/assets/js/14.3901f50a.js"><link rel="prefetch" href="/assets/js/15.755c9d7b.js"><link rel="prefetch" href="/assets/js/16.9f6c6ba4.js"><link rel="prefetch" href="/assets/js/17.5f0409e1.js"><link rel="prefetch" href="/assets/js/18.ff6e90fb.js"><link rel="prefetch" href="/assets/js/19.d4c7a73d.js"><link rel="prefetch" href="/assets/js/20.457b8a0d.js"><link rel="prefetch" href="/assets/js/21.f132940f.js"><link rel="prefetch" href="/assets/js/22.9271d7e7.js"><link rel="prefetch" href="/assets/js/23.a0a60b68.js"><link rel="prefetch" href="/assets/js/24.928bd2dd.js"><link rel="prefetch" href="/assets/js/25.e23d438c.js"><link rel="prefetch" href="/assets/js/26.9c61a799.js"><link rel="prefetch" href="/assets/js/3.5c7b1b2d.js"><link rel="prefetch" href="/assets/js/4.c42efd98.js"><link rel="prefetch" href="/assets/js/5.3d5a79e4.js"><link rel="prefetch" href="/assets/js/6.f6831b64.js"><link rel="prefetch" href="/assets/js/7.347713f4.js"><link rel="prefetch" href="/assets/js/8.34375613.js"><link rel="prefetch" href="/assets/js/9.b40e46a0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c8e23b86.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://img.opendevops.cn/logo.png" alt="OpenDevOps" class="logo"> <span class="site-name can-hide">OpenDevOps</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/zh/ad/" class="nav-link">
+  招募
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="部署文档" class="dropdown-title"><span class="title">部署文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="部署文档" class="mobile-dropdown-title"><span class="title">部署文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/install/local/" class="nav-link">
+  单机部署
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/install/distribute/" class="nav-link">
+  分布式部署
+</a></li></ul></div></div><div class="nav-item"><a href="/zh/guide/used/" class="nav-link">
+  使用文档
+</a></div><div class="nav-item"><a href="https://bbs.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  论坛
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://demo.opendevops.cn/login" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Demo
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://gitee.com/opendevops/opendevops" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/opendevops-cn" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="了解更多" class="dropdown-title"><span class="title">了解更多</span> <span class="arrow down"></span></button> <button type="button" aria-label="了解更多" class="mobile-dropdown-title"><span class="title">了解更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/more/faq/" class="nav-link">
+  FAQ
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/qgroup/" class="nav-link">
+  QQ群
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/contributor/" class="nav-link">
+  贡献者
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/permission/" class="nav-link">
+  权限文档
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/example/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  最佳示例
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/update/" class="nav-link">
+  如何更新
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/zh/ad/" class="nav-link">
+  招募
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="部署文档" class="dropdown-title"><span class="title">部署文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="部署文档" class="mobile-dropdown-title"><span class="title">部署文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/install/local/" class="nav-link">
+  单机部署
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/install/distribute/" class="nav-link">
+  分布式部署
+</a></li></ul></div></div><div class="nav-item"><a href="/zh/guide/used/" class="nav-link">
+  使用文档
+</a></div><div class="nav-item"><a href="https://bbs.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  论坛
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://demo.opendevops.cn/login" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Demo
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://gitee.com/opendevops/opendevops" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/opendevops-cn" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="了解更多" class="dropdown-title"><span class="title">了解更多</span> <span class="arrow down"></span></button> <button type="button" aria-label="了解更多" class="mobile-dropdown-title"><span class="title">了解更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/more/faq/" class="nav-link">
+  FAQ
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/qgroup/" class="nav-link">
+  QQ群
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/contributor/" class="nav-link">
+  贡献者
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/permission/" class="nav-link">
+  权限文档
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/example/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  最佳示例
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/update/" class="nav-link">
+  如何更新
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>它是什么</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/" aria-current="page" class="sidebar-link">OpenDevOps</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>如何安装</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/install/local/" class="sidebar-link">单机部署</a></li><li><a href="/zh/guide/install/distribute/" class="sidebar-link">分布式部署</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>如何使用</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/used/" class="sidebar-link">如何使用</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>中间件部署</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>插件部署</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/plugin/Bind.html" class="sidebar-link">DNS Bind</a></li><li><a href="/zh/guide/plugin/Inception.html" class="sidebar-link">Inception</a></li><li><a href="/zh/guide/plugin/sonarQube.html" class="sidebar-link">sonarQube</a></li><li><a href="/zh/guide/plugin/SQLAdvisor.html" class="sidebar-link">SQLAdvisor</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>其他相关</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/more/faq/" class="sidebar-link">FAQ</a></li><li><a href="/zh/guide/more/qgroup/" class="sidebar-link">加入交流群</a></li><li><a href="/zh/guide/more/contributor/" class="sidebar-link">贡献者</a></li><li><a href="/zh/guide/more/permission/" class="sidebar-link">权限文档</a></li><li><a href="/zh/guide/more/example/" aria-current="page" class="active sidebar-link">最佳实践</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/zh/guide/more/update/" class="sidebar-link">如何更新</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="最佳实践"><a href="#最佳实践" class="header-anchor">#</a> 最佳实践</h1> <p></p><div class="table-of-contents"><ul><li><a href="#基于任务平台实现git发布示例">基于任务平台实现Git发布示例</a></li><li><a href="#基于配置中心管理dnsmasq示例">基于配置中心管理dnsmasq示例</a></li><li><a href="#基于私有对象存储管理示例">基于私有对象存储管理示例</a></li></ul></div><p></p> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>视频里简单介绍了以下几种示例，至于模板里面的最终逻辑需要使用人根据自己的需求进行排版，编写等，不限制语言。</p> <p><a href="https://www.bilibili.com/video/av53424572/" target="_blank" rel="noopener noreferrer">戳这里观看OpenDevOps任务平台示例视频<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <details class="custom-block details"><summary>点我展开</summary> <ul><li><p>示例1. 平台上提交一个最简单的任务，不带参数的（视频）</p></li> <li><p>示例2. 平台上提交一个带参数的任务。(PARAMETER)（视频）</p></li> <li><p>示例3. 平台上基于JSON自定义提交一个任务</p></li></ul> <div class="language- extra-class"><pre class="language-text"><code>{
+	&quot;task_name&quot;: &quot;这是通过JSON提交的任务&quot;,
+	&quot;submitter&quot;: &quot;yanghongfei&quot;, 
+	&quot;temp_id&quot;: &quot;1&quot;, 
+	&quot;schedule&quot;: &quot;ready&quot;,   
+	&quot;exec_time&quot;: &quot;2019-5-24 09:09:50&quot;, 
+	&quot;associated_user&quot;: &quot;{'group-1': ['杨红飞']}&quot;,
+	&quot;args&quot;: &quot;{'VERSION':'你可以看到我这次传入的参数是VERSION，但是显示成了版本，是因为我在参数管理里面设置了别名'}&quot;,
+	&quot;details&quot;: &quot;这里是备注&quot;,
+	&quot;hosts&quot;: &quot;{1: '172.16.0.101'}&quot;  
+}
+</code></pre></div><ul><li>示例4. 不登陆平台的情况下怎么提交一个任务（POST API提交）</li></ul> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment">#!/usr/bin/env python</span>
+<span class="token comment"># -*- coding: utf-8 -*-</span>
+<span class="token comment"># @Author  : Fred Yangxiaofei</span>
+<span class="token comment"># @File    : codo_post_task.py</span>
+<span class="token comment"># @Role    : 利用脚本向平台提交一个任务</span>
+
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> datetime
+<span class="token keyword">import</span> requests
+
+
+<span class="token keyword">def</span> <span class="token function">post_task</span><span class="token punctuation">(</span>temp_id<span class="token punctuation">,</span> schedule<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    :param temp_id:  模板ID，平台里面任务模板里面查看
+    :param task_status: 提交任务的状态，常用的为：ready: 表示不需人工干预，平台直接执行，new: 平台需要选择审批。根据审批时间执行。
+    :return:
+
+    &quot;&quot;&quot;</span>
+
+    <span class="token comment">#平台接口连接，这里只需要修改域名即可， 任务API连接都是我们内置进去的，在【用户管理】-【权限列表】 权限名称：钩子提交任务</span>
+    accept_task_url <span class="token operator">=</span> <span class="token string">'https://&lt;域名地址&gt;/api/task/v2/task/accept/'</span>
+
+    <span class="token comment">#这里就是一个长期Token，管理员可以在用户列表选择一个用户进行生成一个长期Token，这个用户需要有权限名称：钩子提交任务的权限</span>
+    auth_key <span class="token operator">=</span> <span class="token string">&quot;yODk4MDX19.BgP8UAoNiBkzJNSN1pa-eQVjlAxrKGxYZf0YgvXv39k&quot;</span>
+
+
+    <span class="token comment"># 执行主机IP地址, 1代码第一组</span>
+    hosts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">'172.16.0.101'</span><span class="token punctuation">}</span>
+    <span class="token comment">#这里都是传入的参数</span>
+    args <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;TAG&quot;</span><span class="token punctuation">:</span> <span class="token string">'codo-beta0.3'</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;GIT_URL&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;git@gitlab.xxxxxxx.com:xxxxx/xxxxx.git&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;APP_NAME&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Web&quot;</span>
+    <span class="token punctuation">}</span>
+    the_body <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">&quot;task_name&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;脚本任务&quot;</span><span class="token punctuation">,</span> <span class="token comment">#修改此项</span>
+        <span class="token string">&quot;temp_id&quot;</span><span class="token punctuation">:</span> temp_id<span class="token punctuation">,</span>
+        <span class="token string">&quot;args&quot;</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;details&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;通过脚本提交一个自定义的任务&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;hosts&quot;</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>hosts<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;submitter&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;yanghongfei&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;exec_time&quot;</span><span class="token punctuation">:</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y-%m-%d %H:%M:%S'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;schedule&quot;</span><span class="token punctuation">:</span> schedule<span class="token punctuation">,</span>
+        <span class="token string">&quot;executor&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;yanghongfei&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+
+    req1 <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>accept_task_url<span class="token punctuation">,</span> cookies<span class="token operator">=</span><span class="token builtin">dict</span><span class="token punctuation">(</span>auth_key<span class="token operator">=</span>auth_key<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    csrf_key <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>req1<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'csrf_key'</span><span class="token punctuation">]</span>
+    cookies <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>auth_key<span class="token operator">=</span>auth_key<span class="token punctuation">,</span> csrf_key<span class="token operator">=</span>csrf_key<span class="token punctuation">)</span>
+    req <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>accept_task_url<span class="token punctuation">,</span> data<span class="token operator">=</span>the_body<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span>
+    req_code <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>req<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> req_code <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(json.loads(req.text)['msg'])</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'task commit failed Please contact  OPS Group'</span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">111</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(json.loads(req.text)['msg'])</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Asynchronous task has been submitted successfully!!!'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Please do not submit multiple times to prevent the task from jamming!!!'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span>post_task<span class="token punctuation">(</span><span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'new'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+</code></pre></div><ul><li>示例5. 怎么根据Git Hooks来提交一个任务
+主要基于<code>GitLab Custom Hooks</code>和<code>GitLab Tag</code>借助opendevops平台实现自动化发布，以下为所用到的功能简单介绍。
+这里基本上和上面一样，就是多一个怎么用<code>update</code>钩子获取Tag</li></ul> <p><strong>为什么使用Git TAG发布,然后再接到平台里面呢？</strong></p> <ul><li>进度可视化</li> <li>平台发布记录</li> <li>Git Tag 可快速回滚</li> <li>权限控制，可由PM登陆平台审核后发布</li> <li>可定时执行，报错可重装，不同项目需求可根据实际编写脚本进行排版任务等。</li></ul> <p><strong>配置钩子</strong></p> <p><a href="https://docs.gitlab.com/ee/administration/custom_hooks.html" target="_blank" rel="noopener noreferrer">GitLab Hooks<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>分为2种：</p> <ul><li>Hooks：全局钩子，适用于所有项目</li> <li>Custom Hooks： 项目钩子，针对项目来做钩子触发任务</li></ul> <p>如何使用？</p> <p>本章主要使用项目钩子，不建议使用全局钩子，这样会出问题，亲自尝试，毕竟我们的需求是针对xxx项目进行做自动化发布的。</p> <p>登陆GitLab服务器操作</p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+$ <span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>project_name<span class="token operator">&gt;</span>.git/
+$ <span class="token function">mkdir</span> -p custom_hooks <span class="token punctuation">;</span> <span class="token function">chown</span> -R git.git custom_hooks<span class="token punctuation">;</span> <span class="token function">chmod</span> <span class="token number">777</span> custom_hooks
+
+</code></pre></div><p>创建<a href="http://yanghongfei.me/2019/03/25/git-hooks/" target="_blank" rel="noopener noreferrer">Update<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>钩子</p> <div class="language-python extra-class"><pre class="language-python"><code>
+<span class="token comment">#!/usr/bin/env python</span>
+<span class="token comment"># -*- coding: utf-8 -*-</span>
+<span class="token comment"># @Time    : 2019/5/24 10:31</span>
+<span class="token comment"># @Author  : Fred Yangxiaofei</span>
+<span class="token comment"># @File    : git_tag_post_task.py</span>
+<span class="token comment"># @Role    : 基于Git Tag来提交一个任务</span>
+
+
+
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> datetime
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> re
+
+<span class="token keyword">def</span> <span class="token function">post_task</span><span class="token punctuation">(</span>tag<span class="token punctuation">,</span> temp_id<span class="token punctuation">,</span> schedule<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    :param temp_id:  模板ID，平台里面任务模板里面查看
+    :param task_status: 提交任务的状态，常用的为：ready: 表示不需人工干预，平台直接执行，new: 平台需要选择审批。根据审批时间执行。
+    :return:
+
+    &quot;&quot;&quot;</span>
+
+    <span class="token comment">#平台接口连接，这里只需要修改域名即可， 任务API连接都是我们内置进去的，在【用户管理】-【权限列表】 权限名称：钩子提交任务</span>
+    accept_task_url <span class="token operator">=</span> <span class="token string">'https://&lt;域名地址&gt;/api/task/v2/task/accept/'</span>
+
+    <span class="token comment">#这里就是一个长期Token，管理员可以在用户列表选择一个用户进行生成一个长期Token，这个用户需要有权限名称：钩子提交任务的权限</span>
+    auth_key <span class="token operator">=</span> <span class="token string">&quot;eyJ0eXAiOiTUyODk4MDg1LCJpc3McxODA2MCIsImRhdGEiOnsidXNlcl9pZCI6IWJsaXNoIiwibmlja25hbWUiOiJwdWJsaXNoIiwiaXNfc3VwZXJ1c2VyIjpmYWxzZX19.BgP8UAoNiBkzJNSN1pa-eQVjlAxrKGxYZf0YgvXv39k&quot;</span>
+
+
+    <span class="token comment"># 执行主机IP地址, 1代码第一组</span>
+    hosts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">'172.16.0.101'</span><span class="token punctuation">}</span>
+    <span class="token comment">#这里都是传入的参数</span>
+    args <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;TAG&quot;</span><span class="token punctuation">:</span> tag<span class="token punctuation">,</span>
+        <span class="token string">&quot;GIT_URL&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;git@gitlab.xxxxxxx.com:xxxxx/xxxxx.git&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;APP_NAME&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;Web&quot;</span>
+    <span class="token punctuation">}</span>
+    the_body <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">&quot;task_name&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;脚本任务&quot;</span><span class="token punctuation">,</span> <span class="token comment">#修改此项</span>
+        <span class="token string">&quot;temp_id&quot;</span><span class="token punctuation">:</span> temp_id<span class="token punctuation">,</span>
+        <span class="token string">&quot;args&quot;</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;details&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;通过脚本提交一个自定义的任务&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;hosts&quot;</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>hosts<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;submitter&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;yanghongfei&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;exec_time&quot;</span><span class="token punctuation">:</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y-%m-%d %H:%M:%S'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;schedule&quot;</span><span class="token punctuation">:</span> schedule<span class="token punctuation">,</span>
+        <span class="token string">&quot;executor&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;yanghongfei&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+
+    req1 <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>accept_task_url<span class="token punctuation">,</span> cookies<span class="token operator">=</span><span class="token builtin">dict</span><span class="token punctuation">(</span>auth_key<span class="token operator">=</span>auth_key<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    csrf_key <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>req1<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'csrf_key'</span><span class="token punctuation">]</span>
+    cookies <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>auth_key<span class="token operator">=</span>auth_key<span class="token punctuation">,</span> csrf_key<span class="token operator">=</span>csrf_key<span class="token punctuation">)</span>
+    req <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>accept_task_url<span class="token punctuation">,</span> data<span class="token operator">=</span>the_body<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span>
+    req_code <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>req<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> req_code <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(json.loads(req.text)['msg'])</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'task commit failed Please contact  OPS Group'</span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">111</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(json.loads(req.text)['msg'])</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Asynchronous task has been submitted successfully!!!'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Please do not submit multiple times to prevent the task from jamming!!!'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''获取TAG'''</span>
+    tag <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+    qa <span class="token operator">=</span> re<span class="token punctuation">.</span>match<span class="token punctuation">(</span><span class="token string">r'\Aqa-yanghongfei[\w]*'</span><span class="token punctuation">,</span>tag<span class="token punctuation">)</span>     <span class="token comment">#测试 ，直接执行,ready</span>
+    release <span class="token operator">=</span> re<span class="token punctuation">.</span>match<span class="token punctuation">(</span><span class="token string">r'\Arelease-yanghongfei[\w]*'</span><span class="token punctuation">,</span>tag<span class="token punctuation">)</span>   <span class="token comment">#正式,需要审核,new</span>
+
+    <span class="token keyword">if</span> qa<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>post_task<span class="token punctuation">(</span>tag<span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'ready'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> release<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>post_task<span class="token punctuation">(</span>tag<span class="token punctuation">,</span> <span class="token string">'1'</span><span class="token punctuation">,</span><span class="token string">'new'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+         <span class="token keyword">print</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+</code></pre></div><p>配置好钩子后，接下来克隆版本库进行提交测试</p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token function">git</span> clone git@gitlab.xxxxxx:xxx/xxx.git
+<span class="token function">git</span> pull
+
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;README&quot;</span> <span class="token operator">&gt;</span> README.md
+<span class="token function">git</span> <span class="token function">add</span> --all
+<span class="token function">git</span> commit -m <span class="token string">&quot;[Add] README,测试发布&quot;</span>
+<span class="token function">git</span> push -u origin origin
+<span class="token function">git</span> tag release-yanghongfei-v1  
+<span class="token function">git</span> push -u origin release-yanghongfei-v1  <span class="token comment">#把tag推送上去</span>
+
+</code></pre></div></details> <h3 id="基于任务平台实现git发布示例"><a href="#基于任务平台实现git发布示例" class="header-anchor">#</a> 基于任务平台实现Git发布示例</h3> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>本章节实验环境主要基于<code>GitLab Custom Hooks</code>和<code>GitLab Tag</code>借助opendevops平台实现自动化发布，以下为所用到的功能简单介绍。</p></div> <details class="custom-block details"><summary>点我展开</summary> <p>你需要具备以下环境：</p> <ul><li><a href="https://github.com/gitlabhq/gitlabhq/blob/master/doc/install/README.md" target="_blank" rel="noopener noreferrer">GitLab<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="http://yanghongfei.me/2019/03/25/git-hooks/" target="_blank" rel="noopener noreferrer">GitLab Hooks<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="http://yanghongfei.me/2019/03/19/gitlab-api-enable-depoly-key/" target="_blank" rel="noopener noreferrer">GitLab Depoly Keys<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="http://www.opendevops.cn/" target="_blank" rel="noopener noreferrer">OpenDevOps 开源自动化运维平台<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul> <p><strong>发布为什么选择过OpenDevOps平台</strong></p> <ul><li>进度可视化</li> <li>平台发布记录</li> <li>Git Tag 可快速回滚</li> <li>权限控制，可由PM登陆平台审核后发布</li> <li>可定时执行，报错可重装，不同项目需求可根据实际编写脚本进行排版任务等。</li></ul> <p><strong>快速使用</strong></p> <blockquote><p>这里废话不多说，直接上实践，至于Tag、Hooks、Depoly Keys不熟悉的请参考以上链接，也可自行百度。
+发布流程：<code>enable depoly keys</code>-&gt;<code>git clone</code>–&gt;<code>git pull</code>—&gt;<code>git checkout &lt;tag&gt;</code>—&gt;<code>rsync_code</code>—&gt;<code>code_backup</code>—&gt;<code>publish code</code>-&gt;<code>publish OK~</code>，平台历史记录可查看发布信息</p></blockquote> <p><strong>创建模板</strong></p> <ul><li>记下模板ID</li> <li>模板执行顺序自行排版</li> <li><a href="https://docs.opendevops.cn/zh/guide/used/#%E4%BB%BB%E5%8A%A1%E6%A8%A1%E7%89%88" target="_blank" rel="noopener noreferrer">opendevops模板使用说明<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <img src="/005X1wn0gy1g1ewg3sgrrj31gk0n7n0o.jpg" alt=""></li></ul> <p><strong>配置钩子</strong></p> <p><a href="https://docs.gitlab.com/ee/administration/custom_hooks.html" target="_blank" rel="noopener noreferrer">GitLab Hooks<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>分为2种：</p> <ul><li>Hooks：全局钩子，适用于所有项目</li> <li>Custom Hooks： 项目钩子，针对项目来做钩子触发任务</li></ul> <p>如何使用？</p> <p>本章主要使用项目钩子，不建议使用全局钩子，这样会出问题，亲自尝试，毕竟我们的需求是针对xxx项目进行做自动化发布的。</p> <p>登陆GitLab服务器操作</p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+$ <span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>project_name<span class="token operator">&gt;</span>.git/
+$ <span class="token function">mkdir</span> -p custom_hooks <span class="token punctuation">;</span> <span class="token function">chown</span> -R git.git custom_hooks<span class="token punctuation">;</span> <span class="token function">chmod</span> <span class="token number">777</span> custom_hooks
+
+</code></pre></div><p>创建<a href="http://yanghongfei.me/2019/03/25/git-hooks/" target="_blank" rel="noopener noreferrer">Update<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>钩子</p> <blockquote><p>这里我有已经运行2年的脚本供各位参考。</p></blockquote> <div class="language-python extra-class"><pre class="language-python"><code> 
+<span class="token comment">#!/usr/bin/env python</span>
+<span class="token comment"># -*- coding: utf-8 -*-</span>
+<span class="token comment"># @Author  : Fred Yangxiaofei</span>
+<span class="token comment"># @File    : new_hook_for_update.py</span>
+<span class="token comment"># @Role    : 利用gitlab Tag触发钩子像平台提交任务</span>
+
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> datetime
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> re
+
+
+<span class="token keyword">def</span> <span class="token function">post_task</span><span class="token punctuation">(</span>tag<span class="token punctuation">,</span> temp_id<span class="token punctuation">,</span> schedule<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    :param tag:      从gitlab钩子获取TAG信息
+    :param temp_id:  模板ID，平台里面任务模板里面查看
+    :param task_status: 提交任务的状态，常用的为：ready: 表示不需人工干预，平台直接执行，new: 平台需要选择审批。根据审批时间执行。
+    :return:
+
+    &quot;&quot;&quot;</span>
+    <span class="token comment">#这里是浏览器Cookie里面auth_key，可使用超级管理员用户，平台获取长期auth_key</span>
+    auth_key <span class="token operator">=</span> <span class="token string">&quot;va2VuIsImRhdGEiOnsi9.BgP8UAoNiBkzJNSN1pa-eQVjlAxrKGxYZf0YgvXv39k&quot;</span>  
+    <span class="token comment"># 这里hosts必须是IP，CODO平台只走的是SSH协议，需要在执行用户配置链接主机的key,或者自行打通。</span>
+    hosts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">:</span> <span class="token string">'118.25.xx.xx'</span><span class="token punctuation">}</span>  <span class="token comment"># 上海Salt IP，执行主机IP。</span>
+    args <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token string">&quot;TAG&quot;</span><span class="token punctuation">:</span> tag<span class="token punctuation">,</span>
+        <span class="token string">&quot;GIT_URL&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;git@gitlab.xxxxxxx.com:xxxxx/xxxxx.git&quot;</span><span class="token punctuation">,</span>  <span class="token comment"># 修改此项</span>
+        <span class="token string">&quot;APP_NAME&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;DBTT&quot;</span>  <span class="token comment"># 修改此项</span>
+    <span class="token punctuation">}</span>
+    the_body <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token string">&quot;task_name&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;DBTT&quot;</span><span class="token punctuation">,</span> <span class="token comment">#修改此项</span>
+        <span class="token string">&quot;temp_id&quot;</span><span class="token punctuation">:</span> temp_id<span class="token punctuation">,</span>
+        <span class="token string">&quot;args&quot;</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>args<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;details&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;git hook auto exec&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;hosts&quot;</span><span class="token punctuation">:</span> <span class="token builtin">str</span><span class="token punctuation">(</span>hosts<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;submitter&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;githook&quot;</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;exec_time&quot;</span><span class="token punctuation">:</span> datetime<span class="token punctuation">.</span>datetime<span class="token punctuation">.</span>now<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strftime<span class="token punctuation">(</span><span class="token string">'%Y-%m-%d %H:%M:%S'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token string">&quot;schedule&quot;</span><span class="token punctuation">:</span> schedule<span class="token punctuation">,</span>
+        <span class="token string">&quot;executor&quot;</span><span class="token punctuation">:</span> <span class="token string">&quot;githook&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+    accept_task_url <span class="token operator">=</span> <span class="token string">'https://codo-v1.domain.com/api/task/v2/task/accept/'</span>
+    req1 <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>accept_task_url<span class="token punctuation">,</span> cookies<span class="token operator">=</span><span class="token builtin">dict</span><span class="token punctuation">(</span>auth_key<span class="token operator">=</span>auth_key<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    csrf_key <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>req1<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'csrf_key'</span><span class="token punctuation">]</span>
+    cookies <span class="token operator">=</span> <span class="token builtin">dict</span><span class="token punctuation">(</span>auth_key<span class="token operator">=</span>auth_key<span class="token punctuation">,</span> csrf_key<span class="token operator">=</span>csrf_key<span class="token punctuation">)</span>
+    req <span class="token operator">=</span> requests<span class="token punctuation">.</span>post<span class="token punctuation">(</span>accept_task_url<span class="token punctuation">,</span> data<span class="token operator">=</span>the_body<span class="token punctuation">,</span> cookies<span class="token operator">=</span>cookies<span class="token punctuation">)</span>
+    req_code <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>req<span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> req_code <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(json.loads(req.text)['msg'])</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'task commit failed Please contact  OPS Group'</span><span class="token punctuation">)</span>
+        exit<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">111</span><span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token comment"># print(json.loads(req.text)['msg'])</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Asynchronous task has been submitted successfully!!!'</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Please do not submit multiple times to prevent the task from jamming!!!'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">def</span> <span class="token function">get_tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''获取TAG'''</span>
+    tag <span class="token operator">=</span> sys<span class="token punctuation">.</span>argv<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">&quot;/&quot;</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+    qa <span class="token operator">=</span> re<span class="token punctuation">.</span>match<span class="token punctuation">(</span><span class="token string">r'\Aqa-dbtt[\w]*'</span><span class="token punctuation">,</span>tag<span class="token punctuation">)</span>     <span class="token comment">#测试</span>
+    release <span class="token operator">=</span> re<span class="token punctuation">.</span>match<span class="token punctuation">(</span><span class="token string">r'\Arelease-dbtt[\w]*'</span><span class="token punctuation">,</span>tag<span class="token punctuation">)</span>   <span class="token comment">#正式</span>
+
+    <span class="token keyword">if</span> qa<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>post_task<span class="token punctuation">(</span>tag<span class="token punctuation">,</span> <span class="token string">'32'</span><span class="token punctuation">,</span><span class="token string">'ready'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">#这是模板ID</span>
+    <span class="token keyword">elif</span> release<span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span>post_task<span class="token punctuation">(</span>tag<span class="token punctuation">,</span> <span class="token string">'32'</span><span class="token punctuation">,</span><span class="token string">'ready'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">#这是模板ID</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+         <span class="token keyword">print</span><span class="token punctuation">(</span>tag<span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    get_tag<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+</code></pre></div><p>配置好钩子后，接下来克隆版本库进行提交测试</p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token function">git</span> clone git@gitlab.xxxxxx:xxx/xxx.git
+<span class="token function">git</span> pull
+
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;README&quot;</span> <span class="token operator">&gt;</span> README.md
+<span class="token function">git</span> <span class="token function">add</span> --all
+<span class="token function">git</span> commit -m <span class="token string">&quot;[Add] README,测试发布&quot;</span>
+<span class="token function">git</span> push -u origin origin
+<span class="token function">git</span> tag release-dbtt-server-20190320-02  <span class="token comment">#这里只要能让钩子里面正则匹配到dbtt-release都会被触发</span>
+<span class="token function">git</span> push -u origin release-dbtt-server-20190320-02  <span class="token comment">#把tag推送上去</span>
+
+</code></pre></div><p>最终的结果</p> <p><img src="/005X1wn0gy1g1exnc0cv9j30uc0iw75r.jpg" alt=""></p></details> <h3 id="基于配置中心管理dnsmasq示例"><a href="#基于配置中心管理dnsmasq示例" class="header-anchor">#</a> 基于配置中心管理dnsmasq示例</h3> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>这是一篇关于如何基于配置中心来图形化管理你的内网DNS，一般来说互联网企业里面都会部署自己内部的DNS服务，来提升解析速度。本示例dnsmasq，关于bind DNS域名管理是平台的一个单独模块。</p></div> <details class="custom-block details"><summary>点我展开</summary> <p><strong>环境说明</strong></p> <blockquote><p>Q: 为什么要配置到平台上？</p> <p>A：假如你内网DNS有多台，即使是管理简单的dnsmasq服务，你也要手动登录机器进行编辑配置文件，很麻烦，机器上直接操作是非常危险的，且没有回滚功能，一不小心就可能导致出错，Server 挂掉等。所以在此借助配置中心模块简单记录下，配置中心支持图形化操作、对比、回滚等操作</p></blockquote> <ul><li>OpenDevOps平台</li> <li>配置中心模块</li> <li>任务模板</li> <li>内网DNS服务(dnsmasq)</li></ul> <p><strong>如何使用</strong></p> <p><strong>开始之前你可以点击以下视频链接，看下最终效果，看此操作是否可以满足你的需求</strong></p> <p><a href="https://www.youtube.com/watch?v=jM8DSbUh0Rs&amp;t=47s" target="_blank" rel="noopener noreferrer">Youtube<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> | <a href="https://www.bilibili.com/video/av53460519/" target="_blank" rel="noopener noreferrer">BiliBili<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><strong>登录配置中心新建一个项目</strong></p> <p><img src="/add_config.png" alt=""></p> <p><strong>对项目进行赋权</strong></p> <p>新建的项目默认只有创建人才有权限， 需要赋权，其余用户才可以看到/拉取配置文件详情</p> <p><img src="/user_auth.png" alt=""></p> <p><strong>获取一个用户的长期Token</strong></p> <p>这个用户必须有你这个项目的权限才可以，然后获取到这个用户的长期Token，后面脚本要用到</p> <p><img src="/get_token.png" alt=""></p> <p><strong>服务器上拉取配置</strong></p> <p>这里需要在服务器上放一个拉取配置中心配置的一个脚本，逻辑就是，通过一个有权限的用户—拉取指定的配置信息—将配置同步到你的server上—-reload服务</p> <p>这里提供一个配置脚本示例(dnsmasq)，更详情的脚本可参考<a href="https://github.com/opendevops-cn/kerrigan/blob/master/libs/get_config.py" target="_blank" rel="noopener noreferrer">配置中心<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>示例脚本放到DNS服务器目录：<code>/data1/shell/dns_publish.py</code></p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token comment">#!/usr/bin/env python</span>
+<span class="token comment"># -*-coding:utf-8-*-</span>
+<span class="token triple-quoted-string string">&quot;&quot;&quot;
+Contact : 191715030@qq.com
+Author  : shenshuo
+Date    : 2019/1/29
+Desc    : 获取配置文件内容，
+          要确保有全局权限 /kerrigan/v1/conf/publish/
+          要确保有当前项目配置获取权限
+&quot;&quot;&quot;</span>
+
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> requests
+<span class="token keyword">import</span> json
+<span class="token keyword">import</span> subprocess
+
+
+
+<span class="token keyword">def</span> <span class="token function">exec_shell</span><span class="token punctuation">(</span>cmd<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">'''执行shell命令函数'''</span>
+    sub2 <span class="token operator">=</span> subprocess<span class="token punctuation">.</span>Popen<span class="token punctuation">(</span>cmd<span class="token punctuation">,</span> shell<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> stdout<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>PIPE<span class="token punctuation">,</span> stderr<span class="token operator">=</span>subprocess<span class="token punctuation">.</span>STDOUT<span class="token punctuation">)</span>
+    stdout<span class="token punctuation">,</span> stderr <span class="token operator">=</span> sub2<span class="token punctuation">.</span>communicate<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    ret <span class="token operator">=</span> sub2<span class="token punctuation">.</span>returncode
+    <span class="token keyword">return</span> ret<span class="token punctuation">,</span>stdout<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+
+
+<span class="token keyword">class</span> <span class="token class-name">ConfApi</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># self.auth_key 是一个长期Token，基于用户管理里面，管理员选中用户生成长期Token，默认发送到用户邮箱</span>
+        self<span class="token punctuation">.</span>auth_key <span class="token operator">=</span> <span class="token string">'eyJ0eXAiOiJKV1QiLCJhbmZpZyIsIm5pY2XcFBbGciOiJIUzI1NiJ9.eyJleHAiOjE2NTMwMzQyNzYsIm5iZiI6MTU1Nzk5NDI1NiwiaWF0IjoxNTU3OTk0Mj3ZjZlXHU3NTI4XHU2MjM3IY2LCJpc3MiOiJhdXRoOiBzcyIsInN1YiI6Im15IHRva2VuIiwiaWQiOiIxNTYxODcxODA2MCIsImRhdGEiOnsidXNlcl9pZCI6NjYsInVzZXJuYW1lIjoiZ2V0X2NvFOOo'</span>
+        self<span class="token punctuation">.</span>conf_path <span class="token operator">=</span><span class="token string">'/tmp'</span>
+        self<span class="token punctuation">.</span>conf_config_api <span class="token operator">=</span> <span class="token string">&quot;https://codo.domain.com/api/kerrigan/v1/conf/publish/config/&quot;</span>   <span class="token comment">#配置中心获取API</span>
+
+
+
+    <span class="token keyword">def</span> <span class="token function">get_config_details</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> project_code<span class="token punctuation">,</span> environment<span class="token punctuation">,</span> service<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 获取配置文件内容,  2019-04-28支持URL auth_key登陆，不需要再登陆进行获取auth_key，直接生成长期Token用</span>
+        <span class="token comment">#__token = self.login()</span>
+
+        __token <span class="token operator">=</span> self<span class="token punctuation">.</span>auth_key
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            _params <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">'project_code'</span><span class="token punctuation">:</span> project_code<span class="token punctuation">,</span> <span class="token string">'environment'</span><span class="token punctuation">:</span> environment<span class="token punctuation">,</span><span class="token string">'service'</span><span class="token punctuation">:</span>service<span class="token punctuation">,</span><span class="token string">'filename'</span><span class="token punctuation">:</span>filename<span class="token punctuation">,</span> <span class="token string">'auth_key'</span><span class="token punctuation">:</span> __token<span class="token punctuation">}</span>
+            res <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>self<span class="token punctuation">.</span>conf_config_api<span class="token punctuation">,</span> params<span class="token operator">=</span>_params<span class="token punctuation">)</span>
+            ret <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>res<span class="token punctuation">.</span>content<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> ret<span class="token punctuation">[</span><span class="token string">'code'</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">:</span> <span class="token keyword">return</span> ret<span class="token punctuation">[</span><span class="token string">'data'</span><span class="token punctuation">]</span>
+        <span class="token keyword">except</span> Exception <span class="token keyword">as</span> e<span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[Error:] 发布配置接口连接失败，错误信息：{}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            exit<span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+
+
+    <span class="token keyword">def</span> <span class="token function">create_config_file</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> project_code<span class="token punctuation">,</span> environment<span class="token punctuation">,</span> service<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 生成配置文件</span>
+        config_data <span class="token operator">=</span> self<span class="token punctuation">.</span>get_config_details<span class="token punctuation">(</span>project_code<span class="token punctuation">,</span> environment<span class="token punctuation">,</span> service<span class="token punctuation">,</span> filename<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> k<span class="token punctuation">,</span>v <span class="token keyword">in</span> config_data<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            config_file <span class="token operator">=</span> self<span class="token punctuation">.</span>conf_path <span class="token operator">+</span> k
+            dir_name<span class="token punctuation">,</span> _ <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>split<span class="token punctuation">(</span>config_file<span class="token punctuation">)</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span>dir_name<span class="token punctuation">)</span><span class="token punctuation">:</span>
+                os<span class="token punctuation">.</span>makedirs<span class="token punctuation">(</span>dir_name<span class="token punctuation">)</span>
+            <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>config_file <span class="token punctuation">,</span><span class="token string">'w'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>v<span class="token punctuation">)</span>
+        <span class="token comment">#     print('config file path is {}'.format(config_file))</span>
+        <span class="token comment"># print('success')</span>
+        <span class="token keyword">return</span> config_file  <span class="token comment">#返回文件路径</span>
+
+
+    <span class="token keyword">def</span> <span class="token function">rsync_file</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> config_file<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token triple-quoted-string string">&quot;&quot;&quot;
+        同步文件
+        :return:
+        &quot;&quot;&quot;</span>
+        <span class="token comment">#目标文件名：</span>
+        target_file_name <span class="token operator">=</span> config_file<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span>
+        cmd <span class="token operator">=</span> <span class="token string">'rsync -avz {}  /etc/{}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>config_file<span class="token punctuation">,</span>target_file_name<span class="token punctuation">)</span>
+        ret<span class="token punctuation">,</span> stdout <span class="token operator">=</span> exec_shell<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> ret <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ERROR]: 文件同步失败'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>target_file_name<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[Sucess]: {}文件同步成功'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>target_file_name<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">def</span> <span class="token function">reload_service</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        cmd <span class="token operator">=</span> <span class="token string">'service dnsmasq reload'</span>
+        ret<span class="token punctuation">,</span> stdout <span class="token operator">=</span> exec_shell<span class="token punctuation">(</span>cmd<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> ret <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[ERROR]: 服务启动失败'</span><span class="token punctuation">)</span>
+            <span class="token keyword">return</span> <span class="token boolean">False</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'[Sucess]: 服务reload成功'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    obj <span class="token operator">=</span> ConfApi<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    config_file <span class="token operator">=</span> obj<span class="token punctuation">.</span>create_config_file<span class="token punctuation">(</span><span class="token string">'DNS'</span><span class="token punctuation">,</span> <span class="token string">'release'</span><span class="token punctuation">,</span> <span class="token string">'dnsmasq'</span><span class="token punctuation">,</span> <span class="token string">'dnsmasq.conf'</span><span class="token punctuation">)</span>
+    hosts_config_file <span class="token operator">=</span> obj<span class="token punctuation">.</span>create_config_file<span class="token punctuation">(</span><span class="token string">'DNS'</span><span class="token punctuation">,</span> <span class="token string">'release'</span><span class="token punctuation">,</span> <span class="token string">'dnsmasq'</span><span class="token punctuation">,</span> <span class="token string">'dnsmasq_hosts'</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> config_file<span class="token punctuation">:</span>
+        obj<span class="token punctuation">.</span>rsync_file<span class="token punctuation">(</span>config_file<span class="token punctuation">)</span>
+
+    <span class="token keyword">if</span> hosts_config_file<span class="token punctuation">:</span>
+        obj<span class="token punctuation">.</span>rsync_file<span class="token punctuation">(</span>hosts_config_file<span class="token punctuation">)</span>
+
+    obj<span class="token punctuation">.</span>reload_service<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>运行查看结果：</p> <div class="language-python extra-class"><pre class="language-python"><code>python3 <span class="token operator">/</span>data1<span class="token operator">/</span>shell<span class="token operator">/</span>dns_publish<span class="token punctuation">.</span>py
+<span class="token punctuation">[</span>Sucess<span class="token punctuation">]</span><span class="token punctuation">:</span> dnsmasq<span class="token punctuation">.</span>conf文件同步成功
+<span class="token punctuation">[</span>Sucess<span class="token punctuation">]</span><span class="token punctuation">:</span> dnsmasq_hosts文件同步成功
+<span class="token punctuation">[</span>Sucess<span class="token punctuation">]</span><span class="token punctuation">:</span> 服务<span class="token builtin">reload</span>成功
+</code></pre></div><p>其实到了这一步，基本配置已经完成了，由于这个DNS每次修改后配置都要reload服务，所以不建议放到crontab里面进行轮训配置，接下来配置下发布，IT人员修改后配置，点下发布进行触发</p> <p><strong>配置DNS发布</strong></p> <p><strong>新建一个Tag，将机器添加进去</strong></p> <p><img src="/add_dns_tag.png" alt=""></p> <p><strong>新建命令和模板配置</strong></p> <p>这里是发布的时候选择我们自己排序的模块任务</p> <p><img src="/add_dns_bash.png" alt=""></p> <p><img src="/add_dns_temp.png" alt=""></p> <p><strong>提交一个自定义任务</strong></p> <p><img src="/commit_dns_task.png" alt=""></p> <p><strong>审批任务</strong></p> <p><img src="/approval_dns_task.png" alt=""></p> <p><strong>执行结果</strong></p> <p><img src="/dns_task_res.png" alt=""></p> <p>如果出错可以查看日志进排查，也可以重做，终止等操作</p> <p><img src="/dns_task_log.png" alt=""></p></details> <h3 id="基于私有对象存储管理示例"><a href="#基于私有对象存储管理示例" class="header-anchor">#</a> 基于私有对象存储管理示例</h3> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>本文档用来讲解如何使用私有读写的对象存储通过网关做鉴权（阿里云OSS示例）</p></div> <details class="custom-block details"><summary>点我展开</summary> <p><strong>设置Bucket</strong>
+阿里云创建对象存储Bucket，权限设置为私有。</p> <p><img src="/%E5%88%9B%E5%BB%BA%E7%A7%81%E6%9C%89Bucket.jpg" alt="创建私有Bucket"></p> <p><strong>设置CDN</strong>
+OSS私有读访问鉴权比较复杂，经过测试我们选型通过CDN做访问鉴权，</p> <p>这样既可以使用CDN加速访问降低选型走内网传输对网络造成的压力，并且可以不改变访问URL的情况下做鉴权。</p> <p>配置阿里云OSS私有Bucket回源。
+<img src="/%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%BC%80%E5%90%AF%E7%A7%81%E6%9C%89bucket%E5%9B%9E%E6%BA%90.jpg" alt="阿里云CDN开启私有bucket回源"></p> <p><strong>配置远程鉴权</strong></p> <p>最简单的处理，只判断是否登录，没登陆的状态码是401，</p> <p>所以我们只用配置鉴权失败状态码为401，超时动作设置为拒绝；</p> <p>后续我们也可以在鉴权接口上配置是否有权限，并做日志记录。</p> <p><img src="/%E9%98%BF%E9%87%8C%E4%BA%91CDN%E8%BF%9C%E7%A8%8B%E9%89%B4%E6%9D%83.jpg" alt="阿里云CDN远程鉴权"></p> <p>因为鉴权都在网关，后端接口可以不用做什么改动</p> <div class="language-python extra-class"><pre class="language-python"><code><span class="token keyword">class</span>  <span class="token class-name">CDNAuth</span><span class="token punctuation">(</span>BaseHandler<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">get</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 记录CDN日志,暂不需要</span>
+        <span class="token keyword">pass</span> 
+</code></pre></div><p><strong>上传接口使用</strong></p> <ul><li><p>请求URL：<code>/api/mg/v1/storage/file/private/</code></p></li> <li><p>请求方式：<code>POST</code></p></li> <li><p>表头：<code>Content-Type:&quot;multipart/form-data&quot;，file-dir=&quot;&quot;</code> file-dir 代表上传的目录，需要放入header，如果没有则默认为file目录</p></li> <li><p>参数：</p> <table><thead><tr><th>参数名</th> <th>必选</th> <th>类型</th> <th>说明</th></tr></thead> <tbody><tr><td>filename</td> <td>是</td> <td>str</td> <td>文件名称</td></tr> <tr><td>body</td> <td>是</td> <td></td> <td>文件内容</td></tr></tbody></table></li> <li><p>输入示例</p></li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">[</span>
+        ('field1'<span class="token punctuation">,</span> ('foo.png'<span class="token punctuation">,</span> open(<span class="token string">&quot;/tmp/filePath1&quot;</span><span class="token punctuation">,</span> 'rb')<span class="token punctuation">,</span> 'image/png'))<span class="token punctuation">,</span>
+        ('field2'<span class="token punctuation">,</span> ('bar.png'<span class="token punctuation">,</span> open('/tmp/filePath1'<span class="token punctuation">,</span> 'rb')<span class="token punctuation">,</span> 'image/png'))
+<span class="token punctuation">]</span>
+</code></pre></div><ul><li><code>r = requests.post(url, data, files=files)</code> 使用requests.post的files参数</li> <li>返回：</li></ul> <div class="language- extra-class"><pre class="language-text"><code>  {
+      &quot;code&quot;:0,
+      &quot;msg&quot;:&quot;上传成功&quot;
+  }
+</code></pre></div><p><strong>前端访问</strong></p> <p>上述已经讲解如何上传和CDN配置，下面我们讲怎么访问：</p> <ul><li><p>鉴权交互图</p> <p><img src="/%E9%98%BF%E9%87%8C%E4%BA%91%E8%BF%9C%E7%A8%8B%E9%89%B4%E6%9D%83%E4%BA%A4%E4%BA%92%E6%B5%81%E7%A8%8B.jpg" alt="阿里云远程鉴权交互流程"></p></li> <li><p>用户通过CDN访问OSS资源的时候会带着访问的headers（我们统一登录的时候会把JWT数据写入前端的headers），CDN会使用携带的headers数据去我们的天门网关鉴权（天门网关需开启jwt auth 或者codo rbac插件），如果headers数据正常则可以访问，否则返回401状态，CDN则返回用户403。</p> <p><img src="/%E8%BF%9C%E7%AB%AF%E9%89%B4%E6%9D%83%E5%A4%B1%E8%B4%A5%E6%95%B0%E6%8D%AE.jpg" alt="远端鉴权失败数据"></p></li> <li><p>示例在我们的自定义表单的上传组件中使用</p> <p><img src="/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E5%8D%95%E4%BD%BF%E7%94%A8%E4%B8%8A%E4%BC%A0%E6%8E%A5%E5%8F%A3.jpg" alt="自定义表单使用上传接口"></p></li> <li><p>上传成功可以直接预览</p> <p><img src="/%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A1%A8%E5%8D%95%E4%BD%BF%E7%94%A8%E4%B8%8A%E4%BC%A0%E6%8E%A5%E5%8F%A3%E6%88%90%E5%8A%9F.jpg" alt="自定义表单使用上传接口成功"></p></li></ul></details></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/zh/guide/more/permission/" class="prev">
+        权限文档
+      </a></span> <span class="next"><a href="/zh/guide/more/update/">
+        如何更新
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e9c144ab.js" defer></script><script src="/assets/js/2.7c46101f.js" defer></script><script src="/assets/js/13.da5a85e8.js" defer></script>
+  </body>
+</html>

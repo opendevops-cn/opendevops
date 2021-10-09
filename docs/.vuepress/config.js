@@ -3,7 +3,7 @@ module.exports = {
 	description: ' Vue驱动的CoDo快速入门文档',
 	head: [ [ 'link', { rel: 'icon', href: '/favicon.ico' } ] ],
 	themeConfig: {
-		logo: '/logo.png',
+		logo: 'https://img.opendevops.cn/logo.png',
 		nav: [
 			{ text: 'Home', link: '/' },
 			{ text: '招募', link: '/zh/ad/' },

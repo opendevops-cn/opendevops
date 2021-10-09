@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>分布式部署 | OpenDevOps</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="description" content=" Vue驱动的CoDo快速入门文档">
+    
+    <link rel="preload" href="/assets/css/0.styles.c8e23b86.css" as="style"><link rel="preload" href="/assets/js/app.e9c144ab.js" as="script"><link rel="preload" href="/assets/js/2.7c46101f.js" as="script"><link rel="preload" href="/assets/js/10.ebbbf0a3.js" as="script"><link rel="prefetch" href="/assets/js/11.3e67cbc3.js"><link rel="prefetch" href="/assets/js/12.7ba93764.js"><link rel="prefetch" href="/assets/js/13.da5a85e8.js"><link rel="prefetch" href="/assets/js/14.3901f50a.js"><link rel="prefetch" href="/assets/js/15.755c9d7b.js"><link rel="prefetch" href="/assets/js/16.9f6c6ba4.js"><link rel="prefetch" href="/assets/js/17.5f0409e1.js"><link rel="prefetch" href="/assets/js/18.ff6e90fb.js"><link rel="prefetch" href="/assets/js/19.d4c7a73d.js"><link rel="prefetch" href="/assets/js/20.457b8a0d.js"><link rel="prefetch" href="/assets/js/21.f132940f.js"><link rel="prefetch" href="/assets/js/22.9271d7e7.js"><link rel="prefetch" href="/assets/js/23.a0a60b68.js"><link rel="prefetch" href="/assets/js/24.928bd2dd.js"><link rel="prefetch" href="/assets/js/25.e23d438c.js"><link rel="prefetch" href="/assets/js/26.9c61a799.js"><link rel="prefetch" href="/assets/js/3.5c7b1b2d.js"><link rel="prefetch" href="/assets/js/4.c42efd98.js"><link rel="prefetch" href="/assets/js/5.3d5a79e4.js"><link rel="prefetch" href="/assets/js/6.f6831b64.js"><link rel="prefetch" href="/assets/js/7.347713f4.js"><link rel="prefetch" href="/assets/js/8.34375613.js"><link rel="prefetch" href="/assets/js/9.b40e46a0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c8e23b86.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="https://img.opendevops.cn/logo.png" alt="OpenDevOps" class="logo"> <span class="site-name can-hide">OpenDevOps</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/zh/ad/" class="nav-link">
+  招募
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="部署文档" class="dropdown-title"><span class="title">部署文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="部署文档" class="mobile-dropdown-title"><span class="title">部署文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/install/local/" class="nav-link">
+  单机部署
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/install/distribute/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  分布式部署
+</a></li></ul></div></div><div class="nav-item"><a href="/zh/guide/used/" class="nav-link">
+  使用文档
+</a></div><div class="nav-item"><a href="https://bbs.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  论坛
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://demo.opendevops.cn/login" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Demo
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://gitee.com/opendevops/opendevops" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/opendevops-cn" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="了解更多" class="dropdown-title"><span class="title">了解更多</span> <span class="arrow down"></span></button> <button type="button" aria-label="了解更多" class="mobile-dropdown-title"><span class="title">了解更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/more/faq/" class="nav-link">
+  FAQ
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/qgroup/" class="nav-link">
+  QQ群
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/contributor/" class="nav-link">
+  贡献者
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/permission/" class="nav-link">
+  权限文档
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/example/" class="nav-link">
+  最佳示例
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/update/" class="nav-link">
+  如何更新
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  Home
+</a></div><div class="nav-item"><a href="/zh/ad/" class="nav-link">
+  招募
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="部署文档" class="dropdown-title"><span class="title">部署文档</span> <span class="arrow down"></span></button> <button type="button" aria-label="部署文档" class="mobile-dropdown-title"><span class="title">部署文档</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/install/local/" class="nav-link">
+  单机部署
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/install/distribute/" aria-current="page" class="nav-link router-link-exact-active router-link-active">
+  分布式部署
+</a></li></ul></div></div><div class="nav-item"><a href="/zh/guide/used/" class="nav-link">
+  使用文档
+</a></div><div class="nav-item"><a href="https://bbs.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  论坛
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://www.opendevops.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  官网
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://demo.opendevops.cn/login" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Demo
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://gitee.com/opendevops/opendevops" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Gitee
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><a href="https://github.com/opendevops-cn" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="了解更多" class="dropdown-title"><span class="title">了解更多</span> <span class="arrow down"></span></button> <button type="button" aria-label="了解更多" class="mobile-dropdown-title"><span class="title">了解更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/zh/guide/more/faq/" class="nav-link">
+  FAQ
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/qgroup/" class="nav-link">
+  QQ群
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/contributor/" class="nav-link">
+  贡献者
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/permission/" class="nav-link">
+  权限文档
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/example/" class="nav-link">
+  最佳示例
+</a></li><li class="dropdown-item"><!----> <a href="/zh/guide/more/update/" class="nav-link">
+  如何更新
+</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>它是什么</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/" aria-current="page" class="sidebar-link">OpenDevOps</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>如何安装</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/install/local/" class="sidebar-link">单机部署</a></li><li><a href="/zh/guide/install/distribute/" aria-current="page" class="active sidebar-link">分布式部署</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#环境准备" class="sidebar-link">环境准备</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#项目前端" class="sidebar-link">项目前端</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#管理后端" class="sidebar-link">管理后端</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#资产管理" class="sidebar-link">资产管理</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#定时任务" class="sidebar-link">定时任务</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#任务系统" class="sidebar-link">任务系统</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#运维工具" class="sidebar-link">运维工具</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#配置中心" class="sidebar-link">配置中心</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#域名管理" class="sidebar-link">域名管理</a></li><li class="sidebar-sub-header"><a href="/zh/guide/install/distribute/#api网关-部署容易出问题的地方" class="sidebar-link">API网关（部署容易出问题的地方）</a></li></ul></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>如何使用</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/used/" class="sidebar-link">如何使用</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>中间件部署</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>插件部署</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/plugin/Bind.html" class="sidebar-link">DNS Bind</a></li><li><a href="/zh/guide/plugin/Inception.html" class="sidebar-link">Inception</a></li><li><a href="/zh/guide/plugin/sonarQube.html" class="sidebar-link">sonarQube</a></li><li><a href="/zh/guide/plugin/SQLAdvisor.html" class="sidebar-link">SQLAdvisor</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>其他相关</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/zh/guide/more/faq/" class="sidebar-link">FAQ</a></li><li><a href="/zh/guide/more/qgroup/" class="sidebar-link">加入交流群</a></li><li><a href="/zh/guide/more/contributor/" class="sidebar-link">贡献者</a></li><li><a href="/zh/guide/more/permission/" class="sidebar-link">权限文档</a></li><li><a href="/zh/guide/more/example/" class="sidebar-link">最佳实践</a></li><li><a href="/zh/guide/more/update/" class="sidebar-link">如何更新</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="分布式部署"><a href="#分布式部署" class="header-anchor">#</a> 分布式部署</h1> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>基于全Docker的分布式部署方式，建议线上使用。<a href="https://www.bilibili.com/video/av53446517?from=search&amp;seid=16003251072301252333" target="_blank" rel="noopener noreferrer">部署视频入口<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <h2 id="环境准备"><a href="#环境准备" class="header-anchor">#</a> 环境准备</h2> <p><strong>建议配置</strong></p> <ul><li>系统：  CentOS7+</li> <li>CPU：   4Core+</li> <li>内存：  8G+</li> <li>磁盘：  50G+</li></ul> <p><strong>基础环境</strong></p> <ul><li>版本约束
+<ul><li>Python3.6</li> <li>Redis3.2</li> <li>MySQl5.7</li> <li>RabbitMQ</li> <li>Docker</li> <li>Docker-compose</li></ul></li></ul> <p><strong>优化系统</strong></p> <p>注意：</p> <ul><li>如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了<a href="https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh" target="_blank" rel="noopener noreferrer">优化系统脚本<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li>以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本</li></ul> <p><strong>环境变量</strong></p> <blockquote><p>创建项目目录</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>$ mkdir -p /opt/codo/ &amp;&amp; cd /opt/codo/
+</code></pre></div><blockquote><p>以下内容贴入到<code>vim /opt/codo/env.sh</code>文件，主要修改配置地址和密码信息</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[31m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[33m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+
+<span class="token comment">#部署的IP地址</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LOCALHOST_IP</span><span class="token operator">=</span><span class="token string">&quot;10.10.10.12&quot;</span>
+
+<span class="token comment">#设置你的MYSQL密码</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MYSQL_PASSWORD</span><span class="token operator">=</span><span class="token string">&quot;m9uSFL7duAVXfeAwGUSG&quot;</span>
+
+<span class="token comment">### 设置你的redis密码</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">REDIS_PASSWORD</span><span class="token operator">=</span><span class="token string">&quot;cWCVKJ7ZHUK12mVbivUf&quot;</span>
+
+<span class="token comment">### RabbitMQ用户密码信息</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MQ_USER</span><span class="token operator">=</span><span class="token string">&quot;ss&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">MQ_PASSWORD</span><span class="token operator">=</span><span class="token string">&quot;5Q2ajBHRT2lFJjnvaU0g&quot;</span>
+
+
+<span class="token comment">#codo-admin用到的cookie和token</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">cookie_secret</span><span class="token operator">=</span><span class="token string">&quot;nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB&quot;</span>
+<span class="token comment"># 这里codo-admin和gw网关都会用到，一定要修改。可生成随意字符</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">token_secret</span><span class="token operator">=</span><span class="token string">&quot;pXFb4i%*834gfdh963df718iodGq4dsafsdadg7yI6ImF1999aaG7&quot;</span>
+
+
+<span class="token comment">##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了</span>
+<span class="token comment"># 写数据库</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_DB_DBHOST</span><span class="token operator">=</span><span class="token string">&quot;10.10.10.12&quot;</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_DB_DBPORT</span><span class="token operator">=</span><span class="token string">'3306'</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_DB_DBUSER</span><span class="token operator">=</span><span class="token string">'root'</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_DB_DBPWD</span><span class="token operator">=</span><span class="token variable">${MYSQL_PASSWORD}</span>
+<span class="token comment">#export DEFAULT_DB_DBNAME=${mysql_database}</span>
+
+<span class="token comment"># 读数据库</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">READONLY_DB_DBHOST</span><span class="token operator">=</span><span class="token string">'10.10.10.12'</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">READONLY_DB_DBPORT</span><span class="token operator">=</span><span class="token string">'3306'</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">READONLY_DB_DBUSER</span><span class="token operator">=</span><span class="token string">'root'</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">READONLY_DB_DBPWD</span><span class="token operator">=</span><span class="token variable">${MYSQL_PASSWORD}</span>
+<span class="token comment">#export READONLY_DB_DBNAME=${mysql_database}</span>
+
+<span class="token comment"># 消息队列</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_MQ_ADDR</span><span class="token operator">=</span><span class="token string">'10.10.10.12'</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_MQ_USER</span><span class="token operator">=</span><span class="token variable">${MQ_USER}</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_MQ_PWD</span><span class="token operator">=</span><span class="token variable">${MQ_PASSWORD}</span>
+
+<span class="token comment"># 缓存</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_REDIS_HOST</span><span class="token operator">=</span><span class="token string">'10.10.10.12'</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_REDIS_PORT</span><span class="token operator">=</span><span class="token number">6379</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">DEFAULT_REDIS_PASSWORD</span><span class="token operator">=</span><span class="token variable">${REDIS_PASSWORD}</span>
+
+</code></pre></div><p>==<strong>最后一定不要忘记source</strong>：==  <code>source /opt/codo/env.sh</code></p> <p><strong>关闭SELINUX</strong></p> <ul><li>若已关闭请跳过</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token comment">#临时关闭</span>
+$ setenforce <span class="token number">0</span>
+
+<span class="token comment">#或修改配置文件关闭,需要重启</span>
+
+$ <span class="token function">vi</span> /etc/selinux/config  
+
+将SELINUX<span class="token operator">=</span>enforcing改为SELINUX<span class="token operator">=</span>disabled 
+设置后需要重启才能生效  
+
+</code></pre></div><p><strong>清空防火墙规则</strong></p> <p><code>注意，不要关闭防火墙，Docker需要用到NAT</code></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#只清空filter链即可</span>
+$ iptables -F
+
+</code></pre></div><p><strong>安装Python3</strong></p> <blockquote><p>建议使用Python36,若你的系统里面已经存在Python36可以跳过此步骤。</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: Start install python3 <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+yum update -y
+yum groupinstall Development tools -y
+yum -y <span class="token function">install</span> zlib-devel
+yum <span class="token function">install</span> -y openssl-devel libxslt-devel libxml2-devel libcurl-devel
+yum <span class="token function">install</span> python3 -y 
+</code></pre></div><p><strong>安装docker</strong></p> <blockquote><p>若已安装可跳过</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: Start install docker,docker-compose <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+yum <span class="token function">install</span> -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --enable docker-ce-edge
+yum <span class="token function">install</span> -y docker-ce
+<span class="token comment">#启动和开机自启</span>
+/bin/systemctl start docker.service
+
+/bin/systemctl <span class="token builtin class-name">enable</span> docker.service
+</code></pre></div><p><strong>安装docker-compose编排工具</strong></p> <div class="language- extra-class"><pre class="language-text"><code>#curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py &amp;&amp; python3 get-pip.py 如果没有pip3 请安装
+pip3 install docker-compose
+</code></pre></div><p><strong>安装MySQL</strong></p> <blockquote><p>一般来说一个MySQL实例即可，如果有需求可以自行搭建主从，微服务每个服务都可以有自己的数据库</p> <p>我们这里示例是用Docker部署的MySQL，如果你要用已有的数据库请修改<code>/opt/codo/env.sh</code></p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">source</span> /opt/codo/env.sh
+<span class="token function">mkdir</span> -p /opt/codo/codo-mysql<span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> /opt/codo/codo-mysql
+<span class="token function">cat</span> <span class="token operator">&gt;</span>docker-compose.yml <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+mysql:
+  restart: unless-stopped
+  image: registry.cn-shanghai.aliyuncs.com/ss1917/mysql:5.7
+  volumes:
+    - /data/mysql:/var/lib/mysql
+    - /data/mysql_conf:/etc/mysql/conf.d
+  ports:
+    - &quot;3306:3306&quot;
+  environment:
+    - MYSQL_ROOT_PASSWORD=<span class="token variable">${MYSQL_PASSWORD}</span>
+EOF</span>
+
+<span class="token comment">#启动 </span>
+docker-compose up -d
+<span class="token comment"># 安装MySQL客户端</span>
+yum <span class="token function">install</span> mysql -y  
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: mysql install success. <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: 最好提高下MySQL的最大链接数. <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: mysql -h127.0.0.1 -uroot -p<span class="token variable">${MYSQL_PASSWORD}</span> <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[31m [ERROR]: mysql57 install faild <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+    <span class="token builtin class-name">exit</span> -3
+<span class="token keyword">fi</span>
+</code></pre></div><ul><li>测试 <code>mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD}</code></li></ul> <p><strong>安装Redis</strong></p> <ul><li>创建 docker-compose.yml</li></ul> <div class="language- extra-class"><pre class="language-text"><code>source /opt/codo/env.sh
+mkdir -p /opt/codo/codo-redis &amp;&amp; cd /opt/codo/codo-redis
+cat &gt;docker-compose.yml &lt;&lt;EOF
+redis:
+    image: registry.cn-shanghai.aliyuncs.com/ss1917/redis:4
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+EOF
+
+#启动
+docker-compose up -d
+</code></pre></div><ul><li>没有cli的同学，请<code>yum install redis -y</code></li> <li>测试 <code>redis-cli -h 127.0.0.1 -p 6379 -a ${REDIS_PASSWORD}</code></li></ul> <p><strong>安装RabbitMQ</strong></p> <ul><li>创建 docker-compose.yml</li></ul> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">source</span> /opt/codo/env.sh
+<span class="token function">mkdir</span> -p /opt/codo/codo-mq <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> /opt/codo/codo-mq 
+<span class="token function">cat</span> <span class="token operator">&gt;</span>docker-compose.yml <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+rabbitmq:
+    restart: unless-stopped
+    image: registry.cn-shanghai.aliyuncs.com/ss1917/rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=<span class="token variable">${MQ_USER}</span>
+      - RABBITMQ_DEFAULT_PASS=<span class="token variable">${MQ_PASSWORD}</span>
+    ports:
+      - &quot;15672:15672&quot;
+      - &quot;5672:5672&quot;
+EOF</span>
+
+<span class="token comment">#启动</span>
+docker-compose up -d
+</code></pre></div><p><strong>安装DNS</strong></p> <ul><li>注意，这里如果你内部有自己DNS，你也可以选择使用你自己的</li></ul> <blockquote><p>部署内部DNS dnsmasq 用于服务间内部通信，API网关需要配置，切记</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: Start install dnsmasq <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+yum <span class="token function">install</span> dnsmasq -y
+
+<span class="token comment"># 设置上游DNS，毕竟你的Dns只是个代理</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span>/etc/resolv.dnsmasq <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+nameserver 114.114.114.114
+nameserver 8.8.8.8
+EOF</span>
+
+<span class="token comment"># 设置host解析</span>
+<span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: 如果你是单机部署，那么你就将你的本机IP+模块域名解析即可，如果你是分布式部署的，那么每个模块对应的机器IP一定不要搞错，这个很重要，后面网关也要依赖此DNS去解析你的域名，帮你做服务转发的，切记！！！！
+ <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token function">cat</span> <span class="token operator">&gt;</span>/etc/dnsmasqhosts <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+<span class="token variable">$LOCALHOST_IP</span> demo-init.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> mg.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> task.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> gw.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> cmdb2.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> kerrigan.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> tools.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> cron.opendevops.cn
+<span class="token variable">$LOCALHOST_IP</span> dns.opendevops.cn
+EOF</span>
+
+<span class="token comment"># 添加配置</span>
+<span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: 刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg，cron，cmdb等内网域名
+<span class="token entity" title="\033">\033</span>[0m&quot;</span>
+
+<span class="token comment"># 注意下一步是覆盖你本机的DNS，建议把你的DNS地址加在/etc/resolv.dnsmasq 里面 </span>
+<span class="token function">cp</span> -rp /etc/resolv.conf /etc/resolv.conf-<span class="token variable"><span class="token variable">`</span><span class="token function">date</span> +%F<span class="token variable">`</span></span>
+<span class="token comment"># echo &quot;nameserver $LOCALHOST_IP&quot; &gt; /etc/resolv.conf  </span>
+<span class="token function">sed</span> <span class="token string">&quot;1i<span class="token entity" title="\n">\n</span>ameserver <span class="token variable">${LOCALHOST_IP}</span>&quot;</span> /etc/resolv.conf -i 
+<span class="token comment">###注意注意， 这里修改完后，请你一定要确定你nameserver ${LOCALHOST_IP} 内部DNS在第一条、第一条、第一条，放在下面是不能正常解析的.</span>
+
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;resolv-file=/etc/resolv.dnsmasq&quot;</span> <span class="token operator">&gt;&gt;</span> /etc/dnsmasq.conf
+<span class="token builtin class-name">echo</span> <span class="token string">&quot;addn-hosts=/etc/dnsmasqhosts&quot;</span> <span class="token operator">&gt;&gt;</span> /etc/dnsmasq.conf
+
+<span class="token comment">## 启动</span>
+/bin/systemctl <span class="token builtin class-name">enable</span> dnsmasq.service
+/bin/systemctl start dnsmasq.service
+systemctl status dnsmasq
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token operator">==</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: dnsmasq install success. <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[31m [ERROR]: dnsmasq install faild <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+    <span class="token builtin class-name">exit</span> -6
+<span class="token keyword">fi</span>
+</code></pre></div><p><strong>基础依赖部署完毕</strong></p> <h2 id="项目前端"><a href="#项目前端" class="header-anchor">#</a> 项目前端</h2> <blockquote><p>更新后的项目前端将不再让用户下载静态资源包，使用自动构建的方式，默认保持最新前端</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>[ ! -d /opt/codo/codo/ ] &amp;&amp; mkdir -p /opt/codo/codo/ &amp;&amp; cd /opt/codo/codo/
+</code></pre></div><p><strong>一、修改域名</strong></p> <p>下列为默认域名，如果要修改访问入口地址请修改<code>server_name</code>对应的<code>demo-init.opendevops.cn</code>，确保能DNS解析到此域名，或者自己绑定hosts来测试一下</p> <div class="language- extra-class"><pre class="language-text"><code>cat &gt;codo_frontend.conf &lt;&lt;\EOF
+server {
+        listen       80;
+        server_name demo-init.opendevops.cn;
+        access_log /var/log/nginx/codo-access.log;
+        error_log  /var/log/nginx/codo-error.log;
+
+        location / {
+                    root /var/www/codo;
+                    index index.html index.htm;
+                    try_files $uri $uri/ /index.html;
+        }
+        location /api {
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection &quot;upgrade&quot;;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+                add_header 'Access-Control-Allow-Origin' '*';
+                proxy_pass http://gw.opendevops.cn:8888;
+        }
+
+        location ~ /(.svn|.git|admin|manage|.sh|.bash)$ {
+            return 403;
+        }
+}
+EOF
+
+</code></pre></div><p><strong>创建Dockerfile</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>Dockerfile <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo
+
+#修改nginx配置
+#ADD nginx.conf /etc/nginx/nginx.conf
+ADD codo_frontend.conf /etc/nginx/conf.d/codo_frontend.conf
+
+EXPOSE 80
+EXPOSE 443
+
+STOPSIGNAL SIGTERM
+CMD [&quot;nginx&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+EOF</span>
+
+</code></pre></div><p><strong>创建 docker-compose.yml</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>docker-compose.yml <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+codo:
+  restart: unless-stopped
+  image: codo_image
+  volumes:
+    - /var/log/nginx/:/var/log/nginx/
+    - /sys/fs/cgroup:/sys/fs/cgroup
+  ports:
+    - &quot;80:80&quot;
+    - &quot;443:443&quot;
+EOF</span>
+
+</code></pre></div><p><strong>三、编译，启动</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>docker build <span class="token builtin class-name">.</span> -t codo_image
+docker-compose up -d
+</code></pre></div><p><strong>四、测试</strong></p> <div class="language- extra-class"><pre class="language-text"><code>curl  0.0.0.0:80
+tailf  /var/log/nginx/codo-access.log
+</code></pre></div><h2 id="管理后端"><a href="#管理后端" class="header-anchor">#</a> 管理后端</h2> <p><code>codo-admin</code>是基于tornado框架 restful风格的API 实现后台管理,<a href="https://github.com/opendevops-cn/codo-admin" target="_blank" rel="noopener noreferrer">codo详细参考<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>,搭配使用<code>codo</code>前端(iView+ vue)组成的一套后台用户 权限以及系统管理的解决方案（提供登录，注册 密码修改 鉴权 用户管理 角色管理 权限管理 前端组件管理 前端路由管理 通知服务API 系统基础信息接口）</p> <p><strong>获取代码</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">git</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">git</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -d /opt/codo/ <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">mkdir</span> -p /opt/codo
+<span class="token builtin class-name">cd</span> /opt/codo <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/opendevops-cn/codo-admin.git <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> codo-admin
+</code></pre></div><p><strong>修改相关配置</strong></p> <p>修改<code>settings.py</code>配置</p> <blockquote><p>注意：这里的<code>cookie_secret</code>和<code>token_secret</code>必须和你的env.sh里面的保持一致，后续网关也要用到这个。若不保持一直登陆后校验不通过回被自动踢回，会导致页面一直不停的刷新</p></blockquote> <p><code>注意：这里的token_secret必须要和你的网关保持一致，这个值是从env.sh拿来的，一定要做修改，防止网站被攻击，如果secret包含正则符号会导致sed失败，请仔细检查</code></p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token comment">#导入环境变量文件，最开始准备的环境变量文件</span>
+<span class="token builtin class-name">source</span> /opt/codo/env.sh
+
+<span class="token function">sed</span> -i <span class="token string">&quot;s#cookie_secret = .*#cookie_secret = '<span class="token variable">${cookie_secret}</span>'#g&quot;</span> settings.py  
+<span class="token function">sed</span> -i <span class="token string">&quot;s#token_secret = .*#token_secret = '<span class="token variable">${token_secret}</span>'#g&quot;</span> settings.py     
+
+
+<span class="token comment">#mysql配置信息</span>
+<span class="token comment">##我们项目支持取env环境变量，但是还是建议修改下。</span>
+<span class="token assign-left variable">DEFAULT_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_admin'</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '<span class="token variable">${DEFAULT_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#只读MySQL配置，若是单台也直接写成Master地址即可</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBHOST = .*#READONLY_DB_DBHOST = os.getenv('READONLY_DB_DBHOST', '<span class="token variable">${READONLY_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPORT = .*#READONLY_DB_DBPORT = os.getenv('READONLY_DB_DBPORT', '<span class="token variable">${READONLY_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBUSER = .*#READONLY_DB_DBUSER = os.getenv('READONLY_DB_DBUSER', '<span class="token variable">${READONLY_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPWD = .*#READONLY_DB_DBPWD = os.getenv('READONLY_DB_DBPWD', '<span class="token variable">${READONLY_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '<span class="token variable">${DEFAULT_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+
+<span class="token comment">#redis配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_HOST = .*#DEFAULT_REDIS_HOST = os.getenv('DEFAULT_REDIS_HOST', '<span class="token variable">${DEFAULT_REDIS_HOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PORT = .*#DEFAULT_REDIS_PORT = os.getenv('DEFAULT_REDIS_PORT', '<span class="token variable">${DEFAULT_REDIS_PORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAULT_REDIS_PASSWORD', '<span class="token variable">${DEFAULT_REDIS_PASSWORD}</span>')#g&quot;</span> settings.py
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>Dockerfile <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-admin
+
+ADD settings.py /var/www/codo-admin/
+
+# COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+# COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+
+EXPOSE 80
+CMD [&quot;/usr/bin/supervisord&quot;]
+EOF</span>
+
+</code></pre></div><p><strong>编译，启动</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#bulid 镜像</span>
+docker build <span class="token builtin class-name">.</span> -t do_mg_image
+<span class="token comment">#启动</span>
+docker-compose up -d
+</code></pre></div><p><strong>创建数据库</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>mysql -h127.0.0.1 -uroot -p<span class="token variable">${MYSQL_PASSWORD}</span> -e <span class="token string">'create database codo_admin default character set utf8mb4 collate utf8mb4_unicode_ci;'</span>
+</code></pre></div><p><strong>初始化表结构</strong></p> <div class="language- extra-class"><pre class="language-text"><code> docker exec -ti codo-admin_do_mg_1  /usr/local/bin/python3 /var/www/codo-admin/db_sync.py
+</code></pre></div><p><strong>导入数据</strong></p> <p>主要是菜单，组件，权限列表，内置的用户等</p> <div class="language- extra-class"><pre class="language-text"><code>#导入数据
+mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} codo_admin &lt; ./doc/codo_admin_beta0.3.sql
+</code></pre></div><p><strong>重启</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose  restart 
+</code></pre></div><p><strong>测试codo-admin</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">### 01.日志</span>
+tailf  /var/log/supervisor/mg.log  <span class="token comment">#确认没有报错</span>
+</code></pre></div><p><strong>codo-admin 部署完毕</strong></p> <h2 id="资产管理"><a href="#资产管理" class="header-anchor">#</a> 资产管理</h2> <p><strong>下载代码</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: codo_cmdb(资产管理) Start install. <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">git</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">git</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -d /opt/codo/ <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">mkdir</span> -p /opt/codo
+<span class="token builtin class-name">cd</span> /opt/codo <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/opendevops-cn/codo-cmdb.git
+<span class="token builtin class-name">cd</span> codo-cmdb
+</code></pre></div><p><strong>修改配置</strong></p> <ul><li>修改<code>settings.py</code>配置信息</li></ul> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token comment">#导入环境变量文件，最开始准备的环境变量文件</span>
+<span class="token builtin class-name">source</span> /opt/codo/env.sh
+
+<span class="token comment">#修改配置</span>
+<span class="token comment">#后端数据库名称,建议不要修改，初始化data.sql已经指定了数据库名字，若需改请一块修改</span>
+<span class="token assign-left variable">CMDB_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_cmdb'</span> 
+
+<span class="token comment">#任务系统的域名</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#cookie_secret = .*#cookie_secret = '<span class="token variable">${cookie_secret}</span>'#g&quot;</span> settings.py
+
+<span class="token comment">#mysql配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '<span class="token variable">${CMDB_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#只读MySQL配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBHOST = .*#READONLY_DB_DBHOST = os.getenv('READONLY_DB_DBHOST', '<span class="token variable">${READONLY_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPORT = .*#READONLY_DB_DBPORT = os.getenv('READONLY_DB_DBPORT', '<span class="token variable">${READONLY_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBUSER = .*#READONLY_DB_DBUSER = os.getenv('READONLY_DB_DBUSER', '<span class="token variable">${READONLY_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPWD = .*#READONLY_DB_DBPWD = os.getenv('READONLY_DB_DBPWD', '<span class="token variable">${READONLY_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '<span class="token variable">${CMDB_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#redis配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_HOST = .*#DEFAULT_REDIS_HOST = os.getenv('DEFAULT_REDIS_HOST', '<span class="token variable">${DEFAULT_REDIS_HOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PORT = .*#DEFAULT_REDIS_PORT = os.getenv('DEFAULT_REDIS_PORT', '<span class="token variable">${DEFAULT_REDIS_PORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAULT_REDIS_PASSWORD', '<span class="token variable">${DEFAULT_REDIS_PASSWORD}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#这里如果配置codo-task的数据库地址，则将数据同步到作业配置</span>
+
+<span class="token assign-left variable">TASK_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_task'</span> 
+<span class="token function">sed</span> -i <span class="token string">&quot;s#CODO_TASK_DB_HOST = .*#CODO_TASK_DB_HOST = os.getenv('CODO_TASK_DB_HOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#CODO_TASK_DB_PORT = .*#CODO_TASK_DB_PORT = os.getenv('CODO_TASK_DB_PORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#CODO_TASK_DB_USER = .*#CODO_TASK_DB_USER = os.getenv('CODO_TASK_DB_USER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#CODO_TASK_DB_PWD = .*#CODO_TASK_DB_PWD = os.getenv('CODO_TASK_DB_PWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#CODO_TASK_DB_DBNAME = .*#CODO_TASK_DB_DBNAME = os.getenv('CODO_TASK_DB_DBNAME', '<span class="token variable">${TASK_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+</code></pre></div><ul><li>AWS事件和WebTerminnal配置</li></ul> <blockquote><p>首先将webterminal部署上去</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code>docker pull webterminal/webterminallte
+docker run -itd -p <span class="token number">8080</span>:80 webterminal/webterminallte
+</code></pre></div><p><code>修改settings.py文件</code></p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token comment"># Aws Events 事件邮件通知人</span>
+AWS_EVENT_TO_EMAIL <span class="token operator">=</span> <span class="token string">'1111@qq.com,2222@gmail.com'</span>
+
+<span class="token comment">#Web Terminal 地址，请填写你部署的webterminal地址</span>
+<span class="token comment">#注意这里是填写你上面docker run的机器外网IP</span>
+WEB_TERMINAL <span class="token operator">=</span> <span class="token string">'http://1.1.1.1:8080'</span>
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>Dockerfile <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-cmdb
+
+#修改应用配置
+ADD settings.py /var/www/codo-cmdb/
+
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+
+EXPOSE 80
+CMD [&quot;/usr/bin/supervisord&quot;]
+EOF</span>
+
+</code></pre></div><p><strong>打包镜像</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker build . -t codo_cmdb  
+</code></pre></div><p><strong>启动Docker</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose up -d
+</code></pre></div><p><strong>创建数据库</strong></p> <div class="language- extra-class"><pre class="language-text"><code>mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_cmdb` default character set utf8mb4 collate utf8mb4_unicode_ci;'
+</code></pre></div><p><strong>初始化表结构</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker exec -ti codo-cmdb_codo_cmdb_1 /usr/local/bin/python3 /var/www/codo-cmdb/db_sync.py
+</code></pre></div><p><strong>重启</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose  restart 
+</code></pre></div><p><strong>日志文件</strong></p> <ul><li>服务日志：<code>/var/log/supervisor/cmdb.log</code>  #主程序日志</li> <li>定时日志：<code>/var/log/supervisor/cmdb_cron.log</code> #一些后端守护自动运行的日志</li></ul> <div class="language- extra-class"><pre class="language-text"><code>tailf /var/log/supervisor/cmdb.log
+tailf /var/log/supervisor/cmdb_cron.log 
+</code></pre></div><p><strong>资产管理系统部署完成</strong></p> <h2 id="定时任务"><a href="#定时任务" class="header-anchor">#</a> 定时任务</h2> <blockquote><p>CODO项目定时任务模块，定时任务完全兼容crontab，支持到秒级</p></blockquote> <p>备注：</p> <p>Docker部署需要将你的脚本目录单独挂载出来，若不理解的同学参考：<a href="https://bbs.opendevops.cn/topic/65/codo-cron-%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%96%B9%E5%BC%8F" target="_blank" rel="noopener noreferrer">codo-cron本地部署方式<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><strong>下载代码</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: codo_cron(定时任务) Start install. <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">git</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">git</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -d /opt/codo/ <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">mkdir</span> -p /opt/codo
+<span class="token builtin class-name">cd</span> /opt/codo <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/opendevops-cn/codo-cron.git
+<span class="token builtin class-name">cd</span> codo-cron
+</code></pre></div><p><strong>修改配置</strong></p> <blockquote><p>同样，这里codo-cron也支持取env环境变量，建议还是修改下默认配置</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#导入环境变量文件，最开始准备的环境变量文件</span>
+<span class="token builtin class-name">source</span> /opt/codo/env.sh
+<span class="token comment">#后端数据库名称,建议不要修改，初始化data.sql已经指定了数据库名字，若需改请一块修改</span>
+<span class="token assign-left variable">CRON_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_cron'</span> 
+
+<span class="token function">sed</span> -i <span class="token string">&quot;s#cookie_secret = .*#cookie_secret = '<span class="token variable">${cookie_secret}</span>'#g&quot;</span> settings.py
+
+<span class="token comment">#mysql配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '<span class="token variable">${CRON_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#只读MySQL配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBHOST = .*#READONLY_DB_DBHOST = os.getenv('READONLY_DB_DBHOST', '<span class="token variable">${READONLY_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPORT = .*#READONLY_DB_DBPORT = os.getenv('READONLY_DB_DBPORT', '<span class="token variable">${READONLY_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBUSER = .*#READONLY_DB_DBUSER = os.getenv('READONLY_DB_DBUSER', '<span class="token variable">${READONLY_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPWD = .*#READONLY_DB_DBPWD = os.getenv('READONLY_DB_DBPWD', '<span class="token variable">${READONLY_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '<span class="token variable">${CRON_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>Dockerfile <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-cron
+
+#修改应用配置
+ADD settings.py /var/www/codo-cron/
+
+EXPOSE 80
+CMD [&quot;/usr/bin/supervisord&quot;]
+EOF</span>
+
+</code></pre></div><p><strong>编译，启动</strong></p> <div class="language- extra-class"><pre class="language-text"><code>#编译镜像
+docker build . -t codo_cron_image
+#启动
+docker-compose up -d
+</code></pre></div><p><strong>创建数据库</strong></p> <div class="language- extra-class"><pre class="language-text"><code>mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_cron` default character set utf8mb4 collate utf8mb4_unicode_ci;'
+</code></pre></div><p><strong>初始化表结构</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker exec -ti codo-cron_codo_cron_1  /usr/local/bin/python3 /var/www/codo-cron/db_sync.py
+</code></pre></div><p><strong>重启</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose  restart 
+</code></pre></div><p><strong>测试</strong></p> <blockquote><p>日志文件位置统一：/var/log/supervisor/</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>01. 查看日志
+tailf /var/log/supervisor/cron.log   #确认没报错
+</code></pre></div><p><strong>定时任务系统部署完成</strong></p> <h2 id="任务系统"><a href="#任务系统" class="header-anchor">#</a> 任务系统</h2> <blockquote><p>CODO任务系统，负责整个系统中任务调度，此功能是必须要安装的</p></blockquote> <p><strong>下载代码</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: codo-task(任务系统) Start install. <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">git</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">git</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -d /opt/codo/ <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">mkdir</span> -p /opt/codo
+<span class="token builtin class-name">cd</span> /opt/codo <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/opendevops-cn/codo-task.git
+<span class="token builtin class-name">cd</span> codo-task
+
+</code></pre></div><p><strong>修改配置</strong></p> <blockquote><p>同样，这里codo-task也支持取env环境变量，建议还是修改下默认配置</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#导入环境变量文件，最开始准备的环境变量文件</span>
+<span class="token builtin class-name">source</span> /opt/codo/env.sh
+
+<span class="token comment">#修改配置</span>
+<span class="token assign-left variable">TASK_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_task'</span> 
+
+<span class="token comment">#任务系统的域名</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#cookie_secret = .*#cookie_secret = '<span class="token variable">${cookie_secret}</span>'#g&quot;</span> settings.py
+
+<span class="token comment">#mysql配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '<span class="token variable">${TASK_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#只读MySQL配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBHOST = .*#READONLY_DB_DBHOST = os.getenv('READONLY_DB_DBHOST', '<span class="token variable">${READONLY_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPORT = .*#READONLY_DB_DBPORT = os.getenv('READONLY_DB_DBPORT', '<span class="token variable">${READONLY_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBUSER = .*#READONLY_DB_DBUSER = os.getenv('READONLY_DB_DBUSER', '<span class="token variable">${READONLY_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPWD = .*#READONLY_DB_DBPWD = os.getenv('READONLY_DB_DBPWD', '<span class="token variable">${READONLY_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '<span class="token variable">${TASK_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#redis配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_HOST = .*#DEFAULT_REDIS_HOST = os.getenv('DEFAULT_REDIS_HOST', '<span class="token variable">${DEFAULT_REDIS_HOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PORT = .*#DEFAULT_REDIS_PORT = os.getenv('DEFAULT_REDIS_PORT', '<span class="token variable">${DEFAULT_REDIS_PORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAULT_REDIS_PASSWORD', '<span class="token variable">${DEFAULT_REDIS_PASSWORD}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#MQ配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_MQ_ADDR = .*#DEFAULT_MQ_ADDR = os.getenv('DEFAULT_MQ_ADDR', '<span class="token variable">${DEFAULT_MQ_ADDR}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_MQ_USER = .*#DEFAULT_MQ_USER = os.getenv('DEFAULT_MQ_USER', '<span class="token variable">${DEFAULT_MQ_USER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_MQ_PWD = .*#DEFAULT_MQ_PWD = os.getenv('DEFAULT_MQ_PWD', '<span class="token variable">${DEFAULT_MQ_PWD}</span>')#g&quot;</span> settings.py
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>Dockerfile <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-task
+
+#修改应用配置
+ADD settings.py /var/www/codo-task/
+
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+
+EXPOSE 80
+CMD [&quot;/usr/bin/supervisord&quot;]
+EOF</span>
+
+</code></pre></div><p><strong>编译，启动</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#编译镜像</span>
+docker build <span class="token builtin class-name">.</span> -t codo_task_image
+<span class="token comment">#启动</span>
+docker-compose up -d
+</code></pre></div><p><strong>创建数据库</strong></p> <div class="language- extra-class"><pre class="language-text"><code>mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_task` default character set utf8mb4 collate utf8mb4_unicode_ci;'
+</code></pre></div><p><strong>初始化表结构</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker exec -ti codo-task_codo_task_1  /usr/local/bin/python3 /var/www/codo-task/db_sync.py
+</code></pre></div><p><strong>导入数据</strong></p> <p>暂无</p> <p><strong>重启</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose  restart 
+</code></pre></div><p><strong>测试</strong></p> <blockquote><p>日志文件位置统一：/var/log/supervisor/</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>01. 查看日志
+tailf /var/log/supervisor/task_scheduler.log  #确认没报错
+tailf /var/log/supervisor/exec_task.log   #执行任务的日志
+</code></pre></div><p><strong>任务系统部署完成</strong></p> <h2 id="运维工具"><a href="#运维工具" class="header-anchor">#</a> 运维工具</h2> <blockquote><p>CODO运维工具支持：告警管理、项目管理、事件管理、加密解密、随机密码、提醒管理等</p></blockquote> <p><strong>获取代码</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">git</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">git</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -d /opt/codo/ <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">mkdir</span> -p /opt/codo
+<span class="token builtin class-name">cd</span> /opt/codo <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/opendevops-cn/codo-tools.git <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> codo-tools
+</code></pre></div><p><strong>修改相关配置</strong></p> <p>修改<code>settings.py</code> 配置</p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token comment">#导入环境变量文件，最开始准备的环境变量文件</span>
+<span class="token builtin class-name">source</span> /opt/codo/env.sh
+
+<span class="token function">sed</span> -i <span class="token string">&quot;s#cookie_secret = .*#cookie_secret = '<span class="token variable">${cookie_secret}</span>'#g&quot;</span> settings.py 
+
+<span class="token comment">#mysql配置信息</span>
+<span class="token comment">##我们项目支持取env环境变量，但是还是建议修改下。</span>
+<span class="token assign-left variable">DEFAULT_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_tools'</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '<span class="token variable">${DEFAULT_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#redis配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_HOST = .*#DEFAULT_REDIS_HOST = os.getenv('DEFAULT_REDIS_HOST', '<span class="token variable">${DEFAULT_REDIS_HOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PORT = .*#DEFAULT_REDIS_PORT = os.getenv('DEFAULT_REDIS_PORT', '<span class="token variable">${DEFAULT_REDIS_PORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_REDIS_PASSWORD = .*#DEFAULT_REDIS_PASSWORD = os.getenv('DEFAULT_REDIS_PASSWORD', '<span class="token variable">${DEFAULT_REDIS_PASSWORD}</span>')#g&quot;</span> settings.py
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>Dockerfile <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-tools
+
+#修改应用配置
+ADD settings.py /var/www/codo-tools/
+
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+
+EXPOSE 80
+CMD [&quot;/usr/bin/supervisord&quot;]
+EOF</span>
+
+</code></pre></div><p><strong>编译镜像</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code>docker build <span class="token builtin class-name">.</span> -t codo_tools
+</code></pre></div><p><strong>启动</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose up -d
+</code></pre></div><p><strong>创建数据库</strong></p> <div class="language- extra-class"><pre class="language-text"><code>mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_tools` default character set utf8mb4 collate utf8mb4_unicode_ci;'
+</code></pre></div><p><strong>初始化表结构</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker exec -ti  codo-tools_codo_tools_1  /usr/local/bin/python3 /var/www/codo-tools/db_sync.py 
+</code></pre></div><p><strong>重启</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose  restart 
+</code></pre></div><p><strong>测试codo-tools</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">### 01.日志</span>
+tailf /var/log/supervisor/tools.log  <span class="token comment">#服务日志，确认没有报错</span>
+tailf /var/log/supervisor/cron_jobs.log  <span class="token comment">#定时提醒日志</span>
+</code></pre></div><p><strong>运维工具系统部署完成</strong></p> <h2 id="配置中心"><a href="#配置中心" class="header-anchor">#</a> 配置中心</h2> <p><strong>获取代码</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">git</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">git</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -d /opt/codo/ <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">mkdir</span> -p /opt/codo
+<span class="token builtin class-name">cd</span> /opt/codo <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/opendevops-cn/kerrigan.git <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> kerrigan
+</code></pre></div><p><strong>修改相关配置</strong></p> <p>修改<code>settings.py</code>配置</p> <div class="language-shell extra-class"><pre class="language-shell"><code>
+<span class="token comment">#导入环境变量文件，最开始准备的环境变量文件</span>
+<span class="token builtin class-name">source</span> /opt/codo/env.sh
+<span class="token comment">#修改管理后端域名</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#cookie_secret = .*#cookie_secret = '<span class="token variable">${cookie_secret}</span>'#g&quot;</span> settings.py 
+
+<span class="token comment">#mysql配置信息</span>
+<span class="token comment">##我们项目支持取env环境变量，但是还是建议修改下。</span>
+<span class="token assign-left variable">DEFAULT_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_kerrigan'</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '<span class="token variable">${DEFAULT_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#只读MySQL配置，若是单台也直接写成Master地址即可</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBHOST = .*#READONLY_DB_DBHOST = os.getenv('READONLY_DB_DBHOST', '<span class="token variable">${READONLY_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPORT = .*#READONLY_DB_DBPORT = os.getenv('READONLY_DB_DBPORT', '<span class="token variable">${READONLY_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBUSER = .*#READONLY_DB_DBUSER = os.getenv('READONLY_DB_DBUSER', '<span class="token variable">${READONLY_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPWD = .*#READONLY_DB_DBPWD = os.getenv('READONLY_DB_DBPWD', '<span class="token variable">${READONLY_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '<span class="token variable">${DEFAULT_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language- extra-class"><pre class="language-text"><code>cat &gt;Dockerfile &lt;&lt;EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-kerrigan
+
+#修改应用配置
+ADD settings.py /var/www/kerrigan/
+
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+
+EXPOSE 80
+CMD [&quot;/usr/bin/supervisord&quot;]
+EOF
+
+</code></pre></div><p><strong>编译，启动</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#编译镜像</span>
+docker build <span class="token builtin class-name">.</span> -t kerrigan_image
+<span class="token comment">#启动</span>
+docker-compose up -d
+</code></pre></div><p><strong>创建数据库</strong></p> <div class="language- extra-class"><pre class="language-text"><code>mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_kerrigan` default character set utf8mb4 collate utf8mb4_unicode_ci;'
+</code></pre></div><p><strong>初始化表结构</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker exec -ti  kerrigan_codo-kerrigan_1  /usr/local/bin/python3 /var/www/kerrigan/db_sync.py 
+</code></pre></div><p><strong>重启</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose  restart 
+</code></pre></div><p><strong>测试kerrigan</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">### 01.日志</span>
+tailf /var/log/supervisor/kerrigan.log  <span class="token comment">#确认没有报错</span>
+</code></pre></div><p><strong>配置中心系统部署完成</strong></p> <h2 id="域名管理"><a href="#域名管理" class="header-anchor">#</a> 域名管理</h2> <blockquote><p>CODO域名管理模块，管理BIND 支持智能解析，多域名，多主。</p></blockquote> <p><strong>下载代码</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">echo</span> -e <span class="token string">&quot;<span class="token entity" title="\033">\033</span>[32m [INFO]: codo_dns(域名管理) Start install. <span class="token entity" title="\033">\033</span>[0m&quot;</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">wget</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">wget</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token keyword">if</span> <span class="token operator">!</span> <span class="token function">which</span> <span class="token function">git</span> <span class="token operator">&amp;&gt;</span>/dev/null<span class="token punctuation">;</span> <span class="token keyword">then</span> yum <span class="token function">install</span> -y <span class="token function">git</span> <span class="token operator">&gt;</span>/dev/null <span class="token operator"><span class="token file-descriptor important">2</span>&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span><span class="token keyword">fi</span>
+<span class="token punctuation">[</span> <span class="token operator">!</span> -d /opt/codo/ <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">mkdir</span> -p /opt/codo
+<span class="token builtin class-name">cd</span> /opt/codo <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/opendevops-cn/codo-dns.git
+<span class="token builtin class-name">cd</span> codo-dns
+</code></pre></div><p><strong>修改配置</strong></p> <blockquote><p>同样，这里codo-dns也支持取env环境变量，建议还是修改下默认配置</p></blockquote> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#导入环境变量文件，最开始准备的环境变量文件</span>
+<span class="token builtin class-name">source</span> /opt/codo/env.sh
+<span class="token comment">#后端数据库名称</span>
+<span class="token assign-left variable">CRON_DB_DBNAME</span><span class="token operator">=</span><span class="token string">'codo_dns'</span> 
+
+<span class="token function">sed</span> -i <span class="token string">&quot;s#cookie_secret = .*#cookie_secret = '<span class="token variable">${cookie_secret}</span>'#g&quot;</span> settings.py
+
+<span class="token comment">#mysql配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBHOST = .*#DEFAULT_DB_DBHOST = os.getenv('DEFAULT_DB_DBHOST', '<span class="token variable">${DEFAULT_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPORT = .*#DEFAULT_DB_DBPORT = os.getenv('DEFAULT_DB_DBPORT', '<span class="token variable">${DEFAULT_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBUSER = .*#DEFAULT_DB_DBUSER = os.getenv('DEFAULT_DB_DBUSER', '<span class="token variable">${DEFAULT_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBPWD = .*#DEFAULT_DB_DBPWD = os.getenv('DEFAULT_DB_DBPWD', '<span class="token variable">${DEFAULT_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#DEFAULT_DB_DBNAME = .*#DEFAULT_DB_DBNAME = os.getenv('DEFAULT_DB_DBNAME', '<span class="token variable">${CRON_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+<span class="token comment">#只读MySQL配置</span>
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBHOST = .*#READONLY_DB_DBHOST = os.getenv('READONLY_DB_DBHOST', '<span class="token variable">${READONLY_DB_DBHOST}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPORT = .*#READONLY_DB_DBPORT = os.getenv('READONLY_DB_DBPORT', '<span class="token variable">${READONLY_DB_DBPORT}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBUSER = .*#READONLY_DB_DBUSER = os.getenv('READONLY_DB_DBUSER', '<span class="token variable">${READONLY_DB_DBUSER}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBPWD = .*#READONLY_DB_DBPWD = os.getenv('READONLY_DB_DBPWD', '<span class="token variable">${READONLY_DB_DBPWD}</span>')#g&quot;</span> settings.py
+<span class="token function">sed</span> -i <span class="token string">&quot;s#READONLY_DB_DBNAME = .*#READONLY_DB_DBNAME = os.getenv('READONLY_DB_DBNAME', '<span class="token variable">${CRON_DB_DBNAME}</span>')#g&quot;</span> settings.py
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cat</span> <span class="token operator">&gt;</span>Dockerfile <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/codo-dns
+
+#修改应用配置
+ADD settings.py /var/www/codo-dns/
+
+#修改nginx配置和守护配置
+#COPY doc/nginx_ops.conf /etc/nginx/conf.d/default.conf
+#COPY doc/supervisor_ops.conf  /etc/supervisord.conf
+
+EXPOSE 80
+CMD [&quot;/usr/bin/supervisord&quot;]
+EOF</span>
+
+</code></pre></div><p><strong>编译，启动</strong></p> <div class="language- extra-class"><pre class="language-text"><code>#编译镜像
+docker build . -t codo_dns_image
+#启动
+docker-compose up -d
+</code></pre></div><p><strong>创建数据库</strong></p> <div class="language- extra-class"><pre class="language-text"><code>mysql -h127.0.0.1 -uroot -p${MYSQL_PASSWORD} -e 'create database `codo_dns` default character set utf8mb4 collate utf8mb4_unicode_ci;'
+</code></pre></div><p><strong>初始化表结构</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker exec -ti codo-dns_codo-dns_1  /usr/local/bin/python3 /var/www/codo-dns/db_sync.py
+</code></pre></div><p><strong>重启</strong></p> <div class="language- extra-class"><pre class="language-text"><code>docker-compose  restart 
+</code></pre></div><p><strong>测试</strong></p> <blockquote><p>日志文件位置统一：/var/log/supervisor/</p></blockquote> <div class="language- extra-class"><pre class="language-text"><code>01. 查看日志
+tailf /var/log/supervisor/codo_dns.log   #确认没报错
+</code></pre></div><p><strong>域名管理部署完成</strong></p> <h2 id="api网关-部署容易出问题的地方"><a href="#api网关-部署容易出问题的地方" class="header-anchor">#</a> API网关（部署容易出问题的地方）</h2> <div class="custom-block tip"><p class="custom-block-title">提示</p> <p>重点部分，请仔细阅读
+由于此项目是模块化、微服务化，因此需要在借助API网关，需要在API网关注册，此步骤是必须的。</p></div> <p><strong>注意事项</strong></p> <p>开始之前，你需要确认以下2个事情</p> <ul><li>DNS服务是否正常，域名能否正常解析</li> <li>微服务的模块部署是否正常，进行检测</li></ul> <p><strong>检查DNS思路</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token number">1</span>. 确保你的dnsmasql服务是启动的，服务没有报错
+<span class="token number">2</span>. 确保/etc/dnsmasqhosts文件有解析的IP
+<span class="token number">3</span>. 确保你网关的这台机器/etc/resolv.conf DNS执行你刚部署的dnsmasq服务IP
+<span class="token number">4</span>. 确保你网关所在的机器都能正常ping通所有的服务，比如：ping cmdb2.opendevops.cn
+<span class="token number">5</span>. 确保你的防火墙规则是清空的<span class="token variable"><span class="token variable">`</span>iptables -F<span class="token variable">`</span></span>
+<span class="token number">6</span>. 确保你的SELINUX是关闭的<span class="token variable"><span class="token variable">`</span>setenforce <span class="token number">0</span><span class="token variable">`</span></span>
+</code></pre></div><p><strong>服务健康检测</strong></p> <div class="language- extra-class"><pre class="language-text"><code># 进行所有服务进行检测，返回200则正常
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://mg.opendevops.cn:8010/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://task.opendevops.cn:8020/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cmdb2.opendevops.cn:8050/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://kerrigan.opendevops.cn:8030/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://cron.opendevops.cn:9900/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://tools.opendevops.cn:8040/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://dns.opendevops.cn:8060/are_you_ok/
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://0.0.0.0:80
+</code></pre></div><p><strong>下载网关</strong></p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token builtin class-name">cd</span> /opt/codo/ <span class="token operator">&amp;&amp;</span> <span class="token function">git</span> clone https://github.com/ss1917/api-gateway.git <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> /opt/codo/api-gateway
+</code></pre></div><p><strong>修改配置</strong></p> <blockquote><p>主要修改<code>nginx.conf</code>配置信息和<code>config.lua</code>配置，具体参考API网关块：<a href="https://github.com/ss1917/api-gateway/blob/master/README.md#%E4%BA%8C-%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE" target="_blank" rel="noopener noreferrer">API网关修改配置<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote> <p><strong>全局nginx配置</strong></p> <p>这里主要修改resolver 内部DNS服务器地址<code>conf/nginx.conf</code> ==一定要修改==</p> <div class="language-nginx extra-class"><pre class="language-nginx"><code><span class="token directive"><span class="token keyword">user</span> root</span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">worker_processes</span> auto</span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">worker_rlimit_nofile</span> <span class="token number">51200</span></span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">error_log</span> logs/error.log</span><span class="token punctuation">;</span>
+<span class="token directive"><span class="token keyword">events</span></span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">use</span> epoll</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">worker_connections</span> <span class="token number">51024</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token directive"><span class="token keyword">http</span></span> <span class="token punctuation">{</span>
+    <span class="token comment">#设置默认lua搜索路径</span>
+    <span class="token directive"><span class="token keyword">lua_package_path</span> <span class="token string">'<span class="token variable">$prefix</span>/lua/?.lua;/blah/?.lua;;'</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">lua_code_cache</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>      <span class="token comment">#线上环境设置为on, off时可以热加载lua文件</span>
+    <span class="token directive"><span class="token keyword">lua_shared_dict</span> user_info <span class="token number">1m</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">lua_shared_dict</span> my_limit_conn_store <span class="token number">100m</span></span><span class="token punctuation">;</span>   <span class="token comment">#100M可以放1.6M个键值对</span>
+    <span class="token directive"><span class="token keyword">include</span>             mime.types</span><span class="token punctuation">;</span>    <span class="token comment">#代理静态文件</span>
+
+    <span class="token directive"><span class="token keyword">client_header_buffer_size</span> <span class="token number">64k</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">large_client_header_buffers</span> <span class="token number">4</span> <span class="token number">64k</span></span><span class="token punctuation">;</span>
+
+    <span class="token directive"><span class="token keyword">init_by_lua_file</span> lua/init_by_lua.lua</span><span class="token punctuation">;</span>       <span class="token comment"># nginx启动时就会执行</span>
+    <span class="token directive"><span class="token keyword">include</span> ./conf.d/*.conf</span><span class="token punctuation">;</span>                    <span class="token comment"># lua生成upstream</span>
+    <span class="token directive"><span class="token keyword">resolver</span> 10.10.10.12</span><span class="token punctuation">;</span>                       <span class="token comment"># 内部DNS服务器地址 一定要修改 对应起来</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><strong>网关配置</strong> <code>conf/conf.d/gw.conf</code></p> <div class="language-nginx extra-class"><pre class="language-nginx"><code><span class="token directive"><span class="token keyword">server</span></span> <span class="token punctuation">{</span>
+    <span class="token directive"><span class="token keyword">listen</span> <span class="token number">80</span></span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">server_name</span> gw.opendevops.cn</span><span class="token punctuation">;</span>
+    <span class="token directive"><span class="token keyword">lua_need_request_body</span> <span class="token boolean">on</span></span><span class="token punctuation">;</span>           <span class="token comment"># 开启获取body数据记录日志</span>
+
+    <span class="token directive"><span class="token keyword">location</span> /</span> <span class="token punctuation">{</span>
+        <span class="token comment">### ws 支持</span>
+        <span class="token directive"><span class="token keyword">proxy_http_version</span> 1.1</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">proxy_set_header</span> Upgrade <span class="token variable">$http_upgrade</span></span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">proxy_set_header</span> Connection <span class="token string">&quot;upgrade&quot;</span></span><span class="token punctuation">;</span>
+
+        <span class="token comment">### 获取真实IP</span>
+        <span class="token directive"><span class="token keyword">proxy_set_header</span> X-Forwarded-For <span class="token variable">$proxy_add_x_forwarded_for</span></span><span class="token punctuation">;</span>
+
+        <span class="token directive"><span class="token keyword">access_by_lua_file</span> lua/access_check.lua</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">set</span> <span class="token variable">$my_upstream</span> <span class="token variable">$my_upstream</span></span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">proxy_pass</span> http://<span class="token variable">$my_upstream</span></span><span class="token punctuation">;</span>
+
+        <span class="token comment">### 跨域</span>
+        <span class="token directive"><span class="token keyword">add_header</span> Access-Control-Allow-Methods *</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">add_header</span> Access-Control-Max-Age <span class="token number">3600</span></span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">add_header</span> Access-Control-Allow-Credentials true</span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">add_header</span> Access-Control-Allow-Origin <span class="token variable">$http_origin</span></span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">add_header</span> Access-Control-Allow-Headers <span class="token variable">$http_access_control_request_headers</span></span><span class="token punctuation">;</span>
+        <span class="token directive"><span class="token keyword">if</span> (<span class="token variable">$request_method</span> = OPTIONS)</span><span class="token punctuation">{</span>
+            <span class="token directive"><span class="token keyword">return</span> <span class="token number">204</span></span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p><strong>注册API网关</strong></p> <p>请仔细阅读下面需要修改配置的地方<code>vim lua/configs.lua</code> ==这个配置基本上都要修改，请务必仔细==</p> <div class="language-lua extra-class"><pre class="language-lua"><code>json <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;cjson&quot;</span><span class="token punctuation">)</span>
+
+
+<span class="token comment">-- redis配置，一定要修改，并且和codo-admin保持一致，admin会把权限写进去提供网关使用</span>
+redis_config <span class="token operator">=</span> <span class="token punctuation">{</span>
+    host <span class="token operator">=</span> <span class="token string">'10.10.10.12'</span><span class="token punctuation">,</span>
+    port <span class="token operator">=</span> <span class="token number">6379</span><span class="token punctuation">,</span>
+    auth_pwd <span class="token operator">=</span> <span class="token string">'cWCVKJ7ZHUK12mVbivUf'</span><span class="token punctuation">,</span>
+    db <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">,</span>
+    alive_time <span class="token operator">=</span> <span class="token number">3600</span> <span class="token operator">*</span> <span class="token number">24</span> <span class="token operator">*</span> <span class="token number">7</span><span class="token punctuation">,</span>
+    channel <span class="token operator">=</span> <span class="token string">'gw'</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token comment">-- 注意：这里的token_secret必须要和codo-admin里面的token_secret保持一致</span>
+token_secret <span class="token operator">=</span> <span class="token string">&quot;pXFb4i%*834gfdh96(3df&amp;%18iodGq4ODQyMzc4lz7yI6ImF1dG&quot;</span>
+logs_file <span class="token operator">=</span> <span class="token string">'/var/log/gw.log'</span>
+
+<span class="token comment">--刷新权限到redis接口</span>
+rewrite_cache_url <span class="token operator">=</span> <span class="token string">'http://mg.opendevops.cn:8010/v2/accounts/verify/'</span>
+
+<span class="token comment">-- 注意：rewrite_cache_token要和codo-admin里面的secret_key = '8b888a62-3edb-4920-b446-697a472b4001'保持一致</span>
+rewrite_cache_token <span class="token operator">=</span> <span class="token string">'8b888a62-3edb-4920-b446-697a472b4001'</span>  
+
+
+<span class="token comment">--并发限流配置</span>
+limit_conf <span class="token operator">=</span> <span class="token punctuation">{</span>
+    rate <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token comment">--限制ip每分钟只能调用n*60次接口</span>
+    burst <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token comment">--桶容量,用于平滑处理,最大接收请求次数</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">--upstream匹配规则,API网关域名</span>
+gw_domain_name <span class="token operator">=</span> <span class="token string">'gw.opendevops.cn'</span> 
+
+<span class="token comment">--下面的转发一定要修改，根据自己实际数据修改</span>
+rewrite_conf <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">[</span>gw_domain_name<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+        rewrite_urls <span class="token operator">=</span> <span class="token punctuation">{</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/dns&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;dns.opendevops.cn:8060&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/cmdb2&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;cmdb2.opendevops.cn:8050&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/tools&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;tools.opendevops.cn:8040&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/kerrigan&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;kerrigan.opendevops.cn:8030&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/cmdb&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;cmdb.opendevops.cn:8002&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/k8s&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;k8s.opendevops.cn:8001&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/task&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;task.opendevops.cn:8020&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/cron&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;cron.opendevops.cn:9900&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/mg&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;mg.opendevops.cn:8010&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+            <span class="token punctuation">{</span>
+                uri <span class="token operator">=</span> <span class="token string">&quot;/accounts&quot;</span><span class="token punctuation">,</span>
+                rewrite_upstream <span class="token operator">=</span> <span class="token string">&quot;mg.opendevops.cn:8010&quot;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><p><strong>修改Dockerfile</strong></p> <p>使用自动构建的镜像，默认使用最新版本，这一步的目的是把修改后的配置覆盖进去</p> <div class="language- extra-class"><pre class="language-text"><code>cat &gt;Dockerfile &lt;&lt;EOF
+FROM registry.cn-shanghai.aliyuncs.com/ss1917/api-gateway
+
+#修改配置
+ADD . /usr/local/openresty/nginx/
+
+EXPOSE 80
+CMD [&quot;/usr/bin/openresty&quot;, &quot;-g&quot;, &quot;daemon off;&quot;]
+EOF
+
+</code></pre></div><p><strong>编译，启动</strong></p> <div class="language- extra-class"><pre class="language-text"><code>#编译镜像
+docker build . -t gateway_image
+#启动
+docker-compose up -d
+</code></pre></div><p>启动后地址为<code>http://gw.opendevops.cn:8888</code>，这里是和前端的地址有对应，请勿修改</p> <div class="language- extra-class"><pre class="language-text"><code>#测试一下
+curl -I -X GET -m 10 -o /dev/null -s -w %{http_code} http://gw.opendevops.cn:8888/api/accounts/are_you_ok/
+</code></pre></div><blockquote><p>提醒:openresty服务器DNS必须指向---&gt;最起初部署的DNS服务器地址,另外若你本机ping以上随便一个域名都不通的话，那你要确认下你本机DNS指向你最初部署了DNS服务器了？ 修改vim /etc/resolv.conf</p></blockquote> <p><strong>访问</strong></p> <p><code>注意： demo-init.opendevops.cn 建议修改成自己的域名，也可以绑定hosts来测试一下</code>  可以再部署前端的时候修改</p> <ul><li>地址：demo-init.opendevops.cn</li> <li>用户：admin</li> <li>密码：admin@opendevops</li></ul> <p><strong>日志路径</strong></p> <blockquote><p>若这里访问有报错，请看下日志，一般都是配置错误。</p></blockquote> <ul><li>日志路径：所有模块日志统一<code>/var/log/supervisor/</code></li></ul> <p><strong>特别感谢</strong></p> <p>感谢大佬 <code>shenyingzhi</code> 提供测试环境，特此致谢</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/zh/guide/install/local/" class="prev">
+        单机部署
+      </a></span> <span class="next"><a href="/zh/guide/used/">
+        如何使用
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e9c144ab.js" defer></script><script src="/assets/js/2.7c46101f.js" defer></script><script src="/assets/js/10.ebbbf0a3.js" defer></script>
+  </body>
+</html>

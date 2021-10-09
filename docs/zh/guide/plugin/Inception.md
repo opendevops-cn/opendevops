@@ -8,7 +8,7 @@
 
 **2.编辑inception配置文件，注意修改inception_remote四处配置项，指定一个数据库用以保存inception的备份及回滚语句**
 
-```
+```bash
 cat >/etc/inc.cnf <<EOF 
 [inception]
 general_log=1
@@ -66,7 +66,7 @@ EOF
 
 **inc.cnf配置文件参数简要说明**
 
-```
+```bash
 [inception]
 general_log=1
 general_log_file=/var/log/inception.log
@@ -165,7 +165,7 @@ inception_check_identifier=1
 
 **下面是一个python脚本访问inception的简单例子，指定连接测试的mysql服务器为10.0.0.24**
 
-```
+```bash
 cat >inc-mysql.py <<EOF
 #!/usr/bin/env python
 #coding=utf8
@@ -202,7 +202,7 @@ EOF
 
 > CREATE TABLE shinezone(id int comment 'test' primary key) engine=innodb DEFAULT CHARSET=utf8mb4 comment '测试';\
 
-```
+```bash
 cat >inc-mysql.py <<EOF
 #!/usr/bin/env python
 #coding=utf8
