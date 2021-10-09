@@ -32,6 +32,10 @@ I also hope that you can give us a project![](https://img.shields.io/github/star
 
 ----
 
+### Language
+
+[English](README.md) | [中文](README-zh.md)
+
 ### Product Architecture
 
 ![](docs/source/_static/images/project_arch.png)

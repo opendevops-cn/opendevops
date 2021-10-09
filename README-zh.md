@@ -29,7 +29,7 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 
 ----
 
-### 语言切换
+### 语言
 
 [English](README.md) | [中文](README-zh.md)
 
