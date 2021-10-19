@@ -16,5 +16,5 @@ features:
   details: 系统模板化，前后端分离，自由开发新模板注册即可快速接入
 - title: 微服务
   details: 采用微服务设计理念，服务之间，开发人员协同开发互不影响
-footer: MIT Licensed | Copyright © 2020-present CoDo Groups
+footer: MIT Licensed | Copyright © 2021-present CoDo Groups
 ---

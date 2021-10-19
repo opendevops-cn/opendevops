@@ -22,7 +22,7 @@
 
 直接拉取仓库中的docker镜像启动服务, docker、docker-compose安装参考[初始化脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts)
 
-```
+```bash
 mkdir -p /data/sonarqube/
 
 cat >/data/sonarqube/docker-compose.yml <<EOF
@@ -121,7 +121,7 @@ SonarQube配置安装插件，汉化。
 
 `注意：这里客户端后续代码检查脚本会调用此客户端执行代码检查`
 
-```shell
+```bash
 wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
 unzip  sonar-scanner-cli-3.2.0.1227-linux.zip
 mv sonar-scanner-3.2.0.1227-linux/ /usr/local/sonar-scanner

@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="http://www.opendevops.cn/">
+    <a href="https://www.opendevops.cn/">
         <img width="200" src="https://www.opendevops.cn/images/head_logo.png">
     </a>
 </p>
@@ -31,6 +31,10 @@ We have been researching and developing many functional modules. If you are inte
 I also hope that you can give us a project![](https://img.shields.io/github/stars/opendevops-cn/opendevops.svg), cheer for contributors! 
 
 ----
+
+### Language
+
+[English](README.md) | [中文](README-zh.md)
 
 ### Product Architecture
 

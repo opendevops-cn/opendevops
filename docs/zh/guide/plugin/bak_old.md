@@ -18,7 +18,7 @@
 
 **安装使用**
 
-```
+```bash
 #编译依赖项sqlparser
 git clone https://github.com/Meituan-Dianping/SQLAdvisor.git
 cd SQLAdvisor
@@ -65,7 +65,7 @@ sqladvisor  -u root -p 123456 -P 3306 -h 10.0.0.24 -q "select permission_id from
 
 直接拉取仓库中的docker镜像启动服务, docker、docker-compose安装参考[初始化脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts)
 
-```
+```bash
 mkdir -p /data/sonarqube/
 
 cat >/data/sonarqube/docker-compose.yml <<EOF
@@ -193,7 +193,7 @@ export PATH=$SONAR_RUNNER_HOME/bin:$PATH
 
 
 **下载二进制安装包**
-```
+```bash
 wget https://github.com/XiaoMi/soar/releases/download/0.9.0/soar.linux-amd64 -O soar
 chmod a+x soar
 cp soar /usr/bin/
@@ -202,7 +202,7 @@ cp soar /usr/bin/
 **安装验证**
 
 回到soar的下载目录执行
-```
+```bash
 echo 'select * from film' | ./soar
 ```
 **回显如下**
@@ -248,7 +248,7 @@ FROM
 
 **2.编辑inception配置文件，注意修改inception_remote四处配置项，指定一个数据库用以保存inception的备份及回滚语句**
 
-```
+```bash
 cat >/etc/inc.cnf <<EOF 
 [inception]
 general_log=1
@@ -306,7 +306,7 @@ EOF
 
 **inc.cnf配置文件参数简要说明**
 
-```
+```bash
 [inception]
 general_log=1
 general_log_file=/var/log/inception.log
@@ -405,7 +405,7 @@ inception_check_identifier=1
 
 **下面是一个python脚本访问inception的简单例子，指定连接测试的mysql服务器为10.0.0.24**
 
-```
+```bash
 cat >inc-mysql.py <<EOF
 #!/usr/bin/env python
 #coding=utf8
@@ -442,7 +442,7 @@ EOF
 
 > CREATE TABLE shinezone(id int comment 'test' primary key) engine=innodb DEFAULT CHARSET=utf8mb4 comment '测试';\
 
-```
+```bash
 cat >inc-mysql.py <<EOF
 #!/usr/bin/env python
 #coding=utf8
@@ -482,7 +482,7 @@ EOF
 >opendevops平台所用组件[域名管理](https://github.com/opendevops-cn/codo-dns)Bind部署文档， 部分文档会因为版本迭代不可用，此文档只作为参考文档，谢谢。
 
 **安装配置**
-```
+```bash
 yum install -y bind bind-chroot bind-utils
 ```
 
@@ -491,12 +491,12 @@ yum install -y bind bind-chroot bind-utils
 - zone文件chroot是通过相关文件封装在一个伪根目录内，已达到安全防护的目的，一旦程序被攻破，将只能访问伪根目录内的内容，而不是真实的根目录
 
 - BIND安装好之后不会有预制的配置文件，但是在BIND的文档文件夹内（/usr/share/doc/bind-9.9.4），BIND为我们提供了配置文件模板，我们可以直接拷贝过来：
-```
+```bash
 # cp -r /usr/share/doc/bind-9.9.4/sample/etc/* /var/named/chroot/etc/
 # cp -r /usr/share/doc/bind-9.9.4/sample/var/* /var/named/chroot/var/
 ```
 - 配置BIND服务的主配置文件（/var/named/chroot/etc/named.conf，并加入zone参数
-```
+```bash
 options {
         listen-on port 53       { 127.0.0.1; };
         listen-on-v6 port 53 { ::1; };
@@ -511,7 +511,7 @@ zone "ss.com"  {
 };
 ```
 - 新建ss.com.zone文件 如下
-```
+```bash
 # vim /var/named/chroot/var/named/ss.com.zone
 $TTL 86400
 $ORIGIN ss.com.
@@ -529,26 +529,26 @@ www 3600 IN   A   172.20.66.110
 ftp 3600 IN   A  10.128.105.250
 ```
 - 禁用bind默认方式启动，改用bind-chroot方式启动。命令如下：
-```
-# /usr/libexec/setup-named-chroot.sh /var/named/chroot on
-# systemctl stop named
-# systemctl disable named
-# systemctl start named-chroot
-# systemctl enable named-chroot
+```bash
+/usr/libexec/setup-named-chroot.sh /var/named/chroot on
+systemctl stop named
+systemctl disable named
+systemctl start named-chroot
+systemctl enable named-chroot
 ```
 - 检查语法
-```
+```bash
 # named-checkzone ss.com /var/named/ss.com.zone
 zone ss.com/IN: loaded serial 20190426
 OK
 # named-checkconf
 ```
 - 查看是否启动，命令：
-```
+```bash
 ps -ef|grep named
 ```
 - 测试DNS服务，命令如下：
-```
+```bash
 ### 编辑dns解析文件 并写入你的DNS服务器地址
 vim /etc/resolv.conf 
 nameserver 172.16.0.111
