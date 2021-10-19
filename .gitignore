@@ -1,2 +1,4 @@
 .git
 node_modules
+.idea
+docs/.vuepress/dist
