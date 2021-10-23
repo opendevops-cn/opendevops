@@ -6,7 +6,7 @@ module.exports = {
 		logo: 'https://img.opendevops.cn/logo.png',
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: '招募', link: '/zh/ad/' },
+			{ text: '招聘', link: '/zh/ad/' },
 			{
 				text: '部署文档',
 				items: [
@@ -15,7 +15,7 @@ module.exports = {
 				]
 			},
 			{ text: '使用文档', link: '/zh/guide/used/' },
-			{ text: '论坛', link: 'https://bbs.opendevops.cn/', target: '_blank' },
+			// { text: '论坛', link: 'https://bbs.opendevops.cn/', target: '_blank' },
 			{ text: '官网', link: 'https://www.opendevops.cn/', target: '_blank' },
 			{ text: 'Demo', link: 'https://demo.opendevops.cn/login', target: '_blank' },
 			{ text: 'Gitee', link: 'https://gitee.com/opendevops/opendevops', target: '_blank' },

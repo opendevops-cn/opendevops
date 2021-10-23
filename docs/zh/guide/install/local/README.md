@@ -1,7 +1,16 @@
 # 单机部署
 
 ::: tip
-完全抽象出来的本地部署方式，不理解Docker的同学可以使用本文的进行参考，线上我建议你分布式部署，分布式部署是Docker、Docker、Docker！！！
+完全抽象出来的本地部署方式，不理解Docker的同学可以使用本文的进行参考
+
+部署视频参考：
+
+视频会在业余时间持续录制，更多视频可以参考Up主空间：https://space.bilibili.com/388245257/
+
+- [部署安装教程](https://www.bilibili.com/video/BV1BL4y1a7TU/)
+- [快速了解视频](https://www.bilibili.com/video/BV1rp4y1v7fa/)
+- [二次开发教程](https://www.bilibili.com/video/BV1Sy4y137md/)
+
 :::
 
 ## 环境准备

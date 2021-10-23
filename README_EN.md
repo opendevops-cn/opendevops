@@ -1,10 +1,8 @@
 <p align="center">
-    <a href="http://www.opendevops.cn/">
-        <img width="200" src="http://www.opendevops.cn/images/head_logo.png">
+    <a href="https://www.opendevops.cn/">
+        <img width="200" src="https://www.opendevops.cn/images/head_logo.png">
     </a>
 </p>
-
-
 
 [![Python3](https://img.shields.io/badge/Python-3.6-green.svg?style=plastic)](https://www.python.org/)
 [![Tornado](https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic)](https://www.tornadoweb.org)
@@ -32,13 +30,18 @@ I also hope that you can give us a project![](https://img.shields.io/github/star
 
 ----
 
+### Language
+
+[English](README_EN.md) | [中文](README.md)
+
+
 ### Product Architecture
 
-![](docs/source/_static/images/project_arch.png)
+![](images/project_arch.png)
 
 ### Product Features
 
-![](docs/source/_static/images/pro_fun_3.png)
+![](images/pro_fun_3.png)
 
 ### Demo
 
@@ -56,7 +59,7 @@ We provide a demo of the user experience and click on the demo to demonstrate it
 
 
 
-![](docs/source/_static/images/codo_index.png)
+![](image/codo_index.png)
 
 
 ### How can I use it?
@@ -66,6 +69,13 @@ We provide a demo of the user experience and click on the demo to demonstrate it
 - [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
 - [Quick start tutorial](https://www.bilibili.com/video/BV1rp4y1v7fa/)
 
+
+### Video Tutorial
+> The video will continue to be recorded in spare time. For more video, please refer to the Up main space: https://space.bilibili.com/388245257/
+
+- [Deployment and Installation Tutorial](https://www.bilibili.com/video/BV1BL4y1a7TU/)
+- [Quick Understanding Video](https://www.bilibili.com/video/BV1rp4y1v7fa/)
+- [Secondary Development Tutorial](https://www.bilibili.com/video/BV1Sy4y137md/)
 
 ### Module link
 
