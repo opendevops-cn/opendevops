@@ -164,51 +164,85 @@ yum install python3 -y
 ```shell
 source /opt/codo/env.sh  #变量文件
 yum install -y wget
-wget http://repo.mysql.com/mysql-community-release-el6-5.noarch.rpm
-rpm -ivh mysql-community-release-el6-5.noarch.rpm
+wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+rpm -ivh mysql80-community-release-el7-3.noarch.rpm
 ```
 
 
 ```shell
-cat >/etc/yum.repos.d/mysql-community.repo <<EOF
-[mysql-connectors-community]
-name=MySQL Connectors Community
-baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/6/$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-
-[mysql-tools-community]
-name=MySQL Tools Community
-baseurl=http://repo.mysql.com/yum/mysql-tools-community/el/6/$basearch/
-enabled=1
-gpgcheck=1
-gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
-
+cat >/etc/yum.repos.d/mysql-community.repo <<'EOF'
 # Enable to use MySQL 5.5
 [mysql55-community]
 name=MySQL 5.5 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.5-community/el/6/$basearch/
+baseurl=http://repo.mysql.com/yum/mysql-5.5-community/el/7/$basearch/
 enabled=0
 gpgcheck=1
-gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 
 # Enable to use MySQL 5.6
 [mysql56-community]
 name=MySQL 5.6 Community Server
-baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/6/$basearch/
+baseurl=http://repo.mysql.com/yum/mysql-5.6-community/el/7/$basearch/
 enabled=0
 gpgcheck=1
-gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 
-# Note: MySQL 5.7 is currently in development. For use at your own risk.
-# Please read with sub pages: https://dev.mysql.com/doc/relnotes/mysql/5.7/en/
-[mysql57-community-dmr]
-name=MySQL 5.7 Community Server Development Milestone Release
+# Enable to use MySQL 5.7
+[mysql57-community]
+name=MySQL 5.7 Community Server
 baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
 enabled=1
 gpgcheck=1
-gpgkey=file:/etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql80-community]
+name=MySQL 8.0 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-connectors-community]
+name=MySQL Connectors Community
+baseurl=http://repo.mysql.com/yum/mysql-connectors-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-tools-community]
+name=MySQL Tools Community
+baseurl=http://repo.mysql.com/yum/mysql-tools-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-tools-preview]
+name=MySQL Tools Preview
+baseurl=http://repo.mysql.com/yum/mysql-tools-preview/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-cluster-7.5-community]
+name=MySQL Cluster 7.5 Community
+baseurl=http://repo.mysql.com/yum/mysql-cluster-7.5-community/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-cluster-7.6-community]
+name=MySQL Cluster 7.6 Community
+baseurl=http://repo.mysql.com/yum/mysql-cluster-7.6-community/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
+
+[mysql-cluster-8.0-community]
+name=MySQL Cluster 8.0 Community
+baseurl=http://repo.mysql.com/yum/mysql-cluster-8.0-community/el/7/$basearch/
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql
 EOF
 
 ```
