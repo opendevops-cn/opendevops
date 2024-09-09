@@ -100,12 +100,13 @@ Thanks for the contributions contributed to CODO (CloudOpenDevOps);
 Thank you for your contribution, so that maintenance is no longer boring because of you, and the world is beautiful
 because of you. This ranking is no different. Thank you!
 
-| Name                                          | Github Avatar                                                | Name                                          | GitHub Avatar                                                | Name                                              | Github Avatar                                                   |
-| --------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ |---------------------------------------------------|-----------------------------------------------------------------|
-| [laoxu](https://github.com/rootman-xjj)       | ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)         | ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4) | [yangmingwei](https://github.com/yangmv)          | ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4) |
+| Name                                          | Github Avatar                                                | Name                                          | GitHub Avatar                                                | Name                                              | Github Avatar                                                |
+| --------------------------------------------- | ------------------------------------------------------------ | --------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
+| [laoxu](https://github.com/rootman-xjj)       | ![](https://avatars1.githubusercontent.com/u/46043588?s=70&v=4) | [shenshuo](https://github.com/ss1917)         | ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4) | [cyancow](https://github.com/cyancow)             | ![](https://avatars2.githubusercontent.com/u/56914892?s=70&v=4) |
 | [yanghongfei](https://github.com/yanghongfei) | ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4) | [shenyingzhi](https://github.com/shenyingzhi) | ![](https://avatars0.githubusercontent.com/u/20352098?s=70&v=4) | [biantingting](https://github.com/biantingting94) | ![](https://avatars2.githubusercontent.com/u/32928032?s=70&v=4) |
 | [zhirenyongnan](https://github.com/Aaronzryn) | ![](https://avatars3.githubusercontent.com/u/35439838?s=70&v=4) | [libo](https://github.com/alexbolee)          | ![](https://avatars0.githubusercontent.com/u/46021689?s=70&v=4) | [liuchunyu](https://github.com/liuchunyu007)      | ![](https://avatars2.githubusercontent.com/u/49022863?s=70&v=4) |
-| [ops-coffee](https://github.com/ops-coffee)   | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) | [laowang](https://github.com/cyancow)         | ![](https://avatars2.githubusercontent.com/u/56914892?v=4) | [punk](https://github.com/it-sos)                 | ![](https://avatars.githubusercontent.com/u/34646441?s=70&v=4)  |                                                              |
+| [ops-coffee](https://github.com/ops-coffee)   | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) | [yangmingwei](https://github.com/yangmv)      | ![](https://avatars3.githubusercontent.com/u/18107515?s=70&v=4) | [punk](https://github.com/it-sos)                 | ![](https://avatars.githubusercontent.com/u/34646441?s=70&v=4) |
+| [radius2136](https://github.com/radius2136)   | ![](https://avatars2.githubusercontent.com/u/23356532?s=70&v=4) |                                               |                                                              |                                                   |                                                              |                                                           |                                                             |
 
 ### QQ Group
 
@@ -134,7 +135,7 @@ Thanks to the following students for sponsoring the Demo environment.
 | Name                                              | Github Avatar                                                | 贡献金额 |
 | ------------------------------------------------- | ------------------------------------------------------------ | -------- |
 | [shenshuo](https://github.com/ss1917)             | ![](https://avatars3.githubusercontent.com/u/20316110?s=70&v=4) | ￥500    |
-| [laowang](https://github.com/cyancow)             | ![](https://avatars2.githubusercontent.com/u/56914892?v=4) | ￥300    |
+| [laowang](https://github.com/cyancow)             | ![](https://avatars2.githubusercontent.com/u/56914892?s=70&v=4) | ￥300    |
 | [ops-coffee](https://github.com/ops-coffee)       | ![](https://avatars3.githubusercontent.com/u/42868360?s=70&v=4) | ￥300    |
 | [yanghongfei](https://github.com/yanghongfei)     | ![](https://avatars3.githubusercontent.com/u/22789928?s=70&v=4) | ￥300    |
 | [panda-yo](https://github.com/panda-yo)           | ![](https://avatars3.githubusercontent.com/u/19947676?s=70&v=4) | ￥200    |
