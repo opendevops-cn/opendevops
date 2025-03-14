@@ -10,8 +10,8 @@ module.exports = {
 			{
 				text: '部署文档',
 				items: [
-					{ text: '单机部署', link: '/zh/guide/install/local/' },
-					{ text: '分布式部署', link: '/zh/guide/install/distribute/' }
+					{ text: 'Docker 部署', link: '/zh/guide/install/local/' },
+					{ text: 'Kubernetes Helm 部署', link: '/zh/guide/install/distribute/' }
 				]
 			},
 			{ text: '使用文档', link: '/zh/guide/used/' },
