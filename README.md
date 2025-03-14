@@ -62,11 +62,11 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 
 ### 开始使用
 
-> 注意：由于是微服务部署比较复杂，我们目前只支持分布式一步步部署，depoly.sh暂不更新，后续会提供其余快速部署方式，请知悉。
+> 当前版本支持docker compose和kubernetes helm 一键快速部署。
 
 - [Document](http://docs.opendevops.cn/)
 - [Quick Experience](https://demo.opendevops.cn/login)
-- [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
+- [Deployment Document](https://github.com/opendevops-cn/codo-deploy-docs)
 
 ### 视频教程
 > 视频会在业余时间持续录制，更多视频可以参考Up主空间：https://space.bilibili.com/388245257/
@@ -80,14 +80,14 @@ CODO开源多云管理平台将为用户提供多功能：ITSM、基于RBAC权�
 
 - 前端代码：[codo](https://github.com/opendevops-cn/codo)
 - 管理后端：[codo-admin](https://github.com/opendevops-cn/codo-admin)
-- 定时任务：[codo-cron](https://github.com/opendevops-cn/codo-cron)
-- 任务调度：[codo-task](https://github.com/opendevops-cn/codo-task)
-- 资产管理：[codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
+- 配置管理平台：[codo-cmdb](https://github.com/opendevops-cn/codo-cmdb)
+- 任务调度：[codo-flow](https://github.com/opendevops-cn/codo-flow)
 - 配置中心：[codo-kerrigan](https://github.com/opendevops-cn/kerrigan)
-- 运维工具：[codo-tools](https://github.com/opendevops-cn/codo-tools)
-- 域名管理：[codo-dns](https://github.com/opendevops-cn/codo-dns)
-
-
+- 通知中心：[codo-tools](https://github.com/opendevops-cn/codo-notice)
+- 灵云-kubernetes管理 ：[codo-cnmp](https://github.com/opendevops-cn/codo-cnmp)
+- 管控中心 ：[codo-agent-server](https://github.com/opendevops-cn/codo-agent-server)
+- 前端基座 ：[codo-home-index](https://github.com/opendevops-cn/codo-home-index)
+- 天门网关 ：[codo-gateway](https://github.com/opendevops-cn/codo-gateway)
 
 ### 感谢贡献者
 
