@@ -19,6 +19,7 @@ codo
 ├── codo-frontend # 前端应用、流量入口(API流量 先进这里再路由到 gateway)
 ├── codo-gateway # API网关
 └── codo-kerrigan # 配置中心
+```
 
 ## 一键安装CODO
 
