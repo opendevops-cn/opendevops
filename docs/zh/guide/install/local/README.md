@@ -1,4 +1,4 @@
-# 单机部署
+# Docker Compose部署
 
 ::: tip
 完全抽象出来的本地部署方式，不理解Docker的同学可以使用本文的进行参考
@@ -53,40 +53,41 @@ codo
 - 如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了[优化系统脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
-## 部署方式
+## 快速部署
 - 开发环境使用docker-compose方式, 完成管理后台、网关服务、前端项目、任务平台、配置中心、Agent-server的部署.
 - 部署时先部署中间件, 中间件正常运行后部署应用.
+- 安装 Docker 和 Docker-compose
+  
+> Docker安装命令参考 **[Rocky Linux 9 操作系统]**
 
-**克隆部署仓库**
-```bash
-$ mkdir -p /opt/codo/ && cd /opt/codo/
-$ git clone https://github.com/opendevops-cn/codo-deploy-docs.git
-$ cd codo-deploy-docs/docker-deploy
+```shell
+sudo dnf install dnf-plugins-core
+sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io
+sudo systemctl start docker
+sudo systemctl enable docker
+  ```
+
+> docker-compose安装命令参考 **[Rocky Linux 9 操作系统]**
+
+```shell
+sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-## 快速部署
+---
 
-- 安装 Docker 和 Docker-compose
-  - Docker安装命令参考 **[Rocky Linux 9 操作系统]**
-    ```shell
-    sudo dnf install dnf-plugins-core
-    sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-    sudo dnf install docker-ce docker-ce-cli containerd.io
-    sudo systemctl start docker
-    sudo systemctl enable docker
-    ```
+**克隆仓库**
 
-  - docker-compose安装命令参考 **[Rocky Linux 9 操作系统]**
-    ```shell
-    sudo curl -L "https://github.com/docker/compose/releases/download/v2.5.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-    ```
+```shell
+mkdir -p /opt/codo/ && cd /opt/codo/
+git clone https://github.com/opendevops-cn/codo-deploy-docs.git
+cd codo-deploy-docs/docker-deploy
+```
 
---- 
-
-- 配置文件修改【可选】[.env](.env) <span style="color: yellow;">
+- 配置文件修改【可选】[.env](https://github.com/opendevops-cn/codo-deploy-docs/blob/main/docker-deploy/.env) <span style="color: red;">
   中已经配置项目中所需的账密信息，不修该则使用默认配置</span>
-- 数据库初始化【可选】：[db_init.sql](db_init.sql) <span style="color: yellow;"> 在 Docker 部署 MySQL 时默认导入。
+- 数据库初始化【可选】：[db_init.sql](https://github.com/opendevops-cn/codo-deploy-docs/blob/main/docker-deploy/db_init.sql) <span style="color: red;"> 在 Docker 部署 MySQL 时默认导入。
 
 --- 
 

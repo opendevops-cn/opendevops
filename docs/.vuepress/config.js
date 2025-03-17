@@ -10,7 +10,7 @@ module.exports = {
 			{
 				text: '部署文档',
 				items: [
-					{ text: 'Docker 部署', link: '/zh/guide/install/local/' },
+					{ text: 'Docker Compose 部署', link: '/zh/guide/install/local/' },
 					{ text: 'Kubernetes Helm 部署', link: '/zh/guide/install/distribute/' }
 				]
 			},

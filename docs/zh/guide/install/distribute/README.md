@@ -1,4 +1,4 @@
-# helm安装
+# Kubenetes Helm部署
 
 ## 项目简介
 
@@ -40,7 +40,8 @@ export local_mid_value_file=./data/mid.values.yaml
 export local_deploy_crd=true
 ```
 
-## 使用
+## 配置转发
+
 ```shell
 kubectl -n codo-test port-forward services/codo-biz-frontend 8888:80
 ```
