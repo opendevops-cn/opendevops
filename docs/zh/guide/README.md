@@ -68,6 +68,66 @@ codo
 └── codo-kerrigan # 配置中心
 ```
 
+以下是优化后的 **CODO 总仓库 README 介绍模板**，每个子项目都附带了 `README.md` 的链接，方便用户了解模块详情：  
+
+---
+
+# CODO - 开源全球一站式运维平台  
+
+CODO 是一个完全开源的全球一站式运维平台，旨在帮助企业实现跨地域、多云环境的统一管理和高效运维。以下是 CODO 的模块化架构，每个模块均独立开发，具备专属功能。点击模块名称可查看详细说明。  
+
+## 项目结构  
+
+```
+codo
+├── codo-admin               # 管理后台  
+├── codo-agent-server        # 底层管控  
+├── codo-cloud-agent-operator # 执行云原生任务  
+├── codo-cmdb                # 数据资产、多云资源管理  
+├── codo-cnmp                # 云原生管理平台  
+├── codo-flow-servers        # 任务平台、作业调度执行  
+├── codo-monitor             # 可观测平台  
+├── codo-notice              # 通知中心  
+├── codo-frontend            # 前端应用、流量入口  
+├── codo-gateway             # API网关  
+└── codo-kerrigan            # 配置中心  
+```
+
+## 模块介绍  
+
+1. [**codo-admin**](https://github.com/opendevops-cn/codo-admin/blob/main/README.md)  
+   用于管理后台的操作平台，提供高效的管理界面和用户友好的操作体验。  
+
+2. [**codo-agent-server**](https://github.com/opendevops-cn/codo-agent-server/blob/main/README.md)
+   底层管控模块，负责与主机或环境进行通信，实现资源的统一管理。  
+
+3. [**codo-cloud-agent-operator**](https://github.com/opendevops-cn/codo-agent-server/blob/main/README.md) 
+   负责执行云原生相关任务，支持 Kubernetes 等容器化任务的操作和调度。  
+
+4. [**codo-cmdb**](https://github.com/opendevops-cn/codo-cmdb/blob/main/README.md)  
+   数据资产管理平台，提供多云资源管理、CMDB 数据整合及资产统一视图。  
+
+5. [**codo-cnmp**](https://github.com/opendevops-cn/codo-cnmp/blob/main/README.md)  
+   云原生管理平台，专注于容器化、微服务及 Kubernetes 集群的管理。  
+
+6. [**codo-flow-servers**](https://github.com/opendevops-cn/codo-flow/blob/main/README.md)  
+   任务平台模块，支持任务调度、流程管理及批量作业执行。  
+
+7. [**codo-monitor**](https://github.com/opendevops-cn/codo-monitor/blob/main/README.md)  
+   可观测平台模块，提供实时监控、预警和性能分析能力，保障系统稳定性。  
+
+8. [**codo-notice**](https://github.com/opendevops-cn/codo-notice/blob/main/README.md)  
+   通知中心模块，支持多渠道通知推送，实现高效的事件响应。  
+
+9. [**codo-frontend**](https://github.com/opendevops-cn/codo-frontend/blob/main/README.md) 
+   前端应用和流量入口模块，处理 API 流量并路由至网关，支持模块化前端开发。  
+
+10. [**codo-gateway**](https://github.com/opendevops-cn/codo-gateway/blob/main/README.md) 
+    API 网关模块，负责统一流量入口和服务治理，提供高性能路由与认证支持。  
+
+11. [**codo-kerrigan**](https://github.com/opendevops-cn/codo-kerrigan/blob/main/README.md) 
+    配置中心模块，用于集中管理配置项，实现动态配置更新和分布式配置下发。  
+
 ## Architecture
 
 ![](/architecture.png)
