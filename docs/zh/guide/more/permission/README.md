@@ -20,9 +20,12 @@
   若想要其余用户也赋权超级管理员进行以下操作(不建议多个超管)
   
 
-在数据库`codo_admin`中`mg_users`表字段 superuser
+在数据库`codo-admin`中`codo_a_users`表字段 superuser
 - 0：代表超级管理员
 - 10：代表普通用户 
+
+## 业务、用户、权限配置
+https://github.com/opendevops-cn/codo-admin/blob/main/docs/codo-admin.md
 
 
 **管理员如何创建一个带MFA的用户**  

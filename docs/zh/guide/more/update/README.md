@@ -10,7 +10,7 @@ cd  ./codo-deploy-docs/docker-deploy
 docker-compose  -f docker-compose-app.yaml pull
 ```
 
-## 重新生成token
+### 重新生成token
 
 ```sh
 TOKEN=$(docker exec codo_mg python3 manage.py token_init | tr -d '\n' | tr -d '\r')
