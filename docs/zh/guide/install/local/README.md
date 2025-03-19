@@ -38,15 +38,10 @@ codo
 ## 环境依赖
 
 - 操作系统：Rocky Linux 9.1以上 x86_64
-- Python版本：3.9
 - Docker版本：最新稳定版本
 - Docker Compose版本：最新稳定版本
-- mysql: 8.0
-- redis: 6.2
-- rabbitmq: 3.11
-- etcd: 3.5
 
-**优化系统**
+**优化系统**  
 
 注意：
 
@@ -54,6 +49,7 @@ codo
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
 ## 快速部署
+
 - 开发环境使用docker-compose方式, 完成管理后台、网关服务、前端项目、任务平台、配置中心、Agent-server的部署.
 - 部署时先部署中间件, 中间件正常运行后部署应用.
 - 安装 Docker 和 Docker-compose
@@ -77,7 +73,7 @@ sudo chmod +x /usr/local/bin/docker-compose
 
 ---
 
-**克隆仓库**
+**克隆仓库**  
 
 ```shell
 mkdir -p /opt/codo/ && cd /opt/codo/
@@ -89,7 +85,7 @@ cd codo-deploy-docs/docker-deploy
   中已经配置项目中所需的账密信息，不修该则使用默认配置</span>
 - 数据库初始化【可选】：[db_init.sql](https://github.com/opendevops-cn/codo-deploy-docs/blob/main/docker-deploy/db_init.sql) <span style="color: red;"> 在 Docker 部署 MySQL 时默认导入。
 
---- 
+---
 
 - 部署中间件 如需依赖已有中间件则需要修改[.env](.env)配置
 

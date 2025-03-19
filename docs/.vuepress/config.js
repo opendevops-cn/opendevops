@@ -1,6 +1,6 @@
 module.exports = {
 	title: 'OpenDevOps',
-	description: ' Vue驱动的CoDo快速入门文档',
+	description: 'CoDo 快速入门文档',
 	head: [ [ 'link', { rel: 'icon', href: '/favicon.ico' } ] ],
 	themeConfig: {
 		logo: 'https://img.opendevops.cn/logo.png',

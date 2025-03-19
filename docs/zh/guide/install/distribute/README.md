@@ -21,7 +21,7 @@ codo
 └── codo-kerrigan # 配置中心
 ```
 
-## 一键安装CODO
+## 一键安装
 
 ```shell
 git clone https://github.com/opendevops-cn/codo-deploy-docs.git
