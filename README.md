@@ -57,13 +57,13 @@ CODO 是一款专为企业设计的开源全球一站式运维平台，支持多
 ### Demo
 我们提供了Demo供使用者体验,可点击Try Online Demo快速进行体验。
 
-<a href="https://demo.opendevops.cn/login" target="api_explorer">
+<a href="https://demo.opendevops.cn/user/login" target="api_explorer">
   <img src="https://img.alicdn.com/tfs/TB12GX6zW6qK1RjSZFmXXX0PFXa-744-122.png" width="180" />
 </a>
 
 `PS: Demo权限正在调试中，目前Demo用户只有查看权限，且暂不开放用户列表,Demo订单日志我们暂时清空了`
 
-- 地址：https://demo.opendevops.cn/login
+- 地址：https://demo.opendevops.cn/user/login
 - 用户：demo
 - 密码：2ZbFYNv9WibWcR7GB6kcEY
 
@@ -77,7 +77,7 @@ CODO 是一款专为企业设计的开源全球一站式运维平台，支持多
 > 当前版本支持docker compose和kubernetes helm 一键快速部署。
 
 - [Document](http://docs.opendevops.cn/)
-- [Quick Experience](https://demo.opendevops.cn/login)
+- [Quick Experience](https://demo.opendevops.cn/user/login)
 - [Deployment Document](https://github.com/opendevops-cn/codo-deploy-docs)
 
 ### 视频教程
