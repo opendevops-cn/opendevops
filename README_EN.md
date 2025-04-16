@@ -52,7 +52,7 @@ for contributors!
 
 We provide a demo of the user experience and click on the demo to demonstrate it quickly.
 
-<a href="https://demo.opendevops.cn/login" target="api_explorer">
+<a href="https://demo.opendevops.cn/user/login" target="api_explorer">
   <img src="https://img.alicdn.com/tfs/TB12GX6zW6qK1RjSZFmXXX0PFXa-744-122.png" width="180" />
 </a>
 
@@ -67,7 +67,7 @@ We provide a demo of the user experience and click on the demo to demonstrate it
 ### How can I use it?
 
 - [Document](http://docs.opendevops.cn/)
-- [Quick Experience](https://demo.opendevops.cn/login)
+- [Quick Experience](https://demo.opendevops.cn/user/login)
 - [Deployment Document](https://docs.opendevops.cn/zh/guide/install/distribute/)
 - [Quick start tutorial](https://www.bilibili.com/video/BV1rp4y1v7fa/)
 
