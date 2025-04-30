@@ -182,3 +182,17 @@ Q：应用展示与注册？
 - 🔧 [qiankun 微前端框架](https://github.com/umijs/qiankun)
 
 ::: 
+
+### Docker compose 的部署如何更新最新版本
+::: details 详细信息
+
+1. 更新镜像并重启
+
+```bash
+docker compose -f docker-compose-app.yaml pull
+docker compose -f docker-compose-app.yaml up -d
+```
+
+2. 更新后报500错误，一般是字段发生变更需要删表重建或者自己补齐字段 
+
+:::
