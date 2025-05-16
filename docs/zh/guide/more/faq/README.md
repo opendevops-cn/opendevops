@@ -196,3 +196,91 @@ docker compose -f docker-compose-app.yaml up -d
 2. 更新后报500错误，一般是字段发生变更需要删表重建或者自己补齐字段 
 
 :::
+
+
+
+### 如何获取参数与上下文传递变量
+
+在流程自动化和脚本执行中，获取参数与传递变量是常见需求。以下介绍从不同来源获取参数并在上下文中传递变量的方法。
+::: details 详细信息
+
+#### 1. 生成流程过程变量
+
+通过脚本输出标准化的格式，以便后续从日志中提取变量。约定格式为： 
+
+- 以 ###SOF### 开头，###EOF### 结尾。
+- 内容为合法的 JSON 字符串。
+
+**示例代码（Python）:**
+```python 
+#!/usr/bin/env python
+
+import json
+
+# 定义变量
+data = {
+    "name": "John Doe",
+    "age": 30,
+    "is_employee": True
+}
+
+# 输出标准化数据
+print(f"###SOF###{json.dumps(data)}###EOF###")
+```
+注意:
+
+- 日志处理程序需提取最后一组匹配 ###SOF### 和 ###EOF### 的内容。
+
+- 确保输出为合法 JSON 格式，使用双引号以符合 JSON 标准。
+
+#### 2. 无论使用何种语言，都可以从环境变量或上一步输出中获取上下文数据。以下是不同场景的实现方式：
+
+> FLOW_ID 和 NODE_ID 属于系统内置的变量可以直接获取
+> 环境变量 需要加codo_前缀
+
+**示例代码（Shell/Bash）:**
+```bash
+#!/bin/bash
+
+# 打印所有环境变量
+echo "==== 环境变量 ===="
+printenv
+
+echo -e "------------\n\n"
+# 系统内置的可以直接取
+echo "订单的ID: ${FLOW_ID}"
+echo "当前任务节点的ID: ${NODE_ID}"
+echo "当前任务执行的agent的crc32之后agent_id: ${crc32_agent_id}"
+echo -e "------------\n\n"
+# 环境变量 需要加codo_前缀
+echo "上个节点输出的名称: ${codo_name}"
+
+```
+
+**示例代码（Python）:**
+```python
+import os
+
+# 获取环境变量
+flow_id = os.getenv("FLOW_ID")
+node_id = os.getenv("NODE_ID")
+crc32_agent_id = os.getenv("crc32_agent_id")
+codo_name = os.getenv("codo_name")
+
+# 输出环境变量信息
+print("==== 环境变量 ====")
+print(f"订单的 ID: {flow_id}")
+print(f"当前任务节点的 ID: {node_id}")
+print(f"Agent 的 CRC32 编码后 ID: {crc32_agent_id}")
+print(f"上个节点输出的名称: {codo_name}")
+
+```
+
+
+#### **tips: 在自动化流程中，生成唯一标识很重要。以下组合能确保标识的唯一性：**
+
+- FLOW_ID + NODE_ID：保证全局唯一性，用于标识同一流程中不同节点。
+- FLOW_ID + NODE_ID + crc32_agent_id：在批量执行场景中，可进一步区分任务实例。
+  
+
+:::
