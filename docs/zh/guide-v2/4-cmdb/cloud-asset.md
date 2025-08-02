@@ -1,0 +1,9 @@
+# 手把手教你玩转 一站式运维平台(CODO) - 4.1 使用CMDB管理数据资源
+
+![image-20250802144043701](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802144043701.png)
+
+## 云账号导入
+
+![image-20250802144145863](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802144145863.png)
+
+![image-20250802145004507](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802145004507.png)
