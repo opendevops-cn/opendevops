@@ -44,7 +44,7 @@
 
 用于快速下发云原生任务到 k8s 集群中执行
 
-![image-20250727145603042](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250727145603042.png)
+![image-20250802182254037](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802182254037.png)
 
 ## 流程设计
 

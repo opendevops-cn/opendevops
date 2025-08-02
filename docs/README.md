@@ -2,7 +2,7 @@
 home: true
 # heroImage: /logo.png
 actionText: 快速上手 →
-actionLink: /zh/guide/
+actionLink: /zh/guide-v2/
 features:
 - title: 介绍
   details: CODO是一款为用户提供企业多混合云、一站式DevOps、自动化运维、完全开源的云管理平台、自动化运维平台
