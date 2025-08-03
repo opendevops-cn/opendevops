@@ -1,6 +1,6 @@
-# 手把手教你玩转 一站式运维平台(CODO) - 1.系统架构
-## codo 组件
+# 架构介绍
 
+**系统组件**
 codo 主要由以下组件组成
 
 - 前端代码：[codo](https://github.com/opendevops-cn/codo)
@@ -14,18 +14,11 @@ codo 主要由以下组件组成
 - 前端基座 ：[codo-home-index](https://github.com/opendevops-cn/codo-home-index)
 - 天门网关 ：[codo-gateway](https://github.com/opendevops-cn/codo-gateway)
 
-## codo 系统架构
-
+**系统架构**
 ![image-20250520215813383](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250520215813383.png)
 
-
-
-## codo 业务拓扑
-
+**业务拓扑**
 ![image-20250520222305262](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250520222305262.png)
 
-
-
-## codo 流量拓扑
-
+**流量拓扑**
 ![image-20250521100359946](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250521100359946.png)

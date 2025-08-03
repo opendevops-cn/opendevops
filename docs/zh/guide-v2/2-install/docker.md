@@ -1,4 +1,4 @@
-# codo docker 部署
+# Docker Compose 部署
 
 ## 部署方式
 - 开发环境使用docker-compose方式, 完成管理后台、网关服务、前端项目、任务平台、配置中心、Agent-server的部署.

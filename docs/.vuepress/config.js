@@ -41,7 +41,7 @@ module.exports = {
                 },
                 {
                     title: '架构',
-                    collapsable: false,
+                    collapsable: true,
                     children: [
                         '/zh/guide-v2/1-architectures/',
                     ]
@@ -50,61 +50,81 @@ module.exports = {
                     title: '如何安装',
                     collapsable: false,
                     children: [
-                        '/zh/guide-v2/2-install/',
+                         // '/zh/guide-v2/2-install/',
                         '/zh/guide-v2/2-install/docker.md',
                         '/zh/guide-v2/2-install/k8s.md'
                     ]
                 },
                 {
-                    title: '使用admin管理用户权限',
-                    collapsable: true,
+					title: '手把手教你玩转平台',
+					collapsable: false,
                     children: [
                         '/zh/guide-v2/3-admin/',
                         '/zh/guide-v2/3-admin/biz-auth.md',
-                        '/zh/guide-v2/3-admin/role-auth.md'
-                    ]
-                },
-                {
-                    title: '使用CMDB管理数据资源',
-                    collapsable: true,
-                    children: [
+                        '/zh/guide-v2/3-admin/role-auth.md',
                         '/zh/guide-v2/4-cmdb/',
                         '/zh/guide-v2/4-cmdb/biz-tree.md',
-                        '/zh/guide-v2/4-cmdb/cloud-asset.md'
-                    ]
-                },
-                {
-                    title: '使用flow编排自动化工作流',
-                    collapsable: true,
-                    children: [
+                        '/zh/guide-v2/4-cmdb/cloud-asset.md',
                         '/zh/guide-v2/5-codo-flow/',
                         '/zh/guide-v2/5-codo-flow/codo-agent.md',
                         '/zh/guide-v2/5-codo-flow/example-cicd.md',
                         '/zh/guide-v2/5-codo-flow/example-distribute-deploy.md',
-                        '/zh/guide-v2/5-codo-flow/example-flow-audit.md'
-                    ]
-                },
-                {
-                    title: '使用配置中心管理配置',
-                    collapsable: true,
-                    children: [
-                        '/zh/guide-v2/6-config-center/'
-                    ]
-                },
-                {
-                    title: '使用通知中心完成高效率告警',
-                    collapsable: true,
-                    children: [
-                        '/zh/guide-v2/7-notice/'
-                    ]
-                },
-                {
-                    title: '使用云原生管理平台管理多地集群',
-                    collapsable: true,
-                    children: [
+                        '/zh/guide-v2/5-codo-flow/example-flow-audit.md',
+                        '/zh/guide-v2/6-config-center/',
+                        '/zh/guide-v2/7-notice/',
                         '/zh/guide-v2/8-cloud-native-management/'
-                    ]
-                },
+                     ]
+				},
+                // {
+                //     title: '使用admin管理用户权限',
+                //     collapsable: true,
+                //     children: [
+                //         '/zh/guide-v2/3-admin/',
+                //         '/zh/guide-v2/3-admin/biz-auth.md',
+                //         '/zh/guide-v2/3-admin/role-auth.md'
+                //     ]
+                // },
+                // {
+                //     title: '使用CMDB管理数据资源',
+                //     collapsable: true,
+                //     children: [
+                //         '/zh/guide-v2/4-cmdb/',
+                //         '/zh/guide-v2/4-cmdb/biz-tree.md',
+                //         '/zh/guide-v2/4-cmdb/cloud-asset.md'
+                //     ]
+                // },
+                // {
+                //     title: '使用flow编排自动化工作流',
+                //     collapsable: true,
+                //     children: [
+                //         '/zh/guide-v2/5-codo-flow/',
+                //         '/zh/guide-v2/5-codo-flow/codo-agent.md',
+                //         '/zh/guide-v2/5-codo-flow/example-cicd.md',
+                //         '/zh/guide-v2/5-codo-flow/example-distribute-deploy.md',
+                //         '/zh/guide-v2/5-codo-flow/example-flow-audit.md'
+                //     ]
+                // },
+                // {
+                //     title: '使用配置中心管理配置',
+                //     collapsable: true,
+                //     children: [
+                //         '/zh/guide-v2/6-config-center/'
+                //     ]
+                // },
+                // {
+                //     title: '使用通知中心完成高效率告警',
+                //     collapsable: true,
+                //     children: [
+                //         '/zh/guide-v2/7-notice/'
+                //     ]
+                // },
+                // {
+                //     title: '使用云原生管理平台管理多地集群',
+                //     collapsable: true,
+                //     children: [
+                //         '/zh/guide-v2/8-cloud-native-management/'
+                //     ]
+                // },
                 {
                     title: '其他相关',
                     collapsable: false,

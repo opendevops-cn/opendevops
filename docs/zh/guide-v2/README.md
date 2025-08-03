@@ -1,4 +1,4 @@
-## codo V2 使用指南
+
 # OpenDevOps
 
 <p align="center">
@@ -105,7 +105,7 @@ codo
 3.  [**codo-kerrigan**](https://github.com/opendevops-cn/codo-kerrigan/blob/main/README.md)
     配置中心模块，用于集中管理配置项，实现动态配置更新和分布式配置下发。
 
-## codo V2 使用指南
+## 使用指南
 - [系统架构](./1-architectures/README.md) 
 - [安装说明](./2-install/README.md) 
   - [docker安装说明](./2-install/docker.md)

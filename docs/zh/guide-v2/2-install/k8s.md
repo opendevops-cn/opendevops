@@ -1,6 +1,6 @@
-# codo k8s 部署
+# Kubernetes Helm 部署
 
-## 一键安装CODO
+**一键安装CODO**
 ```shell
 bash ./quick_start/all_in_one.sh
 
@@ -15,13 +15,11 @@ export local_mid_value_file=./data/mid.values.yaml
 # 部署 cloud-agent-operator (默认不部署)
 export local_deploy_crd=true
 ```
-
-## 使用
+**使用**
 ```shell
 kubectl -n codo-test port-forward services/codo-biz-frontend 8888:80
 ```
-
-## 进入控制台
+**进入控制台**
 - 账号: admin
 - 密码: 1qazXSW@
 
