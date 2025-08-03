@@ -1,7 +1,7 @@
 # 手把手教你玩转 一站式运维平台(CODO) - 7.使用通知中心完成高效率告警
 ## 项目结构
 
-![image-20241222150347223](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222150347223.png)
+![image-20241222150347223](../images/image-20241222150347223.png)
 
 ```text
 .
@@ -73,7 +73,7 @@
 - 邮件
 - webhook
 
-![image-20241222153508118](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222153508118.png)
+![image-20241222153508118](../images/image-20241222153508118.png)
 
 ### 快速调试(飞书webhook机器人为例)
 
@@ -81,9 +81,9 @@
 
 关于添加自定义机器人, 可以查看: [飞书自定义机器人指南](https://open.feishu.cn/document/client-docs/bot-v3/add-custom-bot?lang=zh-CN)
 
-![image-20241222153448489](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222153448489.png)
+![image-20241222153448489](../images/image-20241222153448489.png)
 
-![image-20241222153547809](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222153547809.png)
+![image-20241222153547809](../images/image-20241222153547809.png)
 
 ### 配置通知通道
 
@@ -95,25 +95,25 @@
 
 配置基础信息:
 
-![image-20241222154613953](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222154613953.png)
+![image-20241222154613953](../images/image-20241222154613953.png)
 
 配置固定模板:
 
-![image-20241222154626725](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222154626725.png)
+![image-20241222154626725](../images/image-20241222154626725.png)
 
 配置自定义模板:
 
-![image-20241222154915998](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222154915998.png)
+![image-20241222154915998](../images/image-20241222154915998.png)
 
 #### 回调配置
 
 还可以配置回调用于信息交互
 
-![image-20250108143443953](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250108143443953.png)
+![image-20250108143443953](../images/image-20250108143443953.png)
 
 展示
 
-![image-20250108143606522](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250108143606522.png)
+![image-20250108143606522](../images/image-20250108143606522.png)
 
 ### 配置通知路由
 
@@ -138,4 +138,4 @@ FieldsAppCn       = "cmdb_bizcn"   // 业务中文描述 (从 httpQuery + jsonBo
 FieldsCallbackArgs = "codo_callback_args" // 回调参数, 只能是个字符串 (从 httpQuery + jsonBody 取值)
 ```
 
-![image-20241222155831594](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241222155831594.png)
+![image-20241222155831594](../images/image-20241222155831594.png)

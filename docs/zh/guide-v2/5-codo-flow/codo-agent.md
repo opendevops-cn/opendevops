@@ -94,7 +94,7 @@ agent 连接上之后会默认进入到 CMDB 的 Agent 列表页面.
 
 点击 **生成主机** 用来在业务树上 绑定 agent 机器
 
-![image-20250728224325083](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250728224325083.png)
+![image-20250728224325083](../images/image-20250728224325083.png)
 
 
 
@@ -104,7 +104,7 @@ agent 连接上之后会默认进入到 CMDB 的 Agent 列表页面.
 
 
 
-![image-20250728224637293](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250728224637293.png)
+![image-20250728224637293](../images/image-20250728224637293.png)
 
 
 
@@ -276,14 +276,13 @@ curl 127.0.0.1:9996/api/v1/agent/info
 
 在不同网络分区建立 PROXY 节点，收敛网络流量，由 PROXY 节点统一向外部中心调度服务进行流量传输。
 
-![img](https://raw.githubusercontent.com/Ccheers/pic/main/img/(null)-20241010171811120.(null))
 
 ## 任务调度
 
 > 之所以推送任务到 redis , 是 因为 agent-server 本身多副本, 对应需要执行任务的 agent 的 ws连接 不一定在 接受到任务下发的 agent-server 上
 
-![image-20241010172733008](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241010172733008.png)
+![image-20241010172733008](../images/image-20241010172733008.png)
 
 ### 在 ExecCmd 时的调度
 
-![image-20241014134832686](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20241014134832686.png)
+![image-20241014134832686](../images/image-20241014134832686.png)

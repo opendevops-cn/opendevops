@@ -15,10 +15,10 @@ codo 主要由以下组件组成
 - 天门网关 ：[codo-gateway](https://github.com/opendevops-cn/codo-gateway)
 
 **系统架构**
-![image-20250520215813383](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250520215813383.png)
+![image-20250520215813383](../images/image-20250520215813383.png)
 
 **业务拓扑**
-![image-20250520222305262](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250520222305262.png)
+![image-20250520222305262](../images/image-20250520222305262.png)
 
 **流量拓扑**
-![image-20250521100359946](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250521100359946.png)
+![image-20250521100359946](../images/image-20250521100359946.png)

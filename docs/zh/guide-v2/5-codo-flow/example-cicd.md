@@ -4,14 +4,14 @@
 
 ### 新建打包机组
 
-![image-20250802151312015](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802151312015.png)
+![image-20250802151312015](../images/image-20250802151312015.png)
 
 ### 添加打包机
 
-![image-20250802151457399](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802151457399.png)
+![image-20250802151457399](../images/image-20250802151457399.png)
 
 
-![image-20250802151526652](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802151526652.png)
+![image-20250802151526652](../images/image-20250802151526652.png)
 
 
 ## [持续集成] 配置凭证信息用于拉取代码仓库
@@ -21,47 +21,47 @@
 
 **凭证key 在 脚本中使用 `$CODO_{keyname}` 读取**
 
-![image-20250802150638846](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802150638846.png)
+![image-20250802150638846](../images/image-20250802150638846.png)
 
 ## [持续集成] 编写构建脚本
 
-![image-20250802150531398](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802150531398.png)
+![image-20250802150531398](../images/image-20250802150531398.png)
 
 ## [持续集成] 配置CI流程
 
 ### 选择打包机
 
-![image-20250802151202383](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802151202383.png)
+![image-20250802151202383](../images/image-20250802151202383.png)
 
 ### 选择脚本类型节点, 用于执行脚本任务
 
-![image-20250802151841738](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802151841738.png)
+![image-20250802151841738](../images/image-20250802151841738.png)
 
-![image-20250802150924684](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802150924684.png)
+![image-20250802150924684](../images/image-20250802150924684.png)
 
 ### 选择全局节点
 
-![image-20250802151700888](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802151700888.png)
+![image-20250802151700888](../images/image-20250802151700888.png)
 
 ### 选择构建脚本
 
-![image-20250802151746905](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802151746905.png)
+![image-20250802151746905](../images/image-20250802151746905.png)
 
 ### 配置自定义参数表单
 
 这里的 branch 在 脚本中使用 `codo_branch` 读取
 
-![image-20250802152047873](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802152047873.png)
+![image-20250802152047873](../images/image-20250802152047873.png)
 
 ### 配置仓库触发
 
-![image-20250802152322619](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802152322619.png)
+![image-20250802152322619](../images/image-20250802152322619.png)
 
 
 
 ### 点击发布
 
-![image-20250802152754433](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802152754433.png)
+![image-20250802152754433](../images/image-20250802152754433.png)
 
 
 
@@ -69,7 +69,7 @@
 
 因为是云原生部署, 并不需要很重的执行环境, 所以我们选择云原生任务来执行部署作业
 
-![image-20250802152703627](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802152703627.png)
+![image-20250802152703627](../images/image-20250802152703627.png)
 
 
 
@@ -77,18 +77,18 @@
 
 ### 添加云原生任务节点
 
-![image-20250802152821834](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802152821834.png)
+![image-20250802152821834](../images/image-20250802152821834.png)
 
 ### 选择执行任务的集群 和 任务
 
-![image-20250802152908332](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802152908332.png)
+![image-20250802152908332](../images/image-20250802152908332.png)
 
 ### 配置执行参数
 
-![image-20250802153123688](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802153123688.png)
+![image-20250802153123688](../images/image-20250802153123688.png)
 
 ### 发布&触发
 
-![image-20250802153310105](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802153310105.png)
+![image-20250802153310105](../images/image-20250802153310105.png)
 
-![image-20250802153328627](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802153328627.png)
+![image-20250802153328627](../images/image-20250802153328627.png)

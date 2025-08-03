@@ -17,13 +17,13 @@ flow_bpm_name：当前审批节点的名称
 其他变量都可以直接在通知模板中取用
 ```
 
-![1280X1280](https://raw.githubusercontent.com/Ccheers/pic/main/img/1280X1280.PNG)
+![1280X1280](../images/1280X1280.png)
 
 1. ### 配置通知通道
 
-![1280X1280 (1)](https://raw.githubusercontent.com/Ccheers/pic/main/img/1280X1280%20(1).PNG)
+![1280X1280 (1)](../images/1280X1280_1.png)
 
-![1280X1280 (2)](https://raw.githubusercontent.com/Ccheers/pic/main/img/1280X1280%20(2).PNG)
+![1280X1280 (2)](../images/1280X1280_2.png)
 
 配置回调地址
 
@@ -38,24 +38,24 @@ https://{补上网关地址}/api/f2-acc/public/v1/flow/approval/reject/
 
 > 固定用法 创建 flow_approval=yes   user_task=type1 的路由条件
 
-![1280X1280 (3)](https://raw.githubusercontent.com/Ccheers/pic/main/img/1280X1280%20(3).PNG)
+![1280X1280 (3)](../images/1280X1280_3.png)
 
 ## 流程配置
 
 1. ### 创建流程
 
-![be1cbe35-168f-492b-a13b-a87b97461a19](https://raw.githubusercontent.com/Ccheers/pic/main/img/be1cbe35-168f-492b-a13b-a87b97461a19.png)
+![be1cbe35-168f-492b-a13b-a87b97461a19](../images/be1cbe35-168f-492b-a13b-a87b97461a19.png)
 
 1. ### 使用用户类型的任务
 
-![780e63a7-9178-4d69-91ec-c1a8456a57f8](https://raw.githubusercontent.com/Ccheers/pic/main/img/780e63a7-9178-4d69-91ec-c1a8456a57f8.png)
+![780e63a7-9178-4d69-91ec-c1a8456a57f8](../images/780e63a7-9178-4d69-91ec-c1a8456a57f8.png)
 
 1. ### 发布流程
 
-![d4a9ed61-635b-4c52-9533-2050a7c0e94f](https://raw.githubusercontent.com/Ccheers/pic/main/img/d4a9ed61-635b-4c52-9533-2050a7c0e94f.png)
+![d4a9ed61-635b-4c52-9533-2050a7c0e94f](../images/d4a9ed61-635b-4c52-9533-2050a7c0e94f.png)
 
 1. ### 点击触发即可
 
-![fd581805-df3f-4724-beec-1168e707a4ae](https://raw.githubusercontent.com/Ccheers/pic/main/img/fd581805-df3f-4724-beec-1168e707a4ae.png)
+![fd581805-df3f-4724-beec-1168e707a4ae](../images/fd581805-df3f-4724-beec-1168e707a4ae.png)
 
-![image-20250802160044602](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802160044602.png)
+![image-20250802160044602](../images/image-20250802160044602.png)

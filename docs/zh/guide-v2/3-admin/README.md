@@ -4,7 +4,7 @@
 
 在 CODO 中预制了自身系统的应用, 同时, 用户也可以添加自己开发的应用集成到 CODO 中来
 
-![image-20250726173112656](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250726173112656.png)
+![image-20250726173112656](../images/image-20250726173112656.png)
 
 ### 参数说明
 
@@ -18,7 +18,7 @@
 
 业务是一种全局分类, 在 codo 的系统中起到资源隔离的作用
 
-![image-20250726175227687](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250726175227687.png)
+![image-20250726175227687](../images/image-20250726175227687.png)
 
 ### 参数说明
 
@@ -30,7 +30,7 @@
 
 这里权限指接口权限, 用户也可以将自己需要的鉴权的权限注册进来
 
-![image-20250726175559276](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250726175559276.png)
+![image-20250726175559276](../images/image-20250726175559276.png)
 
 ### 参数说明
 
@@ -48,7 +48,7 @@
 
 ## 管理菜单(前端权限)
 
-![image-20250726180411612](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250726180411612.png)
+![image-20250726180411612](../images/image-20250726180411612.png)
 
 ### 参数说明
 
@@ -60,13 +60,13 @@
 
 角色是权限和用户的交集表示.
 
-![image-20250726180719570](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250726180719570.png)
+![image-20250726180719570](../images/image-20250726180719570.png)
 
 ### 基础角色
 
 基础角色类似权限包, 是一组一组的权限集合
 
-![image-20250726190159372](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250726190159372.png)
+![image-20250726190159372](../images/image-20250726190159372.png)
 
 ### 通用角色
 

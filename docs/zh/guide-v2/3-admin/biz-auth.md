@@ -4,10 +4,10 @@
 
 配置角色之后, 关联的用户即可在业务列表看到对应的业务
 
-![image-20250727140407275](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250727140407275.png)
+![image-20250727140407275](../images/image-20250727140407275.png)
 
 
 
 ## 2. 在天门网关, 给相关接口配置业务鉴权插件
 
-![image-20250727142941638](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250727142941638.png)
+![image-20250727142941638](../images/image-20250727142941638.png)

@@ -9,7 +9,7 @@
 - 需要注意服务器和 kubeconfig 的 api 地址网络联通性
 - 使用最高权限的 kubeconfig 导入
 
-![image-20250802160413954](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802160413954.png)
+![image-20250802160413954](../images/image-20250802160413954.png)
 
 
 
@@ -24,7 +24,7 @@
 - 操作审计
 - 权限控制
 
-![image-20250802174831908](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802174831908.png)
+![image-20250802174831908](../images/image-20250802174831908.png)
 
 
 
@@ -34,17 +34,17 @@
 
 一般来说不需要特别配置角色, 预置的管理员以及只读足够了
 
-![image-20250802175113260](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802175113260.png)
+![image-20250802175113260](../images/image-20250802175113260.png)
 
 ### 用户组授权
 
 **用户组授权需要需要先在 [后台管理 配置好角色](../3-admin/role-auth.md)**
 
-![image-20250802174447211](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802174447211.png)
+![image-20250802174447211](../images/image-20250802174447211.png)
 
 
 
 ## 操作审计
 
-![image-20250802174743181](https://raw.githubusercontent.com/Ccheers/pic/main/img/image-20250802174743181.png)
+![image-20250802174743181](../images/image-20250802174743181.png)
 
