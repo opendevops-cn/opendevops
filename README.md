@@ -130,6 +130,14 @@ CODO 是一款专为企业设计的开源全球一站式运维平台，支持多
 
 Everything is [GPL v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
 
+
+### 友情链接
+
+[运维咖啡吧 - 一杯咖啡轻松运维](https://blog.ops-coffee.cn/)
+
+[WeRSS - 微信公众号订阅助手](https://github.com/rachelos/we-mp-rss)
+
+
 ## 写在最后
 
 感谢以下同学为Demo环境进行赞助。
