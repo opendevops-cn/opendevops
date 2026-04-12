@@ -195,6 +195,8 @@ docker compose -f docker-compose-app.yaml up -d
 
 2. 更新后报500错误，一般是字段发生变更需要删表重建或者自己补齐字段 
 
+推荐把错误信息发给AI（GPT、Gemini、DS）让AI 告诉你怎么补齐新加的字段即可。
+
 :::
 
 
